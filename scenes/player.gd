@@ -1,8 +1,10 @@
+# Player.gd
 extends CharacterBody2D
-
 
 const SPEED = 150.0
 const JUMP_VELOCITY = -300.0
+
+signal update_position(pos_y: float) # Signal defined here
 
 
 func _physics_process(delta: float) -> void:
@@ -15,7 +17,6 @@ func _physics_process(delta: float) -> void:
 		velocity.y = JUMP_VELOCITY
 
 	# Get the input direction and handle the movement/deceleration.
-	# As good practice, you should replace UI actions with custom gameplay actions.
 	var direction := Input.get_axis("ui_left", "ui_right")
 	if direction:
 		velocity.x = direction * SPEED
@@ -23,3 +24,6 @@ func _physics_process(delta: float) -> void:
 		velocity.x = move_toward(velocity.x, 0, SPEED)
 
 	move_and_slide()
+	
+	# Emit the signal with the player's current y-position
+	emit_signal("update_position", global_position.y) # Use global_position for world coordinates
