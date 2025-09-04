@@ -1,0 +1,20 @@
+[gd_scene load_steps=3 format=3 uid="uid://x6orld16qe8h"]
+
+[ext_resource type="Script" uid="uid://celpmjhmbj7la" path="res://scenes/void.gd" id="1_ccpoa"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_inyt8"]
+size = Vector2(117.167, 20)
+
+[node name="Void" type="Area2D"]
+scale = Vector2(2, 2)
+disable_mode = 2
+script = ExtResource("1_ccpoa")
+
+[node name="DestinationPoint" type="Marker2D" parent="."]
+position = Vector2(-13.5, -72)
+scale = Vector2(3, 3)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(12.25, 24.5)
+scale = Vector2(3, 3)
+shape = SubResource("RectangleShape2D_inyt8")
