@@ -1,0 +1,17 @@
+[gd_scene load_steps=4 format=3 uid="uid://dqg5uu776sqp"]
+
+[ext_resource type="Script" uid="uid://b14xtnmhfpex0" path="res://scripts/sapphire.gd" id="1_okr8r"]
+[ext_resource type="Texture2D" uid="uid://mbicnxhgqj51" path="res://assets/sprites/gems_db16.png" id="2_bd64o"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_ks8bm"]
+
+[node name="Node2D" type="Area2D"]
+script = ExtResource("1_okr8r")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture = ExtResource("2_bd64o")
+region_enabled = true
+region_rect = Rect2(34.5735, 69.9282, 26.6638, 20.888)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("CircleShape2D_ks8bm")

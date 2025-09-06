@@ -1,0 +1,19 @@
+[remap]
+
+importer="mp3"
+type="AudioStreamMP3"
+uid="uid://qv21crk5jsgf"
+path="res://.godot/imported/Sergei Rachmaninov, Etude-Tableau Op.39 No 6, Nikolai Lugansky - harmonia mundi music.mp3-6f4aadf71038db6aec6c795153e31f7e.mp3str"
+
+[deps]
+
+source_file="res://assets/music/Sergei Rachmaninov, Etude-Tableau Op.39 No 6, Nikolai Lugansky - harmonia mundi music.mp3"
+dest_files=["res://.godot/imported/Sergei Rachmaninov, Etude-Tableau Op.39 No 6, Nikolai Lugansky - harmonia mundi music.mp3-6f4aadf71038db6aec6c795153e31f7e.mp3str"]
+
+[params]
+
+loop=false
+loop_offset=0
+bpm=0
+beat_count=0
+bar_beats=4

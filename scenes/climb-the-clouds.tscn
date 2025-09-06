@@ -1,0 +1,12 @@
+[gd_scene load_steps=3 format=3 uid="uid://dyjyvypiaijww"]
+
+[ext_resource type="PackedScene" uid="uid://dojb5lpo81upv" path="res://scenes/main_screen.tscn" id="1_2n055"]
+[ext_resource type="PackedScene" uid="uid://c1nycjn5yf0vq" path="res://scenes/main_game.tscn" id="2_rneuu"]
+
+[node name="Climb the Clouds" type="Node2D"]
+
+[node name="MainMenu" parent="." instance=ExtResource("1_2n055")]
+metadata/_edit_use_anchors_ = true
+
+[node name="main_game" parent="." instance=ExtResource("2_rneuu")]
+position = Vector2(-62, 68)

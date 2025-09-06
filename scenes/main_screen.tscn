@@ -1,0 +1,101 @@
+[gd_scene load_steps=7 format=3 uid="uid://dojb5lpo81upv"]
+
+[ext_resource type="FontFile" uid="uid://wgqa3pops2qt" path="res://assets/fonts/SuperDream-ax3vE.ttf" id="1_7fvvs"]
+[ext_resource type="Script" uid="uid://bl5bfij1n0x5s" path="res://scenes/main_menu.gd" id="1_aum10"]
+[ext_resource type="Texture2D" uid="uid://bfrc22vdbuprr" path="res://assets/sprites/Blue and Yellow Neon Retro Pixel Art Game Night Game Presentation.jpg" id="2_aum10"]
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_7fvvs"]
+texture = ExtResource("2_aum10")
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_w87pm"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_7fvvs"]
+bg_color = Color(0.635294, 0.635294, 0.635294, 1)
+corner_radius_top_left = 16
+corner_radius_top_right = 16
+corner_radius_bottom_right = 16
+corner_radius_bottom_left = 16
+shadow_color = Color(0, 0, 0, 0.203922)
+shadow_size = 5
+
+[node name="MainMenu" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_aum10")
+
+[node name="Panel" type="Panel" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_styles/panel = SubResource("StyleBoxTexture_7fvvs")
+
+[node name="VBoxContainer" type="VBoxContainer" parent="."]
+layout_mode = 1
+anchors_preset = 3
+anchor_left = 1.0
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -493.0
+offset_top = -401.0
+offset_right = -81.0
+offset_bottom = -112.0
+grow_horizontal = 0
+grow_vertical = 0
+theme_override_constants/separation = 5
+
+[node name="Button" type="Button" parent="VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 3
+theme_override_colors/icon_hover_color = Color(0, 0, 0, 1)
+theme_override_colors/icon_pressed_color = Color(0, 0, 0, 1)
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_colors/font_focus_color = Color(0, 0, 0, 1)
+theme_override_fonts/font = ExtResource("1_7fvvs")
+theme_override_font_sizes/font_size = 50
+theme_override_styles/focus = SubResource("StyleBoxEmpty_w87pm")
+theme_override_styles/hover = SubResource("StyleBoxFlat_7fvvs")
+theme_override_styles/pressed = SubResource("StyleBoxFlat_7fvvs")
+theme_override_styles/normal = SubResource("StyleBoxFlat_7fvvs")
+text = "Start Game"
+
+[node name="Button2" type="Button" parent="VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 3
+theme_override_colors/icon_hover_color = Color(0, 0, 0, 1)
+theme_override_colors/icon_pressed_color = Color(0, 0, 0, 1)
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_colors/font_focus_color = Color(0, 0, 0, 1)
+theme_override_fonts/font = ExtResource("1_7fvvs")
+theme_override_font_sizes/font_size = 50
+theme_override_styles/focus = SubResource("StyleBoxEmpty_w87pm")
+theme_override_styles/hover = SubResource("StyleBoxFlat_7fvvs")
+theme_override_styles/pressed = SubResource("StyleBoxFlat_7fvvs")
+theme_override_styles/normal = SubResource("StyleBoxFlat_7fvvs")
+text = "Options"
+
+[node name="Button3" type="Button" parent="VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 3
+theme_override_colors/icon_hover_color = Color(0, 0, 0, 1)
+theme_override_colors/icon_pressed_color = Color(0, 0, 0, 1)
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_colors/font_focus_color = Color(0, 0, 0, 1)
+theme_override_fonts/font = ExtResource("1_7fvvs")
+theme_override_font_sizes/font_size = 50
+theme_override_styles/focus = SubResource("StyleBoxEmpty_w87pm")
+theme_override_styles/hover = SubResource("StyleBoxFlat_7fvvs")
+theme_override_styles/pressed = SubResource("StyleBoxFlat_7fvvs")
+theme_override_styles/normal = SubResource("StyleBoxFlat_7fvvs")
+text = "Exit"
+
+[connection signal="pressed" from="VBoxContainer/Button" to="." method="_on_start_pressed"]
+[connection signal="pressed" from="VBoxContainer/Button2" to="." method="_on_settings_pressed"]
+[connection signal="pressed" from="VBoxContainer/Button3" to="." method="_on_exit_pressed"]
