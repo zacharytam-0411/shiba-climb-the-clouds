@@ -1,11 +1,11 @@
 [gd_scene load_steps=30 format=3 uid="uid://cv0wrc1go4k5a"]
 
-[ext_resource type="Script" uid="uid://xipnf7mv2xnm" path="res://scenes/player.gd" id="1_g2els"]
-[ext_resource type="Script" uid="uid://ct0owatan2gs8" path="res://scenes/label_2.gd" id="2_dqkch"]
+[ext_resource type="Script" uid="uid://cehyipf1ptnw1" path="res://scripts/player.gd" id="1_g2els"]
+[ext_resource type="Script" uid="uid://domehptmw0x8h" path="res://scripts/label_2.gd" id="2_dqkch"]
 [ext_resource type="Texture2D" uid="uid://wyf8nweikm6y" path="res://assets/sprites/knight.png" id="2_qhqgy"]
-[ext_resource type="Script" uid="uid://c08kvlblijbqq" path="res://scenes/label_4.gd" id="2_qlg0r"]
-[ext_resource type="Script" uid="uid://crnevsnwiqlej" path="res://scenes/label_3.gd" id="4_qlg0r"]
-[ext_resource type="Script" uid="uid://c7y3k7aovi3a1" path="res://scenes/label.gd" id="5_tuyoq"]
+[ext_resource type="Script" uid="uid://bedawxese18tm" path="res://scripts/label_4.gd" id="2_qlg0r"]
+[ext_resource type="Script" uid="uid://m34g6opnni1f" path="res://scripts/label_3.gd" id="4_qlg0r"]
+[ext_resource type="Script" uid="uid://cgtm4anjs3f3v" path="res://scripts/label.gd" id="5_tuyoq"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_n2od3"]
 atlas = ExtResource("2_qhqgy")

@@ -1,6 +1,6 @@
 [gd_scene load_steps=4 format=3 uid="uid://dqg5uu776sqp"]
 
-[ext_resource type="Script" uid="uid://b14xtnmhfpex0" path="res://scripts/sapphire.gd" id="1_okr8r"]
+[ext_resource type="Script" uid="uid://bf5nbou344dt5" path="res://scripts/diamond.gd" id="1_okr8r"]
 [ext_resource type="Texture2D" uid="uid://mbicnxhgqj51" path="res://assets/sprites/gems_db16.png" id="2_bd64o"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_ks8bm"]
