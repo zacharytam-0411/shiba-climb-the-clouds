@@ -9,4 +9,4 @@ func _ready():
 	
 
 func _process(delta: float) -> void:
-	text = "Y level: " + str(Global.y_level) + "m"
+	text = "Y level: " + str(Global.y_level) + "m" + "\nAll Tasks Completed: " + str(Global.winnable)

@@ -5,6 +5,8 @@ const JUMP_VELOCITY = -300.0
 
 func _process(delta: float) -> void:
 	Global.y_level = roundf((-position.y+5)/16)
+	if Global.y_level > Global.max_height:
+		Global.max_height = Global.y_level
 
 @onready var animated_sprite  = $AnimatedSprite2D
 func _physics_process(delta: float) -> void:

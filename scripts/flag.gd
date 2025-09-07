@@ -5,7 +5,10 @@ func _ready():
 	
 func _on_body_entered(body):
 	if body.is_in_group("Player"):
-		if Global.diamond_collected == true and Global.ruby_collected == true and Global.sapphire_collected == true and Global.coin == 26:
-			print("got flag and win game")
+		if Global.winnable == true:
+			Global.win_level = true
 		else:
-			print("Go collect all of the coins and gems!")
+			Global.win_level = false
+	if Global.win_level == true:
+		print("you win!")
+		get_tree().change_scene_to_file('res://scenes/game_win_scene.tscn')

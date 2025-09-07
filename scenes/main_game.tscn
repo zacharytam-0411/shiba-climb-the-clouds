@@ -4,7 +4,7 @@
 [ext_resource type="PackedScene" uid="uid://cv0wrc1go4k5a" path="res://scenes/player.tscn" id="2_70vka"]
 [ext_resource type="Texture2D" uid="uid://bkehvrg0qb6j7" path="res://assets/sprites/world_tileset.png" id="4_nqdth"]
 [ext_resource type="PackedScene" uid="uid://cyweio5jgfpom" path="res://scenes/platform.tscn" id="5_5cypo"]
-[ext_resource type="PackedScene" path="res://scenes/flag.tscn" id="5_o6v7o"]
+[ext_resource type="PackedScene" uid="uid://c7vn0pl5rmqo7" path="res://scenes/flag.tscn" id="5_o6v7o"]
 [ext_resource type="PackedScene" uid="uid://dwpv6dgjduk64" path="res://scenes/platform4.tscn" id="6_2l77h"]
 [ext_resource type="PackedScene" uid="uid://b33iyb2a5vwmp" path="res://scenes/platform3.tscn" id="6_o6v7o"]
 [ext_resource type="PackedScene" uid="uid://cnhgglg0jjxco" path="res://scenes/coin.tscn" id="7_wjob3"]
@@ -730,10 +730,6 @@ tile_set = SubResource("TileSet_ikqpi")
 [node name="Collectables[?]" type="TileMapLayer" parent="Layers"]
 tile_set = SubResource("TileSet_yu8cv")
 
-[node name="Node2D" parent="Layers" instance=ExtResource("5_o6v7o")]
-position = Vector2(-615, -776)
-scale = Vector2(1.5, 1.5)
-
 [node name="wobbily wiggily wobbily wiggly oooooo woah" type="Node2D" parent="."]
 position = Vector2(-232, 77)
 
@@ -782,18 +778,6 @@ autoplay = "move up"
 [node name="Coins" type="Node2D" parent="."]
 position = Vector2(-296, -489)
 
-[node name="Coin21" parent="Coins" instance=ExtResource("7_wjob3")]
-position = Vector2(400, 447)
-
-[node name="Coin24" parent="Coins" instance=ExtResource("7_wjob3")]
-position = Vector2(319, -223)
-
-[node name="Coin23" parent="Coins" instance=ExtResource("7_wjob3")]
-position = Vector2(534, 409)
-
-[node name="Coin20" parent="Coins" instance=ExtResource("7_wjob3")]
-position = Vector2(-561, 209)
-
 [node name="Coin" parent="Coins" instance=ExtResource("7_wjob3")]
 position = Vector2(366, 482)
 
@@ -806,53 +790,65 @@ position = Vector2(607, 416)
 [node name="Coin4" parent="Coins" instance=ExtResource("7_wjob3")]
 position = Vector2(688, 513)
 
-[node name="Coin22" parent="Coins" instance=ExtResource("7_wjob3")]
-position = Vector2(207, 496)
+[node name="Coin5" parent="Coins" instance=ExtResource("7_wjob3")]
+position = Vector2(881, 336)
 
 [node name="Coin6" parent="Coins" instance=ExtResource("7_wjob3")]
 position = Vector2(832, 124)
 
-[node name="Coin9" parent="Coins" instance=ExtResource("7_wjob3")]
-position = Vector2(528, 0)
-
-[node name="Coin11" parent="Coins" instance=ExtResource("7_wjob3")]
-position = Vector2(-10, 493)
+[node name="Coin7" parent="Coins" instance=ExtResource("7_wjob3")]
+position = Vector2(1024, 255)
 
 [node name="Coin8" parent="Coins" instance=ExtResource("7_wjob3")]
 position = Vector2(497, 49)
 
-[node name="Coin5" parent="Coins" instance=ExtResource("7_wjob3")]
-position = Vector2(881, 336)
+[node name="Coin9" parent="Coins" instance=ExtResource("7_wjob3")]
+position = Vector2(528, 0)
 
 [node name="Coin10" parent="Coins" instance=ExtResource("7_wjob3")]
 position = Vector2(655, -96)
 
-[node name="Coin7" parent="Coins" instance=ExtResource("7_wjob3")]
-position = Vector2(1024, 255)
-
-[node name="Coin18" parent="Coins" instance=ExtResource("7_wjob3")]
-position = Vector2(-576, 224)
-
-[node name="Coin17" parent="Coins" instance=ExtResource("7_wjob3")]
-position = Vector2(-112, 14)
-
-[node name="Coin19" parent="Coins" instance=ExtResource("7_wjob3")]
-position = Vector2(-640, 289)
-
-[node name="Coin16" parent="Coins" instance=ExtResource("7_wjob3")]
-position = Vector2(-240, 79)
+[node name="Coin11" parent="Coins" instance=ExtResource("7_wjob3")]
+position = Vector2(-10, 493)
 
 [node name="Coin12" parent="Coins" instance=ExtResource("7_wjob3")]
 position = Vector2(-10, 434)
 
-[node name="Coin15" parent="Coins" instance=ExtResource("7_wjob3")]
-position = Vector2(-305, 238)
+[node name="Coin13" parent="Coins" instance=ExtResource("7_wjob3")]
+position = Vector2(-10, 462)
 
 [node name="Coin14" parent="Coins" instance=ExtResource("7_wjob3")]
 position = Vector2(-79, 306)
 
-[node name="Coin13" parent="Coins" instance=ExtResource("7_wjob3")]
-position = Vector2(-10, 462)
+[node name="Coin15" parent="Coins" instance=ExtResource("7_wjob3")]
+position = Vector2(-305, 238)
+
+[node name="Coin16" parent="Coins" instance=ExtResource("7_wjob3")]
+position = Vector2(-240, 79)
+
+[node name="Coin17" parent="Coins" instance=ExtResource("7_wjob3")]
+position = Vector2(-112, 14)
+
+[node name="Coin18" parent="Coins" instance=ExtResource("7_wjob3")]
+position = Vector2(-576, 224)
+
+[node name="Coin19" parent="Coins" instance=ExtResource("7_wjob3")]
+position = Vector2(-640, 289)
+
+[node name="Coin20" parent="Coins" instance=ExtResource("7_wjob3")]
+position = Vector2(-561, 210)
+
+[node name="Coin21" parent="Coins" instance=ExtResource("7_wjob3")]
+position = Vector2(400, 447)
+
+[node name="Coin22" parent="Coins" instance=ExtResource("7_wjob3")]
+position = Vector2(207, 496)
+
+[node name="Coin23" parent="Coins" instance=ExtResource("7_wjob3")]
+position = Vector2(534, 409)
+
+[node name="Coin24" parent="Coins" instance=ExtResource("7_wjob3")]
+position = Vector2(319, -223)
 
 [node name="Coin25" parent="Coins" instance=ExtResource("7_wjob3")]
 position = Vector2(433, -256)
@@ -913,3 +909,6 @@ position = Vector2(-703, -103)
 
 [node name="Ruby" parent="Gems" instance=ExtResource("12_o6v7o")]
 position = Vector2(943, -291)
+
+[node name="Flag" parent="." instance=ExtResource("5_o6v7o")]
+position = Vector2(-624, -774)

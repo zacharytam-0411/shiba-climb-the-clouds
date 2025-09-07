@@ -200,11 +200,12 @@ script = ExtResource("2_qlg0r")
 z_index = 5
 texture_filter = 3
 texture_repeat = 1
-offset_right = 40.0
+offset_left = 2.0
+offset_right = 61.0
 offset_bottom = 87.0
 rotation = 0.00128714
 theme_override_colors/font_color = Color(0, 0, 0, 1)
-theme_override_font_sizes/font_size = 30
+theme_override_font_sizes/font_size = 20
 text = "Coins:"
 script = ExtResource("2_dqkch")
 
@@ -225,12 +226,13 @@ script = ExtResource("4_qlg0r")
 anchors_preset = 4
 anchor_top = 0.5
 anchor_bottom = 0.5
-offset_top = -236.938
-offset_right = 40.0
-offset_bottom = -195.062
+offset_left = 2.0
+offset_top = -256.938
+offset_right = 42.0
+offset_bottom = -215.062
 grow_vertical = 2
 theme_override_colors/font_color = Color(0, 0, 0, 1)
-theme_override_font_sizes/font_size = 30
+theme_override_font_sizes/font_size = 20
 script = ExtResource("5_tuyoq")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
