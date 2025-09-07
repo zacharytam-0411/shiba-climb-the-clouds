@@ -777,7 +777,7 @@ autoplay = "move up"
 position = Vector2(-296, -489)
 
 [node name="Coin21" parent="Coins" instance=ExtResource("7_wjob3")]
-position = Vector2(392, 424)
+position = Vector2(400, 447)
 
 [node name="Coin23" parent="Coins" instance=ExtResource("7_wjob3")]
 position = Vector2(534, 409)
@@ -847,6 +847,38 @@ position = Vector2(-10, 462)
 
 [node name="Labels" type="Node2D" parent="."]
 position = Vector2(-296, -489)
+
+[node name="Label4" type="Label" parent="Labels"]
+offset_left = 619.0
+offset_top = 392.0
+offset_right = 885.0
+offset_bottom = 465.0
+scale = Vector2(0.2, 0.2)
+text = "Unfortunately for now, there are no goals,
+no lives system [which WILL be introduced in
+later development]. So your goal is to find the two gems :)
+Also tell me how high youve gone in the feedback :)"
+
+[node name="Label3" type="Label" parent="Labels"]
+offset_left = 298.0
+offset_top = 474.0
+offset_right = 873.0
+offset_bottom = 924.0
+scale = Vector2(0.2, 0.2)
+text = "Controls : WASD / Arrow Keys
+"
+
+[node name="Label2" type="Label" parent="Labels"]
+offset_left = 403.0
+offset_top = 408.0
+offset_right = 755.0
+offset_bottom = 506.333
+scale = Vector2(0.2, 0.2)
+text = "There are going to be 4 main gems that
+require getting collected in order to upgrade
+your stats, and they are required to collected 
+to finish the level :) Good luck finding them
+Hint : Maybe look to the left..."
 
 [node name="Label" type="Label" parent="Labels"]
 offset_left = 298.0
