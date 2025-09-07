@@ -8,5 +8,6 @@ func _ready():
 func _process(delta: float) -> void:
 	var sapphire_status = "Sapphire: 1/1" if Global.sapphire_collected else "Sapphire: 0/1"
 	var diamond_status =  "Diamond: 1/1" if Global.diamond_collected else "Diamond: 0/1"
+	var ruby_status = "Ruby: 1/1" if Global.ruby_collected else "Ruby: 0/1"
 
-	label_4.text = sapphire_status + "\n" + diamond_status
+	label_4.text = sapphire_status + "\n" + diamond_status + "\n" + ruby_status
