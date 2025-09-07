@@ -2,7 +2,7 @@
 
 [ext_resource type="FontFile" uid="uid://wgqa3pops2qt" path="res://assets/fonts/SuperDream-ax3vE.ttf" id="1_7fvvs"]
 [ext_resource type="Script" uid="uid://288jde3gqwi6" path="res://scenes/main_menu.gd" id="1_aum10"]
-[ext_resource type="Texture2D" uid="uid://bfrc22vdbuprr" path="res://assets/sprites/Blue and Yellow Neon Retro Pixel Art Game Night Game Presentation.jpg" id="2_aum10"]
+[ext_resource type="Texture2D" uid="uid://dpw8h64t55xbm" path="res://assets/sprites/Thumbnail.png" id="2_aum10"]
 
 [sub_resource type="StyleBoxTexture" id="StyleBoxTexture_7fvvs"]
 texture = ExtResource("2_aum10")
