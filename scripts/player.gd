@@ -12,9 +12,9 @@ var jumps_left: int = 1
 @onready var bgm_player: AudioStreamPlayer = $BGMPlayer
 @onready var bgm_label: Label = $Camera2D/CanvasLayer/BGMLabel
 @onready var label_timer: Timer = $BGMTimer
+
 var bgm_list: Array = [
 	{"name": "Overflow", "stream": preload("res://assets/music/オーバーライド - 重音テトSV[吉田夜世] - 吉田夜世.mp3")},
-	{"name": "Big Cat Waltz", "stream": preload("res://assets/music/Big Cat Waltz 大猫のワルツ - Cateen かてぃん-[AudioTrimmer.com].mp3")},
 	{"name": "Tetoris", "stream": preload("res://assets/music/テトリス _ 重音テトSV - 柊マグネタイト.mp3")},
 	{"name": "From the start", "stream": preload("res://assets/music/From The Start Cover __ 重音テトSV「Kasane Teto」 - SylviSlime.mp3")},
 	{"name": "Lover Girl", "stream": preload("res://assets/music/Lover Girl __ 重音テトSV「Kasane Teto」 - SylviSlime.mp3")}

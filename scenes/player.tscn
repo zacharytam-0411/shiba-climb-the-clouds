@@ -268,7 +268,7 @@ stream = ExtResource("7_fjrip")
 
 [node name="BGMPlayer" parent="." instance=ExtResource("8_smehm")]
 stream = null
-volume_db = -2.0
+volume_db = -4.0
 autoplay = false
 
 [node name="BGMTimer" type="Timer" parent="."]
