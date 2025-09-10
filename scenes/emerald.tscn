@@ -1,17 +1,68 @@
-[gd_scene load_steps=4 format=3 uid="uid://b87xehkxnear6"]
+[gd_scene load_steps=11 format=3 uid="uid://b87xehkxnear6"]
 
 [ext_resource type="Script" uid="uid://dne6m3p5ephi3" path="res://scripts/emerald.gd" id="1_yo2x0"]
-[ext_resource type="Texture2D" uid="uid://mbicnxhgqj51" path="res://assets/sprites/gems_db16.png" id="2_ee3t4"]
+[ext_resource type="Texture2D" uid="uid://iv5or3fyi5k6" path="res://assets/sprites/coins-chests-etc-2-0-noborders.png" id="2_yo2x0"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ee3t4"]
+atlas = ExtResource("2_yo2x0")
+region = Rect2(192, 400, 16, 17)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_eri7f"]
+atlas = ExtResource("2_yo2x0")
+region = Rect2(208, 400, 16, 17)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_uh1yq"]
+atlas = ExtResource("2_yo2x0")
+region = Rect2(224, 400, 16, 17)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_bswyq"]
+atlas = ExtResource("2_yo2x0")
+region = Rect2(240, 400, 16, 17)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_dxvfs"]
+atlas = ExtResource("2_yo2x0")
+region = Rect2(256, 400, 16, 17)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_wg3tv"]
+atlas = ExtResource("2_yo2x0")
+region = Rect2(272, 400, 16, 17)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_ab3ou"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ee3t4")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_eri7f")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_uh1yq")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_bswyq")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_dxvfs")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_wg3tv")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_yo2x0"]
+radius = 7.5
 
 [node name="Emerald" type="Area2D"]
 script = ExtResource("1_yo2x0")
 
-[node name="Sprite2D" type="Sprite2D" parent="."]
-texture = ExtResource("2_ee3t4")
-region_enabled = true
-region_rect = Rect2(35.5097, 34.6752, 26.0121, 25.8726)
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+sprite_frames = SubResource("SpriteFrames_ab3ou")
+autoplay = "default"
+frame_progress = 0.400615
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 scale = Vector2(1.2, 1.2)

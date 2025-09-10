@@ -1,0 +1,19 @@
+[remap]
+
+importer="mp3"
+type="AudioStreamMP3"
+uid="uid://cshxwso6hblfx"
+path="res://.godot/imported/From The Start Cover __ 重音テトSV「Kasane Teto」 - SylviSlime.mp3-9d4ca37b880598f0bb71ff98ee8dcace.mp3str"
+
+[deps]
+
+source_file="res://scripts/From The Start Cover __ 重音テトSV「Kasane Teto」 - SylviSlime.mp3"
+dest_files=["res://.godot/imported/From The Start Cover __ 重音テトSV「Kasane Teto」 - SylviSlime.mp3-9d4ca37b880598f0bb71ff98ee8dcace.mp3str"]
+
+[params]
+
+loop=false
+loop_offset=0
+bpm=0
+beat_count=0
+bar_beats=4

@@ -1,0 +1,19 @@
+[remap]
+
+importer="mp3"
+type="AudioStreamMP3"
+uid="uid://3p1oothhifje"
+path="res://.godot/imported/Lover Girl __ 重音テトSV「Kasane Teto」 - SylviSlime.mp3-d863ddba12db7039fddb95d2a09c0953.mp3str"
+
+[deps]
+
+source_file="res://assets/music/Lover Girl __ 重音テトSV「Kasane Teto」 - SylviSlime.mp3"
+dest_files=["res://.godot/imported/Lover Girl __ 重音テトSV「Kasane Teto」 - SylviSlime.mp3-d863ddba12db7039fddb95d2a09c0953.mp3str"]
+
+[params]
+
+loop=false
+loop_offset=0
+bpm=0
+beat_count=0
+bar_beats=4

@@ -1,0 +1,19 @@
+[remap]
+
+importer="mp3"
+type="AudioStreamMP3"
+uid="uid://dib8wyx84mnqq"
+path="res://.godot/imported/Free 5 Sec Intro Music No Copyright - Please Subscribe.mp3-5fafcdfb579ec257f35a5b10cea92b22.mp3str"
+
+[deps]
+
+source_file="res://assets/music/Free 5 Sec Intro Music No Copyright - Please Subscribe.mp3"
+dest_files=["res://.godot/imported/Free 5 Sec Intro Music No Copyright - Please Subscribe.mp3-5fafcdfb579ec257f35a5b10cea92b22.mp3str"]
+
+[params]
+
+loop=false
+loop_offset=0
+bpm=0
+beat_count=0
+bar_beats=4

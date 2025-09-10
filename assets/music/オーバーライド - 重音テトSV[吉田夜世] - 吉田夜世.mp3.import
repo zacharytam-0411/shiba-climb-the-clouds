@@ -1,0 +1,19 @@
+[remap]
+
+importer="mp3"
+type="AudioStreamMP3"
+uid="uid://bm1jxvbo652mm"
+path="res://.godot/imported/オーバーライド - 重音テトSV[吉田夜世] - 吉田夜世.mp3-756c070df28ca2db6a81565ffb00d54d.mp3str"
+
+[deps]
+
+source_file="res://assets/music/オーバーライド - 重音テトSV[吉田夜世] - 吉田夜世.mp3"
+dest_files=["res://.godot/imported/オーバーライド - 重音テトSV[吉田夜世] - 吉田夜世.mp3-756c070df28ca2db6a81565ffb00d54d.mp3str"]
+
+[params]
+
+loop=false
+loop_offset=0
+bpm=0
+beat_count=0
+bar_beats=4

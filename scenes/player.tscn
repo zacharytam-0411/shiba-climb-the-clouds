@@ -1,4 +1,4 @@
-[gd_scene load_steps=30 format=3 uid="uid://cv0wrc1go4k5a"]
+[gd_scene load_steps=33 format=3 uid="uid://cv0wrc1go4k5a"]
 
 [ext_resource type="Script" uid="uid://cehyipf1ptnw1" path="res://scripts/player.gd" id="1_g2els"]
 [ext_resource type="Script" uid="uid://domehptmw0x8h" path="res://scripts/label_2.gd" id="2_dqkch"]
@@ -6,6 +6,9 @@
 [ext_resource type="Script" uid="uid://bedawxese18tm" path="res://scripts/label_4.gd" id="2_qlg0r"]
 [ext_resource type="Script" uid="uid://m34g6opnni1f" path="res://scripts/label_3.gd" id="4_qlg0r"]
 [ext_resource type="Script" uid="uid://cgtm4anjs3f3v" path="res://scripts/label.gd" id="5_tuyoq"]
+[ext_resource type="FontFile" uid="uid://cwmuvbloniq03" path="res://assets/fonts/PixelOperator8.ttf" id="6_ur7pv"]
+[ext_resource type="AudioStream" uid="uid://bhmkglotgh4ds" path="res://assets/sounds/cartoon-jump-6462.mp3" id="7_fjrip"]
+[ext_resource type="PackedScene" uid="uid://bu5utcykja23f" path="res://scenes/bigcatwaltz.tscn" id="8_smehm"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_n2od3"]
 atlas = ExtResource("2_qhqgy")
@@ -235,6 +238,21 @@ theme_override_colors/font_color = Color(0, 0, 0, 1)
 theme_override_font_sizes/font_size = 20
 script = ExtResource("5_tuyoq")
 
+[node name="BGMLabel" type="Label" parent="Camera2D/CanvasLayer"]
+z_index = 5
+anchors_preset = 2
+anchor_top = 1.0
+anchor_bottom = 1.0
+offset_top = -38.0
+offset_right = 40.0
+offset_bottom = -7.0
+grow_vertical = 0
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_colors/font_outline_color = Color(1, 1, 1, 1)
+theme_override_constants/outline_size = 10
+theme_override_fonts/font = ExtResource("6_ur7pv")
+theme_override_font_sizes/font_size = 30
+
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 z_index = 5
 sprite_frames = SubResource("SpriteFrames_qfgku")
@@ -244,3 +262,17 @@ autoplay = "idle"
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 position = Vector2(0, 6)
 shape = SubResource("CircleShape2D_n427a")
+
+[node name="AudioStreamPlayer2D" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("7_fjrip")
+
+[node name="BGMPlayer" parent="." instance=ExtResource("8_smehm")]
+stream = null
+volume_db = -2.0
+autoplay = false
+
+[node name="BGMTimer" type="Timer" parent="."]
+wait_time = 3.0
+one_shot = true
+
+[connection signal="finished" from="BGMPlayer" to="." method="_on_bgm_finished"]
