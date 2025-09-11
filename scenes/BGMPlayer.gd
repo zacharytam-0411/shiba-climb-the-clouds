@@ -15,38 +15,42 @@ var bgm_started: bool = false
 
 func _ready() -> void:
 	# Connect label timer
-	if not label_timer.timeout.is_connected(_on_BGMLabelTimer_timeout):
-		label_timer.timeout.connect(_on_BGMLabelTimer_timeout)
+	if not label_timer.timeout.is_connected(Callable(self, "_on_BGMLabelTimer_timeout")):
+		label_timer.timeout.connect(Callable(self, "_on_BGMLabelTimer_timeout"))
 	
-	# Make sure the label is hidden initially
+	# Hide label at start
 	if bgm_label:
 		bgm_label.visible = false
 	
-	# HTML5 workaround - don't initialize audio until user interaction
-	if OS.get_name() != "HTML5":
-		# Start BGM immediately for non-HTML5 platforms
+	# Start immediately only on non-Web platforms
+	if OS.get_name() != "Web":
 		bgm_started = true
 		_play_bgm(current_bgm_index)
 
-func _input(event: InputEvent) -> void:
-	# Start BGM on first player interaction for HTML5
-	if OS.get_name() == "HTML5" and not bgm_started and event is InputEventKey and event.pressed:
-		bgm_started = true
-		_play_bgm(current_bgm_index)
+
+func _unhandled_input(event: InputEvent) -> void:
+	# For Web builds: start BGM on first key press, mouse click, or touch
+	if OS.get_name() == "Web" and not bgm_started:
+		if (event is InputEventKey and event.pressed) \
+		or (event is InputEventMouseButton and event.pressed) \
+		or (event is InputEventScreenTouch and event.pressed):
+			bgm_started = true
+			_play_bgm(current_bgm_index)
+
 
 func _play_bgm(index: int) -> void:
-	# Cancel any old end timer
+	# Cancel old timer safely
 	if end_timer:
-		if end_timer.timeout.is_connected(_on_bgm_finished):
-			end_timer.timeout.disconnect(_on_bgm_finished)
+		if end_timer.timeout.is_connected(Callable(self, "_on_bgm_finished")):
+			end_timer.timeout.disconnect(Callable(self, "_on_bgm_finished"))
 		end_timer = null
 
 	current_bgm_index = index % bgm_list.size()
 	var track = bgm_list[current_bgm_index]
 
 	# Play track
-	self.stream = track["stream"]
-	self.play()
+	stream = track["stream"]
+	play()
 
 	# Update label
 	if bgm_label and label_timer:
@@ -54,16 +58,18 @@ func _play_bgm(index: int) -> void:
 		bgm_label.visible = true
 		label_timer.start()
 
-	# Create one-shot timer based on track length
+	# One-shot timer for track length
 	var song_length = track["stream"].get_length()
-	if song_length > 0:
-		end_timer = get_tree().create_timer(song_length + 0.5)  # Add a bit more margin
-		if not end_timer.timeout.is_connected(_on_bgm_finished):
-			end_timer.timeout.connect(_on_bgm_finished)
+	if song_length > 0.0:
+		end_timer = get_tree().create_timer(song_length + 0.5)  # extra margin
+		if not end_timer.timeout.is_connected(Callable(self, "_on_bgm_finished")):
+			end_timer.timeout.connect(Callable(self, "_on_bgm_finished"), Object.CONNECT_ONE_SHOT)
+
 
 func _on_bgm_finished() -> void:
 	current_bgm_index = (current_bgm_index + 1) % bgm_list.size()
 	_play_bgm(current_bgm_index)
+
 
 func _on_BGMLabelTimer_timeout() -> void:
 	if bgm_label:

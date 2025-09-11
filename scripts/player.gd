@@ -9,30 +9,33 @@ const GRAVITY = 980.0
 var coyote_timer: float = 0.0
 var jumps_left: int = 1
 
-@onready var animated_sprite = $AnimatedSprite2D
+@onready var animated_sprite: AnimatedSprite2D = $AnimatedSprite2D
 @onready var jump_sound: AudioStreamPlayer2D = $AudioStreamPlayer2D
 
 func _process(delta: float) -> void:
-	# Add underscore to parameter to indicate it's intentionally unused
-	var _unused = delta
-	Global.y_level = roundf((-position.y + 5) / 16)
-	if Global.y_level > Global.max_height:
-		Global.max_height = Global.y_level
+	# Protect against missing Global autoload on Web
+	if Engine.has_singleton("Global"):
+		Global.y_level = roundf((-position.y + 5) / 16)
+		if Global.y_level > Global.max_height:
+			Global.max_height = Global.y_level
 
 func _physics_process(delta: float) -> void:
+	# Apply gravity
 	if not is_on_floor():
 		velocity.y += GRAVITY * delta
 	else:
-		if Global.sapphire_collected:
+		if Engine.has_singleton("Global") and Global.sapphire_collected:
 			jumps_left = 2
 		else:
 			jumps_left = 1
 
+	# Coyote time update
 	if is_on_floor():
 		coyote_timer = COYOTE_TIME
 	else:
 		coyote_timer -= delta
 
+	# Handle jumping
 	if Input.is_action_just_pressed("move_up"):
 		if is_on_floor() or coyote_timer > 0.0:
 			velocity.y = JUMP_VELOCITY
@@ -40,12 +43,12 @@ func _physics_process(delta: float) -> void:
 			coyote_timer = 0.0 
 			_play_jump_sound()
 
-		elif jumps_left > 0 and Global.sapphire_collected:
+		elif Engine.has_singleton("Global") and jumps_left > 0 and Global.sapphire_collected:
 			velocity.y = JUMP_VELOCITY
 			jumps_left -= 1
 			_play_jump_sound()
 
-		elif Global.ruby_collected and is_on_wall():
+		elif Engine.has_singleton("Global") and Global.ruby_collected and is_on_wall():
 			var wall_normal := get_wall_normal().x
 			velocity.y = JUMP_VELOCITY
 			velocity.x = WALL_JUMP_PUSH * sign(wall_normal)
@@ -55,6 +58,7 @@ func _physics_process(delta: float) -> void:
 				jumps_left = 0
 			_play_jump_sound()
 
+	# Handle horizontal movement
 	var direction := Input.get_axis("move_left", "move_right")
 
 	if direction > 0:
@@ -78,6 +82,7 @@ func _physics_process(delta: float) -> void:
 	move_and_slide()
 
 func _play_jump_sound() -> void:
-	if jump_sound.playing:
-		jump_sound.stop()
-	jump_sound.play()
+	if jump_sound and jump_sound.stream:
+		if jump_sound.playing:
+			jump_sound.stop()
+		jump_sound.play()
