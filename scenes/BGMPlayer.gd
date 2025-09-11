@@ -4,28 +4,22 @@ extends AudioStreamPlayer
 @onready var label_timer: Timer = $"../BGMTimer"
 
 var bgm_list: Array = [
-	{"name": "Overflow", "stream": preload("res://assets/music/オーバーライド - 重音テトSV[吉田夜世] - 吉田夜世.mp3")},
-	{"name": "Tetoris", "stream": preload("res://assets/music/テトリス _ 重音テトSV - 柊マグネタイト.mp3")},
-	{"name": "From the start", "stream": preload("res://assets/music/From The Start Cover __ 重音テトSV「Kasane Teto」 - SylviSlime.mp3")},
-	{"name": "Lover Girl", "stream": preload("res://assets/music/Lover Girl __ 重音テトSV「Kasane Teto」 - SylviSlime.mp3")}
+	{"name": "Overflow", "stream": preload("res://assets/music/Overflow.mp3")},
+	{"name": "Tetoris", "stream": preload("res://assets/music/Tetoris.mp3")},
+	{"name": "From the start", "stream": preload("res://assets/music/From The Start.mp3")},
+	{"name": "Lover Girl", "stream": preload("res://assets/music/Lover Girl.mp3")}
 ]
 var current_bgm_index: int = 0
 var end_timer: SceneTreeTimer = null
 var bgm_started: bool = false
 
 func _ready() -> void:
-	# Connect label timer
 	if not label_timer.timeout.is_connected(Callable(self, "_on_BGMLabelTimer_timeout")):
 		label_timer.timeout.connect(Callable(self, "_on_BGMLabelTimer_timeout"))
-	
-	# Hide label at start
 	if bgm_label:
 		bgm_label.visible = false
-	
-	# Start immediately only on non-Web platforms
-	if OS.get_name() != "Web":
-		bgm_started = true
-		_play_bgm(current_bgm_index)
+	bgm_started = true
+	_play_bgm(current_bgm_index)
 
 
 func _unhandled_input(event: InputEvent) -> void:

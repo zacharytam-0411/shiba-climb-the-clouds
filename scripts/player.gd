@@ -13,11 +13,9 @@ var jumps_left: int = 1
 @onready var jump_sound: AudioStreamPlayer2D = $AudioStreamPlayer2D
 
 func _process(delta: float) -> void:
-	# Protect against missing Global autoload on Web
-	if Engine.has_singleton("Global"):
-		Global.y_level = roundf((-position.y + 5) / 16)
-		if Global.y_level > Global.max_height:
-			Global.max_height = Global.y_level
+	Global.y_level = roundf((-position.y + 5) / 16)
+	if Global.y_level > Global.max_height:
+		Global.max_height = Global.y_level
 
 func _physics_process(delta: float) -> void:
 	# Apply gravity

@@ -1,0 +1,19 @@
+[remap]
+
+importer="mp3"
+type="AudioStreamMP3"
+uid="uid://dnf5fhwpwbexf"
+path="res://.godot/imported/Big Cat Waltz.mp3-d2797c70be45b10d9a34cfc7777b23ce.mp3str"
+
+[deps]
+
+source_file="res://assets/music/Big Cat Waltz.mp3"
+dest_files=["res://.godot/imported/Big Cat Waltz.mp3-d2797c70be45b10d9a34cfc7777b23ce.mp3str"]
+
+[params]
+
+loop=false
+loop_offset=0
+bpm=0
+beat_count=0
+bar_beats=4
