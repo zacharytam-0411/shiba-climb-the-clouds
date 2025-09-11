@@ -1,5 +1,12 @@
 extends Node
 
+# HTML5 fix - create a safe wrapper
+static func safe_get_process_id() -> int:
+	if OS.get_name() != "HTML5":
+		return OS.get_process_id()
+	else:
+		return randi()  # Fallback for HTML5
+
 var sapphire_collected : bool = false
 var diamond_collected : bool = false
 var ruby_collected : bool = false
@@ -25,6 +32,6 @@ func _reset():
 	max_height = -1
 	winnable = false
 	
-func _process(delta: float) -> void:
+func _process(_delta: float) -> void:
 	if diamond_collected == true and ruby_collected == true and sapphire_collected == true and coin == 25 and emerald_collected == true:
 		winnable = true
