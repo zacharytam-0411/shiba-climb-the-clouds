@@ -1,6 +1,5 @@
 extends Node
 
-# HTML5-safe process ID
 static func safe_get_process_id() -> int:
 	if OS.get_name() != "Web":  # "Web" is the platform name in Godot 4.x
 		return OS.get_process_id()

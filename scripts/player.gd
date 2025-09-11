@@ -22,7 +22,7 @@ func _physics_process(delta: float) -> void:
 	if not is_on_floor():
 		velocity.y += GRAVITY * delta
 	else:
-		if Engine.has_singleton("Global") and Global.sapphire_collected:
+		if Global.sapphire_collected:
 			jumps_left = 2
 		else:
 			jumps_left = 1
@@ -41,12 +41,12 @@ func _physics_process(delta: float) -> void:
 			coyote_timer = 0.0 
 			_play_jump_sound()
 
-		elif Engine.has_singleton("Global") and jumps_left > 0 and Global.sapphire_collected:
+		elif jumps_left > 0 and Global.sapphire_collected:
 			velocity.y = JUMP_VELOCITY
 			jumps_left -= 1
 			_play_jump_sound()
 
-		elif Engine.has_singleton("Global") and Global.ruby_collected and is_on_wall():
+		elif Global.ruby_collected and is_on_wall():
 			var wall_normal := get_wall_normal().x
 			velocity.y = JUMP_VELOCITY
 			velocity.x = WALL_JUMP_PUSH * sign(wall_normal)
