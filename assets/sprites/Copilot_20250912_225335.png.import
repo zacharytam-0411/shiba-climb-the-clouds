@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://0hon2f8453mu"
-path="res://.godot/imported/spring_.png-434b050650f2d199007a682b31b42e34.ctex"
+uid="uid://ckdtnu8mq2mjg"
+path="res://.godot/imported/Copilot_20250912_225335.png-2807c05df442b42447dae3f653bc4c9e.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/sprites/fourSeasonsPlatformer_ [tileset, version 2.0]/midground_/spring_.png"
-dest_files=["res://.godot/imported/spring_.png-434b050650f2d199007a682b31b42e34.ctex"]
+source_file="res://assets/sprites/Copilot_20250912_225335.png"
+dest_files=["res://.godot/imported/Copilot_20250912_225335.png-2807c05df442b42447dae3f653bc4c9e.ctex"]
 
 [params]
 
