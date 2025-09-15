@@ -211,7 +211,7 @@ position = Vector2(5, 2)
 sprite_frames = SubResource("SpriteFrames_qfgku")
 animation = &"jump"
 autoplay = "idle"
-frame_progress = 0.94573253
+frame_progress = 0.44714373
 
 [node name="AudioStreamPlayer2D" type="AudioStreamPlayer2D" parent="."]
 stream = ExtResource("7_fjrip")
