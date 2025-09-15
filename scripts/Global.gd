@@ -30,7 +30,8 @@ var available_dinos := [
 	"sena",
 	"mono",
 	"cole",
-	"mort"
+	"mort",
+	"knight"
 ]
 
 func _reset() -> void:

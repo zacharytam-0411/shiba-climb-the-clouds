@@ -98,3 +98,4 @@ stream = ExtResource("3_dd8lr")
 volume_db = 20.0
 autoplay = true
 bus = &"Music"
+parameters/looping = true

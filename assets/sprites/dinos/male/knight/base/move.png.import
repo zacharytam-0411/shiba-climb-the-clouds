@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://0a8ht6sfqqab"
-path="res://.godot/imported/move.png-336d8b83bfd23988d57a9b8e9e7a8d2e.ctex"
+uid="uid://nbs4rl01821c"
+path="res://.godot/imported/move.png-526817d17d47148c19a5b640f54a9274.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/sprites/dinos/male/move.png"
-dest_files=["res://.godot/imported/move.png-336d8b83bfd23988d57a9b8e9e7a8d2e.ctex"]
+source_file="res://assets/sprites/dinos/male/knight/base/move.png"
+dest_files=["res://.godot/imported/move.png-526817d17d47148c19a5b640f54a9274.ctex"]
 
 [params]
 
