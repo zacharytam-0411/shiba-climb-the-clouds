@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://dvudf2jyq05in"
-path="res://.godot/imported/move.png-b429774b6a6cec253fca9db83e49eeea.ctex"
+uid="uid://0a8ht6sfqqab"
+path="res://.godot/imported/move.png-336d8b83bfd23988d57a9b8e9e7a8d2e.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/sprites/dinos/male/cant be used/mort/ghost/move.png"
-dest_files=["res://.godot/imported/move.png-b429774b6a6cec253fca9db83e49eeea.ctex"]
+source_file="res://assets/sprites/dinos/male/move.png"
+dest_files=["res://.godot/imported/move.png-336d8b83bfd23988d57a9b8e9e7a8d2e.ctex"]
 
 [params]
 

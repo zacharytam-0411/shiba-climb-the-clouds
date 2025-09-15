@@ -9,7 +9,7 @@
 [ext_resource type="AudioStream" uid="uid://bhmkglotgh4ds" path="res://assets/sounds/cartoon-jump-6462.mp3" id="7_fjrip"]
 [ext_resource type="Texture2D" uid="uid://ckdgqx0wrrkfa" path="res://assets/sprites/dinos/female/kuro/base/idle.png" id="8_3v2ag"]
 [ext_resource type="PackedScene" uid="uid://bu5utcykja23f" path="res://scenes/bigcatwaltz.tscn" id="8_smehm"]
-[ext_resource type="Texture2D" uid="uid://bmauyi4fdnnob" path="res://assets/sprites/dinos/male/kuro/base/jump.png" id="9_3v2ag"]
+[ext_resource type="Texture2D" uid="uid://dwih6thfmx68r" path="res://assets/sprites/dinos/male/kuro/base/jump.png" id="9_3v2ag"]
 [ext_resource type="Texture2D" uid="uid://dvpnlb1f5kh3i" path="res://assets/sprites/dinos/female/kuro/base/move.png" id="10_jej6c"]
 [ext_resource type="Script" uid="uid://du3oyjjuqixpe" path="res://scenes/BGMPlayer.gd" id="10_y4r1p"]
 
@@ -99,7 +99,7 @@ animations = [{
 }],
 "loop": true,
 "name": &"jump",
-"speed": 15.0
+"speed": 5.0
 }, {
 "frames": [{
 "duration": 1.0,
@@ -211,7 +211,7 @@ position = Vector2(5, 2)
 sprite_frames = SubResource("SpriteFrames_qfgku")
 animation = &"jump"
 autoplay = "idle"
-frame_progress = 0.24626403
+frame_progress = 0.94573253
 
 [node name="AudioStreamPlayer2D" type="AudioStreamPlayer2D" parent="."]
 stream = ExtResource("7_fjrip")
@@ -219,8 +219,9 @@ volume_db = -20.0
 
 [node name="BGMPlayer" parent="." instance=ExtResource("8_smehm")]
 stream = null
-volume_db = -15.0
+volume_db = 5.0
 autoplay = false
+bus = &"Music"
 script = ExtResource("10_y4r1p")
 
 [node name="BGMTimer" type="Timer" parent="."]

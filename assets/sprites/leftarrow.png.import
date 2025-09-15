@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://bua7pgfro4ik1"
-path="res://.godot/imported/avoid.png-c26ce9c88d308d745d4fb0ff9f906bc5.ctex"
+uid="uid://b0jasvobvymva"
+path="res://.godot/imported/leftarrow.png-1b89b9ae4e3cf4973ae93c351c4403e6.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/sprites/dinos/male/cant be used/mort/base/avoid.png"
-dest_files=["res://.godot/imported/avoid.png-c26ce9c88d308d745d4fb0ff9f906bc5.ctex"]
+source_file="res://assets/sprites/leftarrow.png"
+dest_files=["res://.godot/imported/leftarrow.png-1b89b9ae4e3cf4973ae93c351c4403e6.ctex"]
 
 [params]
 

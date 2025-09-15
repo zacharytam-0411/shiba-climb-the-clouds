@@ -2,12 +2,7 @@
 
 [ext_resource type="Script" uid="uid://dtb3qmyndlgcs" path="res://scenes/settings_menu.gd" id="1_1yw23"]
 [ext_resource type="FontFile" uid="uid://cwmuvbloniq03" path="res://assets/fonts/PixelOperator8.ttf" id="2_dd8lr"]
-
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_1yw23"]
-corner_radius_top_left = 5
-corner_radius_top_right = 5
-corner_radius_bottom_right = 5
-corner_radius_bottom_left = 5
+[ext_resource type="AudioStream" uid="uid://b2p86f1e25wkt" path="res://assets/music/Elevator Music - aeiouFU.mp3" id="3_dd8lr"]
 
 [node name="SettingsMenu" type="Control"]
 layout_mode = 3
@@ -17,9 +12,9 @@ script = ExtResource("1_1yw23")
 [node name="Label" type="Label" parent="."]
 layout_mode = 0
 offset_left = 359.0
-offset_top = 149.0
+offset_top = 117.0
 offset_right = 749.0
-offset_bottom = 274.0
+offset_bottom = 242.0
 theme_override_colors/font_color = Color(1, 1, 1, 1)
 theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
 theme_override_fonts/font = ExtResource("2_dd8lr")
@@ -27,32 +22,79 @@ theme_override_font_sizes/font_size = 60
 text = "Settings
 "
 
+[node name="DinoPreview" type="AnimatedSprite2D" parent="."]
+position = Vector2(201.00003, 289.00003)
+scale = Vector2(10, 10)
+
 [node name="HBoxContainer" type="HBoxContainer" parent="."]
 layout_mode = 0
-offset_left = 430.0
-offset_top = 247.0
-offset_right = 746.0
-offset_bottom = 330.0
+offset_left = 107.0
+offset_top = 449.0
+offset_right = 321.0
+offset_bottom = 499.0
 
-[node name="Label" type="Label" parent="HBoxContainer"]
+[node name="PrevButton" type="Button" parent="HBoxContainer"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 30
+text = "<"
+
+[node name="DinoNameLabel" type="Label" parent="HBoxContainer"]
 layout_mode = 2
 theme_override_fonts/font = ExtResource("2_dd8lr")
 theme_override_font_sizes/font_size = 40
-text = "Color:"
+text = "Mort"
 
-[node name="OptionButton" type="OptionButton" parent="HBoxContainer"]
+[node name="NextButton" type="Button" parent="HBoxContainer"]
 layout_mode = 2
-theme_override_colors/font_color = Color(0.88172144, 0.8605551, 0.9469889, 1)
-theme_override_fonts/font = ExtResource("2_dd8lr")
-theme_override_font_sizes/font_size = 35
-theme_override_styles/normal = SubResource("StyleBoxFlat_1yw23")
+theme_override_font_sizes/font_size = 30
+text = ">"
 
 [node name="BackButton" type="Button" parent="."]
 layout_mode = 0
-offset_left = 463.0
-offset_top = 453.0
-offset_right = 627.7944
-offset_bottom = 530.0
+offset_left = 438.0
+offset_top = 569.0
+offset_right = 652.0
+offset_bottom = 617.0
 theme_override_fonts/font = ExtResource("2_dd8lr")
 theme_override_font_sizes/font_size = 40
 text = "Back"
+
+[node name="Label2" type="Label" parent="."]
+layout_mode = 0
+offset_left = 565.0
+offset_top = 285.0
+offset_right = 833.0
+offset_bottom = 311.0
+theme_override_fonts/font = ExtResource("2_dd8lr")
+theme_override_font_sizes/font_size = 25
+text = "Music Volume:"
+
+[node name="MusicVolume" type="HSlider" parent="."]
+layout_mode = 0
+offset_left = 873.0
+offset_top = 261.0
+offset_right = 1148.0
+offset_bottom = 339.0
+
+[node name="Label3" type="Label" parent="."]
+layout_mode = 0
+offset_left = 564.0
+offset_top = 364.0
+offset_right = 824.0
+offset_bottom = 451.0
+theme_override_fonts/font = ExtResource("2_dd8lr")
+theme_override_font_sizes/font_size = 25
+text = "Mute Music:"
+
+[node name="MuteCheck" type="CheckBox" parent="."]
+layout_mode = 0
+offset_left = 803.0
+offset_top = 350.0
+offset_right = 845.0
+offset_bottom = 410.0
+
+[node name="AudioStreamPlayer2D" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("3_dd8lr")
+volume_db = 20.0
+autoplay = true
+bus = &"Music"

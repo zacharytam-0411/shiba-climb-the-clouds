@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://cxubtpqe51ih6"
-path="res://.godot/imported/crack.png-832c7eb2471cf2ac317b03bdf907f1a2.ctex"
+uid="uid://o12sgupcpnon"
+path="res://.godot/imported/idle.png-33c1409a98ab9c1a1ae95affd03afe31.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/sprites/dinos/male/cant be used/mort/egg/crack.png"
-dest_files=["res://.godot/imported/crack.png-832c7eb2471cf2ac317b03bdf907f1a2.ctex"]
+source_file="res://assets/sprites/dinos/male/mort/base/idle.png"
+dest_files=["res://.godot/imported/idle.png-33c1409a98ab9c1a1ae95affd03afe31.ctex"]
 
 [params]
 

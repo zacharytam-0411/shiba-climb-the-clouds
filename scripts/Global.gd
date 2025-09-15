@@ -19,7 +19,9 @@ var timer: float = 0.0
 var winnable: bool = false
 var max_height: int = -1
 var selected_dino_color: String = "loki"
-
+var music_volume_db: float = 0.0  
+var music_muted: bool = false  
+	
 var available_dinos := [
 	"kuro",
 	"loki",
@@ -27,7 +29,8 @@ var available_dinos := [
 	"nico",
 	"sena",
 	"mono",
-	"cole"
+	"cole",
+	"mort"
 ]
 
 func _reset() -> void:
@@ -42,6 +45,9 @@ func _reset() -> void:
 	timer = 0.0
 	max_height = -1
 	winnable = false
+	music_volume_db = 0.0
+	music_muted = false
+	
 	
 func _process(_delta: float) -> void:
 	# Make sure all win conditions are met before enabling winnable

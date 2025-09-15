@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://cyhsqxvs7amli"
-path="res://.godot/imported/bite.png-c399340dd5ac7b8ac164fd95c0e75a5a.ctex"
+uid="uid://0ijqw1hbjvxu"
+path="res://.godot/imported/rightarrow.png-315fbb81970aa0d9de5e3efdd425b3f0.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/sprites/dinos/male/cant be used/mort/base/bite.png"
-dest_files=["res://.godot/imported/bite.png-c399340dd5ac7b8ac164fd95c0e75a5a.ctex"]
+source_file="res://assets/sprites/rightarrow.png"
+dest_files=["res://.godot/imported/rightarrow.png-315fbb81970aa0d9de5e3efdd425b3f0.ctex"]
 
 [params]
 
