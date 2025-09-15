@@ -4,6 +4,7 @@ extends AudioStreamPlayer
 @onready var label_timer: Timer = $"../BGMTimer"
 
 var bgm_list: Array = [
+	{"name": "Ochame Kinou", "stream": preload("res://assets/music/Ochame Kinou.mp3")},
 	{"name": "Override", "stream": preload("res://assets/music/Overflow.mp3")},
 	{"name": "Tetoris", "stream": preload("res://assets/music/Tetoris.mp3")},
 	{"name": "From the start", "stream": preload("res://assets/music/From The Start.mp3")},

@@ -18,6 +18,17 @@ var win_level: bool = false
 var timer: float = 0.0
 var winnable: bool = false
 var max_height: int = -1
+var selected_dino_color: String = "loki"
+
+var available_dinos := [
+	"kuro",
+	"loki",
+	"olaf",
+	"nico",
+	"sena",
+	"mono",
+	"cole"
+]
 
 func _reset() -> void:
 	sapphire_collected = false
