@@ -7,4 +7,8 @@ func _ready():
 	
 
 func _process(delta: float) -> void:
+	if Global.in_tutorial:
+		hide()
+	else:
+		show()
 	text = "Y level: " + str(Global.y_level) + "m" + "\nAll Tasks Completed: " + str(Global.winnable)

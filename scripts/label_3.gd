@@ -6,6 +6,10 @@ extends Label
 var running = true
 
 func _process(delta: float) -> void:
+	if Global.in_tutorial:
+		hide()
+	else:
+		show()
 	if running:
 		#much easier way to get time :))
 		Global.timer += delta

@@ -1,11 +1,5 @@
+# global.gd
 extends Node
-
-static func safe_get_process_id() -> int:
-	if OS.get_name() != "Web":  # "Web" is the platform name in Godot 4.x
-		return OS.get_process_id()
-	else:
-		# Fallback: return a pseudo-random int instead of a real PID
-		return randi()
 
 var sapphire_collected: bool = false
 var diamond_collected: bool = false
@@ -21,6 +15,8 @@ var max_height: int = -1
 var selected_dino_color: String = "loki"
 var music_volume_db: float = 0.0  
 var music_muted: bool = false  
+var tutorial_completed: bool = false
+var in_tutorial: bool = true
 	
 var available_dinos := [
 	"kuro",

@@ -6,6 +6,10 @@ func _ready():
 	label_4.text = "Gems: 0/2"
 
 func _process(delta: float) -> void:
+	if Global.in_tutorial:
+		hide()
+	else:
+		show()
 	var sapphire_status = "Sapphire: 1/1" if Global.sapphire_collected else "Sapphire: 0/1"
 	var diamond_status =  "Diamond: 1/1" if Global.diamond_collected else "Diamond: 0/1"
 	var ruby_status = "Ruby: 1/1" if Global.ruby_collected else "Ruby: 0/1"

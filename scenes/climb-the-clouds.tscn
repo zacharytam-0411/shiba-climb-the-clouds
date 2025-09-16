@@ -1,15 +1,18 @@
-[gd_scene load_steps=4 format=3 uid="uid://dyjyvypiaijww"]
+[gd_scene load_steps=5 format=3 uid="uid://dyjyvypiaijww"]
 
 [ext_resource type="PackedScene" uid="uid://dojb5lpo81upv" path="res://scenes/main_screen.tscn" id="1_2n055"]
 [ext_resource type="PackedScene" uid="uid://c1nycjn5yf0vq" path="res://scenes/main_game.tscn" id="2_rneuu"]
 [ext_resource type="PackedScene" uid="uid://d4cptm5ppyo0h" path="res://scenes/SettingsMenu.tscn" id="3_rneuu"]
+[ext_resource type="PackedScene" uid="uid://cw6rcej3xbc7v" path="res://scenes/tutorial.tscn" id="4_igbjk"]
 
 [node name="Climb the Clouds" type="Node2D"]
 
 [node name="MainMenu" parent="." instance=ExtResource("1_2n055")]
 metadata/_edit_use_anchors_ = true
 
+[node name="SettingsMenu" parent="." instance=ExtResource("3_rneuu")]
+
 [node name="main_game" parent="." instance=ExtResource("2_rneuu")]
 position = Vector2(-62, 68)
 
-[node name="SettingsMenu" parent="." instance=ExtResource("3_rneuu")]
+[node name="Tutorial" parent="." instance=ExtResource("4_igbjk")]

@@ -10,22 +10,36 @@ var bgm_list: Array = [
 	{"name": "From the start", "stream": preload("res://assets/music/From The Start.mp3")},
 	{"name": "Lover Girl", "stream": preload("res://assets/music/Lover Girl.mp3")}
 ]
+
 var current_bgm_index: int = 0
 var end_timer: SceneTreeTimer = null
 var bgm_started: bool = false
 
 func _ready() -> void:
+	# Connect timer if not already
 	if not label_timer.timeout.is_connected(Callable(self, "_on_BGMLabelTimer_timeout")):
 		label_timer.timeout.connect(Callable(self, "_on_BGMLabelTimer_timeout"))
+
+	# Always hide label at start
 	if bgm_label:
 		bgm_label.visible = false
+
+	# Skip everything if tutorial scene
+	if get_tree().current_scene and get_tree().current_scene.name == "Tutorial":
+		return
+
+	# Start music in normal scenes
 	bgm_started = true
 	_play_bgm(current_bgm_index)
 
 
 func _unhandled_input(event: InputEvent) -> void:
-	# For Web builds: start BGM on first key press, mouse click, or touch
+	# For Web builds: start BGM on first input
 	if OS.get_name() == "Web" and not bgm_started:
+		# Skip in tutorial
+		if get_tree().current_scene and get_tree().current_scene.name == "Tutorial":
+			return
+
 		if (event is InputEventKey and event.pressed) \
 		or (event is InputEventMouseButton and event.pressed) \
 		or (event is InputEventScreenTouch and event.pressed):

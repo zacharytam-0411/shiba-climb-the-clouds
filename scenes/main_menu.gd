@@ -3,7 +3,10 @@ extends Control
 func _on_start_pressed() -> void:
 	print("Start button pressed")
 	Global._reset()
-	get_tree().change_scene_to_file("res://scenes/main_game.tscn")
+	if Global.tutorial_completed == true:
+		get_tree().change_scene_to_file("res://scenes/main_game.tscn")
+	else:
+		get_tree().change_scene_to_file("res://scenes/tutorial.tscn")
 
 func _on_settings_pressed() -> void:
 	print("Settings Pressed")
