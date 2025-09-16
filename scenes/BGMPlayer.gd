@@ -11,6 +11,9 @@ var bgm_list: Array = [
 	{"name": "Lover Girl", "stream": preload("res://assets/music/Lover Girl.mp3")}
 ]
 
+# Special track for Tutorial
+var tutorial_bgm := {"name": "Zelda", "stream": preload("res://assets/music/Zelda.mp3")}
+
 var current_bgm_index: int = 0
 var end_timer: SceneTreeTimer = null
 var bgm_started: bool = false
@@ -24,11 +27,13 @@ func _ready() -> void:
 	if bgm_label:
 		bgm_label.visible = false
 
-	# Skip everything if tutorial scene
+	# Tutorial → force Zelda
 	if get_tree().current_scene and get_tree().current_scene.name == "Tutorial":
+		bgm_started = true
+		_play_tutorial_bgm()
 		return
 
-	# Start music in normal scenes
+	# Normal scenes → start music rotation
 	bgm_started = true
 	_play_bgm(current_bgm_index)
 
@@ -36,8 +41,9 @@ func _ready() -> void:
 func _unhandled_input(event: InputEvent) -> void:
 	# For Web builds: start BGM on first input
 	if OS.get_name() == "Web" and not bgm_started:
-		# Skip in tutorial
 		if get_tree().current_scene and get_tree().current_scene.name == "Tutorial":
+			bgm_started = true
+			_play_tutorial_bgm()
 			return
 
 		if (event is InputEventKey and event.pressed) \
@@ -70,9 +76,28 @@ func _play_bgm(index: int) -> void:
 	# One-shot timer for track length
 	var song_length = track["stream"].get_length()
 	if song_length > 0.0:
-		end_timer = get_tree().create_timer(song_length + 0.5)  # extra margin
+		end_timer = get_tree().create_timer(song_length + 0.5)
 		if not end_timer.timeout.is_connected(Callable(self, "_on_bgm_finished")):
 			end_timer.timeout.connect(Callable(self, "_on_bgm_finished"), Object.CONNECT_ONE_SHOT)
+
+
+func _play_tutorial_bgm() -> void:
+	# Cancel old timers
+	if end_timer:
+		if end_timer.timeout.is_connected(Callable(self, "_on_bgm_finished")):
+			end_timer.timeout.disconnect(Callable(self, "_on_bgm_finished"))
+		end_timer = null
+
+	# Play Zelda
+	stream = tutorial_bgm["stream"]
+	play()
+
+	# Update label
+	if bgm_label and label_timer:
+		bgm_label.text = "🎵 Now Playing: %s" % tutorial_bgm["name"]
+		bgm_label.visible = true
+		label_timer.start()
+	# No looping rotation – just Zelda forever
 
 
 func _on_bgm_finished() -> void:

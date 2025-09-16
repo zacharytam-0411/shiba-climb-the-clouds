@@ -1,7 +1,7 @@
 [gd_scene load_steps=4 format=3 uid="uid://b87xehkxnear6"]
 
 [ext_resource type="Script" uid="uid://dne6m3p5ephi3" path="res://scripts/emerald.gd" id="1_yo2x0"]
-[ext_resource type="SpriteFrames" path="res://scenes/emerald.tres" id="2_yo2x0"]
+[ext_resource type="SpriteFrames" uid="uid://bbeaqfcaoj536" path="res://assets/palettes/emerald.tres" id="2_yo2x0"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_yo2x0"]
 radius = 7.5

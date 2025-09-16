@@ -18,6 +18,14 @@ extends Node2D
 @onready var left_arrow: AnimatedSprite2D = $CanvasLayer/LeftArrow
 @onready var up_arrow: AnimatedSprite2D = $CanvasLayer/UpArrow
 @onready var down_arrow: AnimatedSprite2D = $CanvasLayer/DownArrow
+@onready var w_button: AnimatedSprite2D = $CanvasLayer/WButton
+@onready var d_button: AnimatedSprite2D = $CanvasLayer/DButton
+@onready var s_button: AnimatedSprite2D = $CanvasLayer/SButton
+@onready var a_button: AnimatedSprite2D = $CanvasLayer/AButton
+@onready var p_button: AnimatedSprite2D = $CanvasLayer/PButton
+@onready var space_button: AnimatedSprite2D = $CanvasLayer/SpaceButton
+
+
 
 var dialogue_lines = [
 	"Hello there! I'm your guide, Kuro!",
@@ -61,7 +69,6 @@ func _ready() -> void:
 	continue_label.visible = false
 	_hide_all_buttons()
 	_hide_all_gems()
-	# Connect Ruby pickup
 	if ruby_pickup:
 		ruby_pickup.body_entered.connect(_on_ruby_pickup)
 	if sapphire_pickup:
@@ -91,13 +98,21 @@ func _show_line():
 		_type_text(dialogue_lines[current_line])
 		match current_line:
 			3:
+				_hide_all_buttons()
 				down_arrow.visible = true
 				up_arrow.visible = true
 				right_arrow.visible = true
 				left_arrow.visible = true	
+				w_button.visible = true
+				a_button.visible = true
+				s_button.visible = true
+				d_button.visible = true
 			4:
 				_hide_all_buttons()
+				p_button.visible = true
+				space_button.visible = true
 			5:
+				_hide_all_buttons()
 				gem_diamond.visible = true
 				gem_emerald.visible = true
 				gem_ruby.visible = true
@@ -112,8 +127,11 @@ func _show_line():
 				_hide_all_gems()
 				gem_diamond.visible = true
 				gem_emerald.visible = true
+			11:
+				skip_button.visible = true
 			_:
 				_hide_all_gems()
+				skip_button.visible = false
 	else:
 		_end_dialogue()
 
@@ -175,7 +193,7 @@ func _end_dialogue():
 	if sapphire_pickup:
 		sapphire_pickup.visible = true
 	if ruby_pickup:
-		ruby_pickup.visible = true   # reveal ruby
+		ruby_pickup.visible = true
 
 func _on_skip_pressed() -> void:
 	Global.tutorial_completed = true
@@ -194,15 +212,21 @@ func _hide_all_buttons():
 	up_arrow.visible = false
 	right_arrow.visible = false
 	left_arrow.visible = false
+	a_button.visible = false
+	w_button.visible = false
+	s_button.visible = false
+	d_button.visible = false
+	p_button.visible = false
+	space_button.visible = false
 
 func _on_ruby_pickup(body: Node) -> void:
 	if body == player:
 		Global.ruby_collected = true
-		ruby_pickup.queue_free()   # remove ruby after collection
+		ruby_pickup.queue_free()
 		print("Ruby collected!")
 		
 func _on_sapphire_pickup(body: Node) -> void:
 	if body == player:
 		Global.sapphire_collected = true
-		sapphire_pickup.queue_free()   # remove ruby after collection
-		print("Sappire collected!")
+		sapphire_pickup.queue_free()
+		print("Sapphire collected!")
