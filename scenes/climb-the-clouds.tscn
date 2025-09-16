@@ -16,3 +16,4 @@ metadata/_edit_use_anchors_ = true
 position = Vector2(-62, 68)
 
 [node name="Tutorial" parent="." instance=ExtResource("4_igbjk")]
+z_index = 6

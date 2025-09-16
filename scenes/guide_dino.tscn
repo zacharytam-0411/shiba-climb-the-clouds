@@ -1,0 +1,6 @@
+[gd_scene load_steps=2 format=3 uid="uid://ckag0k0e25p6o"]
+
+[ext_resource type="Script" uid="uid://bp5ytfavg3kis" path="res://guide_dino.gd" id="1_fp4uy"]
+
+[node name="GuideDino" type="Node2D"]
+script = ExtResource("1_fp4uy")

@@ -1,0 +1,55 @@
+[gd_scene load_steps=7 format=3 uid="uid://btq2umhte3jxv"]
+
+[ext_resource type="Script" uid="uid://bp5ytfavg3kis" path="res://guide_dino.gd" id="1_fp4uy"]
+[ext_resource type="Texture2D" uid="uid://dhd4jtxdr5hpo" path="res://assets/sprites/dinos/male/kuro/base/idle.png" id="2_v2frf"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_5was4"]
+atlas = ExtResource("2_v2frf")
+region = Rect2(0, 0, 24, 24)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_wsm3s"]
+atlas = ExtResource("2_v2frf")
+region = Rect2(24, 0, 24, 24)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ewypl"]
+atlas = ExtResource("2_v2frf")
+region = Rect2(48, 0, 24, 24)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_17e8k"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_5was4")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_wsm3s")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ewypl")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}]
+
+[node name="GuideDino" type="Node2D"]
+script = ExtResource("1_fp4uy")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+sprite_frames = SubResource("SpriteFrames_17e8k")
+autoplay = "default"
+
+[node name="Area2D" type="Area2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
+
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+
+[node name="Panel" type="Panel" parent="CanvasLayer"]
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="Label" type="Label" parent="CanvasLayer/Panel"]
+layout_mode = 0
+offset_right = 40.0
+offset_bottom = 23.0

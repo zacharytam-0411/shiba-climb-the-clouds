@@ -20,16 +20,23 @@ func _ready() -> void:
 	# Load animations based on chosen dino color
 	_load_dino_animations(Global.selected_dino_color)
 
-
 # --- Process ---
 func _process(delta: float) -> void:
 	Global.y_level = roundf((-position.y + 5) / 16)
 	if Global.y_level > Global.max_height:
 		Global.max_height = Global.y_level
 
-
 # --- Physics Process ---
 func _physics_process(delta: float) -> void:
+	# 🚫 Freeze movement during dialogue
+	if Global.dialogue_active:
+		velocity = Vector2.ZERO
+		animated_sprite.play("idle")
+		move_and_slide()
+		return
+
+	# ✅ Movement is restored automatically once Global.dialogue_active = false
+
 	# Apply gravity
 	if not is_on_floor():
 		velocity.y += GRAVITY * delta
@@ -91,14 +98,12 @@ func _physics_process(delta: float) -> void:
 
 	move_and_slide()
 
-
 # --- Sounds ---
 func _play_jump_sound() -> void:
 	if jump_sound and jump_sound.stream:
 		if jump_sound.playing:
 			jump_sound.stop()
 		jump_sound.play()
-
 
 # --- Dynamic animation loader ---
 func _load_dino_animations(dino: String) -> void:

@@ -17,6 +17,7 @@ var music_volume_db: float = 0.0
 var music_muted: bool = false  
 var tutorial_completed: bool = false
 var in_tutorial: bool = true
+var dialogue_active: bool = false
 	
 var available_dinos := [
 	"kuro",
