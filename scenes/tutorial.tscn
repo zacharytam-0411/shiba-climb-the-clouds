@@ -1,9 +1,19 @@
-[gd_scene load_steps=9 format=3 uid="uid://cw6rcej3xbc7v"]
+[gd_scene load_steps=35 format=3 uid="uid://cw6rcej3xbc7v"]
 
 [ext_resource type="PackedScene" uid="uid://64onsgo0d5ty" path="res://scenes/tile_map.tscn" id="1_8ho6b"]
 [ext_resource type="PackedScene" uid="uid://cv0wrc1go4k5a" path="res://scenes/player.tscn" id="1_c13y7"]
 [ext_resource type="Script" uid="uid://ceft4o8m35ogt" path="res://scripts/tutorial.gd" id="1_ph3nu"]
 [ext_resource type="Texture2D" uid="uid://dhd4jtxdr5hpo" path="res://assets/sprites/dinos/male/kuro/base/idle.png" id="2_4kmhl"]
+[ext_resource type="PackedScene" uid="uid://cksnwa4frr7i0" path="res://scenes/ruby.tscn" id="3_ej4tf"]
+[ext_resource type="PackedScene" uid="uid://dh08x27w5fqdc" path="res://scenes/sapphire.tscn" id="4_0hilk"]
+[ext_resource type="SpriteFrames" uid="uid://cdppfyodkkjch" path="res://assets/palettes/diamond.tres" id="5_ckvwl"]
+[ext_resource type="SpriteFrames" uid="uid://c4fqnlwyc0ynt" path="res://assets/palettes/ruby.tres" id="5_cq4me"]
+[ext_resource type="SpriteFrames" uid="uid://bbeaqfcaoj536" path="res://assets/palettes/emerald.tres" id="7_nlqja"]
+[ext_resource type="SpriteFrames" uid="uid://do7wkpwsfctnd" path="res://assets/palettes/sapphire.tres" id="8_0epgs"]
+[ext_resource type="Texture2D" uid="uid://b375ng4j50rak" path="res://assets/sprites/keys/ARROWUP.png" id="9_0epgs"]
+[ext_resource type="Texture2D" uid="uid://8pao803nrrdb" path="res://assets/sprites/keys/ARROWLEFT.png" id="9_g2equ"]
+[ext_resource type="Texture2D" uid="uid://dgajqgnc2ustd" path="res://assets/sprites/keys/ARROWRIGHT.png" id="9_tbcdj"]
+[ext_resource type="Texture2D" uid="uid://d1p2aoo71x1af" path="res://assets/sprites/keys/ARROWDOWN.png" id="10_g2equ"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_5was4"]
 atlas = ExtResource("2_4kmhl")
@@ -34,27 +44,160 @@ animations = [{
 "speed": 5.0
 }]
 
+[sub_resource type="AtlasTexture" id="AtlasTexture_bl2xa"]
+atlas = ExtResource("9_tbcdj")
+region = Rect2(0, 0, 19, 21)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_15kfc"]
+atlas = ExtResource("9_tbcdj")
+region = Rect2(19, 0, 19, 21)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_7a100"]
+atlas = ExtResource("9_tbcdj")
+region = Rect2(38, 0, 19, 21)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_feaue"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_bl2xa")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_15kfc")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_7a100")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_cmspm"]
+atlas = ExtResource("9_g2equ")
+region = Rect2(0, 0, 19, 21)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ikfo1"]
+atlas = ExtResource("9_g2equ")
+region = Rect2(19, 0, 19, 21)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_dwom6"]
+atlas = ExtResource("9_g2equ")
+region = Rect2(38, 0, 19, 21)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_bl2xa"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_cmspm")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ikfo1")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_dwom6")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_tbcdj"]
+atlas = ExtResource("9_0epgs")
+region = Rect2(0, 0, 19, 21)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ej4tf"]
+atlas = ExtResource("9_0epgs")
+region = Rect2(19, 0, 19, 21)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_0hilk"]
+atlas = ExtResource("9_0epgs")
+region = Rect2(38, 0, 19, 21)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_ckvwl"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_tbcdj")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ej4tf")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_0hilk")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_wr8iv"]
+atlas = ExtResource("10_g2equ")
+region = Rect2(0, 0, 19, 21)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_e13mp"]
+atlas = ExtResource("10_g2equ")
+region = Rect2(19, 0, 19, 21)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_vrdqu"]
+atlas = ExtResource("10_g2equ")
+region = Rect2(38, 0, 19, 21)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_cmspm"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_wr8iv")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_e13mp")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_vrdqu")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}]
+
 [node name="Tutorial" type="Node2D"]
 script = ExtResource("1_ph3nu")
 
 [node name="Button" type="CanvasLayer" parent="."]
 
 [node name="Button" type="Button" parent="Button"]
-z_index = 5
+z_index = 3
 anchors_preset = 1
 anchor_left = 1.0
 anchor_right = 1.0
-offset_left = -39.0
-offset_bottom = 29.0
+offset_left = -206.62067
+offset_bottom = 56.0
 grow_horizontal = 0
-theme_override_font_sizes/font_size = 15
-text = "Skip"
+theme_override_font_sizes/font_size = 40
+text = "Back to Menu"
 
 [node name="TileMap" parent="." instance=ExtResource("1_8ho6b")]
+layer_0/tile_data = PackedInt32Array(131071, 262145, 2, 65536, 262145, 2, 65539, 262145, 2, 196607, 262145, 3, 262143, 262145, 4, 196608, 262145, 4, 131072, 262145, 3, 131075, 262145, 3, 131076, 262145, 3, 131077, 262145, 3, 131078, 262145, 3, 65542, 262145, 2, 65541, 262145, 2, 65540, 262145, 2, -131063, 1, 3, -131062, 65537, 3, -65526, 65537, 4, 65546, 262145, 2, 65547, 262145, 2, 65548, 262145, 2, 65549, 262145, 2, -196595, 1, 4, 131082, 262145, 3, 131083, 262145, 3, 131084, 262145, 3, 131085, 262145, 3, 65552, 262145, 2, 131088, 262145, 3, 131089, 262145, 3, 131090, 262145, 3, 131091, 262145, 3, 65555, 262145, 2, 65553, 262145, 2, 65554, 262145, 2, 131056, 196609, 2, 196592, 196609, 3, 262128, 196609, 4, 131057, 262145, 2, 196593, 262145, 3, 262129, 262145, 4, 131058, 262145, 2, 196594, 262145, 3, 262130, 262145, 4, 131059, 262145, 2, 196595, 262145, 3, 262131, 262145, 4, 131060, 262145, 2, 196596, 262145, 3, 262132, 262145, 4, 131061, 262145, 2, 196597, 262145, 3, 262133, 262145, 4, 131062, 262145, 2, 196598, 262145, 3, 262134, 262145, 4, 131063, 262145, 2, 196599, 262145, 3, 262135, 262145, 4, 131064, 262145, 2, 196600, 262145, 3, 262136, 262145, 4, 131065, 262145, 2, 196601, 262145, 3, 262137, 262145, 4, 131066, 262145, 2, 196602, 262145, 3, 262138, 262145, 4, 131067, 262145, 2, 196603, 262145, 3, 262139, 262145, 4, 131068, 262145, 2, 196604, 262145, 3, 262140, 262145, 4, 131069, 262145, 2, 196605, 262145, 3, 262141, 262145, 4, 131070, 262145, 2, 196606, 262145, 3, 262142, 262145, 4, 65537, 262145, 2, 131073, 262145, 3, 196609, 262145, 4, 65538, 262145, 2, 131074, 262145, 3, 196610, 262145, 4, 196611, 262145, 4, 196612, 262145, 4, 196613, 262145, 4, 196614, 262145, 4, 65543, 262145, 2, 131079, 262145, 3, 196615, 262145, 4, 65544, 262145, 2, 131080, 262145, 3, 196616, 262145, 4, 65545, 262145, 2, 131081, 262145, 3, 196617, 262145, 4, 196618, 262145, 4, 196619, 262145, 4, 196620, 262145, 4, 196621, 262145, 4, 65550, 262145, 2, 131086, 262145, 3, 196622, 262145, 4, 65551, 262145, 2, 131087, 262145, 3, 196623, 262145, 4, 196624, 262145, 4, 196625, 262145, 4, 196626, 262145, 4, 196627, 262145, 4, 65556, 262145, 2, 131092, 262145, 3, 196628, 262145, 4, 65557, 262145, 2, 131093, 262145, 3, 196629, 262145, 4, 65558, 262145, 2, 131094, 262145, 3, 196630, 262145, 4, 65559, 262145, 2, 131095, 262145, 3, 196631, 262145, 4, 65560, 262145, 2, 131096, 262145, 3, 196632, 262145, 4, 65561, 327681, 2, 131097, 327681, 3, 196633, 327681, 4, -65549, 1, 2, -65548, 65537, 2, -196617, 1, 2, -196616, 65537, 2, -327685, 1, 2, -327684, 65537, 2, -262145, 1, 2, -327680, 65537, 2, -196605, 1, 2, -196604, 65537, 2, -393209, 1, 2, -393208, 65537, 2, -458741, 1, 2, -458740, 65537, 2, -393199, 1, 2, -393198, 65537, 2, -65527, 1, 4, -262131, 1, 3, -262130, 65537, 3, -196594, 65537, 4, -524284, 1, 3, -458748, 1, 4, -524283, 65537, 3, -458747, 65537, 4, -655361, 1, 3, -589825, 1, 4, -720896, 65537, 3, -655360, 65537, 4, -786441, 1, 3, -720905, 1, 4, -786440, 65537, 3, -720904, 65537, 4, -589830, 1, 3, -524294, 1, 4, -589829, 65537, 3, -524293, 65537, 4, -786426, 1, 3, -720890, 1, 4, -786425, 65537, 3, -720889, 65537, 4, -917490, 1, 3, -851954, 1, 4, -917489, 65537, 3, -851953, 65537, 4)
+
+[node name="RubyPickup" parent="." instance=ExtResource("3_ej4tf")]
+position = Vector2(0, -91)
+
+[node name="SapphirePickup" parent="." instance=ExtResource("4_0hilk")]
+position = Vector2(-80, -170)
 
 [node name="Player" parent="." instance=ExtResource("1_c13y7")]
 
 [node name="CanvasLayer" type="CanvasLayer" parent="."]
+
+[node name="ColorRect" type="ColorRect" parent="CanvasLayer"]
+z_index = 5
+z_as_relative = false
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0.98039216, 0.23921569, 0.23921569, 1)
 
 [node name="Panel" type="Panel" parent="CanvasLayer"]
 z_index = 6
@@ -75,21 +218,89 @@ anchor_bottom = 1.0
 offset_top = -124.00002
 grow_horizontal = 2
 grow_vertical = 0
+theme_override_colors/font_color = Color(1, 1, 1, 1)
 theme_override_font_sizes/font_size = 40
 text = "Test"
 
+[node name="ContinueLabel" type="Label" parent="CanvasLayer/Panel"]
+visible = false
+layout_mode = 1
+anchors_preset = 3
+anchor_left = 1.0
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -187.0
+offset_top = -23.0
+grow_horizontal = 0
+grow_vertical = 0
+text = "Press Space to continue"
+
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="CanvasLayer"]
 z_index = 1000
-position = Vector2(590.9999, 329.99997)
-scale = Vector2(5, 5)
+position = Vector2(561, 363)
+scale = Vector2(10, 10)
 sprite_frames = SubResource("SpriteFrames_cq4me")
 autoplay = "default"
 
-[node name="ColorRect" type="ColorRect" parent="CanvasLayer"]
+[node name="GemDiamond" type="AnimatedSprite2D" parent="CanvasLayer"]
+z_index = 1000
+position = Vector2(194, 345)
+scale = Vector2(11.890627, 11.890627)
+sprite_frames = ExtResource("5_ckvwl")
+animation = &"new_animation"
+autoplay = "new_animation"
+
+[node name="GemRuby" type="AnimatedSprite2D" parent="CanvasLayer"]
+z_index = 1000
+position = Vector2(402.00003, 222.00002)
+scale = Vector2(11.972222, 11.972222)
+sprite_frames = ExtResource("5_cq4me")
+animation = &"new_animation"
+autoplay = "new_animation"
+
+[node name="GemSapphire" type="AnimatedSprite2D" parent="CanvasLayer"]
+z_index = 1000
+position = Vector2(966, 380)
+scale = Vector2(10.4375, 10.4375)
+sprite_frames = ExtResource("8_0epgs")
+autoplay = "default"
+
+[node name="GemEmerald" type="AnimatedSprite2D" parent="CanvasLayer"]
+z_index = 1000
+position = Vector2(754.99994, 220.00002)
+scale = Vector2(11.125, 11.125)
+sprite_frames = ExtResource("7_nlqja")
+autoplay = "default"
+
+[node name="RightArrow" type="AnimatedSprite2D" parent="CanvasLayer"]
+z_index = 6
+position = Vector2(1055, 214)
+scale = Vector2(4.262, 4.262)
+sprite_frames = SubResource("SpriteFrames_feaue")
+autoplay = "default"
+speed_scale = 0.95
+
+[node name="LeftArrow" type="AnimatedSprite2D" parent="CanvasLayer"]
 z_index = 10
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-grow_horizontal = 2
-grow_vertical = 2
-color = Color(0.98039216, 0.23921569, 0.23921569, 0.53333336)
+position = Vector2(884.8281, 214.17844)
+scale = Vector2(4.262, 4.262)
+sprite_frames = SubResource("SpriteFrames_bl2xa")
+autoplay = "default"
+speed_scale = 0.9
+
+[node name="UpArrow" type="AnimatedSprite2D" parent="CanvasLayer"]
+z_index = 1000
+position = Vector2(970.99994, 127)
+scale = Vector2(4.262, 4.262)
+sprite_frames = SubResource("SpriteFrames_ckvwl")
+autoplay = "default"
+
+[node name="DownArrow" type="AnimatedSprite2D" parent="CanvasLayer"]
+z_index = 1000
+position = Vector2(971, 213.99998)
+scale = Vector2(4.2616673, 4.2616663)
+sprite_frames = SubResource("SpriteFrames_cmspm")
+autoplay = "default"
+frame_progress = 0.23477498
+speed_scale = 1.1

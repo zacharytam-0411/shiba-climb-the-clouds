@@ -1,0 +1,53 @@
+[gd_resource type="SpriteFrames" load_steps=8 format=3 uid="uid://bbeaqfcaoj536"]
+
+[ext_resource type="Texture2D" uid="uid://iv5or3fyi5k6" path="res://assets/sprites/coins-chests-etc-2-0-noborders.png" id="1_whv55"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ee3t4"]
+atlas = ExtResource("1_whv55")
+region = Rect2(192, 400, 16, 17)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_eri7f"]
+atlas = ExtResource("1_whv55")
+region = Rect2(208, 400, 16, 17)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_uh1yq"]
+atlas = ExtResource("1_whv55")
+region = Rect2(224, 400, 16, 17)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_bswyq"]
+atlas = ExtResource("1_whv55")
+region = Rect2(240, 400, 16, 17)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_dxvfs"]
+atlas = ExtResource("1_whv55")
+region = Rect2(256, 400, 16, 17)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_wg3tv"]
+atlas = ExtResource("1_whv55")
+region = Rect2(272, 400, 16, 17)
+
+[resource]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ee3t4")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_eri7f")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_uh1yq")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_bswyq")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_dxvfs")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_wg3tv")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}]

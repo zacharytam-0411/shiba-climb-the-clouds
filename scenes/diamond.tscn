@@ -1,57 +1,7 @@
-[gd_scene load_steps=11 format=3 uid="uid://dqg5uu776sqp"]
+[gd_scene load_steps=4 format=3 uid="uid://dqg5uu776sqp"]
 
 [ext_resource type="Script" uid="uid://bf5nbou344dt5" path="res://scripts/diamond.gd" id="1_okr8r"]
-[ext_resource type="Texture2D" uid="uid://iv5or3fyi5k6" path="res://assets/sprites/coins-chests-etc-2-0-noborders.png" id="2_okr8r"]
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_bd64o"]
-atlas = ExtResource("2_okr8r")
-region = Rect2(304, 364, 16, 21)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_up2nb"]
-atlas = ExtResource("2_okr8r")
-region = Rect2(320, 364, 16, 21)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_p5v7i"]
-atlas = ExtResource("2_okr8r")
-region = Rect2(336, 364, 16, 21)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_0fuo3"]
-atlas = ExtResource("2_okr8r")
-region = Rect2(352, 364, 16, 21)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_mwpm2"]
-atlas = ExtResource("2_okr8r")
-region = Rect2(368, 364, 16, 21)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_5l24h"]
-atlas = ExtResource("2_okr8r")
-region = Rect2(384, 364, 16, 21)
-
-[sub_resource type="SpriteFrames" id="SpriteFrames_0a7ml"]
-animations = [{
-"frames": [{
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_bd64o")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_up2nb")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_p5v7i")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_0fuo3")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_mwpm2")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_5l24h")
-}],
-"loop": true,
-"name": &"new_animation",
-"speed": 5.0
-}]
+[ext_resource type="SpriteFrames" uid="uid://cdppfyodkkjch" path="res://assets/palettes/diamond.tres" id="2_okr8r"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_ks8bm"]
 radius = 8.0
@@ -61,7 +11,7 @@ script = ExtResource("1_okr8r")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 position = Vector2(0, 3)
-sprite_frames = SubResource("SpriteFrames_0a7ml")
+sprite_frames = ExtResource("2_okr8r")
 animation = &"new_animation"
 autoplay = "new_animation"
 frame_progress = 0.544818
