@@ -2,7 +2,7 @@
 
 [ext_resource type="Script" uid="uid://288jde3gqwi6" path="res://scenes/main_menu.gd" id="1_aum10"]
 [ext_resource type="Texture2D" uid="uid://o4jeyyt50obf" path="res://assets/Thumbnail.jpg" id="2_aum10"]
-[ext_resource type="FontFile" uid="uid://xdrw8fu77qqa" path="res://assets/fonts/m6x11.ttf" id="3_aum10"]
+[ext_resource type="FontFile" uid="uid://dcraqlv7xu0j" path="res://assets/fonts/m5x7.ttf" id="3_aum10"]
 
 [sub_resource type="StyleBoxTexture" id="StyleBoxTexture_7fvvs"]
 texture = ExtResource("2_aum10")
@@ -60,7 +60,7 @@ theme_override_colors/font_hover_color = Color(0.29735327, 0.72092104, 0.6622504
 theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
 theme_override_constants/outline_size = 5
 theme_override_fonts/font = ExtResource("3_aum10")
-theme_override_font_sizes/font_size = 60
+theme_override_font_sizes/font_size = 80
 theme_override_styles/normal = SubResource("StyleBoxFlat_7fvvs")
 theme_override_styles/pressed = SubResource("StyleBoxFlat_7fvvs")
 theme_override_styles/hover = SubResource("StyleBoxFlat_7fvvs")
@@ -78,7 +78,7 @@ theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
 theme_override_colors/icon_pressed_color = Color(0, 0, 0, 1)
 theme_override_constants/outline_size = 5
 theme_override_fonts/font = ExtResource("3_aum10")
-theme_override_font_sizes/font_size = 60
+theme_override_font_sizes/font_size = 80
 theme_override_styles/normal = SubResource("StyleBoxFlat_7fvvs")
 theme_override_styles/pressed = SubResource("StyleBoxFlat_7fvvs")
 theme_override_styles/hover = SubResource("StyleBoxFlat_7fvvs")
@@ -94,7 +94,7 @@ theme_override_colors/font_hover_color = Color(0.29803923, 0.72156864, 0.6627451
 theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
 theme_override_constants/outline_size = 5
 theme_override_fonts/font = ExtResource("3_aum10")
-theme_override_font_sizes/font_size = 60
+theme_override_font_sizes/font_size = 80
 theme_override_styles/normal = SubResource("StyleBoxFlat_7fvvs")
 theme_override_styles/pressed = SubResource("StyleBoxFlat_7fvvs")
 theme_override_styles/hover = SubResource("StyleBoxFlat_7fvvs")

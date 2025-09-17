@@ -24,6 +24,8 @@ extends Node2D
 @onready var a_button: AnimatedSprite2D = $CanvasLayer/AButton
 @onready var p_button: AnimatedSprite2D = $CanvasLayer/PButton
 @onready var space_button: AnimatedSprite2D = $CanvasLayer/SpaceButton
+@onready var display_label: Label = $Button/Label
+@onready var confetti: AnimatedSprite2D = $CanvasLayer/Confetti
 
 
 
@@ -70,6 +72,8 @@ func _ready() -> void:
 	sapphire_pickup.visible = false
 	text_label.text = ""
 	continue_label.visible = false
+	display_label.visible = false
+	confetti.visible = false
 	_hide_all_buttons()
 	_hide_all_gems()
 	if ruby_pickup:
@@ -114,8 +118,10 @@ func _show_line():
 				_hide_all_buttons()
 				p_button.visible = true
 				space_button.visible = true
+				confetti.visible = true
 			5:
 				_hide_all_buttons()
+				confetti.visible = false
 				gem_diamond.visible = true
 				gem_emerald.visible = true
 				gem_ruby.visible = true
@@ -193,6 +199,7 @@ func _end_dialogue():
 	skip_button.visible = true
 	player.visible = true
 	tilemap.visible = true
+	display_label.visible = true
 	if sapphire_pickup:
 		sapphire_pickup.visible = true
 	if ruby_pickup:

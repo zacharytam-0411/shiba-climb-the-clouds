@@ -148,6 +148,7 @@ theme_override_colors/font_color = Color(0, 0, 0, 1)
 theme_override_fonts/font = ExtResource("2_f1ej7")
 theme_override_font_sizes/font_size = 20
 script = ExtResource("2_qlg0r")
+metadata/_edit_use_anchors_ = true
 
 [node name="Label2" type="Label" parent="Camera2D/CanvasLayer"]
 z_index = 5
@@ -160,8 +161,8 @@ rotation = 0.00128714
 theme_override_colors/font_color = Color(0, 0, 0, 1)
 theme_override_fonts/font = ExtResource("2_f1ej7")
 theme_override_font_sizes/font_size = 20
-text = "Coins:"
 script = ExtResource("2_dqkch")
+metadata/_edit_use_anchors_ = true
 
 [node name="Label3" type="Label" parent="Camera2D/CanvasLayer"]
 z_index = 5
@@ -176,15 +177,16 @@ scale = Vector2(2, 2)
 theme_override_colors/font_color = Color(0, 0, 0, 1)
 theme_override_fonts/font = ExtResource("2_f1ej7")
 script = ExtResource("4_qlg0r")
+metadata/_edit_use_anchors_ = true
 
 [node name="Label" type="Label" parent="Camera2D/CanvasLayer"]
 anchors_preset = 4
 anchor_top = 0.5
 anchor_bottom = 0.5
 offset_left = 2.0
-offset_top = -256.938
+offset_top = -279.938
 offset_right = 42.0
-offset_bottom = -215.062
+offset_bottom = -238.062
 grow_vertical = 2
 theme_override_colors/font_color = Color(0, 0, 0, 1)
 theme_override_fonts/font = ExtResource("2_f1ej7")
