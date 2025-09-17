@@ -1532,59 +1532,6 @@ position = Vector2(433, -256)
 [node name="Labels" type="Node2D" parent="."]
 position = Vector2(-296, -489)
 
-[node name="Label4" type="Label" parent="Labels"]
-offset_left = 10.0
-offset_top = 405.0
-offset_right = 505.0
-offset_bottom = 503.333
-scale = Vector2(0.2, 0.2)
-text = "Unfortunately for now, there are no lives system [which WILL be introduced in
-later development]. So your goal is to find the four gems and reach the goal :)
-Also tell me how high youve gone in the feedback :)"
-
-[node name="Label5" type="Label" parent="Labels"]
-offset_left = 487.0
-offset_top = 390.0
-offset_right = 982.0
-offset_bottom = 495.0
-scale = Vector2(0.2, 0.2)
-text = "Also, Gems now give powerups!
-Collect Sapphire to obtain double jump,
-Collect Ruby to obtain wall jump effect!"
-
-[node name="Label3" type="Label" parent="Labels"]
-offset_left = 298.0
-offset_top = 474.0
-offset_right = 873.0
-offset_bottom = 924.0
-scale = Vector2(0.2, 0.2)
-text = "Controls : WASD / Arrow Keys
-"
-
-[node name="Label2" type="Label" parent="Labels"]
-offset_left = 399.0
-offset_top = 411.0
-offset_right = 751.0
-offset_bottom = 534.667
-scale = Vector2(0.2, 0.2)
-theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
-theme_override_constants/outline_size = 10
-text = "There are going to be 4 main gems that
-require getting collected in order to upgrade
-your stats, and they are required to collected 
-to finish the level :) Good luck finding them
-Hint : Maybe look to the left..."
-
-[node name="Label" type="Label" parent="Labels"]
-offset_left = 298.0
-offset_top = 458.0
-offset_right = 564.0
-offset_bottom = 531.0
-scale = Vector2(0.2, 0.2)
-text = "Welcome to Climb the Clouds!
-In this game, you collect coins 
-and try to get as high as possible :)"
-
 [node name="Gems" type="Node2D" parent="."]
 position = Vector2(-296, -489)
 

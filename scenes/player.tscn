@@ -1,7 +1,8 @@
-[gd_scene load_steps=29 format=3 uid="uid://cv0wrc1go4k5a"]
+[gd_scene load_steps=30 format=3 uid="uid://cv0wrc1go4k5a"]
 
 [ext_resource type="Script" uid="uid://cehyipf1ptnw1" path="res://scripts/player.gd" id="1_g2els"]
 [ext_resource type="Script" uid="uid://domehptmw0x8h" path="res://scripts/label_2.gd" id="2_dqkch"]
+[ext_resource type="FontFile" uid="uid://xdrw8fu77qqa" path="res://assets/fonts/m6x11.ttf" id="2_f1ej7"]
 [ext_resource type="Script" uid="uid://bedawxese18tm" path="res://scripts/label_4.gd" id="2_qlg0r"]
 [ext_resource type="Script" uid="uid://m34g6opnni1f" path="res://scripts/label_3.gd" id="4_qlg0r"]
 [ext_resource type="Script" uid="uid://cgtm4anjs3f3v" path="res://scripts/label.gd" id="5_tuyoq"]
@@ -144,6 +145,7 @@ offset_left = -40.0
 offset_bottom = 22.3333
 grow_horizontal = 0
 theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_fonts/font = ExtResource("2_f1ej7")
 theme_override_font_sizes/font_size = 20
 script = ExtResource("2_qlg0r")
 
@@ -156,6 +158,7 @@ offset_right = 61.0
 offset_bottom = 87.0
 rotation = 0.00128714
 theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_fonts/font = ExtResource("2_f1ej7")
 theme_override_font_sizes/font_size = 20
 text = "Coins:"
 script = ExtResource("2_dqkch")
@@ -171,6 +174,7 @@ offset_bottom = 23.0
 grow_horizontal = 2
 scale = Vector2(2, 2)
 theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_fonts/font = ExtResource("2_f1ej7")
 script = ExtResource("4_qlg0r")
 
 [node name="Label" type="Label" parent="Camera2D/CanvasLayer"]
@@ -183,6 +187,7 @@ offset_right = 42.0
 offset_bottom = -215.062
 grow_vertical = 2
 theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_fonts/font = ExtResource("2_f1ej7")
 theme_override_font_sizes/font_size = 20
 script = ExtResource("5_tuyoq")
 

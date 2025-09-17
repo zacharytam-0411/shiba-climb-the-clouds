@@ -1,7 +1,7 @@
 [gd_scene load_steps=4 format=3 uid="uid://d4cptm5ppyo0h"]
 
 [ext_resource type="Script" uid="uid://dtb3qmyndlgcs" path="res://scenes/settings_menu.gd" id="1_1yw23"]
-[ext_resource type="FontFile" uid="uid://cwmuvbloniq03" path="res://assets/fonts/PixelOperator8.ttf" id="2_dd8lr"]
+[ext_resource type="FontFile" uid="uid://xdrw8fu77qqa" path="res://assets/fonts/m6x11.ttf" id="2_t7ar5"]
 [ext_resource type="AudioStream" uid="uid://b2p86f1e25wkt" path="res://assets/music/Elevator Music - aeiouFU.mp3" id="3_dd8lr"]
 
 [node name="SettingsMenu" type="Control"]
@@ -9,22 +9,33 @@ layout_mode = 3
 anchors_preset = 0
 script = ExtResource("1_1yw23")
 
-[node name="Label" type="Label" parent="."]
+[node name="DinoPreview" type="AnimatedSprite2D" parent="."]
+position = Vector2(170, 306)
+scale = Vector2(10, 10)
+
+[node name="MusicVolume" type="HSlider" parent="."]
 layout_mode = 0
-offset_left = 359.0
-offset_top = 117.0
-offset_right = 749.0
-offset_bottom = 242.0
+offset_left = 805.0
+offset_top = 266.0
+offset_right = 1080.0
+offset_bottom = 344.0
+
+[node name="Label" type="Label" parent="."]
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = 449.0
+offset_top = 93.0
+offset_right = 644.0
+offset_bottom = 204.0
+grow_horizontal = 2
 theme_override_colors/font_color = Color(1, 1, 1, 1)
 theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
-theme_override_fonts/font = ExtResource("2_dd8lr")
+theme_override_fonts/font = ExtResource("2_t7ar5")
 theme_override_font_sizes/font_size = 60
 text = "Settings
 "
-
-[node name="DinoPreview" type="AnimatedSprite2D" parent="."]
-position = Vector2(201.00003, 289.00003)
-scale = Vector2(10, 10)
 
 [node name="HBoxContainer" type="HBoxContainer" parent="."]
 layout_mode = 0
@@ -35,17 +46,19 @@ offset_bottom = 499.0
 
 [node name="PrevButton" type="Button" parent="HBoxContainer"]
 layout_mode = 2
+theme_override_fonts/font = ExtResource("2_t7ar5")
 theme_override_font_sizes/font_size = 30
 text = "<"
 
 [node name="DinoNameLabel" type="Label" parent="HBoxContainer"]
 layout_mode = 2
-theme_override_fonts/font = ExtResource("2_dd8lr")
+theme_override_fonts/font = ExtResource("2_t7ar5")
 theme_override_font_sizes/font_size = 40
 text = "Mort"
 
 [node name="NextButton" type="Button" parent="HBoxContainer"]
 layout_mode = 2
+theme_override_fonts/font = ExtResource("2_t7ar5")
 theme_override_font_sizes/font_size = 30
 text = ">"
 
@@ -55,7 +68,7 @@ offset_left = 438.0
 offset_top = 569.0
 offset_right = 652.0
 offset_bottom = 617.0
-theme_override_fonts/font = ExtResource("2_dd8lr")
+theme_override_fonts/font = ExtResource("2_t7ar5")
 theme_override_font_sizes/font_size = 40
 text = "Back"
 
@@ -65,16 +78,9 @@ offset_left = 565.0
 offset_top = 285.0
 offset_right = 833.0
 offset_bottom = 311.0
-theme_override_fonts/font = ExtResource("2_dd8lr")
-theme_override_font_sizes/font_size = 25
+theme_override_fonts/font = ExtResource("2_t7ar5")
+theme_override_font_sizes/font_size = 40
 text = "Music Volume:"
-
-[node name="MusicVolume" type="HSlider" parent="."]
-layout_mode = 0
-offset_left = 873.0
-offset_top = 261.0
-offset_right = 1148.0
-offset_bottom = 339.0
 
 [node name="Label3" type="Label" parent="."]
 layout_mode = 0
@@ -82,8 +88,8 @@ offset_left = 564.0
 offset_top = 364.0
 offset_right = 824.0
 offset_bottom = 451.0
-theme_override_fonts/font = ExtResource("2_dd8lr")
-theme_override_font_sizes/font_size = 25
+theme_override_fonts/font = ExtResource("2_t7ar5")
+theme_override_font_sizes/font_size = 40
 text = "Mute Music:"
 
 [node name="MuteCheck" type="CheckBox" parent="."]

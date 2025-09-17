@@ -1,4 +1,4 @@
-[gd_scene load_steps=65 format=3 uid="uid://cw6rcej3xbc7v"]
+[gd_scene load_steps=66 format=3 uid="uid://cw6rcej3xbc7v"]
 
 [ext_resource type="PackedScene" uid="uid://64onsgo0d5ty" path="res://scenes/tile_map.tscn" id="1_8ho6b"]
 [ext_resource type="PackedScene" uid="uid://cv0wrc1go4k5a" path="res://scenes/player.tscn" id="1_c13y7"]
@@ -8,6 +8,7 @@
 [ext_resource type="PackedScene" uid="uid://dh08x27w5fqdc" path="res://scenes/sapphire.tscn" id="4_0hilk"]
 [ext_resource type="SpriteFrames" uid="uid://cdppfyodkkjch" path="res://assets/palettes/diamond.tres" id="5_ckvwl"]
 [ext_resource type="SpriteFrames" uid="uid://c4fqnlwyc0ynt" path="res://assets/palettes/ruby.tres" id="5_cq4me"]
+[ext_resource type="FontFile" uid="uid://xdrw8fu77qqa" path="res://assets/fonts/m6x11.ttf" id="6_bl2xa"]
 [ext_resource type="SpriteFrames" uid="uid://bbeaqfcaoj536" path="res://assets/palettes/emerald.tres" id="7_nlqja"]
 [ext_resource type="SpriteFrames" uid="uid://do7wkpwsfctnd" path="res://assets/palettes/sapphire.tres" id="8_0epgs"]
 [ext_resource type="Texture2D" uid="uid://b375ng4j50rak" path="res://assets/sprites/keys/ARROWUP.png" id="9_0epgs"]
@@ -353,6 +354,7 @@ anchor_right = 1.0
 offset_left = -206.62067
 offset_bottom = 56.0
 grow_horizontal = 0
+theme_override_fonts/font = ExtResource("6_bl2xa")
 theme_override_font_sizes/font_size = 40
 text = "Back to Menu"
 
@@ -397,13 +399,15 @@ anchors_preset = 12
 anchor_top = 1.0
 anchor_right = 1.0
 anchor_bottom = 1.0
-offset_left = 3.0
-offset_top = -124.00002
-offset_right = 3.0
+offset_left = 6.0
+offset_top = -119.00002
+offset_right = 6.0
+offset_bottom = 5.0
 grow_horizontal = 2
 grow_vertical = 0
 theme_override_colors/font_color = Color(1, 1, 1, 1)
-theme_override_font_sizes/font_size = 40
+theme_override_fonts/font = ExtResource("6_bl2xa")
+theme_override_font_sizes/font_size = 50
 text = "Test"
 
 [node name="ContinueLabel" type="Label" parent="CanvasLayer/Panel"]
@@ -418,6 +422,7 @@ offset_left = -187.0
 offset_top = -23.0
 grow_horizontal = 0
 grow_vertical = 0
+theme_override_fonts/font = ExtResource("6_bl2xa")
 text = "Press Space to continue"
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="CanvasLayer"]

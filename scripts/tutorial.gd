@@ -32,9 +32,10 @@ var dialogue_lines = [
 	"Welcome in playing 'Climb the Clouds'!",
 	"I'm here to tell you about the things that you 
 	need to know before you start the game!",
-	"Firstly, both arrow keys and WASD are the general controls.",
+	"Firstly, both arrow keys and WASD 
+	are the general controls.",
 	"You can also press space bar to jump and maybe, 
-	just maybe, press P for a surprise! [wip]",
+	just maybe, press P for a surprise! [Randomness Week]",
 	"Now, let me tell you about the 4 gems you can find:",
 	"Ruby lets you wall jump.",
 	"Sapphire gives you a double jump.",
@@ -45,6 +46,8 @@ var dialogue_lines = [
 	for you to explore the mechanics of the game.",
 	"Click the 'Back to Menu' button on the 
 	top right corner when you are done!",
+	"Note that you will have to click Start Game 
+	again to start the main game!",
 	"That's all, enjoy your game, and happy climbing!"
 ]
 
