@@ -1,4 +1,3 @@
-# global.gd
 extends Node
 
 var sapphire_collected: bool = false
@@ -18,7 +17,8 @@ var music_muted: bool = false
 var tutorial_completed: bool = false
 var in_tutorial: bool = true
 var dialogue_active: bool = false
-	
+
+# Only dinos that show up in the settings
 var available_dinos := [
 	"kuro",
 	"loki",
@@ -27,9 +27,13 @@ var available_dinos := [
 	"sena",
 	"mono",
 	"cole",
-	"mort",
+	"mort"
+]
+
+# Hidden dinos, only available via "P"
+var secret_dinos := [
 	"knight",
-	"tard"
+	"krussy"
 ]
 
 func _reset() -> void:
@@ -46,10 +50,8 @@ func _reset() -> void:
 	winnable = false
 	music_volume_db = 0.0
 	music_muted = false
-	
-	
+
 func _process(_delta: float) -> void:
-	# Make sure all win conditions are met before enabling winnable
 	if diamond_collected and ruby_collected and sapphire_collected and emerald_collected and coin >= 25:
 		winnable = true
 	else:

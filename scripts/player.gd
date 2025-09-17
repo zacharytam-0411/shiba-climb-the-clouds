@@ -1,3 +1,4 @@
+# player.gd
 extends CharacterBody2D
 
 const SPEED = 150.0
@@ -103,9 +104,10 @@ func _random_p_action():
 		jumps_left -= 1
 		_play_jump_sound()
 
-		# 2. Pick random dino from Global.available_dinos
-		if Global.available_dinos.size() > 0:
-			var new_color = Global.available_dinos.pick_random()
+		# 2. Pick random dino from all dinos (normal + secret)
+		var pool = Global.available_dinos + Global.secret_dinos
+		if pool.size() > 0:
+			var new_color = pool.pick_random()
 			Global.selected_dino_color = new_color
 			_load_dino_animations(new_color)
 
