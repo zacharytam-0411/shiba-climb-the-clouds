@@ -1,0 +1,8 @@
+[gd_scene load_steps=2 format=3 uid="uid://kdvc6inefibo"]
+
+[ext_resource type="Texture2D" uid="uid://bp30b2qfcxqb1" path="res://assets/sprites/woodensign.png" id="1_1la6l"]
+
+[node name="woodensign" type="Node2D"]
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture = ExtResource("1_1la6l")
