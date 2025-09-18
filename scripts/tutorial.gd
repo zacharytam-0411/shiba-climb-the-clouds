@@ -26,6 +26,7 @@ extends Node2D
 @onready var space_button: AnimatedSprite2D = $CanvasLayer/SpaceButton
 @onready var display_label: Label = $Button/Label
 @onready var confetti: AnimatedSprite2D = $CanvasLayer/Confetti
+@onready var fox: AnimatedSprite2D = $CanvasLayer/Fox
 
 
 
@@ -74,6 +75,7 @@ func _ready() -> void:
 	continue_label.visible = false
 	display_label.visible = false
 	confetti.visible = false
+	fox.visible = false
 	_hide_all_buttons()
 	_hide_all_gems()
 	if ruby_pickup:
@@ -119,8 +121,10 @@ func _show_line():
 				p_button.visible = true
 				space_button.visible = true
 				confetti.visible = true
+				fox.visible = true
 			5:
 				_hide_all_buttons()
+				fox.visible = false
 				confetti.visible = false
 				gem_diamond.visible = true
 				gem_emerald.visible = true
@@ -190,6 +194,7 @@ func _hide_continue_prompt():
 		blink_tween.kill()
 
 func _end_dialogue():
+	fox.visible = false
 	overlay.visible = false
 	dino.visible = false
 	panel.visible = false

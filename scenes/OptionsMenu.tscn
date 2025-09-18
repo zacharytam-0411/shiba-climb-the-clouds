@@ -1,0 +1,87 @@
+[gd_scene load_steps=3 format=3 uid="uid://bsx24cgn42csk"]
+
+[ext_resource type="Script" uid="uid://djl56ivdmexwy" path="res://scenes/options_menu.gd" id="1_dpnyk"]
+[ext_resource type="FontFile" uid="uid://xdrw8fu77qqa" path="res://assets/fonts/m6x11.ttf" id="2_bdakn"]
+
+[node name="CanvasLayer" type="CanvasLayer"]
+process_mode = 2
+process_priority = 1
+script = ExtResource("1_dpnyk")
+
+[node name="Overlay" type="ColorRect" parent="."]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0.28235295, 0.28235295, 0.28235295, 0.5176471)
+
+[node name="MenuRoot" type="Control" parent="."]
+layout_mode = 3
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="Label2" type="Label" parent="MenuRoot"]
+layout_mode = 0
+offset_left = 406.0
+offset_top = 227.0
+offset_right = 628.0
+offset_bottom = 272.0
+theme_override_fonts/font = ExtResource("2_bdakn")
+theme_override_font_sizes/font_size = 50
+text = "BGM Volume:"
+
+[node name="OptionsLabel" type="Label" parent="MenuRoot"]
+layout_mode = 0
+offset_left = 458.0
+offset_top = 53.0
+offset_right = 739.0
+offset_bottom = 141.0
+theme_override_fonts/font = ExtResource("2_bdakn")
+theme_override_font_sizes/font_size = 100
+text = "Options"
+
+[node name="ResumeButton" type="Button" parent="MenuRoot"]
+layout_mode = 0
+offset_left = 522.0
+offset_top = 483.0
+offset_right = 668.0
+offset_bottom = 546.0
+theme_override_fonts/font = ExtResource("2_bdakn")
+theme_override_font_sizes/font_size = 50
+text = "Resume"
+
+[node name="QuitButton" type="Button" parent="MenuRoot"]
+layout_mode = 0
+offset_left = 524.0
+offset_top = 569.0
+offset_right = 660.0
+offset_bottom = 618.0
+theme_override_fonts/font = ExtResource("2_bdakn")
+theme_override_font_sizes/font_size = 30
+text = "Quit"
+
+[node name="HBoxContainer" type="HBoxContainer" parent="MenuRoot"]
+layout_mode = 0
+offset_left = 673.0
+offset_top = 217.0
+offset_right = 754.0
+offset_bottom = 278.0
+
+[node name="MinusButton" type="Button" parent="MenuRoot/HBoxContainer"]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("2_bdakn")
+theme_override_font_sizes/font_size = 30
+text = "-"
+
+[node name="MusicVolumeLabel" type="Label" parent="MenuRoot/HBoxContainer"]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("2_bdakn")
+theme_override_font_sizes/font_size = 30
+
+[node name="PlusButton" type="Button" parent="MenuRoot/HBoxContainer"]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("2_bdakn")
+theme_override_font_sizes/font_size = 30
+text = "+"

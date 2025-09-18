@@ -1,0 +1,19 @@
+[remap]
+
+importer="mp3"
+type="AudioStreamMP3"
+uid="uid://dbwei2bpfcpwy"
+path="res://.godot/imported/Wii Party.mp3-b8bc91e53807803afa5aa2a042c1c4f5.mp3str"
+
+[deps]
+
+source_file="res://assets/music/Wii Party.mp3"
+dest_files=["res://.godot/imported/Wii Party.mp3-b8bc91e53807803afa5aa2a042c1c4f5.mp3str"]
+
+[params]
+
+loop=false
+loop_offset=0
+bpm=0
+beat_count=0
+bar_beats=4

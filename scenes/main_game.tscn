@@ -1,7 +1,8 @@
-[gd_scene load_steps=38 format=4 uid="uid://c1nycjn5yf0vq"]
+[gd_scene load_steps=40 format=4 uid="uid://c1nycjn5yf0vq"]
 
 [ext_resource type="Texture2D" uid="uid://ci3c4ddm4lj7h" path="res://assets/sprites/Copilot_20250912_223536.png" id="1_8xp80"]
 [ext_resource type="Script" uid="uid://dfgb2v3sdyanj" path="res://scripts/void.gd" id="1_wi4c7"]
+[ext_resource type="Script" uid="uid://cy00ysebpdn3y" path="res://scenes/main.gd" id="1_yu8cv"]
 [ext_resource type="PackedScene" uid="uid://cv0wrc1go4k5a" path="res://scenes/player.tscn" id="2_70vka"]
 [ext_resource type="Texture2D" uid="uid://bkehvrg0qb6j7" path="res://assets/sprites/world_tileset.png" id="4_nqdth"]
 [ext_resource type="PackedScene" uid="uid://cyweio5jgfpom" path="res://scenes/platform.tscn" id="5_5cypo"]
@@ -18,6 +19,7 @@
 [ext_resource type="PackedScene" uid="uid://b87xehkxnear6" path="res://scenes/emerald.tscn" id="13_wjob3"]
 [ext_resource type="PackedScene" uid="uid://kdvc6inefibo" path="res://scenes/woodensign.tscn" id="17_vnsdt"]
 [ext_resource type="PackedScene" uid="uid://bdm68exwcy0re" path="res://scenes/sign_right.tscn" id="18_ikqpi"]
+[ext_resource type="PackedScene" uid="uid://bsx24cgn42csk" path="res://scenes/OptionsMenu.tscn" id="19_5luka"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_8xp80"]
 size = Vector2(494.5, 20)
@@ -1363,6 +1365,7 @@ _data = {
 
 [node name="main_game" type="Node2D"]
 position = Vector2(-1, 0)
+script = ExtResource("1_yu8cv")
 
 [node name="ParallaxBackground" type="ParallaxBackground" parent="."]
 
@@ -1567,3 +1570,5 @@ position = Vector2(128, -32)
 
 [node name="signright2" parent="Signs" instance=ExtResource("18_ikqpi")]
 position = Vector2(938, 305)
+
+[node name="OptionsMenu" parent="." instance=ExtResource("19_5luka")]

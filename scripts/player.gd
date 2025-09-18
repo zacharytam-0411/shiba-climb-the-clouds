@@ -136,3 +136,18 @@ func _load_dino_animations(dino: String) -> void:
 
 	animated_sprite.frames = frames
 	animated_sprite.play("idle")
+
+	# Adjust sprite offset for special dinos
+	if dino == "krussy":
+		animated_sprite.offset = Vector2(0, -3)  # move up by 6 pixels
+	else:
+		animated_sprite.offset = Vector2.ZERO
+
+	animated_sprite.frames = frames
+	animated_sprite.play("idle")
+
+	# Scale adjustment for oversized dinos
+	if dino == "krussy":
+		animated_sprite.scale = Vector2(0.75, 0.75) # shrink Krussy
+	else:
+		animated_sprite.scale = Vector2(1, 1)

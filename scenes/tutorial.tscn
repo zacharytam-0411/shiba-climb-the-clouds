@@ -1,4 +1,4 @@
-[gd_scene load_steps=132 format=3 uid="uid://cw6rcej3xbc7v"]
+[gd_scene load_steps=138 format=3 uid="uid://cw6rcej3xbc7v"]
 
 [ext_resource type="PackedScene" uid="uid://64onsgo0d5ty" path="res://scenes/tile_map.tscn" id="1_8ho6b"]
 [ext_resource type="PackedScene" uid="uid://cv0wrc1go4k5a" path="res://scenes/player.tscn" id="1_c13y7"]
@@ -21,6 +21,7 @@
 [ext_resource type="Texture2D" uid="uid://68g10ve5ixbg" path="res://assets/sprites/keys/A.png" id="15_vrdqu"]
 [ext_resource type="Texture2D" uid="uid://df1p7rrd4l6b2" path="res://assets/sprites/keys/SPACE.png" id="18_dwom6"]
 [ext_resource type="Texture2D" uid="uid://ckbs28hbambto" path="res://assets/sprites/keys/P.png" id="18_ikfo1"]
+[ext_resource type="Texture2D" uid="uid://0ccak5auhqgv" path="res://assets/sprites/Fox.png" id="22_7a100"]
 [ext_resource type="Texture2D" uid="uid://bm0j6118lhpih" path="res://assets/sprites/Confetti.png" id="22_15kfc"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_5was4"]
@@ -340,6 +341,42 @@ animations = [{
 "loop": true,
 "name": &"default",
 "speed": 5.0
+}]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_5iih5"]
+atlas = ExtResource("22_7a100")
+region = Rect2(0, 0, 100, 100)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_5hcmp"]
+atlas = ExtResource("22_7a100")
+region = Rect2(100, 0, 100, 100)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_nnvue"]
+atlas = ExtResource("22_7a100")
+region = Rect2(200, 0, 100, 100)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_v7556"]
+atlas = ExtResource("22_7a100")
+region = Rect2(300, 0, 100, 100)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_mxv5l"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_5iih5")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_5hcmp")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_nnvue")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_v7556")
+}],
+"loop": true,
+"name": &"default",
+"speed": 7.0
 }]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_2urjh"]
@@ -1011,6 +1048,14 @@ scale = Vector2(4.262, 4.262)
 sprite_frames = SubResource("SpriteFrames_4gq6d")
 autoplay = "default"
 speed_scale = 0.9
+
+[node name="Fox" type="AnimatedSprite2D" parent="CanvasLayer"]
+z_index = 100
+position = Vector2(580.00006, 146)
+scale = Vector2(2.2209997, 2.2209997)
+sprite_frames = SubResource("SpriteFrames_mxv5l")
+autoplay = "default"
+frame_progress = 0.3381743
 
 [node name="Confetti" type="AnimatedSprite2D" parent="CanvasLayer"]
 z_index = 10
