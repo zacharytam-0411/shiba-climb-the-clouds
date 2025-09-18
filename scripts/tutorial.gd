@@ -51,6 +51,9 @@ var dialogue_lines = [
 	top right corner when you are done!",
 	"Note that you will have to click Start Game 
 	again to start the main game!",
+	"You can press the I key to skip a song forwards,
+	and O key to do the opposite.",
+	"Also, press Esc to access the Options page mid-game!",
 	"That's all, enjoy your game, and happy climbing!"
 ]
 
