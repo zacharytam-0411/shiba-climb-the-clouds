@@ -9,7 +9,8 @@ var bgm_list: Array = [
 	{"name": "Tetoris - Hiiragi Magnetite [feat. Kasane Teto]", "stream": preload("res://assets/music/Tetoris.mp3")},
 	{"name": "From The Start - Laufey [feat. Kasane Teto]", "stream": preload("res://assets/music/From The Start.mp3")},
 	{"name": "Lover Girl - Laufey [feat. Kasane Teto]", "stream": preload("res://assets/music/Lover Girl.mp3")},
-	{"name": "Rainbow Road Theme [Mario Kart World]", "stream": preload("res://assets/music/Rainbow Road.mp3")}
+	{"name": "Rainbow Road Theme [Mario Kart World]", "stream": preload("res://assets/music/Rainbow Road.mp3")},
+	{"name": "Kirapipi🌟Kirapika - nyanyanan", "stream": preload("res://assets/music/Kirapipi Kirapika.mp3")}
 ]
 
 # Special track for Tutorial
