@@ -10,7 +10,8 @@ var bgm_list: Array = [
 	{"name": "From The Start - Laufey [feat. Kasane Teto]", "stream": preload("res://assets/music/From The Start.mp3")},
 	{"name": "Lover Girl - Laufey [feat. Kasane Teto]", "stream": preload("res://assets/music/Lover Girl.mp3")},
 	{"name": "Rainbow Road Theme [Mario Kart World]", "stream": preload("res://assets/music/Rainbow Road.mp3")},
-	{"name": "Kirapipi🌟Kirapika - nyanyannya", "stream": preload("res://assets/music/Kirapipi Kirapika.mp3")}
+	{"name": "Kirapipi🌟Kirapika - nyanyannya", "stream": preload("res://assets/music/Kirapipi Kirapika.mp3")},
+	{"name": "Shimmering Shapes - doctorn0gloff", "stream": preload("res://assets/music/Shimmering Shapes.mp3")}
 ]
 
 # Special track for Tutorial

@@ -2,7 +2,7 @@ extends Node2D
 
 @onready var skip_button: Button = $Button/Button
 @onready var dino: AnimatedSprite2D = $CanvasLayer/AnimatedSprite2D
-@onready var overlay: ColorRect = $CanvasLayer/ColorRect
+@onready var overlay: TextureRect = $CanvasLayer/TextureRect   # changed from ColorRect → TextureRect
 @onready var panel: Panel = $CanvasLayer/Panel
 @onready var text_label: Label = $CanvasLayer/Panel/Label
 @onready var continue_label: Label = $CanvasLayer/Panel/ContinueLabel
@@ -27,8 +27,12 @@ extends Node2D
 @onready var display_label: Label = $Button/Label
 @onready var confetti: AnimatedSprite2D = $CanvasLayer/Confetti
 @onready var fox: AnimatedSprite2D = $CanvasLayer/Fox
-
-
+@onready var i_button: AnimatedSprite2D = $CanvasLayer/IButton
+@onready var o_button: AnimatedSprite2D = $CanvasLayer/OButton
+@onready var esc_button: Sprite2D = $CanvasLayer/EscButton
+@onready var leftarrow: Sprite2D = $CanvasLayer/Leftarrow
+@onready var rightarrow: Sprite2D = $CanvasLayer/Rightarrow
+@onready var optionspage: Sprite2D = $CanvasLayer/Optionspage
 
 var dialogue_lines = [
 	"Hello there! I'm your guide, Kuro!",
@@ -79,6 +83,9 @@ func _ready() -> void:
 	display_label.visible = false
 	confetti.visible = false
 	fox.visible = false
+	leftarrow.visible = false
+	rightarrow.visible = false
+	optionspage.visible = false
 	_hide_all_buttons()
 	_hide_all_gems()
 	if ruby_pickup:
@@ -90,7 +97,6 @@ func _ready() -> void:
 func start_dialogue():
 	Global.dialogue_active = true
 	overlay.visible = true
-	overlay.color = Color(0.477, 0.918, 0.887, 0.5)
 	dino.visible = true
 	dino.scale = Vector2(10, 10)  
 	dino.play("default")
@@ -145,6 +151,20 @@ func _show_line():
 				gem_emerald.visible = true
 			11:
 				skip_button.visible = true
+			13:
+				i_button.visible = true
+				o_button.visible = true
+				leftarrow.visible = true
+				rightarrow.visible = true
+			14:
+				leftarrow.visible = false
+				rightarrow.visible = false
+				_hide_all_buttons()
+				esc_button.visible = true
+				optionspage.visible = true
+			15:
+				optionspage.visible = false
+				_hide_all_buttons()
 			_:
 				_hide_all_gems()
 				skip_button.visible = false
@@ -235,7 +255,10 @@ func _hide_all_buttons():
 	s_button.visible = false
 	d_button.visible = false
 	p_button.visible = false
+	i_button.visible = false
+	o_button.visible = false
 	space_button.visible = false
+	esc_button.visible = false
 
 func _on_ruby_pickup(body: Node) -> void:
 	if body == player:

@@ -1,4 +1,4 @@
-[gd_scene load_steps=138 format=3 uid="uid://cw6rcej3xbc7v"]
+[gd_scene load_steps=152 format=3 uid="uid://cw6rcej3xbc7v"]
 
 [ext_resource type="PackedScene" uid="uid://64onsgo0d5ty" path="res://scenes/tile_map.tscn" id="1_8ho6b"]
 [ext_resource type="PackedScene" uid="uid://cv0wrc1go4k5a" path="res://scenes/player.tscn" id="1_c13y7"]
@@ -10,6 +10,7 @@
 [ext_resource type="SpriteFrames" uid="uid://c4fqnlwyc0ynt" path="res://assets/palettes/ruby.tres" id="5_cq4me"]
 [ext_resource type="FontFile" uid="uid://xdrw8fu77qqa" path="res://assets/fonts/m6x11.ttf" id="6_bl2xa"]
 [ext_resource type="SpriteFrames" uid="uid://bbeaqfcaoj536" path="res://assets/palettes/emerald.tres" id="7_nlqja"]
+[ext_resource type="Texture2D" uid="uid://cpnyj314igcpu" path="res://assets/sprites/Thumbnaila.png" id="7_sbw1o"]
 [ext_resource type="SpriteFrames" uid="uid://do7wkpwsfctnd" path="res://assets/palettes/sapphire.tres" id="8_0epgs"]
 [ext_resource type="Texture2D" uid="uid://b375ng4j50rak" path="res://assets/sprites/keys/ARROWUP.png" id="9_0epgs"]
 [ext_resource type="Texture2D" uid="uid://8pao803nrrdb" path="res://assets/sprites/keys/ARROWLEFT.png" id="9_g2equ"]
@@ -23,6 +24,11 @@
 [ext_resource type="Texture2D" uid="uid://ckbs28hbambto" path="res://assets/sprites/keys/P.png" id="18_ikfo1"]
 [ext_resource type="Texture2D" uid="uid://0ccak5auhqgv" path="res://assets/sprites/Fox.png" id="22_7a100"]
 [ext_resource type="Texture2D" uid="uid://bm0j6118lhpih" path="res://assets/sprites/Confetti.png" id="22_15kfc"]
+[ext_resource type="Texture2D" uid="uid://ciokmmnny11aq" path="res://assets/sprites/keys/O.png" id="23_210s6"]
+[ext_resource type="Texture2D" uid="uid://duxsl8s71byjo" path="res://assets/sprites/keys/I.png" id="23_feaue"]
+[ext_resource type="Texture2D" uid="uid://cw0vjc3px4cc7" path="res://assets/sprites/keys/ESC.png" id="24_5qvs7"]
+[ext_resource type="Texture2D" uid="uid://dedlu2bsqov1n" path="res://assets/sprites/Pixelart arrow icon pack 1.0.png" id="24_qbchm"]
+[ext_resource type="Texture2D" uid="uid://dci8pqbymwadt" path="res://assets/sprites/optionspage.png" id="27_gxgfo"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_5was4"]
 atlas = ExtResource("2_4kmhl")
@@ -377,6 +383,64 @@ animations = [{
 "loop": true,
 "name": &"default",
 "speed": 7.0
+}]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_0k7r6"]
+atlas = ExtResource("23_210s6")
+region = Rect2(0, 0, 19, 21)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_urton"]
+atlas = ExtResource("23_210s6")
+region = Rect2(19, 0, 19, 21)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_kdnq6"]
+atlas = ExtResource("23_210s6")
+region = Rect2(38, 0, 19, 21)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_y4qp6"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_0k7r6")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_urton")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_kdnq6")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_mxv5l"]
+atlas = ExtResource("23_feaue")
+region = Rect2(0, 0, 19, 21)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_6w4nc"]
+atlas = ExtResource("23_feaue")
+region = Rect2(19, 0, 19, 21)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_n7r4j"]
+atlas = ExtResource("23_feaue")
+region = Rect2(38, 0, 19, 21)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_0k7r6"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_mxv5l")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_6w4nc")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_n7r4j")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
 }]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_2urjh"]
@@ -881,17 +945,17 @@ position = Vector2(-80, -170)
 
 [node name="CanvasLayer" type="CanvasLayer" parent="."]
 
-[node name="ColorRect" type="ColorRect" parent="CanvasLayer"]
-z_index = 5
+[node name="TextureRect" type="TextureRect" parent="CanvasLayer"]
+z_index = 6
 z_as_relative = false
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
-offset_left = 6.0
-offset_right = 6.0
+offset_left = 2.0
+offset_right = 2.0
 grow_horizontal = 2
 grow_vertical = 2
-color = Color(0.98039216, 0.23921569, 0.23921569, 1)
+texture = ExtResource("7_sbw1o")
 
 [node name="Panel" type="Panel" parent="CanvasLayer"]
 z_index = 6
@@ -973,7 +1037,7 @@ sprite_frames = ExtResource("7_nlqja")
 autoplay = "default"
 
 [node name="RightArrow" type="AnimatedSprite2D" parent="CanvasLayer"]
-z_index = 6
+z_index = 10
 position = Vector2(1075, 232)
 scale = Vector2(4.262, 4.262)
 sprite_frames = SubResource("SpriteFrames_feaue")
@@ -1005,7 +1069,7 @@ frame_progress = 0.23477498
 speed_scale = 1.1
 
 [node name="WButton" type="AnimatedSprite2D" parent="CanvasLayer"]
-z_index = 5
+z_index = 10
 position = Vector2(151, 145)
 scale = Vector2(4.262, 4.262)
 sprite_frames = SubResource("SpriteFrames_7kfc1")
@@ -1043,7 +1107,7 @@ autoplay = "default"
 
 [node name="AButton" type="AnimatedSprite2D" parent="CanvasLayer"]
 z_index = 7
-position = Vector2(63, 237)
+position = Vector2(63, 233.00002)
 scale = Vector2(4.262, 4.262)
 sprite_frames = SubResource("SpriteFrames_4gq6d")
 autoplay = "default"
@@ -1056,6 +1120,50 @@ scale = Vector2(2.2209997, 2.2209997)
 sprite_frames = SubResource("SpriteFrames_mxv5l")
 autoplay = "default"
 frame_progress = 0.3381743
+
+[node name="OButton" type="AnimatedSprite2D" parent="CanvasLayer"]
+z_index = 20
+position = Vector2(390, 389)
+scale = Vector2(4.262, 4.262)
+sprite_frames = SubResource("SpriteFrames_y4qp6")
+autoplay = "default"
+
+[node name="Rightarrow" type="Sprite2D" parent="CanvasLayer"]
+z_index = 200
+position = Vector2(749.00006, 300.00003)
+rotation = 1.5707964
+scale = Vector2(5.746385, 5.746385)
+texture = ExtResource("24_qbchm")
+region_enabled = true
+region_rect = Rect2(33.029613, 0.2749219, 13.428543, 14.317198)
+
+[node name="EscButton" type="Sprite2D" parent="CanvasLayer"]
+z_index = 20
+position = Vector2(278.00003, 167.00003)
+scale = Vector2(15, 15)
+texture = ExtResource("24_5qvs7")
+
+[node name="IButton" type="AnimatedSprite2D" parent="CanvasLayer"]
+z_index = 1000
+position = Vector2(750, 386.00003)
+scale = Vector2(4.262, 4.262)
+sprite_frames = SubResource("SpriteFrames_0k7r6")
+autoplay = "default"
+
+[node name="Optionspage" type="Sprite2D" parent="CanvasLayer"]
+z_index = 20
+position = Vector2(863, 148)
+scale = Vector2(0.3, 0.3)
+texture = ExtResource("27_gxgfo")
+
+[node name="Leftarrow" type="Sprite2D" parent="CanvasLayer"]
+z_index = 4096
+position = Vector2(385, 300)
+rotation = 4.712389
+scale = Vector2(5.74, 5.74)
+texture = ExtResource("24_qbchm")
+region_enabled = true
+region_rect = Rect2(33.792255, 0.5529461, 11.451298, 14.077074)
 
 [node name="Confetti" type="AnimatedSprite2D" parent="CanvasLayer"]
 z_index = 10
