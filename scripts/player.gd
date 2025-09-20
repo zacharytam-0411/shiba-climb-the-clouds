@@ -1,4 +1,3 @@
-# player.gd
 extends CharacterBody2D
 
 const SPEED = 150.0
@@ -29,6 +28,7 @@ func _physics_process(delta: float) -> void:
 		move_and_slide()
 		return
 
+	# Apply gravity
 	if not is_on_floor():
 		velocity.y += GRAVITY * delta
 	else:
@@ -37,11 +37,13 @@ func _physics_process(delta: float) -> void:
 		else:
 			jumps_left = 1
 
+	# Handle coyote time
 	if is_on_floor():
 		coyote_timer = COYOTE_TIME
 	else:
 		coyote_timer -= delta
 
+	# Handle jump input
 	if Input.is_action_just_pressed("move_up"):
 		if is_on_floor() or coyote_timer > 0.0:
 			velocity.y = JUMP_VELOCITY
@@ -89,22 +91,27 @@ func _physics_process(delta: float) -> void:
 
 	move_and_slide()
 
+# --- Respawn helper ---
+func respawn_at(pos: Vector2) -> void:
+	global_position = pos
+	velocity = Vector2.ZERO
+	move_and_slide() # ensures physics contacts are updated
+
+# --- Jump sound ---
 func _play_jump_sound() -> void:
 	if jump_sound and jump_sound.stream:
 		if jump_sound.playing:
 			jump_sound.stop()
 		jump_sound.play()
 
+# --- Random "P" action ---
 func _random_p_action():
-	# Allow only if grounded OR has jumps left (sapphire double jump)
 	if is_on_floor() or jumps_left > 0:
-		# 1. Random jump boost
 		var boost := randf_range(-400.0, -800.0)
 		velocity.y = boost
 		jumps_left -= 1
 		_play_jump_sound()
 
-		# 2. Pick random dino from all dinos (normal + secret)
 		var pool = Global.available_dinos + Global.secret_dinos
 		if pool.size() > 0:
 			var new_color = pool.pick_random()
@@ -113,6 +120,7 @@ func _random_p_action():
 
 		print("P pressed! Dino changed to:", Global.selected_dino_color, " with jump boost:", boost)
 
+# --- Dino animation loader ---
 func _load_dino_animations(dino: String) -> void:
 	var base_path = "res://assets/sprites/dinos/male/%s/base/" % dino
 	var animations = ["idle", "move", "jump", "hurt", "dead", "dash", "kick", "bite", "avoid", "scan"]
@@ -137,17 +145,9 @@ func _load_dino_animations(dino: String) -> void:
 	animated_sprite.frames = frames
 	animated_sprite.play("idle")
 
-	# Adjust sprite offset for special dinos
 	if dino == "krussy":
-		animated_sprite.offset = Vector2(0, -3)  # move up by 6 pixels
+		animated_sprite.offset = Vector2(0, -3)
+		animated_sprite.scale = Vector2(0.75, 0.75)
 	else:
 		animated_sprite.offset = Vector2.ZERO
-
-	animated_sprite.frames = frames
-	animated_sprite.play("idle")
-
-	# Scale adjustment for oversized dinos
-	if dino == "krussy":
-		animated_sprite.scale = Vector2(0.75, 0.75) # shrink Krussy
-	else:
 		animated_sprite.scale = Vector2(1, 1)

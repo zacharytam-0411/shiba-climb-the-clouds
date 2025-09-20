@@ -21,7 +21,7 @@ Global="*res://scripts/Global.gd"
 
 [display]
 
-window/stretch/mode="canvas_items"
+window/stretch/mode="viewport"
 
 [editor_plugins]
 

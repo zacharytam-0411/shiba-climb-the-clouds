@@ -1,9 +1,11 @@
-[gd_scene load_steps=40 format=4 uid="uid://c1nycjn5yf0vq"]
+[gd_scene load_steps=43 format=4 uid="uid://c1nycjn5yf0vq"]
 
 [ext_resource type="Texture2D" uid="uid://ci3c4ddm4lj7h" path="res://assets/sprites/Copilot_20250912_223536.png" id="1_8xp80"]
 [ext_resource type="Script" uid="uid://dfgb2v3sdyanj" path="res://scripts/void.gd" id="1_wi4c7"]
 [ext_resource type="Script" uid="uid://cy00ysebpdn3y" path="res://scenes/main.gd" id="1_yu8cv"]
+[ext_resource type="Shader" uid="uid://8tgaerysyram" path="res://scenes/fadeoverlay.gdshader" id="2_5wboo"]
 [ext_resource type="PackedScene" uid="uid://cv0wrc1go4k5a" path="res://scenes/player.tscn" id="2_70vka"]
+[ext_resource type="Script" uid="uid://d2xpyhxcdfbcw" path="res://scenes/fade_overlay.gd" id="2_ibnub"]
 [ext_resource type="Texture2D" uid="uid://bkehvrg0qb6j7" path="res://assets/sprites/world_tileset.png" id="4_nqdth"]
 [ext_resource type="PackedScene" uid="uid://cyweio5jgfpom" path="res://scenes/platform.tscn" id="5_5cypo"]
 [ext_resource type="Texture2D" uid="uid://0hon2f8453mu" path="res://assets/sprites/fourSeasonsPlatformer_ [tileset, version 2.0]/midground_/spring_.png" id="5_ihbck"]
@@ -1363,18 +1365,14 @@ _data = {
 &"move up": SubResource("Animation_2l77h")
 }
 
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_ibnub"]
+shader = ExtResource("2_5wboo")
+shader_parameter/center = Vector2(0, 0)
+shader_parameter/radius = 0.0
+
 [node name="main_game" type="Node2D"]
 position = Vector2(-1, 0)
 script = ExtResource("1_yu8cv")
-
-[node name="CanvasLayer" type="CanvasLayer" parent="."]
-
-[node name="FadeOverlay" type="ColorRect" parent="CanvasLayer"]
-z_index = 100
-offset_left = -1.0
-offset_right = 39.0
-offset_bottom = 40.0
-color = Color(0, 0, 0, 0)
 
 [node name="ParallaxBackground" type="ParallaxBackground" parent="."]
 
@@ -1393,7 +1391,7 @@ disable_mode = 2
 script = ExtResource("1_wi4c7")
 
 [node name="DestinationPoint" type="Marker2D" parent="Void"]
-position = Vector2(-10, -80)
+position = Vector2(-10.000001, -67.5)
 scale = Vector2(3, 3)
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Void"]
@@ -1581,3 +1579,17 @@ position = Vector2(128, -32)
 position = Vector2(938, 305)
 
 [node name="OptionsMenu" parent="." instance=ExtResource("19_5luka")]
+
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+layer = 100
+
+[node name="FadeOverlay" type="ColorRect" parent="CanvasLayer"]
+z_index = 100
+material = SubResource("ShaderMaterial_ibnub")
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(1, 1, 1, 0.003921569)
+script = ExtResource("2_ibnub")
