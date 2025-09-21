@@ -1,0 +1,43 @@
+[gd_scene load_steps=3 format=3 uid="uid://yhk0373e4joq"]
+
+[ext_resource type="Script" uid="uid://b6t0t0d7w5avm" path="res://scripts/leaderboard.gd" id="1_mrg81"]
+[ext_resource type="FontFile" uid="uid://xdrw8fu77qqa" path="res://assets/fonts/m6x11.ttf" id="2_wgq7h"]
+
+[node name="Leaderboard" type="Control"]
+layout_mode = 3
+anchors_preset = 0
+script = ExtResource("1_mrg81")
+
+[node name="HTTPRequest" type="HTTPRequest" parent="."]
+
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+
+[node name="Label" type="Label" parent="CanvasLayer"]
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -168.5
+offset_top = 12.0
+offset_right = 168.5
+offset_bottom = 75.0
+grow_horizontal = 2
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_fonts/font = ExtResource("2_wgq7h")
+theme_override_font_sizes/font_size = 70
+text = "Leaderboard"
+
+[node name="LeaderboardLabel" type="Label" parent="CanvasLayer"]
+z_index = 10
+anchors_preset = 12
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 166.0
+offset_top = -489.0
+offset_right = -138.0
+offset_bottom = -73.0
+grow_horizontal = 2
+grow_vertical = 0
+text = "NOTHING WORKS HERE SO THIS SHOWS"
+
+[connection signal="request_completed" from="HTTPRequest" to="." method="_on_HTTPRequest_request_completed"]

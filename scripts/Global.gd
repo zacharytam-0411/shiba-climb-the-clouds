@@ -17,6 +17,10 @@ var music_muted: bool = false
 var tutorial_completed: bool = false
 var in_tutorial: bool = true
 var dialogue_active: bool = false
+var finish_time: float = 0.0
+var last_player_name: String = ""
+var pending_player: String = ""
+var pending_score: float = -1.0
 
 # Only dinos that show up in the settings
 var available_dinos := [
@@ -50,6 +54,7 @@ func _reset() -> void:
 	winnable = false
 	music_volume_db = 0.0
 	music_muted = false
+	finish_time = 0.0
 
 func _process(_delta: float) -> void:
 	if diamond_collected and ruby_collected and sapphire_collected and emerald_collected and coin >= 25:
