@@ -20,7 +20,7 @@ func _on_exit_pressed() -> void:
 
 	# Store values in Global before changing scene
 	Global.pending_player = player_name
-	Global.pending_score = finish_time
+	Global.pending_time = finish_time
 
 	# Go to leaderboard
 	get_tree().change_scene_to_file("res://scenes/leaderboard.tscn")   

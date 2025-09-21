@@ -18,9 +18,8 @@ var tutorial_completed: bool = false
 var in_tutorial: bool = true
 var dialogue_active: bool = false
 var finish_time: float = 0.0
-var last_player_name: String = ""
 var pending_player: String = ""
-var pending_score: float = -1.0
+var pending_time: float = -1.0
 
 # Only dinos that show up in the settings
 var available_dinos := [
