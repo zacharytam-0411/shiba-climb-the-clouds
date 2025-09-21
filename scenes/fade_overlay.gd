@@ -63,7 +63,7 @@ func _on_player_died(player: Node) -> void:
 	active_tween.tween_callback(func(): shader_mat.set_shader_parameter("radius", 100.0))
 
 	# Step 4: keep small circle for a while
-	active_tween.tween_interval(0.4)
+	active_tween.tween_interval(0.6)
 
 	# Step 5: expand circle to reveal whole screen
 	active_tween.tween_method(Callable(self, "_set_radius"), 100.0, max_radius, 1.0)
