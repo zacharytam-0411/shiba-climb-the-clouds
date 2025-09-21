@@ -1,0 +1,52 @@
+[gd_scene load_steps=4 format=3 uid="uid://b18aniqxy0jqy"]
+
+[ext_resource type="Script" uid="uid://refuoau1d8hl" path="res://scripts/rickroll.gd" id="1_3h0jg"]
+[ext_resource type="VideoStream" uid="uid://xo8whrawfxp0" path="res://assets/rickroll.ogv" id="2_p2apf"]
+[ext_resource type="FontFile" uid="uid://xdrw8fu77qqa" path="res://assets/fonts/m6x11.ttf" id="3_p2apf"]
+
+[node name="rickroll" type="Node2D"]
+script = ExtResource("1_3h0jg")
+
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+
+[node name="VideoStreamPlayer" type="VideoStreamPlayer" parent="CanvasLayer"]
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -336.0
+offset_top = -256.0
+offset_right = 304.0
+offset_bottom = 224.0
+grow_horizontal = 2
+grow_vertical = 2
+stream = ExtResource("2_p2apf")
+autoplay = true
+
+[node name="Button" type="Button" parent="CanvasLayer"]
+offset_left = 417.0
+offset_top = 561.0
+offset_right = 737.0
+offset_bottom = 645.0
+theme_override_colors/font_color = Color(0.875, 0.875, 0.875, 1)
+theme_override_fonts/font = ExtResource("3_p2apf")
+theme_override_font_sizes/font_size = 45
+text = "Back to Menu"
+
+[node name="Label" type="Label" parent="CanvasLayer"]
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -562.5
+offset_top = 10.0
+offset_right = 562.5
+offset_bottom = 103.0
+grow_horizontal = 2
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_fonts/font = ExtResource("3_p2apf")
+theme_override_font_sizes/font_size = 50
+text = "How dare you quit my wonderful game? Now get rickrolled!
+"
+
+[connection signal="pressed" from="CanvasLayer/Button" to="." method="_on_button_pressed"]
