@@ -56,7 +56,7 @@ func _reset() -> void:
 	finish_time = 0.0
 
 func _process(_delta: float) -> void:
-	if diamond_collected and ruby_collected and sapphire_collected and emerald_collected and coin >= 25:
+	if diamond_collected and ruby_collected and sapphire_collected and emerald_collected and coin >= 32:
 		winnable = true
 	else:
 		winnable = false

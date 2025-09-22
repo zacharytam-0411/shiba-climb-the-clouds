@@ -9,17 +9,26 @@ const GRAVITY = 980.0
 var coyote_timer: float = 0.0
 var jumps_left: int = 1
 
+   
+var respawn_position: Vector2 = Vector2.ZERO
+
 @onready var animated_sprite: AnimatedSprite2D = $AnimatedSprite2D
 @onready var jump_sound: AudioStreamPlayer2D = $AudioStreamPlayer2D
 
 func _ready() -> void:
 	_load_dino_animations(Global.selected_dino_color)
 	randomize()
+	add_to_group("player")
+
+
+	respawn_position = global_position
+
 
 func _process(delta: float) -> void:
 	Global.y_level = roundf((-position.y + 5) / 16)
 	if Global.y_level > Global.max_height:
 		Global.max_height = Global.y_level
+
 
 func _physics_process(delta: float) -> void:
 	if Global.dialogue_active:
@@ -37,13 +46,13 @@ func _physics_process(delta: float) -> void:
 		else:
 			jumps_left = 1
 
-	# Handle coyote time
+
 	if is_on_floor():
 		coyote_timer = COYOTE_TIME
 	else:
 		coyote_timer -= delta
 
-	# Handle jump input
+
 	if Input.is_action_just_pressed("move_up"):
 		if is_on_floor() or coyote_timer > 0.0:
 			velocity.y = JUMP_VELOCITY
@@ -64,7 +73,7 @@ func _physics_process(delta: float) -> void:
 				jumps_left = 0
 			_play_jump_sound()
 
-	# Horizontal movement
+
 	var direction := Input.get_axis("move_left", "move_right")
 
 	if direction > 0:
@@ -85,26 +94,31 @@ func _physics_process(delta: float) -> void:
 	else:
 		velocity.x = move_toward(velocity.x, 0, SPEED)
 
-	# Random P action
+
 	if Input.is_action_just_pressed("action_p"):
 		_random_p_action()
 
 	move_and_slide()
 
-# --- Respawn helper ---
-func respawn_at(pos: Vector2) -> void:
+
+
+func set_checkpoint(pos: Vector2) -> void:
+	respawn_position = pos
+
+func respawn_at(pos: Vector2 = respawn_position) -> void:
 	global_position = pos
 	velocity = Vector2.ZERO
-	move_and_slide() # ensures physics contacts are updated
+	animated_sprite.play("idle")
+	move_and_slide()
 
-# --- Jump sound ---
+
 func _play_jump_sound() -> void:
 	if jump_sound and jump_sound.stream:
 		if jump_sound.playing:
 			jump_sound.stop()
 		jump_sound.play()
 
-# --- Random "P" action ---
+
 func _random_p_action():
 	if is_on_floor() or jumps_left > 0:
 		var boost := randf_range(-400.0, -800.0)
@@ -120,7 +134,7 @@ func _random_p_action():
 
 		print("P pressed! Dino changed to:", Global.selected_dino_color, " with jump boost:", boost)
 
-# --- Dino animation loader ---
+
 func _load_dino_animations(dino: String) -> void:
 	var base_path = "res://assets/sprites/dinos/male/%s/base/" % dino
 	var animations = ["idle", "move", "jump", "hurt", "dead", "dash", "kick", "bite", "avoid", "scan"]

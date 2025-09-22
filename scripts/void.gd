@@ -14,13 +14,21 @@ func _on_body_entered(body: Node) -> void:
 		player_died.emit(body)
 
 func _do_respawn(player: Node) -> void:
-	# Place directly at respawn point
-	player.global_position = dest_point.global_position
+	var target_pos: Vector2
 
-	# Reset vertical + horizontal velocity
+	# Prefer the player's checkpoint position if set
+	if "respawn_position" in player and player.respawn_position != Vector2.ZERO:
+		target_pos = player.respawn_position
+	else:
+		# Fallback to default void respawn point
+		target_pos = dest_point.global_position
+
+	player.global_position = target_pos
+
+	# Reset velocity
 	if "velocity" in player:
 		player.velocity = Vector2.ZERO
 
-	# Force physics update so player is considered "grounded"
+	# Force physics update so they're considered grounded
 	if player.has_method("move_and_slide"):
 		player.move_and_slide()

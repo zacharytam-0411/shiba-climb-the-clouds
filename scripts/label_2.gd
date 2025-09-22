@@ -6,4 +6,4 @@ func _process(delta: float) -> void:
 		hide()
 	else:
 		show()
-	label_2.text = "Deaths: " + str(Global.deaths) + "\nCoins: " + str(Global.coin) + "/25"
+	label_2.text = "Deaths: " + str(Global.deaths) + "\nCoins: " + str(Global.coin) + "/32"
