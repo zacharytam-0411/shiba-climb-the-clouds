@@ -1,11 +1,12 @@
 extends AudioStreamPlayer
 
-@onready var bgm_label: Label = $"../Camera2D/CanvasLayer/BGMLabel"
+@onready var bgm_label: Label = get_tree().get_first_node_in_group("bgm_ui")
 @onready var label_timer: Timer = $"../BGMTimer"
 
 var bgm_list: Array = [
 	{"name": "PPPP - TAK [feat. Kasane Teto, Hatsune Miku]", "stream": preload("res://assets/music/PPPP.mp3")},
 	{"name": "Lemon Melon Cookie - TAK [feat. Hatsune Miku]", "stream": preload("res://assets/music/Lemon Melon Cookie.mp3")},
+	{"name": "Konton Boogie - jon-YAKITORY [feat. WxS]", "stream": preload("res://assets/music/Konton Boogie.mp3")},
 	{"name": "Ochame Kinou - LamazeP [feat. Kasane Teto]", "stream": preload("res://assets/music/Ochame Kinou.mp3")},
 	{"name": "Override - Yoshida Yasei [feat. Kasane Teto]", "stream": preload("res://assets/music/Overflow.mp3")},
 	{"name": "Tetoris - Hiiragi Magnetite [feat. Kasane Teto]", "stream": preload("res://assets/music/Tetoris.mp3")},

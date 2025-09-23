@@ -1,8 +1,6 @@
 # label3.gd
 extends Label
 
-
-#When player wins set this to false :))
 var running = true
 
 func _process(delta: float) -> void:

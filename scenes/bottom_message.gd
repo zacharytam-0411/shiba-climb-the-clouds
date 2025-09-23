@@ -4,6 +4,9 @@ var message_queue: Array = []  # untyped so we can store dictionaries
 var showing: bool = false
 var active_tween: Tween
 
+func _ready() -> void:
+	add_to_group("message_ui")
+
 func show_message(msg: String, duration: float = 2.0) -> void:
 	# Add new message to the queue
 	message_queue.append({"msg": msg, "duration": duration})

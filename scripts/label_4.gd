@@ -2,9 +2,6 @@ extends Label
 
 @onready var label_4: Label = $"."
 
-func _ready():
-	label_4.text = "Gems: 0/2"
-
 func _process(delta: float) -> void:
 	if Global.in_tutorial:
 		hide()
@@ -15,4 +12,4 @@ func _process(delta: float) -> void:
 	var ruby_status = "Ruby: 1/1" if Global.ruby_collected else "Ruby: 0/1"
 	var emerald_status = "Emerald: 1/1" if Global.emerald_collected else "Emerald: 0/1"
 
-	label_4.text = sapphire_status + "\n" + diamond_status + "\n" + ruby_status + "\n" + emerald_status
+	label_4.text = "Task List:" + "\n" + sapphire_status + "\n" + diamond_status + "\n" + ruby_status + "\n" + emerald_status + "\n" + "Y level: " + str(Global.y_level) + "m" + "\nCoins: " + str(Global.coin) + "/32"
