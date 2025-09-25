@@ -47,7 +47,8 @@ var dialogue_lines = [
 	"Now, let me tell you about the 4 gems you can find:",
 	"Ruby lets you wall jump.",
 	"Sapphire gives you a double jump.",
-	"Diamond and Emerald don't grant powers (for now).",
+	"Emerald gives a speed and jump boost,
+	Diamond doesnt give a powerup [for now]",
 	"Also, remember to check out the Options page 
 	to customize the dino color and the music volume!",
 	"After this dialogue ends, there will be a free space
@@ -167,6 +168,7 @@ func _show_line():
 			15:
 				optionspage.visible = false
 				_hide_all_buttons()
+				leave_button.visible = false
 			_:
 				_hide_all_gems()
 				skip_button.visible = false
