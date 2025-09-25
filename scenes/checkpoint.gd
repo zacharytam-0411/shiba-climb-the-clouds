@@ -9,14 +9,18 @@ func _ready() -> void:
 func _on_body_entered(body: Node) -> void:
 	if body.is_in_group("player") and not activated:
 		activated = true
-		body.set_checkpoint(global_position)
-		_show_active_state()
 
-		# Get the BottomMessage label
-		var msg_node = get_tree().root.get_node("main_game/CanvasLayer/BottomMessage")
-		if msg_node:
-			msg_node.show_message("Checkpoint activated!")
+		if body.has_method("set_checkpoint"):
+			body.set_checkpoint(global_position)
+
+		_show_active_state()
+		_show_message("Checkpoint activated!")
 
 func _show_active_state() -> void:
 	if has_node("Sprite2D"):
 		$Sprite2D.modulate = Color.GREEN
+
+func _show_message(text: String) -> void:
+	var msg_node = get_tree().get_first_node_in_group("ui_message")
+	if msg_node and msg_node.has_method("show_message"):
+		msg_node.show_message(text)

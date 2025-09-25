@@ -124,7 +124,7 @@ animations = [{
 [node name="Player" type="CharacterBody2D" groups=["Player"]]
 script = ExtResource("1_g2els")
 
-[node name="Camera2D" type="Camera2D" parent="."]
+[node name="Camera2D" type="Camera2D" parent="." groups=["camera"]]
 zoom = Vector2(4, 4)
 limit_bottom = 120
 position_smoothing_enabled = true

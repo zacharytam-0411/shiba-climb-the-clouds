@@ -1,11 +1,15 @@
 shader_type canvas_item;
 
-uniform vec2 center;       // in pixels
+uniform sampler2D SCREEN_TEXTURE : hint_screen_texture, filter_linear_mipmap;
+uniform vec2 center_world;   // world-space center
 uniform float radius = 0.0;
 
 void fragment() {
-    vec2 pos = FRAGCOORD.xy;               // pixel position
-    float dist = distance(pos, center);    // distance from circle center
-    float mask = smoothstep(radius - 10.0, radius + 10.0, dist);
-    COLOR = vec4(0.0, 0.0, 0.0, mask);     // black outside circle
+    // Convert SCREEN_UV to world-space coordinates (pixels in the viewport)
+    vec2 world_pos = SCREEN_UV * vec2(textureSize(SCREEN_TEXTURE, 0));
+
+    float dist = distance(world_pos, center_world);
+    float alpha = smoothstep(radius - 10.0, radius, dist);
+
+    COLOR = vec4(vec3(0.0), alpha);
 }

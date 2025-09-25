@@ -12,4 +12,4 @@ func _process(delta: float) -> void:
 	var ruby_status = "Ruby: 1/1" if Global.ruby_collected else "Ruby: 0/1"
 	var emerald_status = "Emerald: 1/1" if Global.emerald_collected else "Emerald: 0/1"
 
-	label_4.text = "Task List:" + "\n" + sapphire_status + "\n" + diamond_status + "\n" + ruby_status + "\n" + emerald_status + "\nCoins: " + str(Global.coin) + "/32" + "\n" + "Deaths: " + str(Global.deaths) + "\n" + "Y level: " + str(Global.y_level) + "m"
+	label_4.text = "Task List:" + "\n" + sapphire_status + "\n" + diamond_status + "\n" + ruby_status + "\n" + emerald_status + "\nCoins: " + str(Global.coin) + "/32" + "\n" + "Lives: %d" % Global.lives + "\n" + "Y level: " + str(Global.y_level) + "m"

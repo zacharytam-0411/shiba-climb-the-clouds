@@ -30,6 +30,7 @@ enabled=PackedStringArray("res://addons/godot-4-aseprite-importers-a9afe66b68b22
 [global_group]
 
 Player=""
+camera=""
 
 [gui]
 
