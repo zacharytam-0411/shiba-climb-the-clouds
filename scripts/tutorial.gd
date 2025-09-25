@@ -33,6 +33,7 @@ extends Node2D
 @onready var leftarrow: Sprite2D = $CanvasLayer/Leftarrow
 @onready var rightarrow: Sprite2D = $CanvasLayer/Rightarrow
 @onready var optionspage: Sprite2D = $CanvasLayer/Optionspage
+@onready var leave_button: Button = $CanvasLayer/LeaveButton
 
 var dialogue_lines = [
 	"Hello there! I'm your guide, Kuro!",
@@ -70,6 +71,7 @@ var typing_tween: Tween
 func _ready() -> void:
 	Global.in_tutorial = true
 	skip_button.pressed.connect(_on_skip_pressed)
+	leave_button.pressed.connect(_on_leave_pressed)
 	player.visible = false
 	tilemap.visible = false
 	skip_button.visible = false
@@ -236,6 +238,7 @@ func _end_dialogue():
 func _on_skip_pressed() -> void:
 	Global.tutorial_completed = true
 	Global.in_tutorial = false
+	Global.dialogue_active = false
 	Global._reset()
 	get_tree().change_scene_to_file("res://scenes/main_screen.tscn")
 
@@ -271,3 +274,14 @@ func _on_sapphire_pickup(body: Node) -> void:
 		Global.sapphire_collected = true
 		sapphire_pickup.queue_free()
 		print("Sapphire collected!")
+		
+func _on_leave_pressed() -> void:
+	Global.tutorial_completed = true
+	Global.dialogue_active = false
+	leave_button.visible = false
+	Global.in_tutorial = false
+	Global._reset()
+	print("Tutorial marked as complete, leaving tutorial...")
+	
+	# For now, just free the tutorial scene (or change scene if you want)
+	get_tree().change_scene_to_file("res://scenes/main_screen.tscn")

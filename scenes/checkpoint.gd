@@ -14,7 +14,9 @@ func _on_body_entered(body: Node) -> void:
 			body.set_checkpoint(global_position)
 
 		_show_active_state()
-		_show_message("Checkpoint activated!")
+		var msg_node = get_tree().root.get_node("main_game/CanvasLayer/BottomMessage")
+		if msg_node:
+			msg_node.show_message("Checkpoint Activated!")
 
 func _show_active_state() -> void:
 	if has_node("Sprite2D"):

@@ -1,0 +1,95 @@
+[gd_scene load_steps=6 format=3 uid="uid://d2k5pmx45vsmu"]
+
+[ext_resource type="Script" uid="uid://cwcnpkriumheu" path="res://scripts/game_over.gd" id="1_racf3"]
+[ext_resource type="Texture2D" uid="uid://cpnyj314igcpu" path="res://assets/sprites/Thumbnaila.png" id="1_wqhvx"]
+[ext_resource type="FontFile" uid="uid://xdrw8fu77qqa" path="res://assets/fonts/m6x11.ttf" id="2_tbwuq"]
+[ext_resource type="Script" uid="uid://b8v1ruva35s58" path="res://scripts/lose_stats_label.gd" id="3_tbwuq"]
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_wqhvx"]
+texture = ExtResource("1_wqhvx")
+
+[node name="GameOver" type="Control"]
+layout_mode = 3
+anchors_preset = 0
+script = ExtResource("1_racf3")
+
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+
+[node name="Panel" type="Panel" parent="CanvasLayer"]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_styles/panel = SubResource("StyleBoxTexture_wqhvx")
+
+[node name="QuitButton" type="Button" parent="CanvasLayer"]
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -121.5
+offset_top = -56.0
+offset_right = 121.5
+offset_bottom = -7.0
+grow_horizontal = 2
+grow_vertical = 0
+theme_override_fonts/font = ExtResource("2_tbwuq")
+theme_override_font_sizes/font_size = 30
+text = "Back to Main Screen"
+
+[node name="LoseStatsLabel" type="Label" parent="CanvasLayer"]
+offset_left = 134.0
+offset_top = 226.0
+offset_right = 803.0
+offset_bottom = 262.0
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_colors/font_outline_color = Color(1, 1, 1, 1)
+theme_override_constants/outline_size = 10
+theme_override_fonts/font = ExtResource("2_tbwuq")
+theme_override_font_sizes/font_size = 30
+text = "If it shows this that means it doesnt work"
+script = ExtResource("3_tbwuq")
+
+[node name="Label3" type="Label" parent="CanvasLayer"]
+offset_left = 134.0
+offset_top = 184.0
+offset_right = 803.0
+offset_bottom = 220.0
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_colors/font_outline_color = Color(1, 1, 1, 1)
+theme_override_constants/outline_size = 10
+theme_override_fonts/font = ExtResource("2_tbwuq")
+theme_override_font_sizes/font_size = 35
+text = "Here are your stats:"
+
+[node name="Label2" type="Label" parent="CanvasLayer"]
+offset_left = 136.0
+offset_top = 128.0
+offset_right = 805.0
+offset_bottom = 164.0
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_colors/font_outline_color = Color(1, 1, 1, 1)
+theme_override_constants/outline_size = 10
+theme_override_fonts/font = ExtResource("2_tbwuq")
+theme_override_font_sizes/font_size = 40
+text = "Unfortunately you have ran out of lives :("
+
+[node name="Label" type="Label" parent="CanvasLayer"]
+z_index = 10
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -459.5
+offset_right = 459.5
+offset_bottom = 248.0
+grow_horizontal = 2
+theme_override_colors/font_color = Color(0.47843137, 0.95686275, 1, 1)
+theme_override_colors/font_outline_color = Color(0, 0.47843137, 1, 1)
+theme_override_constants/outline_size = 10
+theme_override_fonts/font = ExtResource("2_tbwuq")
+theme_override_font_sizes/font_size = 150
+text = "Climb the Clouds"
+
+[connection signal="pressed" from="CanvasLayer/QuitButton" to="." method="_on_quit_button_pressed"]

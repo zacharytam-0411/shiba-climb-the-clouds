@@ -63,6 +63,7 @@ func _process(_delta: float) -> void:
 		winnable = false
 
 func _game_over() -> void:
-	print("Game Over!")
-	# Example: load a game over scene
-	get_tree().change_scene_to_file("res://scenes/main_screen.tscn")
+	call_deferred("_do_game_over")
+
+func _do_game_over() -> void:
+	get_tree().change_scene_to_file("res://scenes/game_over.tscn")

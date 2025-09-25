@@ -22,8 +22,12 @@ func _ready() -> void:
 	randomize()
 	add_to_group("player")
 	respawn_position = global_position
-
 	_apply_powerups()
+
+	# Connect to Void’s player_died signal if it exists
+	var void_area := get_tree().current_scene.get_node_or_null("Void")
+	if void_area and void_area.has_signal("player_died"):
+		void_area.player_died.connect(_on_player_died)
 
 
 func _process(delta: float) -> void:
@@ -39,7 +43,6 @@ func _physics_process(delta: float) -> void:
 		move_and_slide()
 		return
 
-	# Re-apply powerups each frame (in case gems were collected mid-game)
 	_apply_powerups()
 
 	# Gravity
@@ -93,12 +96,29 @@ func _physics_process(delta: float) -> void:
 	move_and_slide()
 
 
+# --- Death handling from Void ---
+func _on_player_died(player: Node) -> void:
+	if player == self:
+		lose_life()
+		respawn()
+
+
 # --- Respawn ---
 func set_checkpoint(pos: Vector2) -> void:
 	respawn_position = pos
 
 func respawn_at(pos: Vector2 = respawn_position) -> void:
 	global_position = pos
+	velocity = Vector2.ZERO
+	animated_sprite.play("idle")
+	move_and_slide()
+
+
+func respawn() -> void:
+	if respawn_position != Vector2.ZERO:
+		global_position = respawn_position
+	else:
+		global_position = Vector2.ZERO
 	velocity = Vector2.ZERO
 	animated_sprite.play("idle")
 	move_and_slide()
@@ -162,29 +182,17 @@ func _load_dino_animations(dino: String) -> void:
 
 # --- Gem Powerups ---
 func _apply_powerups() -> void:
-	# Reset to base
 	SPEED = BASE_SPEED
 	JUMP_VELOCITY = BASE_JUMP_VELOCITY
-
-	# Emerald → permanent boost
 	if Global.emerald_collected:
 		SPEED *= 1.15
 		JUMP_VELOCITY *= 1.1
+
 
 func lose_life() -> void:
 	if Global.lives > 0:
 		Global.lives -= 1
 		if Global.lives > 0:
-			# fade will respawn us
 			print("Lives left:", Global.lives)
 		else:
 			Global._game_over()
-
-func respawn() -> void:
-	if respawn_position != Vector2.ZERO:
-		global_position = respawn_position
-	else:
-		# fallback — just place at (0,0)
-		global_position = Vector2.ZERO
-	velocity = Vector2.ZERO
-	move_and_slide()
