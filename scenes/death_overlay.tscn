@@ -1,0 +1,21 @@
+[gd_scene load_steps=4 format=3 uid="uid://ces8ba8ri03u"]
+
+[ext_resource type="Shader" uid="uid://cqdyn416p27rs" path="res://deathoverlay.gdshader" id="1_aaayt"]
+[ext_resource type="Script" uid="uid://bxy67352pvky4" path="res://scripts/death_overlay.gd" id="1_nbc4h"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_nbc4h"]
+shader = ExtResource("1_aaayt")
+shader_parameter/center = Vector2(0, 0)
+shader_parameter/radius = 0.0
+shader_parameter/softness = 0.05
+
+[node name="DeathOverlay" type="CanvasLayer"]
+script = ExtResource("1_nbc4h")
+
+[node name="OverlayRect" type="ColorRect" parent="."]
+material = SubResource("ShaderMaterial_nbc4h")
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2

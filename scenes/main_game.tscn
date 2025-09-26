@@ -1,4 +1,4 @@
-[gd_scene load_steps=53 format=4 uid="uid://c1nycjn5yf0vq"]
+[gd_scene load_steps=54 format=4 uid="uid://c1nycjn5yf0vq"]
 
 [ext_resource type="Texture2D" uid="uid://ci3c4ddm4lj7h" path="res://assets/sprites/Copilot_20250912_223536.png" id="1_8xp80"]
 [ext_resource type="Script" uid="uid://dfgb2v3sdyanj" path="res://scripts/void.gd" id="1_wi4c7"]
@@ -31,6 +31,7 @@
 [ext_resource type="Texture2D" uid="uid://djdt4kf0j5xde" path="res://assets/sprites/circle.png" id="31_4e2rb"]
 [ext_resource type="Script" uid="uid://c7ohmus6bopx3" path="res://scripts/minimap_camera.gd" id="31_6vdpn"]
 [ext_resource type="Script" uid="uid://cpue4d1mygwc7" path="res://scripts/bgm_label.gd" id="31_urnot"]
+[ext_resource type="PackedScene" uid="uid://ces8ba8ri03u" path="res://scenes/death_overlay.tscn" id="33_4e2rb"]
 [ext_resource type="Script" uid="uid://des1hjuqgim6p" path="res://scripts/parallax_background.gd" id="33_6vdpn"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_8xp80"]
@@ -1657,6 +1658,10 @@ rotation = -0.00032572
 tile_map_data = PackedByteArray("AADm//X/AAALAAEAAADl//X/AAAKAAEAAADk//X/AAAJAAEAAAAgAOv/AAAJAAAAAAAhAOv/AAAKAAAAAAAiAOv/AAALAAAAAAA=")
 tile_set = SubResource("TileSet_ikqpi")
 
+[node name="Layer1" type="TileMapLayer" parent="TileMap"]
+use_parent_material = true
+tile_set = SubResource("TileSet_sp04v")
+
 [node name="Platforms" type="Node2D" parent="."]
 
 [node name="Platform" parent="Platforms" instance=ExtResource("5_5cypo")]
@@ -2004,3 +2009,6 @@ scale = Vector2(2, 2)
 
 [node name="Checkpoint2" parent="." instance=ExtResource("24_cybgu")]
 position = Vector2(-737, -342)
+
+[node name="DeathOverlay" parent="." instance=ExtResource("33_4e2rb")]
+layer = 1000

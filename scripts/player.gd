@@ -12,10 +12,10 @@ var JUMP_VELOCITY = BASE_JUMP_VELOCITY
 var coyote_timer: float = 0.0
 var jumps_left: int = 1
 var respawn_position: Vector2 = Vector2.ZERO
+var is_respawning: bool = false
 
 @onready var animated_sprite: AnimatedSprite2D = $AnimatedSprite2D
 @onready var jump_sound: AudioStreamPlayer2D = $AudioStreamPlayer2D
-
 
 func _ready() -> void:
 	_load_dino_animations(Global.selected_dino_color)
@@ -24,20 +24,12 @@ func _ready() -> void:
 	respawn_position = global_position
 	_apply_powerups()
 
-	# Connect to Void’s player_died signal if it exists
 	var void_area := get_tree().current_scene.get_node_or_null("Void")
 	if void_area and void_area.has_signal("player_died"):
 		void_area.player_died.connect(_on_player_died)
 
-
-func _process(delta: float) -> void:
-	Global.y_level = roundf((-position.y + 5) / 16)
-	if Global.y_level > Global.max_height:
-		Global.max_height = Global.y_level
-
-
 func _physics_process(delta: float) -> void:
-	if Global.dialogue_active:
+	if Global.dialogue_active or is_respawning:
 		velocity = Vector2.ZERO
 		animated_sprite.play("idle")
 		move_and_slide()
@@ -45,19 +37,16 @@ func _physics_process(delta: float) -> void:
 
 	_apply_powerups()
 
-	# Gravity
 	if not is_on_floor():
 		velocity.y += GRAVITY * delta
 	else:
 		jumps_left = 2 if Global.sapphire_collected else 1
 
-	# Coyote time
 	if is_on_floor():
 		coyote_timer = COYOTE_TIME
 	else:
 		coyote_timer -= delta
 
-	# Jumping
 	if Input.is_action_just_pressed("move_up"):
 		if is_on_floor() or coyote_timer > 0.0:
 			velocity.y = JUMP_VELOCITY
@@ -75,7 +64,6 @@ func _physics_process(delta: float) -> void:
 			jumps_left = 1 if Global.sapphire_collected else 0
 			_play_jump_sound()
 
-	# Horizontal movement
 	var direction := Input.get_axis("move_left", "move_right")
 	if direction > 0:
 		animated_sprite.flip_h = false
@@ -89,50 +77,46 @@ func _physics_process(delta: float) -> void:
 
 	velocity.x = direction * SPEED if direction else move_toward(velocity.x, 0, SPEED)
 
-	# Random P action
 	if Input.is_action_just_pressed("action_p"):
 		_random_p_action()
 
 	move_and_slide()
 
-
-# --- Death handling from Void ---
 func _on_player_died(player: Node) -> void:
-	if player == self:
-		lose_life()
-		respawn()
+	if player != self:
+		return
 
+	is_respawning = true
+	lose_life()
 
-# --- Respawn ---
+	var overlay := get_tree().current_scene.get_node("DeathOverlay")
+	if overlay:
+		overlay.start_reveal(respawn_position)
+
+	await get_tree().create_timer(0.01).timeout
+
+	respawn()
+
+	if overlay:
+		overlay.reveal_circle(respawn_position)
+
+	is_respawning = false
+
+func respawn() -> void:
+	set_deferred("global_position", respawn_position)
+	velocity = Vector2.ZERO
+	animated_sprite.play("idle")
+	move_and_slide()
+
 func set_checkpoint(pos: Vector2) -> void:
 	respawn_position = pos
 
-func respawn_at(pos: Vector2 = respawn_position) -> void:
-	global_position = pos
-	velocity = Vector2.ZERO
-	animated_sprite.play("idle")
-	move_and_slide()
-
-
-func respawn() -> void:
-	if respawn_position != Vector2.ZERO:
-		global_position = respawn_position
-	else:
-		global_position = Vector2.ZERO
-	velocity = Vector2.ZERO
-	animated_sprite.play("idle")
-	move_and_slide()
-
-
-# --- Jump sound ---
 func _play_jump_sound() -> void:
 	if jump_sound and jump_sound.stream:
 		if jump_sound.playing:
 			jump_sound.stop()
 		jump_sound.play()
 
-
-# --- Random "P" action ---
 func _random_p_action():
 	if is_on_floor() or jumps_left > 0:
 		var boost := randf_range(-400.0, -800.0)
@@ -147,8 +131,6 @@ func _random_p_action():
 		Global.selected_dino_color = new_color
 		_load_dino_animations(new_color)
 
-
-# --- Dino animation loader ---
 func _load_dino_animations(dino: String) -> void:
 	var base_path = "res://assets/sprites/dinos/male/%s/base/" % dino
 	var animations = ["idle", "move", "jump", "hurt", "dead", "dash", "kick", "bite", "avoid", "scan"]
@@ -179,15 +161,12 @@ func _load_dino_animations(dino: String) -> void:
 		animated_sprite.offset = Vector2.ZERO
 		animated_sprite.scale = Vector2(1, 1)
 
-
-# --- Gem Powerups ---
 func _apply_powerups() -> void:
 	SPEED = BASE_SPEED
 	JUMP_VELOCITY = BASE_JUMP_VELOCITY
 	if Global.emerald_collected:
 		SPEED *= 1.15
 		JUMP_VELOCITY *= 1.1
-
 
 func lose_life() -> void:
 	if Global.lives > 0:
