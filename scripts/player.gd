@@ -93,7 +93,7 @@ func _on_player_died(player: Node) -> void:
 	if overlay:
 		overlay.start_reveal(respawn_position)
 
-	await get_tree().create_timer(0.01).timeout
+	await get_tree().create_timer(0.1).timeout
 
 	respawn()
 
@@ -157,6 +157,14 @@ func _load_dino_animations(dino: String) -> void:
 	if dino == "krussy":
 		animated_sprite.offset = Vector2(0, -3)
 		animated_sprite.scale = Vector2(0.75, 0.75)
+		var msg_node = get_tree().root.get_node("main_game/CanvasLayer/BottomMessage")
+		if msg_node:
+			msg_node.show_message("Now Featuring : Krussy from PewPew - Raqeeb")
+	elif dino == "shiba":
+		animated_sprite.offset = Vector2(0, -2)
+		var msg_node = get_tree().root.get_node("main_game/CanvasLayer/BottomMessage")
+		if msg_node:
+			msg_node.show_message("Now Featuring : Shiba from ShibaRunner - xvcf")
 	else:
 		animated_sprite.offset = Vector2.ZERO
 		animated_sprite.scale = Vector2(1, 1)
@@ -175,3 +183,8 @@ func lose_life() -> void:
 			print("Lives left:", Global.lives)
 		else:
 			Global._game_over()
+
+func _process(delta: float) -> void:
+	Global.y_level = -((global_position.y)/16)
+	if Global.y_level > Global.max_height:
+		Global.max_height = Global.y_level

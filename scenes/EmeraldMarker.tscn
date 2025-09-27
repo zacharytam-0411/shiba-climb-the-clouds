@@ -1,0 +1,8 @@
+[gd_scene load_steps=3 format=3 uid="uid://ry06xmib24e2"]
+
+[ext_resource type="Texture2D" uid="uid://cbrqktnnl6xqe" path="res://assets/sprites/emeraldmarker.png" id="1_kvjh8"]
+[ext_resource type="Script" uid="uid://b5prbp1a3xfqo" path="res://scripts/emerald_marker.gd" id="2_k4svu"]
+
+[node name="Sprite2D" type="Sprite2D"]
+texture = ExtResource("1_kvjh8")
+script = ExtResource("2_k4svu")

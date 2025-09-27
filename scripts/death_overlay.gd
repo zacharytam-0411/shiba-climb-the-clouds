@@ -20,7 +20,7 @@ func reveal_circle(world_pos: Vector2):
 
 	mat.set_shader_parameter("center", normalized_center)
 	mat.set_shader_parameter("radius", 0.0)
-	mat.set_shader_parameter("softness", 0.2)  # Smooth edge
+	mat.set_shader_parameter("softness", 0.1)  # Smooth edge
 
 	var tween := create_tween()
 	tween.tween_method(

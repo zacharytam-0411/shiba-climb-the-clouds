@@ -1,0 +1,8 @@
+[gd_scene load_steps=3 format=3 uid="uid://diebjjcmombv0"]
+
+[ext_resource type="Texture2D" uid="uid://qpjfxmid6765" path="res://assets/sprites/diamondmarker.png" id="1_q1kld"]
+[ext_resource type="Script" uid="uid://c5qhg6tcrbuwr" path="res://scripts/diamond_marker.gd" id="2_7ql0f"]
+
+[node name="Sprite2D" type="Sprite2D"]
+texture = ExtResource("1_q1kld")
+script = ExtResource("2_7ql0f")

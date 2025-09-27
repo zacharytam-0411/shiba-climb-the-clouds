@@ -1,0 +1,10 @@
+[gd_scene load_steps=3 format=3 uid="uid://cg7id3ppae8tv"]
+
+[ext_resource type="Texture2D" uid="uid://bhkewkuv7vea3" path="res://assets/sprites/coinmarker.png" id="1_51mbl"]
+[ext_resource type="Script" uid="uid://bquxnx8lpewh7" path="res://scripts/coin_marker.gd" id="2_mj3aq"]
+
+[node name="Sprite2D" type="Sprite2D"]
+texture = ExtResource("1_51mbl")
+region_enabled = true
+region_rect = Rect2(0, 0, 16, 16)
+script = ExtResource("2_mj3aq")

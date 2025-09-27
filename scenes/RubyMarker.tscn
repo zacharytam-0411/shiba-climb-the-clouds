@@ -1,0 +1,8 @@
+[gd_scene load_steps=3 format=3 uid="uid://bps4lvg0jbbbi"]
+
+[ext_resource type="Texture2D" uid="uid://d01gf0sj6hhp5" path="res://assets/sprites/rubymarker.png" id="1_c0yct"]
+[ext_resource type="Script" uid="uid://d2e53hjjivevd" path="res://scripts/ruby_marker.gd" id="2_b4vpi"]
+
+[node name="Sprite2D" type="Sprite2D"]
+texture = ExtResource("1_c0yct")
+script = ExtResource("2_b4vpi")

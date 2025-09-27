@@ -9,7 +9,7 @@ void fragment() {
 
     // Aspect ratio correction
     float aspect = float(SCREEN_PIXEL_SIZE.x) / SCREEN_PIXEL_SIZE.y;
-    vec2 corrected_uv = vec2((uv.x - center.x) * aspect, uv.y - center.y);
+    vec2 corrected_uv = vec2(uv.x - center.x, (uv.y - center.y) * aspect);
 
     float dist = length(corrected_uv);
     float mask = smoothstep(radius, radius - softness, dist);

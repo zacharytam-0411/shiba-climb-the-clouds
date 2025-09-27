@@ -37,7 +37,8 @@ var available_dinos := [
 # Hidden dinos, only available via "P"
 var secret_dinos := [
 	"knight",
-	"krussy"
+	"krussy",
+	"shiba"
 ]
 
 func _reset() -> void:
