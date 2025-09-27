@@ -38,7 +38,8 @@ var available_dinos := [
 var secret_dinos := [
 	"knight",
 	"krussy",
-	"shiba"
+	"shiba",
+	"shibaina"
 ]
 
 func _reset() -> void:

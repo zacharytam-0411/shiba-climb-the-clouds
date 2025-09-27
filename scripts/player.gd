@@ -164,7 +164,12 @@ func _load_dino_animations(dino: String) -> void:
 		animated_sprite.offset = Vector2(0, -2)
 		var msg_node = get_tree().root.get_node("main_game/CanvasLayer/BottomMessage")
 		if msg_node:
-			msg_node.show_message("Now Featuring : Shiba from ShibaRunner - xvcf")
+			msg_node.show_message("Now Featuring : Shiba from ShibaRunnerpp - xvcf")
+	elif dino == "shibaina":
+		animated_sprite.offset = Vector2(0, -2)
+		var msg_node = get_tree().root.get_node("main_game/CanvasLayer/BottomMessage")
+		if msg_node:
+			msg_node.show_message("Now Featuring : Shibaina from ShibaRunnerpp - xvcf")
 	else:
 		animated_sprite.offset = Vector2.ZERO
 		animated_sprite.scale = Vector2(1, 1)

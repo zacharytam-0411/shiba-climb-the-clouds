@@ -129,7 +129,7 @@ offset_bottom = 235.0
 theme_override_colors/font_color = Color(0, 0, 0, 1)
 theme_override_fonts/font = ExtResource("2_lushf")
 theme_override_font_sizes/font_size = 50
-text = "v0.4c"
+text = "v0.5"
 
 [node name="Label5" type="Label" parent="."]
 layout_mode = 0
@@ -161,7 +161,7 @@ offset_bottom = 185.0
 theme_override_colors/font_color = Color(0.25060695, 0.07171876, 0.106628634, 1)
 theme_override_fonts/font = ExtResource("3_aum10")
 theme_override_font_sizes/font_size = 40
-text = "Death animations DONT WORK! :("
+text = "Minimap now WORKS!"
 
 [connection signal="pressed" from="VBoxContainer/Button" to="." method="_on_start_pressed"]
 [connection signal="pressed" from="VBoxContainer/Button2" to="." method="_on_settings_pressed"]

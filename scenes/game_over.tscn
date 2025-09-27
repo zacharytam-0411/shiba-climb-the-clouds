@@ -1,12 +1,49 @@
-[gd_scene load_steps=6 format=3 uid="uid://d2k5pmx45vsmu"]
+[gd_scene load_steps=12 format=3 uid="uid://d2k5pmx45vsmu"]
 
 [ext_resource type="Script" uid="uid://cwcnpkriumheu" path="res://scripts/game_over.gd" id="1_racf3"]
 [ext_resource type="Texture2D" uid="uid://cpnyj314igcpu" path="res://assets/sprites/Thumbnaila.png" id="1_wqhvx"]
 [ext_resource type="FontFile" uid="uid://xdrw8fu77qqa" path="res://assets/fonts/m6x11.ttf" id="2_tbwuq"]
 [ext_resource type="Script" uid="uid://b8v1ruva35s58" path="res://scripts/lose_stats_label.gd" id="3_tbwuq"]
+[ext_resource type="Texture2D" uid="uid://c8bl8ujuskm6o" path="res://assets/sprites/dinos/male/kuro/base/hurt.png" id="5_7m3ot"]
 
 [sub_resource type="StyleBoxTexture" id="StyleBoxTexture_wqhvx"]
 texture = ExtResource("1_wqhvx")
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_v3hpu"]
+atlas = ExtResource("5_7m3ot")
+region = Rect2(0, 0, 24, 24)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_irg28"]
+atlas = ExtResource("5_7m3ot")
+region = Rect2(24, 0, 24, 24)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_2jtsn"]
+atlas = ExtResource("5_7m3ot")
+region = Rect2(48, 0, 24, 24)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_8bugq"]
+atlas = ExtResource("5_7m3ot")
+region = Rect2(72, 0, 24, 24)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_wawo4"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_v3hpu")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_irg28")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_2jtsn")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_8bugq")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}]
 
 [node name="GameOver" type="Control"]
 layout_mode = 3
@@ -51,6 +88,25 @@ theme_override_fonts/font = ExtResource("2_tbwuq")
 theme_override_font_sizes/font_size = 30
 text = "If it shows this that means it doesnt work"
 script = ExtResource("3_tbwuq")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="CanvasLayer"]
+position = Vector2(932, 361.99997)
+scale = Vector2(15.916667, 15.916667)
+sprite_frames = SubResource("SpriteFrames_wawo4")
+autoplay = "default"
+frame_progress = 0.7721835
+
+[node name="Label4" type="Label" parent="CanvasLayer"]
+offset_left = 124.0
+offset_top = 467.0
+offset_right = 793.0
+offset_bottom = 503.0
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_colors/font_outline_color = Color(1, 1, 1, 1)
+theme_override_constants/outline_size = 10
+theme_override_fonts/font = ExtResource("2_tbwuq")
+theme_override_font_sizes/font_size = 35
+text = "Nice work still! Don't give up and try again!"
 
 [node name="Label3" type="Label" parent="CanvasLayer"]
 offset_left = 134.0
