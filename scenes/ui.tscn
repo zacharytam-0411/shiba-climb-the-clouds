@@ -32,10 +32,11 @@ offset_top = 1.0
 offset_right = 269.0
 offset_bottom = 299.0
 theme_override_styles/panel = SubResource("StyleBoxFlat_cgfq5")
+metadata/_edit_use_anchors_ = true
 
 [node name="EndArrow" type="Sprite2D" parent="HUDPanel"]
-position = Vector2(44.000015, 358.00003)
-scale = Vector2(8.227273, 8.227273)
+position = Vector2(604, 54)
+scale = Vector2(4, 4)
 texture = ExtResource("9_cgfq5")
 region_enabled = true
 region_rect = Rect2(50, 33, 11, 15)

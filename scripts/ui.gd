@@ -28,9 +28,9 @@ func _process(_delta: float) -> void:
 	update_coins()
 	update_lives()
 	update_y_level()
-	if Global.winnable:
+	if Global.winnable == false:
 		var direction = (end_flag.global_position - player_ref.global_position).normalized()
-		end_arrow.rotation = direction.angle() + 90
+		end_arrow.rotation = direction.angle() + PI/2
 		end_arrow.visible = true
 	else:
 		end_arrow.visible = false
