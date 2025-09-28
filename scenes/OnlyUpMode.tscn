@@ -1,0 +1,37 @@
+[gd_scene load_steps=6 format=3 uid="uid://cargoi5i1y00w"]
+
+[ext_resource type="Texture2D" uid="uid://ci3c4ddm4lj7h" path="res://assets/sprites/Copilot_20250912_223536.png" id="1_0wkw7"]
+[ext_resource type="Texture2D" uid="uid://bencvt7sypfcj" path="res://assets/sprites/Copilot_20250922_191249.png" id="2_gpt2q"]
+[ext_resource type="PackedScene" uid="uid://cv0wrc1go4k5a" path="res://scenes/player.tscn" id="3_gpt2q"]
+[ext_resource type="Script" uid="uid://d10enlkme33hf" path="res://scripts/platform_spawner.gd" id="4_2xcqe"]
+[ext_resource type="PackedScene" uid="uid://c4jhv4jfxxpmr" path="res://scenes/autoplatform.tscn" id="5_ijqt6"]
+
+[node name="Node2D" type="Node2D"]
+
+[node name="ParallaxBackground" type="ParallaxBackground" parent="."]
+
+[node name="ParallaxLayer" type="ParallaxLayer" parent="ParallaxBackground"]
+motion_mirroring = Vector2(2048, 0)
+
+[node name="Sprite2D" type="Sprite2D" parent="ParallaxBackground/ParallaxLayer"]
+z_index = 10
+position = Vector2(-47, -228)
+texture = ExtResource("1_0wkw7")
+
+[node name="Sprite2D2" type="Sprite2D" parent="ParallaxBackground/ParallaxLayer"]
+z_index = -2
+position = Vector2(-47, -1252)
+texture = ExtResource("2_gpt2q")
+
+[node name="Player" parent="." instance=ExtResource("3_gpt2q")]
+rotation = -0.000427129
+
+[node name="PlatformSpawner" type="Node2D" parent="."]
+rotation = -0.00042712904
+scale = Vector2(0.99999994, 0.99999994)
+script = ExtResource("4_2xcqe")
+platform_scene = ExtResource("5_ijqt6")
+player_path = NodePath("../Player")
+
+[node name="Node2D" parent="." instance=ExtResource("5_ijqt6")]
+position = Vector2(8, 34)
