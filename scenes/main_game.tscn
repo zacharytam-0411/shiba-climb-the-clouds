@@ -25,7 +25,6 @@
 [ext_resource type="FontFile" uid="uid://xdrw8fu77qqa" path="res://assets/fonts/m6x11.ttf" id="24_on6n6"]
 [ext_resource type="Script" uid="uid://dnrasyrh8u26" path="res://scripts/coin_message.gd" id="25_dcudo"]
 [ext_resource type="Script" uid="uid://cieobqdpk3dtj" path="res://scenes/bottom_message.gd" id="25_x3ega"]
-[ext_resource type="Script" uid="uid://bedawxese18tm" path="res://scripts/label_4.gd" id="27_dp0eu"]
 [ext_resource type="Script" uid="uid://m34g6opnni1f" path="res://scripts/label_3.gd" id="29_4e2rb"]
 [ext_resource type="PackedScene" uid="uid://cg7id3ppae8tv" path="res://scenes/CoinMarker.tscn" id="29_6vdpn"]
 [ext_resource type="Script" uid="uid://bmfimw1xtt7rx" path="res://scripts/sub_viewport.gd" id="30_dp0eu"]
@@ -38,6 +37,7 @@
 [ext_resource type="PackedScene" uid="uid://ces8ba8ri03u" path="res://scenes/death_overlay.tscn" id="33_4e2rb"]
 [ext_resource type="Script" uid="uid://des1hjuqgim6p" path="res://scripts/parallax_background.gd" id="33_6vdpn"]
 [ext_resource type="PackedScene" uid="uid://ry06xmib24e2" path="res://scenes/EmeraldMarker.tscn" id="33_g2o8j"]
+[ext_resource type="PackedScene" uid="uid://cf2dum5nwgemb" path="res://scenes/ui.tscn" id="39_dvo3n"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_8xp80"]
 size = Vector2(710.6667, 20)
@@ -1824,7 +1824,7 @@ position = Vector2(145, 12)
 scale = Vector2(1.2, 1.2)
 
 [node name="Diamond" parent="Gems" instance=ExtResource("10_nqdth")]
-position = Vector2(-704, -107)
+position = Vector2(-342, -299)
 scale = Vector2(1.3, 1.3)
 
 [node name="Ruby" parent="Gems" instance=ExtResource("12_o6v7o")]
@@ -1834,7 +1834,7 @@ position = Vector2(1616, -531)
 position = Vector2(1317, 255)
 
 [node name="Flag" parent="." instance=ExtResource("5_o6v7o")]
-position = Vector2(-624, -774)
+position = Vector2(1479, 75)
 
 [node name="Signs" type="Node2D" parent="."]
 position = Vector2(-766, -350)
@@ -1893,18 +1893,6 @@ theme_override_constants/outline_size = 10
 theme_override_fonts/font = ExtResource("24_on6n6")
 theme_override_font_sizes/font_size = 30
 script = ExtResource("25_x3ega")
-
-[node name="TaskListLabel" type="Label" parent="CanvasLayer"]
-offset_left = 3.0
-offset_top = 2.0
-offset_right = 43.0
-offset_bottom = 29.0
-theme_override_colors/font_color = Color(0, 0, 0, 1)
-theme_override_colors/font_outline_color = Color(1, 1, 1, 1)
-theme_override_constants/outline_size = 5
-theme_override_fonts/font = ExtResource("24_on6n6")
-theme_override_font_sizes/font_size = 20
-script = ExtResource("27_dp0eu")
 
 [node name="GameTimer" type="Label" parent="CanvasLayer"]
 z_index = 5
@@ -2032,7 +2020,12 @@ position = Vector2(411, -588)
 scale = Vector2(2, 2)
 
 [node name="Checkpoint2" parent="." instance=ExtResource("24_cybgu")]
-position = Vector2(-737, -342)
+position = Vector2(-737, -347)
+scale = Vector2(2, 2)
 
 [node name="DeathOverlay" parent="." instance=ExtResource("33_4e2rb")]
 layer = 1000
+visible = false
+
+[node name="UI" parent="." instance=ExtResource("39_dvo3n")]
+layer = 10000

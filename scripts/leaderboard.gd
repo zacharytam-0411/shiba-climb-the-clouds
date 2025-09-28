@@ -4,8 +4,8 @@ extends Control
 
 # Example existing scores (manual input)
 var scores: Array = [
-	{"player": "zac", "time": 66.5},
-	{"player": "another zac", "time": 76.0}
+	{"player": "another zac", "time": 76.0},
+	{"player": "zac", "time": 217.5}
 ]
 
 # Store the last run separately
