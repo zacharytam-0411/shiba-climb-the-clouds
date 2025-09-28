@@ -1819,7 +1819,7 @@ position = Vector2(-296, -489)
 [node name="Gems" type="Node2D" parent="."]
 position = Vector2(-296, -489)
 
-[node name="Sappire" parent="Gems" instance=ExtResource("9_2l77h")]
+[node name="Sapphire" parent="Gems" instance=ExtResource("9_2l77h")]
 position = Vector2(145, 12)
 scale = Vector2(1.2, 1.2)
 

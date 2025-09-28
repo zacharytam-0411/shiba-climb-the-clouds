@@ -13,6 +13,7 @@ extends CanvasLayer
 @onready var panel_container = $HUDPanel
 @onready var lives_text: Label = $HUDPanel/VBoxContainer/LivesBar/LivesText
 @onready var coins_text: Label = $HUDPanel/VBoxContainer/CoinBar/CoinsText
+var diamond_was_collected := false
 
 func _ready() -> void:
 	task_bar.set_custom_minimum_size(Vector2(200, 16))
@@ -21,6 +22,11 @@ func _process(_delta: float) -> void:
 	update_coins()
 	update_lives()
 	update_y_level()
+	
+	if Global.diamond_collected and not diamond_was_collected:
+		diamond_was_collected = true
+		animate_heart_upgrade()
+
 
 func update_gems():
 	gem_icons["sapphire"].modulate = Color.WHITE if Global.sapphire_collected else Color(1, 1, 1, 0.3)
@@ -62,6 +68,13 @@ func update_lives():
 	else:
 		heart.texture = heart_texture
 	lives_text.text = "x " + str(Global.lives)
-	
+
+func animate_heart_upgrade():
+	var heart = lives_bar.get_node("Heart")
+	var tween = create_tween()
+	tween.tween_property(heart, "scale", Vector2(1.4, 1.4), 0.2).set_trans(Tween.TRANS_ELASTIC)
+	tween.tween_property(heart, "scale", Vector2(0.98, 0.98), 0.2)
+
+
 func update_y_level():
 	y_label.text = "Y Level: %dm" % Global.y_level
