@@ -1,15 +1,20 @@
-[gd_scene load_steps=9 format=3 uid="uid://cargoi5i1y00w"]
+[gd_scene load_steps=13 format=3 uid="uid://cargoi5i1y00w"]
 
 [ext_resource type="Texture2D" uid="uid://ci3c4ddm4lj7h" path="res://assets/sprites/Copilot_20250912_223536.png" id="1_0wkw7"]
+[ext_resource type="Script" uid="uid://yap7i7vqqf5h" path="res://scripts/only_up_mode.gd" id="1_omno6"]
 [ext_resource type="Texture2D" uid="uid://bencvt7sypfcj" path="res://assets/sprites/Copilot_20250922_191249.png" id="2_gpt2q"]
 [ext_resource type="PackedScene" uid="uid://cv0wrc1go4k5a" path="res://scenes/player.tscn" id="3_gpt2q"]
 [ext_resource type="Script" uid="uid://d10enlkme33hf" path="res://scripts/platform_spawner.gd" id="4_2xcqe"]
+[ext_resource type="Texture2D" uid="uid://dr4guj8m8mp37" path="res://assets/sprites/whitebg.png" id="4_jc7o2"]
 [ext_resource type="PackedScene" uid="uid://c4jhv4jfxxpmr" path="res://scenes/autoplatform.tscn" id="5_ijqt6"]
 [ext_resource type="PackedScene" uid="uid://b87uy33eid0th" path="res://scenes/startingplatform_oum.tscn" id="6_wvbho"]
 [ext_resource type="FontFile" uid="uid://xdrw8fu77qqa" path="res://assets/fonts/m6x11.ttf" id="7_65evo"]
 [ext_resource type="Script" uid="uid://cieobqdpk3dtj" path="res://scenes/bottom_message.gd" id="8_2dq3p"]
+[ext_resource type="Script" uid="uid://m34g6opnni1f" path="res://scripts/label_3.gd" id="9_2dq3p"]
+[ext_resource type="Script" uid="uid://cpue4d1mygwc7" path="res://scripts/bgm_label.gd" id="11_nlw48"]
 
 [node name="OnlyUpMode" type="Node2D"]
+script = ExtResource("1_omno6")
 
 [node name="ParallaxBackground" type="ParallaxBackground" parent="."]
 
@@ -25,6 +30,13 @@ texture = ExtResource("1_0wkw7")
 z_index = -2
 position = Vector2(-47, -1252)
 texture = ExtResource("2_gpt2q")
+
+[node name="ParallaxLayer2" type="ParallaxLayer" parent="ParallaxBackground"]
+
+[node name="Sprite2D3" type="Sprite2D" parent="ParallaxBackground/ParallaxLayer2"]
+z_index = -2
+position = Vector2(-47, -2784)
+texture = ExtResource("4_jc7o2")
 
 [node name="Player" parent="." instance=ExtResource("3_gpt2q")]
 rotation = -0.000427129
@@ -59,3 +71,43 @@ theme_override_constants/outline_size = 10
 theme_override_fonts/font = ExtResource("7_65evo")
 theme_override_font_sizes/font_size = 30
 script = ExtResource("8_2dq3p")
+
+[node name="GameTimer" type="Label" parent="CanvasLayer"]
+z_index = 5
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -20.0
+offset_right = 20.0
+offset_bottom = 23.0
+grow_horizontal = 2
+scale = Vector2(2, 2)
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_fonts/font = ExtResource("7_65evo")
+horizontal_alignment = 1
+script = ExtResource("9_2dq3p")
+
+[node name="YLevelLabel" type="Label" parent="CanvasLayer"]
+offset_left = 5.0
+offset_right = 6.0
+offset_bottom = 27.0
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_colors/font_outline_color = Color(1, 1, 1, 1)
+theme_override_constants/outline_size = 4
+theme_override_fonts/font = ExtResource("7_65evo")
+theme_override_font_sizes/font_size = 30
+
+[node name="BGMLabel" type="Label" parent="CanvasLayer" groups=["bgm_ui"]]
+z_index = 5
+anchors_preset = 2
+anchor_top = 1.0
+anchor_bottom = 1.0
+offset_top = -31.0
+offset_right = 40.0
+grow_vertical = 0
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_colors/font_outline_color = Color(1, 1, 1, 1)
+theme_override_constants/outline_size = 10
+theme_override_fonts/font = ExtResource("7_65evo")
+theme_override_font_sizes/font_size = 30
+script = ExtResource("11_nlw48")
