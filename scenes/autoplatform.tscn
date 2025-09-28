@@ -1,16 +1,18 @@
 [gd_scene load_steps=3 format=3 uid="uid://c4jhv4jfxxpmr"]
 
-[ext_resource type="Texture2D" uid="uid://mdo13jw3tw0v" path="res://assets/sprites/platforms.png" id="1_1pbua"]
+[ext_resource type="Texture2D" uid="uid://hxtfhiuio877" path="res://assets/sprites/platform1.png" id="1_1pbua"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_7lnbp"]
-size = Vector2(32, 8)
+size = Vector2(27, 13)
 
-[node name="Node2D" type="Node2D"]
+[node name="Node2D" type="StaticBody2D"]
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
+position = Vector2(-2.5, 2.25)
+scale = Vector2(0.84375, 0.84375)
 texture = ExtResource("1_1pbua")
-region_enabled = true
 region_rect = Rect2(16, 0, 32, 9)
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(-2.5, 2.5)
 shape = SubResource("RectangleShape2D_7lnbp")

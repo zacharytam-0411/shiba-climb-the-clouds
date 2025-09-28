@@ -153,30 +153,55 @@ func _load_dino_animations(dino: String) -> void:
 
 	animated_sprite.frames = frames
 	animated_sprite.play("idle")
-
-	if dino == "krussy":
-		animated_sprite.offset = Vector2(0, -3)
-		animated_sprite.scale = Vector2(0.75, 0.75)
-		var msg_node = get_tree().root.get_node("main_game/CanvasLayer/BottomMessage")
-		if msg_node:
-			msg_node.show_message("Now Featuring : Krussy from a game made by Raqeeb")
-	elif dino == "shiba":
-		animated_sprite.offset = Vector2(0, -2)
-		var msg_node = get_tree().root.get_node("main_game/CanvasLayer/BottomMessage")
-		if msg_node:
-			msg_node.show_message("Now Featuring : Shiba from ShibaRunner - xvcf")
-	elif dino == "shibaina":
-		animated_sprite.offset = Vector2(0, -2)
-		var msg_node = get_tree().root.get_node("main_game/CanvasLayer/BottomMessage")
-		if msg_node:
-			msg_node.show_message("Now Featuring : Shibaina from ShibaRunner - xvcf")
-	elif dino == "knight":
-		var msg_node = get_tree().root.get_node("main_game/CanvasLayer/BottomMessage")
-		if msg_node:
-			msg_node.show_message("Now Featuring : Knight from Brackey's Tutorial")
+	
+	if Global.gamemode == "":
+		if dino == "krussy":
+			animated_sprite.offset = Vector2(0, -3)
+			animated_sprite.scale = Vector2(0.75, 0.75)
+			var msg_node = get_tree().root.get_node("DefaultMode/CanvasLayer/BottomMessage")
+			if msg_node:
+				msg_node.show_message("Now Featuring : Krussy from a game made by Raqeeb")
+		elif dino == "shiba":
+			animated_sprite.offset = Vector2(0, -2)
+			var msg_node = get_tree().root.get_node("DefaultMode/CanvasLayer/BottomMessage")
+			if msg_node:
+				msg_node.show_message("Now Featuring : Shiba from ShibaRunner - xvcf")
+		elif dino == "shibaina":
+			animated_sprite.offset = Vector2(0, -2)
+			var msg_node = get_tree().root.get_node("DefaultMode/CanvasLayer/BottomMessage")
+			if msg_node:
+				msg_node.show_message("Now Featuring : Shibaina from ShibaRunner - xvcf")
+		elif dino == "knight":
+			var msg_node = get_tree().root.get_node("DefaultMode/CanvasLayer/BottomMessage")
+			if msg_node:
+				msg_node.show_message("Now Featuring : Knight from Brackey's Tutorial")
+		else:
+			animated_sprite.offset = Vector2.ZERO
+			animated_sprite.scale = Vector2(1, 1)
 	else:
-		animated_sprite.offset = Vector2.ZERO
-		animated_sprite.scale = Vector2(1, 1)
+		if dino == "krussy":
+			animated_sprite.offset = Vector2(0, -3)
+			animated_sprite.scale = Vector2(0.75, 0.75)
+			var msg_node = get_tree().root.get_node("OnlyUpMode/CanvasLayer/BottomMessage")
+			if msg_node:
+				msg_node.show_message("Now Featuring : Krussy from a game made by Raqeeb")
+		elif dino == "shiba":
+			animated_sprite.offset = Vector2(0, -2)
+			var msg_node = get_tree().root.get_node("OnlyUpMode/CanvasLayer/BottomMessage")
+			if msg_node:
+				msg_node.show_message("Now Featuring : Shiba from ShibaRunner - xvcf")
+		elif dino == "shibaina":
+			animated_sprite.offset = Vector2(0, -2)
+			var msg_node = get_tree().root.get_node("OnlyUpMode/CanvasLayer/BottomMessage")
+			if msg_node:
+				msg_node.show_message("Now Featuring : Shibaina from ShibaRunner - xvcf")
+		elif dino == "knight":
+			var msg_node = get_tree().root.get_node("OnlyUpMode/CanvasLayer/BottomMessage")
+			if msg_node:
+				msg_node.show_message("Now Featuring : Knight from Brackey's Tutorial")
+		else:
+			animated_sprite.offset = Vector2.ZERO
+			animated_sprite.scale = Vector2(1, 1)
 
 func _apply_powerups() -> void:
 	SPEED = BASE_SPEED
@@ -184,6 +209,9 @@ func _apply_powerups() -> void:
 	if Global.emerald_collected:
 		SPEED *= 1.15
 		JUMP_VELOCITY *= 1.1
+	if Global.gamemode == "only_up":
+		SPEED *= 1.33
+		JUMP_VELOCITY *= 1.33
 
 func lose_life() -> void:
 	if Global.lives > 0:
