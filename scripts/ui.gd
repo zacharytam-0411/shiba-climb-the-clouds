@@ -13,16 +13,27 @@ extends CanvasLayer
 @onready var panel_container = $HUDPanel
 @onready var lives_text: Label = $HUDPanel/VBoxContainer/LivesBar/LivesText
 @onready var coins_text: Label = $HUDPanel/VBoxContainer/CoinBar/CoinsText
+@onready var end_flag: Area2D = $"../Flag"
+@onready var end_arrow: Sprite2D = $HUDPanel/EndArrow
+@export var player_path: NodePath
+var player_ref: Node2D
 var diamond_was_collected := false
 
 func _ready() -> void:
+	player_ref = get_node(player_path)
 	task_bar.set_custom_minimum_size(Vector2(200, 16))
+
 func _process(_delta: float) -> void:
 	update_gems()
 	update_coins()
 	update_lives()
 	update_y_level()
-	
+	if Global.winnable:
+		var direction = (end_flag.global_position - player_ref.global_position).normalized()
+		end_arrow.rotation = direction.angle() + 90
+		end_arrow.visible = true
+	else:
+		end_arrow.visible = false
 	if Global.diamond_collected and not diamond_was_collected:
 		diamond_was_collected = true
 		animate_heart_upgrade()

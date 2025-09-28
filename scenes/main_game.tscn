@@ -1834,7 +1834,7 @@ position = Vector2(1616, -531)
 position = Vector2(1317, 255)
 
 [node name="Flag" parent="." instance=ExtResource("5_o6v7o")]
-position = Vector2(1479, 75)
+position = Vector2(1479, 71)
 
 [node name="Signs" type="Node2D" parent="."]
 position = Vector2(-766, -350)
@@ -2029,3 +2029,4 @@ visible = false
 
 [node name="UI" parent="." instance=ExtResource("39_dvo3n")]
 layer = 10000
+player_path = NodePath("../Player")

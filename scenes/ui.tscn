@@ -1,4 +1,4 @@
-[gd_scene load_steps=12 format=3 uid="uid://cf2dum5nwgemb"]
+[gd_scene load_steps=13 format=3 uid="uid://cf2dum5nwgemb"]
 
 [ext_resource type="Script" uid="uid://ya3eu10ec872" path="res://scripts/ui.gd" id="1_nt7q6"]
 [ext_resource type="Texture2D" uid="uid://dfkl0kph6lrkp" path="res://assets/sprites/rubyicon.png" id="2_wm3ai"]
@@ -8,6 +8,7 @@
 [ext_resource type="Texture2D" uid="uid://ca5ek6c4btjbb" path="res://assets/sprites/hearticon.png" id="6_8dubc"]
 [ext_resource type="FontFile" uid="uid://xdrw8fu77qqa" path="res://assets/fonts/m6x11.ttf" id="7_p7vwb"]
 [ext_resource type="Texture2D" uid="uid://chr2c0g66nucu" path="res://assets/sprites/coinicon.png" id="8_ktti3"]
+[ext_resource type="Texture2D" uid="uid://dedlu2bsqov1n" path="res://assets/sprites/Pixelart arrow icon pack 1.0.png" id="9_cgfq5"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_cgfq5"]
 bg_color = Color(0.2, 0.2, 0.2, 0.70980394)
@@ -31,6 +32,13 @@ offset_top = 1.0
 offset_right = 269.0
 offset_bottom = 299.0
 theme_override_styles/panel = SubResource("StyleBoxFlat_cgfq5")
+
+[node name="EndArrow" type="Sprite2D" parent="HUDPanel"]
+position = Vector2(44.000015, 358.00003)
+scale = Vector2(8.227273, 8.227273)
+texture = ExtResource("9_cgfq5")
+region_enabled = true
+region_rect = Rect2(50, 33, 11, 15)
 
 [node name="VBoxContainer" type="VBoxContainer" parent="HUDPanel"]
 layout_mode = 2
