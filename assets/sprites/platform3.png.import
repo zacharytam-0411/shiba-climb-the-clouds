@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://bmpsv5b6sjeaf"
-path="res://.godot/imported/summer_.png-c4ea1cc29cf7fcbd6b13a7fe44344a5f.ctex"
+uid="uid://dhv0rn02gjmhb"
+path="res://.godot/imported/platform3.png-40cee457113b37e90be80e6b1d15ab6d.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/sprites/fourSeasonsPlatformer_ [tileset, version 2.0]/midground_/summer_.png"
-dest_files=["res://.godot/imported/summer_.png-c4ea1cc29cf7fcbd6b13a7fe44344a5f.ctex"]
+source_file="res://assets/sprites/platform3.png"
+dest_files=["res://.godot/imported/platform3.png-40cee457113b37e90be80e6b1d15ab6d.ctex"]
 
 [params]
 

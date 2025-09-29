@@ -7,4 +7,4 @@ func _process(delta: float) -> void:
 	
 	
 func update_coins():
-	coins_text.text = "x " + str(Global.coin)
+	coins_text.text = "x " + str(Global.only_up_coins)

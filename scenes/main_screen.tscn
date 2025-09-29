@@ -105,6 +105,22 @@ theme_override_styles/hover = SubResource("StyleBoxFlat_7fvvs")
 theme_override_styles/focus = SubResource("StyleBoxEmpty_w87pm")
 text = "Options"
 
+[node name="Shop" type="Button" parent="VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 3
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_colors/font_focus_color = Color(0, 0, 0, 1)
+theme_override_colors/font_hover_color = Color(0.29803923, 0.72156864, 0.6627451, 1)
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_constants/outline_size = 5
+theme_override_fonts/font = ExtResource("2_lushf")
+theme_override_font_sizes/font_size = 60
+theme_override_styles/normal = SubResource("StyleBoxFlat_7fvvs")
+theme_override_styles/pressed = SubResource("StyleBoxFlat_7fvvs")
+theme_override_styles/hover = SubResource("StyleBoxFlat_7fvvs")
+theme_override_styles/focus = SubResource("StyleBoxEmpty_w87pm")
+text = "Shop"
+
 [node name="Button3" type="Button" parent="VBoxContainer"]
 layout_mode = 2
 size_flags_vertical = 3
@@ -179,5 +195,6 @@ script = ExtResource("5_w87pm")
 
 [connection signal="pressed" from="VBoxContainer/Button" to="." method="_on_start_pressed"]
 [connection signal="pressed" from="VBoxContainer/Button2" to="." method="_on_settings_pressed"]
+[connection signal="pressed" from="VBoxContainer/Shop" to="." method="_on_shop_pressed"]
 [connection signal="pressed" from="VBoxContainer/Button3" to="." method="_on_exit_pressed"]
 [connection signal="pressed" from="OnlyUpButton" to="." method="_on_only_up_button_pressed"]

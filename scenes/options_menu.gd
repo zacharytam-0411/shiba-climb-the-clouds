@@ -31,7 +31,6 @@ func _ready() -> void:
 
 # -- show/hide (instant) --
 func show_menu() -> void:
-	# Show immediately. Caller should pause the tree AFTER calling this.
 	visible = true
 
 func hide_menu() -> void:
@@ -65,4 +64,4 @@ func _on_resume_pressed() -> void:
 
 func _on_quit_pressed() -> void:
 	get_tree().paused = false
-	get_tree().change_scene_to_file("res://scenes/main_screen.tscn")  # corrected path
+	get_tree().change_scene_to_file("res://scenes/main_screen.tscn")

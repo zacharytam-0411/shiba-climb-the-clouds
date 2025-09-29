@@ -1,14 +1,14 @@
 extends Node2D
 
-@export var platform_scene: PackedScene
+@export var platform_variants: Array[PackedScene]
 @export var player_path: NodePath
 @export var vertical_spacing := 300
 @export var horizontal_range := 100
 @export var spawn_buffer := 600
 @export var base_spacing := 50  # Easy at the start
 @export var spacing_growth := 0.02
-@export var coin_scene: PackedScene
-@export var coin_chance := 0.4  # 40% chance to spawn a coin
+@export var nature_coin_scene: PackedScene
+@export var nature_coin_chance := 0.6
 
 var death_threshold := 800
 var player: Node2D
@@ -40,22 +40,25 @@ func spawn_platforms():
 	var platform_count: int = clamp(10 - int(climb_height / 500), 3, 10)
 
 	for i in range(platform_count):
+		var platform_scene :PackedScene = platform_variants.pick_random()
 		var platform = platform_scene.instantiate()
+
 		var x_offset = randf_range(-horizontal_range, horizontal_range)
 		var y_offset = -spacing * (i + 1) + randf_range(-spacing * 0.3, spacing * 0.3)
+
 		platform.global_position = Vector2(
 			player.global_position.x + x_offset,
 			player.global_position.y + y_offset
 		)
 		add_child(platform)
 
-		if randf() < coin_chance:
-			var coin = coin_scene.instantiate()
-			coin.global_position = platform.global_position + Vector2(0, -20)
-			add_child(coin)
+		if randf() < nature_coin_chance:
+			var nature_coin = nature_coin_scene.instantiate()
+			nature_coin.global_position = platform.global_position + Vector2(0, -20)
+			add_child(nature_coin)
 
 func find_nearest_platform() -> Node2D:
-	var nearest_platform :StaticBody2D = null
+	var nearest_platform: Node2D = null
 	var nearest_distance := INF
 
 	for platform in get_tree().get_nodes_in_group("platform"):
@@ -77,7 +80,7 @@ func _handle_player_fall() -> void:
 		player.global_position = target.global_position + Vector2(-10, -60)
 	else:
 		var safe_y: float = last_spawn_y - 300
-		player.global_position = Vector2(player.global_position.x, safe_y)
+		player.global_position = Vector2(player.global_position.x - 10, safe_y)
 
 	var overlay := get_tree().current_scene.get_node_or_null("DeathOverlay")
 	if overlay:

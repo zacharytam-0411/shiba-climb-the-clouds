@@ -40,7 +40,10 @@ func _physics_process(delta: float) -> void:
 	if not is_on_floor():
 		velocity.y += GRAVITY * delta
 	else:
-		jumps_left = 2 if Global.sapphire_collected else 1
+		if Global.sapphire_collected or (Global.gamemode == "only_up" and Global.upgrades.get("DoubleJump", false)):
+			jumps_left = 2
+		else:
+			jumps_left = 1
 
 	if is_on_floor():
 		coyote_timer = COYOTE_TIME
@@ -53,7 +56,7 @@ func _physics_process(delta: float) -> void:
 			jumps_left -= 1
 			coyote_timer = 0.0
 			_play_jump_sound()
-		elif jumps_left > 0 and Global.sapphire_collected:
+		elif jumps_left > 0 and (Global.sapphire_collected or (Global.gamemode == "only_up" and Global.upgrades.get("DoubleJump", false))):
 			velocity.y = JUMP_VELOCITY
 			jumps_left -= 1
 			_play_jump_sound()
@@ -61,7 +64,8 @@ func _physics_process(delta: float) -> void:
 			var wall_normal := get_wall_normal().x
 			velocity.y = JUMP_VELOCITY
 			velocity.x = WALL_JUMP_PUSH * sign(wall_normal)
-			jumps_left = 1 if Global.sapphire_collected else 0
+			jumps_left = 1 if Global.sapphire_collected or (Global.gamemode == "only_up" and Global.upgrades.get("DoubleJump", false)) else 0
+
 			_play_jump_sound()
 
 	var direction := Input.get_axis("move_left", "move_right")
@@ -230,6 +234,10 @@ func _apply_powerups() -> void:
 	if Global.gamemode == "only_up":
 		SPEED *= 1.33
 		JUMP_VELOCITY *= 1.33
+		var boost_level:int = Global.upgrades.get("JumpBoost", 0)
+		if boost_level > 0:
+			JUMP_VELOCITY *= 1.0 + (0.1 * boost_level)  # +10% per level
+
 
 func lose_life() -> void:
 	if Global.lives > 0:

@@ -1,5 +1,12 @@
 extends Node
 
+var upgrades: Dictionary = {
+	"DoubleJump": false,
+	"SpeedBoost": 0,  # stackable upgrade, starts at level 0
+	"CoinMagnet": false,
+	"Glide": false,
+	"JumpBoost": 0
+}
 var sapphire_collected: bool = false
 var diamond_collected: bool = false
 var ruby_collected: bool = false
@@ -23,6 +30,7 @@ var pending_player: String = ""
 var pending_time: float = -1.0
 var gamemode := "default"
 var last_platform: StaticBody2D = null
+var only_up_coins: int = 0
 
 # Only dinos that show up in the settings
 var available_dinos := [
