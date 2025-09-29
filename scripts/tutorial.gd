@@ -48,7 +48,7 @@ var dialogue_lines = [
 	"Ruby lets you wall jump.",
 	"Sapphire gives you a double jump.",
 	"Emerald gives a speed and jump boost,
-	Diamond doesnt give a powerup [for now]",
+	and Diamond gives you 2 extra lives!",
 	"Also, remember to check out the Options page 
 	to customize the dino color and the music volume!",
 	"After this dialogue ends, there will be a free space
@@ -57,8 +57,8 @@ var dialogue_lines = [
 	top right corner when you are done!",
 	"Note that you will have to click Start Game 
 	again to start the main game!",
-	"You can press the I key to skip a song forwards,
-	and O key to do the opposite.",
+	"You can press the I key to skip a song backwards,
+	and O key to do the opposite [skip forwards].",
 	"Also, press Esc to access the Options page mid-game!",
 	"That's all, enjoy your game, and happy climbing!"
 ]

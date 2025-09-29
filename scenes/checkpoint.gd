@@ -14,7 +14,7 @@ func _on_body_entered(body: Node) -> void:
 			body.set_checkpoint(global_position)
 
 		_show_active_state()
-		var msg_node = get_tree().root.get_node("main_game/CanvasLayer/BottomMessage")
+		var msg_node = get_tree().root.get_node("DefaultMode/CanvasLayer/BottomMessage")
 		if msg_node:
 			msg_node.show_message("Checkpoint Activated!")
 

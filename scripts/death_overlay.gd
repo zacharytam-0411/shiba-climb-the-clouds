@@ -1,18 +1,18 @@
 extends CanvasLayer
 
-@onready var mat := $OverlayRect.material as ShaderMaterial
+@onready var mat: ShaderMaterial = $OverlayRect.material as ShaderMaterial
 
 func _ready():
 	visible = false
 
 # Step 1: Fade to black instantly
-func start_reveal(_world_pos: Vector2):
+func start_reveal(_world_pos: Vector2) -> void:
 	visible = true
 	mat.set_shader_parameter("radius", 2.0)
-	mat.set_shader_parameter("center", Vector2(0.5, 0.5))  # Doesn't matter yet
+	mat.set_shader_parameter("center", Vector2(0.5, 0.5))  # Placeholder center
 
-# Step 2: Reveal clear circle from respawn point
-func reveal_circle(world_pos: Vector2):
+# Step 2: Reveal clear circle from respawn point in OnlyUpMode
+func reveal_circle(world_pos: Vector2) -> void:
 	var camera := get_viewport().get_camera_2d()
 	var screen_size: Vector2 = get_viewport().size
 	var screen_pos: Vector2 = world_pos - (camera.global_position - screen_size / 2)
@@ -20,7 +20,7 @@ func reveal_circle(world_pos: Vector2):
 
 	mat.set_shader_parameter("center", normalized_center)
 	mat.set_shader_parameter("radius", 0.0)
-	mat.set_shader_parameter("softness", 0.1)  # Smooth edge
+	mat.set_shader_parameter("softness", 0.1)
 
 	var tween := create_tween()
 	tween.tween_method(

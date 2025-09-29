@@ -103,10 +103,28 @@ func _on_player_died(player: Node) -> void:
 	is_respawning = false
 
 func respawn() -> void:
-	set_deferred("global_position", respawn_position)
+	var new_position: Vector2
+
+	if Global.gamemode == "only_up":
+		var spawner := get_tree().current_scene.get_node_or_null("OnlyUpMode/PlatformSpawner")
+		if spawner and "get_respawn_position" in spawner:
+			new_position = spawner.get_respawn_position()
+		else:
+			new_position = Vector2(global_position.x, global_position.y - 300)  # fallback
+	else:
+		new_position = respawn_position  # set via set_checkpoint()
+
+	global_position = new_position
 	velocity = Vector2.ZERO
 	animated_sprite.play("idle")
+
+
+	global_position = new_position  # ← use this, not set_deferred
+	velocity = Vector2.ZERO
+	animated_sprite.play("idle") 
 	move_and_slide()
+
+
 
 func set_checkpoint(pos: Vector2) -> void:
 	respawn_position = pos
@@ -119,7 +137,7 @@ func _play_jump_sound() -> void:
 
 func _random_p_action():
 	if is_on_floor() or jumps_left > 0:
-		var boost := randf_range(-400.0, -800.0)
+		var boost := randf_range(-500.0, -1000.0)
 		velocity.y = boost
 		jumps_left -= 1
 		_play_jump_sound()

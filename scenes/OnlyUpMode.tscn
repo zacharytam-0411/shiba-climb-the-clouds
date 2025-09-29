@@ -1,4 +1,4 @@
-[gd_scene load_steps=13 format=3 uid="uid://cargoi5i1y00w"]
+[gd_scene load_steps=17 format=3 uid="uid://cargoi5i1y00w"]
 
 [ext_resource type="Texture2D" uid="uid://ci3c4ddm4lj7h" path="res://assets/sprites/Copilot_20250912_223536.png" id="1_0wkw7"]
 [ext_resource type="Script" uid="uid://yap7i7vqqf5h" path="res://scripts/only_up_mode.gd" id="1_omno6"]
@@ -11,7 +11,11 @@
 [ext_resource type="FontFile" uid="uid://xdrw8fu77qqa" path="res://assets/fonts/m6x11.ttf" id="7_65evo"]
 [ext_resource type="Script" uid="uid://cieobqdpk3dtj" path="res://scenes/bottom_message.gd" id="8_2dq3p"]
 [ext_resource type="Script" uid="uid://m34g6opnni1f" path="res://scripts/label_3.gd" id="9_2dq3p"]
+[ext_resource type="PackedScene" uid="uid://cnhgglg0jjxco" path="res://scenes/coin.tscn" id="9_nsrr6"]
+[ext_resource type="Script" uid="uid://c43ct8xsq1w6m" path="res://scripts/onlyupcanvas.gd" id="11_epgd4"]
 [ext_resource type="Script" uid="uid://cpue4d1mygwc7" path="res://scripts/bgm_label.gd" id="11_nlw48"]
+[ext_resource type="PackedScene" uid="uid://ces8ba8ri03u" path="res://scenes/death_overlay.tscn" id="13_tw05h"]
+[ext_resource type="Texture2D" uid="uid://chr2c0g66nucu" path="res://assets/sprites/coinicon.png" id="16_jvv83"]
 
 [node name="OnlyUpMode" type="Node2D"]
 script = ExtResource("1_omno6")
@@ -47,11 +51,18 @@ scale = Vector2(0.99999994, 0.99999994)
 script = ExtResource("4_2xcqe")
 platform_scene = ExtResource("5_ijqt6")
 player_path = NodePath("../Player")
+coin_scene = ExtResource("9_nsrr6")
 
 [node name="Node2D" parent="." instance=ExtResource("6_wvbho")]
 position = Vector2(-144, 33)
 
+[node name="DeathOverlay" parent="." instance=ExtResource("13_tw05h")]
+layer = 1000
+visible = false
+
 [node name="CanvasLayer" type="CanvasLayer" parent="."]
+layer = 10
+script = ExtResource("11_epgd4")
 
 [node name="BottomMessage" type="Label" parent="CanvasLayer"]
 z_index = 100
@@ -111,3 +122,28 @@ theme_override_constants/outline_size = 10
 theme_override_fonts/font = ExtResource("7_65evo")
 theme_override_font_sizes/font_size = 30
 script = ExtResource("11_nlw48")
+
+[node name="CoinBar" type="HBoxContainer" parent="CanvasLayer"]
+anchors_preset = 1
+anchor_left = 1.0
+anchor_right = 1.0
+offset_left = -140.0
+offset_right = -9.0
+offset_bottom = 64.0
+grow_horizontal = 0
+
+[node name="Coin" type="TextureRect" parent="CanvasLayer/CoinBar"]
+custom_minimum_size = Vector2(64, 64)
+layout_mode = 2
+texture = ExtResource("16_jvv83")
+stretch_mode = 4
+
+[node name="CoinsText" type="Label" parent="CanvasLayer/CoinBar"]
+z_index = 100
+layout_mode = 2
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_colors/font_outline_color = Color(1, 1, 1, 1)
+theme_override_constants/outline_size = 4
+theme_override_fonts/font = ExtResource("7_65evo")
+theme_override_font_sizes/font_size = 40
+text = " x 0"

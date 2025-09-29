@@ -1669,7 +1669,7 @@ tile_set = SubResource("TileSet_sp04v")
 [node name="bridges" type="TileMapLayer" parent="TileMap"]
 use_parent_material = true
 rotation = -0.00032572
-tile_map_data = PackedByteArray("AADm//X/AAALAAEAAADl//X/AAAKAAEAAADk//X/AAAJAAEAAAAgAOv/AAAJAAAAAAAhAOv/AAAKAAAAAAAiAOv/AAALAAAAAAA=")
+tile_map_data = PackedByteArray("AADm//X/AAALAAEAAADl//X/AAAKAAEAAADk//X/AAAJAAEAAAAgAOv/AAAJAAAAAAAhAOv/AAAKAAAAAAAiAOv/AAALAAAAAADG/+7/AAACAAYAAADG/+//AAACAAYAAADH/+7/AAADAAYAAADH/+//AAADAAcAAADI/+7/AAAEAAYAAADI/+//AAAEAAYAAADG/+3/AAACAAUAAADH/+3/AAADAAUAAADI/+3/AAAEAAUAAADH//D/AAADAAgAAAD1/9r/AAAGAAMAAAD1/9v/AAAGAAQAAAD1/9z/AAAGAAUAAAA=")
 tile_set = SubResource("TileSet_ikqpi")
 
 [node name="Layer1" type="TileMapLayer" parent="TileMap"]

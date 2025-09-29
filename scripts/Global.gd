@@ -22,6 +22,7 @@ var finish_time: float = 0.0
 var pending_player: String = ""
 var pending_time: float = -1.0
 var gamemode := "default"
+var last_platform: StaticBody2D = null
 
 # Only dinos that show up in the settings
 var available_dinos := [
