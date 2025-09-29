@@ -172,7 +172,7 @@ func _load_dino_animations(dino: String) -> void:
 	animated_sprite.frames = frames
 	animated_sprite.play("idle")
 	
-	if Global.gamemode == "":
+	if Global.gamemode == "default":
 		if dino == "krussy":
 			animated_sprite.offset = Vector2(0, -3)
 			animated_sprite.scale = Vector2(0.75, 0.75)

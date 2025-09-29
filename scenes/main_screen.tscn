@@ -130,7 +130,7 @@ offset_bottom = 235.0
 theme_override_colors/font_color = Color(0, 0, 0, 1)
 theme_override_fonts/font = ExtResource("2_lushf")
 theme_override_font_sizes/font_size = 50
-text = "v0.5"
+text = "v0.5a"
 
 [node name="Label5" type="Label" parent="."]
 layout_mode = 0
@@ -162,7 +162,7 @@ offset_bottom = 185.0
 theme_override_colors/font_color = Color(0.25060695, 0.07171876, 0.106628634, 1)
 theme_override_fonts/font = ExtResource("3_aum10")
 theme_override_font_sizes/font_size = 40
-text = "New Gamemode Coming soon?"
+text = "New Gamemode Coming soon :D"
 
 [node name="OnlyUpButton" type="Button" parent="."]
 layout_mode = 0
@@ -174,7 +174,7 @@ theme_override_colors/font_color = Color(0.875, 0.875, 0.875, 1)
 theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
 theme_override_fonts/font = ExtResource("2_lushf")
 theme_override_font_sizes/font_size = 20
-text = "Play New Gamemode [experimental]"
+text = "Play Climbing Up [experimental]"
 script = ExtResource("5_w87pm")
 
 [connection signal="pressed" from="VBoxContainer/Button" to="." method="_on_start_pressed"]
