@@ -1,10 +1,107 @@
-[gd_scene load_steps=6 format=3 uid="uid://c5fvr8umib64d"]
+[gd_scene load_steps=22 format=3 uid="uid://c5fvr8umib64d"]
 
 [ext_resource type="Script" uid="uid://dhcla3fy81wq8" path="res://scripts/double_jump_button.gd" id="2_fbet8"]
 [ext_resource type="FontFile" uid="uid://xdrw8fu77qqa" path="res://assets/fonts/m6x11.ttf" id="2_gbfen"]
 [ext_resource type="Texture2D" uid="uid://dgv55kd3p5fgj" path="res://assets/sprites/naturecoinicon.png" id="2_towsj"]
 [ext_resource type="Texture2D" uid="uid://bnrh02uryoxku" path="res://assets/sprites/Copilot_20250929_183552.png" id="2_y884i"]
 [ext_resource type="Script" uid="uid://cm0cgkd6emiuc" path="res://scripts/jumpboost.gd" id="5_y884i"]
+[ext_resource type="Texture2D" uid="uid://bvpnyrbrsnvwj" path="res://assets/sprites/dinos/male/shiba/base/idle.png" id="6_2ruy7"]
+[ext_resource type="Texture2D" uid="uid://ddvo7erdqgp0i" path="res://assets/sprites/dinos/male/loki/base/idle.png" id="7_bfqgy"]
+[ext_resource type="Texture2D" uid="uid://dhd4jtxdr5hpo" path="res://assets/sprites/dinos/male/kuro/base/idle.png" id="8_iv3qy"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_6jtak"]
+atlas = ExtResource("6_2ruy7")
+region = Rect2(0, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_e6lsq"]
+atlas = ExtResource("6_2ruy7")
+region = Rect2(32, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ybmet"]
+atlas = ExtResource("6_2ruy7")
+region = Rect2(64, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_rqkuk"]
+atlas = ExtResource("6_2ruy7")
+region = Rect2(96, 0, 32, 32)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_4jp7j"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_6jtak")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_e6lsq")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ybmet")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_rqkuk")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_vlgln"]
+atlas = ExtResource("7_bfqgy")
+region = Rect2(0, 0, 24, 24)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_41tm5"]
+atlas = ExtResource("7_bfqgy")
+region = Rect2(24, 0, 24, 24)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_kh8us"]
+atlas = ExtResource("7_bfqgy")
+region = Rect2(48, 0, 24, 24)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_tds8n"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_vlgln")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_41tm5")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_kh8us")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_lpp81"]
+atlas = ExtResource("8_iv3qy")
+region = Rect2(0, 0, 24, 24)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_6ijup"]
+atlas = ExtResource("8_iv3qy")
+region = Rect2(24, 0, 24, 24)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_eproe"]
+atlas = ExtResource("8_iv3qy")
+region = Rect2(48, 0, 24, 24)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_k2iox"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_lpp81")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_6ijup")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_eproe")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}]
 
 [node name="NatureShop" type="Control"]
 layout_mode = 3
@@ -35,6 +132,47 @@ text = "KURO'S SHOP"
 horizontal_alignment = 1
 vertical_alignment = 1
 
+[node name="Label4" type="Label" parent="CanvasLayer"]
+z_index = 200
+offset_left = 16.0
+offset_top = 621.0
+offset_right = 690.0
+offset_bottom = 680.0
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_colors/font_outline_color = Color(1, 1, 1, 1)
+theme_override_constants/outline_size = 4
+theme_override_fonts/font = ExtResource("2_gbfen")
+theme_override_font_sizes/font_size = 25
+text = "Credits to @xvcf for this adorable Shiba :)"
+
+[node name="Label3" type="Label" parent="CanvasLayer"]
+z_index = 200
+offset_left = 212.0
+offset_top = 437.0
+offset_right = 411.0
+offset_bottom = 500.0
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_colors/font_outline_color = Color(1, 1, 1, 1)
+theme_override_constants/outline_size = 4
+theme_override_fonts/font = ExtResource("2_gbfen")
+theme_override_font_sizes/font_size = 15
+text = "Sir, of course you are 
+buying everything!"
+
+[node name="Label2" type="Label" parent="CanvasLayer"]
+z_index = 200
+offset_left = 36.0
+offset_top = 350.0
+offset_right = 235.0
+offset_bottom = 413.0
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_colors/font_outline_color = Color(1, 1, 1, 1)
+theme_override_constants/outline_size = 4
+theme_override_fonts/font = ExtResource("2_gbfen")
+theme_override_font_sizes/font_size = 15
+text = "What should I buy today? 
+Jump Boost looks nice!"
+
 [node name="TextureRect" type="TextureRect" parent="CanvasLayer"]
 anchors_preset = 15
 anchor_right = 1.0
@@ -63,22 +201,22 @@ text = "placeholder text"
 vertical_alignment = 1
 
 [node name="Label" type="Label" parent="CanvasLayer"]
-offset_left = 198.0
-offset_top = 245.0
-offset_right = 659.0
-offset_bottom = 281.0
+offset_left = 314.0
+offset_top = 252.0
+offset_right = 775.0
+offset_bottom = 288.0
 theme_override_colors/font_color = Color(0, 0, 0, 1)
 theme_override_colors/font_outline_color = Color(1, 1, 1, 1)
 theme_override_constants/outline_size = 4
 theme_override_fonts/font = ExtResource("2_gbfen")
-theme_override_font_sizes/font_size = 40
+theme_override_font_sizes/font_size = 25
 text = "Unlock Double Jump : 50 Coins "
 
 [node name="DoubleJumpButton" type="Button" parent="CanvasLayer"]
-offset_left = 699.0
-offset_top = 218.0
-offset_right = 959.0
-offset_bottom = 312.0
+offset_left = 694.0
+offset_top = 230.0
+offset_right = 860.0
+offset_bottom = 290.0
 theme_override_colors/font_color = Color(0, 0, 0, 1)
 theme_override_colors/font_focus_color = Color(0.37254903, 0.37254903, 0.37254903, 1)
 theme_override_colors/font_pressed_color = Color(0.37254903, 0.37254903, 0.37254903, 1)
@@ -90,23 +228,23 @@ theme_override_fonts/font = ExtResource("2_gbfen")
 theme_override_font_sizes/font_size = 30
 script = ExtResource("2_fbet8")
 
-[node name="Label2" type="Label" parent="CanvasLayer"]
-offset_left = 188.0
-offset_top = 416.0
-offset_right = 649.0
-offset_bottom = 452.0
+[node name="JumpBoostLabel" type="Label" parent="CanvasLayer"]
+offset_left = 313.0
+offset_top = 326.0
+offset_right = 774.0
+offset_bottom = 362.0
 theme_override_colors/font_color = Color(0, 0, 0, 1)
 theme_override_colors/font_outline_color = Color(1, 1, 1, 1)
 theme_override_constants/outline_size = 4
 theme_override_fonts/font = ExtResource("2_gbfen")
-theme_override_font_sizes/font_size = 40
+theme_override_font_sizes/font_size = 25
 text = "Increase Jump Boost:"
 
 [node name="UpgradeButton" type="Button" parent="CanvasLayer"]
-offset_left = 699.0
-offset_top = 389.0
-offset_right = 959.0
-offset_bottom = 483.0
+offset_left = 694.0
+offset_top = 307.0
+offset_right = 860.0
+offset_bottom = 367.0
 theme_override_colors/font_color = Color(0, 0, 0, 1)
 theme_override_colors/font_focus_color = Color(0.37254903, 0.37254903, 0.37254903, 1)
 theme_override_colors/font_pressed_color = Color(0.37254903, 0.37254903, 0.37254903, 1)
@@ -133,6 +271,30 @@ theme_override_fonts/font = ExtResource("2_gbfen")
 theme_override_font_sizes/font_size = 40
 text = "Back to Menu
 "
+
+[node name="AnimatedSprite2D3" type="AnimatedSprite2D" parent="CanvasLayer"]
+position = Vector2(97.00006, 437.00003)
+scale = Vector2(7.453125, 7.453125)
+sprite_frames = SubResource("SpriteFrames_4jp7j")
+autoplay = "default"
+frame_progress = 0.22770308
+
+[node name="AnimatedSprite2D2" type="AnimatedSprite2D" parent="CanvasLayer"]
+position = Vector2(1030, 453.75)
+rotation = 6.2831855
+scale = Vector2(7.479167, 7.479167)
+sprite_frames = SubResource("SpriteFrames_tds8n")
+autoplay = "default"
+frame_progress = 0.21740673
+flip_h = true
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="CanvasLayer"]
+position = Vector2(414.00003, 460)
+scale = Vector2(7.479167, 7.479167)
+sprite_frames = SubResource("SpriteFrames_k2iox")
+autoplay = "default"
+frame_progress = 0.7379856
+flip_h = true
 
 [connection signal="pressed" from="CanvasLayer/UpgradeButton" to="CanvasLayer/UpgradeButton" method="_on_pressed"]
 [connection signal="pressed" from="CanvasLayer/CloseButton" to="CanvasLayer/DoubleJumpButton" method="_on_close_button_pressed"]
