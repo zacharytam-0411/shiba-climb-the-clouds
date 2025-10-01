@@ -10,7 +10,7 @@ extends Node2D
 @export var nature_coin_scene: PackedScene
 @export var nature_coin_chance := 0.6
 
-var death_threshold := 800
+var death_threshold := 1000
 var player: Node2D
 var last_spawn_y := 0.0
 var death_cooldown: float = 0.0
@@ -77,7 +77,7 @@ func _handle_player_fall() -> void:
 
 	var target := find_nearest_platform()
 	if target:
-		player.global_position = target.global_position + Vector2(-10, -60)
+		player.global_position = target.global_position + Vector2(-10, 10)
 	else:
 		var safe_y: float = last_spawn_y - 300
 		player.global_position = Vector2(player.global_position.x - 10, safe_y)

@@ -234,9 +234,9 @@ func _apply_powerups() -> void:
 	if Global.gamemode == "only_up":
 		SPEED *= 1.33
 		JUMP_VELOCITY *= 1.33
-		var boost_level:int = Global.upgrades.get("JumpBoost", 0)
+		var boost_level: int = Global.upgrades.get("JumpBoost", 0)
 		if boost_level > 0:
-			JUMP_VELOCITY *= 1.0 + (0.1 * boost_level)  # +10% per level
+			JUMP_VELOCITY *= 1 + (0.3 * boost_level)  # +10% per level
 
 
 func lose_life() -> void:
