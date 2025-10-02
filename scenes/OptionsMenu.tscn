@@ -32,6 +32,16 @@ theme_override_fonts/font = ExtResource("2_bdakn")
 theme_override_font_sizes/font_size = 50
 text = "BGM Volume:"
 
+[node name="Label3" type="Label" parent="MenuRoot"]
+layout_mode = 0
+offset_left = 404.0
+offset_top = 356.0
+offset_right = 626.0
+offset_bottom = 401.0
+theme_override_fonts/font = ExtResource("2_bdakn")
+theme_override_font_sizes/font_size = 50
+text = "SFX Volume:"
+
 [node name="OptionsLabel" type="Label" parent="MenuRoot"]
 layout_mode = 0
 offset_left = 458.0
@@ -62,25 +72,49 @@ theme_override_fonts/font = ExtResource("2_bdakn")
 theme_override_font_sizes/font_size = 30
 text = "Quit"
 
-[node name="HBoxContainer" type="HBoxContainer" parent="MenuRoot"]
+[node name="SFXContainer" type="HBoxContainer" parent="MenuRoot"]
+layout_mode = 0
+offset_left = 673.0
+offset_top = 345.0
+offset_right = 724.0
+offset_bottom = 406.0
+
+[node name="MinusSFXButton" type="Button" parent="MenuRoot/SFXContainer"]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("2_bdakn")
+theme_override_font_sizes/font_size = 30
+text = "-"
+
+[node name="SFXVolumeLabel" type="Label" parent="MenuRoot/SFXContainer"]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("2_bdakn")
+theme_override_font_sizes/font_size = 30
+
+[node name="PlusSFXButton" type="Button" parent="MenuRoot/SFXContainer"]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("2_bdakn")
+theme_override_font_sizes/font_size = 30
+text = "+"
+
+[node name="VolumeContainer" type="HBoxContainer" parent="MenuRoot"]
 layout_mode = 0
 offset_left = 673.0
 offset_top = 217.0
 offset_right = 754.0
 offset_bottom = 278.0
 
-[node name="MinusButton" type="Button" parent="MenuRoot/HBoxContainer"]
+[node name="MinusButton" type="Button" parent="MenuRoot/VolumeContainer"]
 layout_mode = 2
 theme_override_fonts/font = ExtResource("2_bdakn")
 theme_override_font_sizes/font_size = 30
 text = "-"
 
-[node name="MusicVolumeLabel" type="Label" parent="MenuRoot/HBoxContainer"]
+[node name="MusicVolumeLabel" type="Label" parent="MenuRoot/VolumeContainer"]
 layout_mode = 2
 theme_override_fonts/font = ExtResource("2_bdakn")
 theme_override_font_sizes/font_size = 30
 
-[node name="PlusButton" type="Button" parent="MenuRoot/HBoxContainer"]
+[node name="PlusButton" type="Button" parent="MenuRoot/VolumeContainer"]
 layout_mode = 2
 theme_override_fonts/font = ExtResource("2_bdakn")
 theme_override_font_sizes/font_size = 30

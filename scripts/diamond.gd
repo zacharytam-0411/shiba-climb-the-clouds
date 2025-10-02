@@ -11,6 +11,6 @@ func _on_body_entered(body):
 		Global.lives += 2
 		emit_signal("diamond_collected")
 		queue_free()
-	var msg_node = get_tree().root.get_node("main_game/CanvasLayer/BottomMessage")
+	var msg_node = get_tree().root.get_node("DefaultMode/CanvasLayer/BottomMessage")
 	if msg_node:
 		msg_node.show_message("Diamond Collected!")

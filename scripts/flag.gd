@@ -11,4 +11,8 @@ func _on_body_entered(body):
 			Global.win_level = false
 	if Global.win_level == true:
 		print("you win!")
-		get_tree().change_scene_to_file('res://scenes/game_win_scene.tscn')
+		Global.only_up_coins += 50
+		call_deferred("go_to_win_scene")
+
+func go_to_win_scene():
+	get_tree().change_scene_to_file('res://scenes/game_win_scene.tscn')
