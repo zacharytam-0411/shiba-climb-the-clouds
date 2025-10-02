@@ -981,7 +981,7 @@ grow_horizontal = 2
 grow_vertical = 0
 theme_override_colors/font_color = Color(1, 1, 1, 1)
 theme_override_fonts/font = ExtResource("6_bl2xa")
-theme_override_font_sizes/font_size = 50
+theme_override_font_sizes/font_size = 45
 text = "Test"
 
 [node name="ContinueLabel" type="Label" parent="CanvasLayer/Panel"]

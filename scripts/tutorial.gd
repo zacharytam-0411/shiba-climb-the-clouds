@@ -43,7 +43,8 @@ var dialogue_lines = [
 	"Firstly, both arrow keys and WASD 
 	are the general controls.",
 	"You can also press space bar to jump and maybe, 
-	just maybe, press P for a surprise! [Randomness Week]",
+	just maybe, press P for a surprise! [Randomness Week]
+	It just might be a skip... might be...",
 	"Now, let me tell you about the 4 gems you can find:",
 	"Ruby lets you wall jump.",
 	"Sapphire gives you a double jump.",

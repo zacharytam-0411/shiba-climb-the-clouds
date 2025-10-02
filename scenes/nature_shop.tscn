@@ -201,22 +201,22 @@ text = "placeholder text"
 vertical_alignment = 1
 
 [node name="Label" type="Label" parent="CanvasLayer"]
-offset_left = 314.0
-offset_top = 252.0
-offset_right = 775.0
-offset_bottom = 288.0
+offset_left = 180.0
+offset_top = 227.0
+offset_right = 641.0
+offset_bottom = 263.0
 theme_override_colors/font_color = Color(0, 0, 0, 1)
 theme_override_colors/font_outline_color = Color(1, 1, 1, 1)
 theme_override_constants/outline_size = 4
 theme_override_fonts/font = ExtResource("2_gbfen")
 theme_override_font_sizes/font_size = 25
-text = "Unlock Double Jump : 50 Coins "
+text = "Unlock Double Jump : 25 Coins "
 
 [node name="DoubleJumpButton" type="Button" parent="CanvasLayer"]
-offset_left = 694.0
-offset_top = 230.0
-offset_right = 860.0
-offset_bottom = 290.0
+offset_left = 491.0
+offset_top = 198.0
+offset_right = 657.0
+offset_bottom = 258.0
 theme_override_colors/font_color = Color(0, 0, 0, 1)
 theme_override_colors/font_focus_color = Color(0.37254903, 0.37254903, 0.37254903, 1)
 theme_override_colors/font_pressed_color = Color(0.37254903, 0.37254903, 0.37254903, 1)
@@ -229,10 +229,10 @@ theme_override_font_sizes/font_size = 30
 script = ExtResource("2_fbet8")
 
 [node name="JumpBoostLabel" type="Label" parent="CanvasLayer"]
-offset_left = 313.0
-offset_top = 326.0
-offset_right = 774.0
-offset_bottom = 362.0
+offset_left = 180.0
+offset_top = 290.0
+offset_right = 641.0
+offset_bottom = 326.0
 theme_override_colors/font_color = Color(0, 0, 0, 1)
 theme_override_colors/font_outline_color = Color(1, 1, 1, 1)
 theme_override_constants/outline_size = 4
@@ -241,10 +241,10 @@ theme_override_font_sizes/font_size = 25
 text = "Increase Jump Boost:"
 
 [node name="UpgradeButton" type="Button" parent="CanvasLayer"]
-offset_left = 694.0
-offset_top = 307.0
-offset_right = 860.0
-offset_bottom = 367.0
+offset_left = 489.0
+offset_top = 278.0
+offset_right = 655.0
+offset_bottom = 328.0
 theme_override_colors/font_color = Color(0, 0, 0, 1)
 theme_override_colors/font_focus_color = Color(0.37254903, 0.37254903, 0.37254903, 1)
 theme_override_colors/font_pressed_color = Color(0.37254903, 0.37254903, 0.37254903, 1)
