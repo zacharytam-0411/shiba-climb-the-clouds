@@ -38,7 +38,6 @@ func _ready() -> void:
 		bgm_started = true
 		_play_tutorial_bgm()
 		return
-
 	bgm_started = true
 	_play_bgm(current_bgm_index)
 

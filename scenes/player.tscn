@@ -152,7 +152,7 @@ script = ExtResource("11_jej6c")
 
 [node name="BGMPlayer" parent="." instance=ExtResource("8_smehm")]
 stream = null
-volume_db = 5.0
+volume_db = -10.0
 autoplay = false
 bus = &"Music"
 script = ExtResource("10_y4r1p")

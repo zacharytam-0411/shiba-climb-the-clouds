@@ -17,10 +17,9 @@ func _on_exit_pressed() -> void:
 		player_name = "Anonymous"
 
 	var finish_time = roundi(Global.timer * 10) / 10.0
+	
 
-	# Store values in Global before changing scene
 	Global.pending_player = player_name
 	Global.pending_time = finish_time
 
-	# Go to leaderboard
 	get_tree().change_scene_to_file("res://scenes/leaderboard.tscn")   
