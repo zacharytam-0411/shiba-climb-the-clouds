@@ -1186,3 +1186,5 @@ theme_override_fonts/font = ExtResource("6_bl2xa")
 theme_override_font_sizes/font_size = 35
 text = "Skip Tutorial
 "
+
+[node name="DialoguePlayer" type="AudioStreamPlayer2D" parent="."]

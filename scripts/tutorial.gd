@@ -34,6 +34,7 @@ extends Node2D
 @onready var rightarrow: Sprite2D = $CanvasLayer/Rightarrow
 @onready var optionspage: Sprite2D = $CanvasLayer/Optionspage
 @onready var leave_button: Button = $CanvasLayer/LeaveButton
+@onready var dialogue_player: AudioStreamPlayer2D = $DialoguePlayer
 
 var dialogue_lines = [
 	"Hello there! I'm your guide, Kuro!",
@@ -118,6 +119,11 @@ func _show_line():
 		if typing_tween:
 			typing_tween.kill()
 		_type_text(dialogue_lines[current_line])
+		var audio_path = "res://assets/sounds/soundtrac/dialogue_%d.wav" % current_line
+		var stream = load(audio_path)
+		if stream:
+			dialogue_player.stream = stream
+			dialogue_player.play()
 		match current_line:
 			3:
 				_hide_all_buttons()
@@ -203,6 +209,7 @@ func _unhandled_input(event: InputEvent) -> void:
 			text_label.text = dialogue_lines[current_line]
 			typing = false
 			_show_continue_prompt()
+			dialogue_player.stop()
 		else:
 			_hide_continue_prompt()
 			current_line += 1
