@@ -3,31 +3,35 @@ extends AudioStreamPlayer
 @onready var bgm_label: Label = get_tree().get_first_node_in_group("bgm_ui")
 @onready var label_timer: Timer = $"../BGMTimer"
 
-var bgm_list: Array = [
+var teto_playlist: Array = [
 	{"name": "PPPP - TAK [feat. Kasane Teto, Hatsune Miku]", "stream": preload("res://assets/music/PPPP.mp3")},
 	{"name": "Lemon Melon Cookie - TAK [feat. Hatsune Miku]", "stream": preload("res://assets/music/Lemon Melon Cookie.mp3")},
-	{"name": "Konton Boogie - jon-YAKITORY [feat. WxS]", "stream": preload("res://assets/music/Konton Boogie.mp3")},
 	{"name": "Ochame Kinou - LamazeP [feat. Kasane Teto]", "stream": preload("res://assets/music/Ochame Kinou.mp3")},
 	{"name": "Override - Yoshida Yasei [feat. Kasane Teto]", "stream": preload("res://assets/music/Overflow.mp3")},
 	{"name": "Tetoris - Hiiragi Magnetite [feat. Kasane Teto]", "stream": preload("res://assets/music/Tetoris.mp3")},
 	{"name": "From The Start - Laufey [feat. Kasane Teto]", "stream": preload("res://assets/music/From The Start.mp3")},
-	{"name": "Lover Girl - Laufey [feat. Kasane Teto]", "stream": preload("res://assets/music/Lover Girl.mp3")},
-	{"name": "Rainbow Road Theme [Mario Kart World]", "stream": preload("res://assets/music/Rainbow Road.mp3")},
-	{"name": "Kirapipi🌟Kirapika - nyanyannya", "stream": preload("res://assets/music/Kirapipi Kirapika.mp3")},
-	{"name": "Shimmering Shapes - doctorn0gloff", "stream": preload("res://assets/music/Shimmering Shapes.mp3")}
+	{"name": "Lover Girl - Laufey [feat. Kasane Teto]", "stream": preload("res://assets/music/Lover Girl.mp3")}
 ]
 
-# Special track for Tutorial (loops forever)
-var tutorial_bgm := {"name": "Bakery - Luce Lofi", "stream": preload("res://assets/music/bakery.mp3")}
+var normal_playlist: Array = [
+	{"name": "Big Cat Waltz - Hayato Sumino", "stream": preload("res://assets/music/Big Cat Waltz.mp3")},
+	{"name": "Orange Juice - Luce Lofi", "stream": preload("res://assets/music/orangejuice.mp3")}
+]
 
+var use_teto_playlist: bool = false
 var current_bgm_index: int = 0
 var bgm_started: bool = false
 
-# timers for fade scheduling
+var tutorial_bgm := {"name": "Bakery - Luce Lofi", "stream": preload("res://assets/music/bakery.mp3")}
+
 var fade_timer: SceneTreeTimer = null
-const FADE_DURATION := 0.5  # seconds to fade out/in
+const FADE_DURATION := 0.5
 
 func _ready() -> void:
+	# Shuffle both playlists at launch
+	teto_playlist.shuffle()
+	normal_playlist.shuffle()
+
 	if not label_timer.timeout.is_connected(Callable(self, "_on_BGMLabelTimer_timeout")):
 		label_timer.timeout.connect(Callable(self, "_on_BGMLabelTimer_timeout"))
 
@@ -38,12 +42,11 @@ func _ready() -> void:
 		bgm_started = true
 		_play_tutorial_bgm()
 		return
+
 	bgm_started = true
 	_play_bgm(current_bgm_index)
 
-
 func _unhandled_input(event: InputEvent) -> void:
-	# For Web builds: start BGM on first input
 	if OS.get_name() == "Web" and not bgm_started:
 		if get_tree().current_scene and get_tree().current_scene.name == "Tutorial":
 			bgm_started = true
@@ -56,22 +59,27 @@ func _unhandled_input(event: InputEvent) -> void:
 			bgm_started = true
 			_play_bgm(current_bgm_index)
 
-	# Skip forward (P key)
 	if event.is_action_pressed("skip_bgm_next"):
-		_crossfade_to((current_bgm_index + 1) % bgm_list.size())
+		_crossfade_to((current_bgm_index + 1) % _get_active_playlist().size())
 
-	# Skip backward (O key)
 	if event.is_action_pressed("skip_bgm_prev"):
-		_crossfade_to((current_bgm_index - 1 + bgm_list.size()) % bgm_list.size())
+		_crossfade_to((current_bgm_index - 1 + _get_active_playlist().size()) % _get_active_playlist().size())
 
+	if event.is_action_pressed("teto_playlist"):
+		use_teto_playlist = !use_teto_playlist
+		current_bgm_index = 0
+		_crossfade_to(current_bgm_index)
+
+func _get_active_playlist() -> Array:
+	return teto_playlist if use_teto_playlist else normal_playlist
 
 func _play_bgm(index: int) -> void:
 	_cancel_fade_timer()
 
-	current_bgm_index = index % bgm_list.size()
-	var track = bgm_list[current_bgm_index]
+	var playlist = _get_active_playlist()
+	current_bgm_index = index % playlist.size()
+	var track = playlist[current_bgm_index]
 
-	# make sure looping is disabled
 	if track["stream"].has_method("set_loop"):
 		track["stream"].set_loop(false)
 	elif "loop" in track["stream"]:
@@ -86,17 +94,14 @@ func _play_bgm(index: int) -> void:
 		bgm_label.visible = true
 		label_timer.start()
 
-	# schedule fade before end of song
 	var song_length = track["stream"].get_length()
 	if song_length > FADE_DURATION:
 		fade_timer = get_tree().create_timer(song_length - FADE_DURATION)
 		fade_timer.timeout.connect(Callable(self, "_fade_out_and_skip"), CONNECT_ONE_SHOT)
 
-
 func _play_tutorial_bgm() -> void:
 	_cancel_fade_timer()
 
-	# tutorial BGM loops forever
 	if tutorial_bgm["stream"].has_method("set_loop"):
 		tutorial_bgm["stream"].set_loop(true)
 	elif "loop" in tutorial_bgm["stream"]:
@@ -111,14 +116,10 @@ func _play_tutorial_bgm() -> void:
 		bgm_label.visible = true
 		label_timer.start()
 
-
-# --- Fading logic ---
-
 func _fade_out_and_skip() -> void:
 	var tween := create_tween()
 	tween.tween_property(self, "volume_db", -40, FADE_DURATION)
 	tween.finished.connect(Callable(self, "_on_fade_out_done"), CONNECT_ONE_SHOT)
-
 
 func _on_fade_out_done() -> void:
 	_skip_next_bgm()
@@ -126,8 +127,6 @@ func _on_fade_out_done() -> void:
 	var tween := create_tween()
 	tween.tween_property(self, "volume_db", 0, FADE_DURATION)
 
-
-# crossfade helper for manual skipping
 func _crossfade_to(next_index: int) -> void:
 	_cancel_fade_timer()
 
@@ -142,25 +141,17 @@ func _crossfade_to(next_index: int) -> void:
 		CONNECT_ONE_SHOT
 	)
 
-
-# --- Next / Previous ---
-
 func _skip_next_bgm() -> void:
-	_play_bgm((current_bgm_index + 1) % bgm_list.size())
-
+	var playlist = _get_active_playlist()
+	_play_bgm((current_bgm_index + 1) % playlist.size())
 
 func _skip_prev_bgm() -> void:
-	_play_bgm((current_bgm_index - 1 + bgm_list.size()) % bgm_list.size())
-
-
-# --- Label handling ---
+	var playlist = _get_active_playlist()
+	_play_bgm((current_bgm_index - 1 + playlist.size()) % playlist.size())
 
 func _on_BGMLabelTimer_timeout() -> void:
 	if bgm_label:
 		bgm_label.visible = false
-
-
-# --- Utility ---
 
 func _cancel_fade_timer() -> void:
 	if fade_timer:

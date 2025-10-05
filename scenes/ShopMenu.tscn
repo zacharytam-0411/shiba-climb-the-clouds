@@ -1,0 +1,115 @@
+[gd_scene load_steps=6 format=3 uid="uid://bdd2xs2owdylk"]
+
+[ext_resource type="Script" uid="uid://dy6tufc38rg1b" path="res://scripts/shop.gd" id="1_l5oh8"]
+[ext_resource type="FontFile" uid="uid://xdrw8fu77qqa" path="res://assets/fonts/m6x11.ttf" id="2_342an"]
+[ext_resource type="Texture2D" uid="uid://dgv55kd3p5fgj" path="res://assets/sprites/naturecoinicon.png" id="3_pj066"]
+[ext_resource type="Script" uid="uid://dhcla3fy81wq8" path="res://scripts/double_jump_button.gd" id="4_tvlfr"]
+[ext_resource type="Script" uid="uid://cm0cgkd6emiuc" path="res://scripts/jumpboost.gd" id="5_1kkh5"]
+
+[node name="CanvasLayer" type="CanvasLayer"]
+script = ExtResource("1_l5oh8")
+
+[node name="Overlay" type="ColorRect" parent="."]
+z_index = -2
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0.28235295, 0.28235295, 0.28235295, 0.5176471)
+
+[node name="MenuRoot" type="Control" parent="."]
+layout_mode = 3
+anchors_preset = 0
+
+[node name="ResumeButton" type="Button" parent="MenuRoot"]
+z_index = 1
+layout_mode = 0
+offset_left = 522.0
+offset_top = 483.0
+offset_right = 668.0
+offset_bottom = 546.0
+theme_override_fonts/font = ExtResource("2_342an")
+theme_override_font_sizes/font_size = 50
+text = "Resume"
+
+[node name="Sprite2D" type="Sprite2D" parent="MenuRoot"]
+position = Vector2(127, 109)
+scale = Vector2(9.5, 9.5)
+texture = ExtResource("3_pj066")
+
+[node name="CoinDisplay" type="Label" parent="MenuRoot"]
+layout_mode = 0
+offset_left = 187.0
+offset_top = 41.0
+offset_right = 451.34784
+offset_bottom = 193.0
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_colors/font_outline_color = Color(1, 1, 1, 1)
+theme_override_constants/outline_size = 4
+theme_override_fonts/font = ExtResource("2_342an")
+theme_override_font_sizes/font_size = 60
+text = "placeholder text"
+vertical_alignment = 1
+
+[node name="Label" type="Label" parent="MenuRoot"]
+layout_mode = 0
+offset_left = 180.0
+offset_top = 227.0
+offset_right = 641.0
+offset_bottom = 263.0
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_colors/font_outline_color = Color(1, 1, 1, 1)
+theme_override_constants/outline_size = 4
+theme_override_fonts/font = ExtResource("2_342an")
+theme_override_font_sizes/font_size = 25
+text = "Unlock Double Jump : 25 Coins "
+
+[node name="DoubleJumpButton" type="Button" parent="MenuRoot"]
+layout_mode = 0
+offset_left = 491.0
+offset_top = 198.0
+offset_right = 657.0
+offset_bottom = 258.0
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_colors/font_focus_color = Color(0.37254903, 0.37254903, 0.37254903, 1)
+theme_override_colors/font_pressed_color = Color(0.37254903, 0.37254903, 0.37254903, 1)
+theme_override_colors/font_hover_color = Color(0.37254903, 0.37254903, 0.37254903, 1)
+theme_override_colors/font_hover_pressed_color = Color(0.37254903, 0.37254903, 0.37254903, 1)
+theme_override_colors/font_outline_color = Color(1, 1, 1, 1)
+theme_override_constants/outline_size = 4
+theme_override_fonts/font = ExtResource("2_342an")
+theme_override_font_sizes/font_size = 30
+script = ExtResource("4_tvlfr")
+
+[node name="JumpBoostLabel" type="Label" parent="MenuRoot"]
+layout_mode = 0
+offset_left = 180.0
+offset_top = 290.0
+offset_right = 641.0
+offset_bottom = 326.0
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_colors/font_outline_color = Color(1, 1, 1, 1)
+theme_override_constants/outline_size = 4
+theme_override_fonts/font = ExtResource("2_342an")
+theme_override_font_sizes/font_size = 25
+text = "Increase Jump Boost:"
+
+[node name="UpgradeButton" type="Button" parent="MenuRoot"]
+layout_mode = 0
+offset_left = 489.0
+offset_top = 278.0
+offset_right = 655.0
+offset_bottom = 328.0
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_colors/font_focus_color = Color(0.37254903, 0.37254903, 0.37254903, 1)
+theme_override_colors/font_pressed_color = Color(0.37254903, 0.37254903, 0.37254903, 1)
+theme_override_colors/font_hover_color = Color(0.37413925, 0.37413928, 0.37413922, 1)
+theme_override_colors/font_hover_pressed_color = Color(0.37254903, 0.37254903, 0.37254903, 1)
+theme_override_colors/font_outline_color = Color(1, 1, 1, 1)
+theme_override_constants/outline_size = 4
+theme_override_fonts/font = ExtResource("2_342an")
+theme_override_font_sizes/font_size = 30
+script = ExtResource("5_1kkh5")
+
+[connection signal="pressed" from="MenuRoot/UpgradeButton" to="MenuRoot/UpgradeButton" method="_on_pressed"]

@@ -1,4 +1,4 @@
-[gd_scene load_steps=22 format=3 uid="uid://cargoi5i1y00w"]
+[gd_scene load_steps=23 format=3 uid="uid://cargoi5i1y00w"]
 
 [ext_resource type="Script" uid="uid://yap7i7vqqf5h" path="res://scripts/only_up_mode.gd" id="1_omno6"]
 [ext_resource type="Texture2D" uid="uid://cugf5l5e3hvd5" path="res://assets/sprites/Copilot_20251001_131053.png" id="2_iwvpw"]
@@ -21,6 +21,7 @@
 [ext_resource type="Script" uid="uid://dnrasyrh8u26" path="res://scripts/coin_message.gd" id="15_wav16"]
 [ext_resource type="Texture2D" uid="uid://dgv55kd3p5fgj" path="res://assets/sprites/naturecoinicon.png" id="17_jvv83"]
 [ext_resource type="PackedScene" uid="uid://bsx24cgn42csk" path="res://scenes/OptionsMenu.tscn" id="20_a1loe"]
+[ext_resource type="PackedScene" uid="uid://bdd2xs2owdylk" path="res://scenes/ShopMenu.tscn" id="22_f81ve"]
 
 [node name="OnlyUpMode" type="Node2D"]
 script = ExtResource("1_omno6")
@@ -158,3 +159,6 @@ theme_override_constants/outline_size = 4
 theme_override_fonts/font = ExtResource("7_65evo")
 theme_override_font_sizes/font_size = 40
 text = " x 0"
+
+[node name="ShopMenu" parent="." instance=ExtResource("22_f81ve")]
+layer = 10000

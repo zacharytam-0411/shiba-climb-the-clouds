@@ -1,7 +1,6 @@
 extends Button
 
 @onready var coin_display: Label = $"../CoinDisplay"
-@onready var close_button: Button = $"../CloseButton"
 
 const COST := 25
 
@@ -31,7 +30,3 @@ func _update_state():
 	else:
 		text = "Purchase"
 		disabled = false
-
-
-func _on_close_button_pressed() -> void:
-	get_tree().change_scene_to_file("res://scenes/main_screen.tscn")
