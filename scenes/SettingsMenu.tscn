@@ -3,7 +3,7 @@
 [ext_resource type="Script" uid="uid://dtb3qmyndlgcs" path="res://scenes/settings_menu.gd" id="1_1yw23"]
 [ext_resource type="FontFile" uid="uid://dcraqlv7xu0j" path="res://assets/fonts/m5x7.ttf" id="2_ldnee"]
 [ext_resource type="FontFile" uid="uid://xdrw8fu77qqa" path="res://assets/fonts/m6x11.ttf" id="2_t7ar5"]
-[ext_resource type="AudioStream" uid="uid://dbwei2bpfcpwy" path="res://assets/music/Wii Party.mp3" id="4_t7ar5"]
+[ext_resource type="AudioStream" uid="uid://cjn3eo6brlcg5" path="res://assets/music/Unwavering Emotions.mp3" id="4_t7ar5"]
 
 [node name="SettingsMenu" type="Control"]
 layout_mode = 3

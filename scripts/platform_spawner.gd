@@ -1,26 +1,30 @@
 extends Node2D
 
-@export var platform_variants: Array[PackedScene]
 @export var player_path: NodePath
-@export var vertical_spacing := 300
-@export var horizontal_range := 100
-@export var spawn_buffer := 600
-@export var base_spacing := 50  # Easy at the start
-@export var spacing_growth := 0.02
+@export var platform_scenes: Array[PackedScene] = []
+@export var vertical_spacing: int = 300
+@export var horizontal_range: int = 100
+@export var spawn_buffer: int = 600
+@export var base_spacing: float = 50.0
+@export var spacing_growth: float = 0.02
 @export var nature_coin_scene: PackedScene
-@export var nature_coin_chance := 0.6
+@export var nature_coin_chance: float = 0.6
 
-var death_threshold := 1000
+var death_threshold: float = 1000.0
 var player: Node2D
-var last_spawn_y := 0.0
+var last_spawn_y: float = 0.0
 var death_cooldown: float = 0.0
 
 func _ready():
-	player = get_node(player_path)
+	player = get_node_or_null(player_path)
+	if player == null:
+		push_error("Missing player node. Check 'player_path' in the Inspector.")
+		return
+
 	last_spawn_y = player.global_position.y
 	spawn_platforms()
 
-func _process(_delta):
+func _process(_delta: float) -> void:
 	if death_cooldown > 0.0:
 		death_cooldown -= _delta
 
@@ -32,42 +36,31 @@ func _process(_delta):
 		return
 
 	if player.global_position.y > last_spawn_y + death_threshold:
-		await _handle_player_fall()
+		_handle_player_fall()
 
-func spawn_platforms():
+func spawn_platforms() -> void:
 	var climb_height: float = abs(player.global_position.y)
-	var spacing: float = clamp(base_spacing + climb_height * spacing_growth, base_spacing, 300)
-	var platform_count: int = clamp(10 - int(climb_height / 500), 3, 10)
+	var spacing: float = clamp(base_spacing + climb_height * spacing_growth, base_spacing, 300.0)
+	var platform_count: int = clamp(10 - int(climb_height / 500.0), 3, 10)
 
 	for i in range(platform_count):
-		var platform_scene :PackedScene = platform_variants.pick_random()
-		var platform = platform_scene.instantiate()
+		var x_offset: float = randf_range(-horizontal_range, horizontal_range)
+		var y_offset: float = -spacing * float(i + 1) + randf_range(-spacing * 0.3, spacing * 0.3)
 
-		var x_offset = randf_range(-horizontal_range, horizontal_range)
-		var y_offset = -spacing * (i + 1) + randf_range(-spacing * 0.3, spacing * 0.3)
-
-		platform.global_position = Vector2(
+		var spawn_pos: Vector2 = Vector2(
 			player.global_position.x + x_offset,
 			player.global_position.y + y_offset
 		)
+
+		var platform_scene: PackedScene = platform_scenes.pick_random()
+		var platform: Node2D = platform_scene.instantiate() as Node2D
+		platform.global_position = spawn_pos
 		add_child(platform)
 
 		if randf() < nature_coin_chance:
-			var nature_coin = nature_coin_scene.instantiate()
-			nature_coin.global_position = platform.global_position + Vector2(0, -20)
+			var nature_coin: Node2D = nature_coin_scene.instantiate() as Node2D
+			nature_coin.global_position = spawn_pos + Vector2(0, -20)
 			add_child(nature_coin)
-
-func find_nearest_platform() -> Node2D:
-	var nearest_platform: Node2D = null
-	var nearest_distance := INF
-
-	for platform in get_tree().get_nodes_in_group("platform"):
-		var dist := player.global_position.distance_to(platform.global_position)
-		if dist < nearest_distance:
-			nearest_distance = dist
-			nearest_platform = platform
-
-	return nearest_platform
 
 func _handle_player_fall() -> void:
 	player.is_respawning = true
@@ -75,24 +68,50 @@ func _handle_player_fall() -> void:
 	player.velocity = Vector2.ZERO
 	player.lose_life()
 
-	var target := find_nearest_platform()
-	if target:
-		player.global_position = target.global_position + Vector2(-10, 10)
+	var target_pos: Vector2 = find_nearest_platform()
+	if target_pos != Vector2.ZERO:
+		player.global_position = target_pos + Vector2(-10, 10)
 	else:
-		var safe_y: float = last_spawn_y - 300
-		player.global_position = Vector2(player.global_position.x - 10, safe_y)
+		var safe_y: float = last_spawn_y - 300.0
+		player.global_position = Vector2(player.global_position.x - 10.0, safe_y)
 
-	var overlay := get_tree().current_scene.get_node_or_null("DeathOverlay")
+	var overlay: Node = get_tree().current_scene.get_node_or_null("DeathOverlay")
 	if overlay:
 		overlay.start_reveal(player.global_position)
 
-	await get_tree().create_timer(0.1).timeout
+	var timer: Timer = Timer.new()
+	timer.wait_time = 0.1
+	timer.one_shot = true
+	add_child(timer)
+	timer.connect("timeout", Callable(self, "_on_respawn_timer_timeout").bind(overlay))
+	timer.start()
 
+func _on_respawn_timer_timeout(overlay: Node) -> void:
 	player.respawn()
 
 	if overlay:
 		overlay.reveal_circle(player.global_position)
 
-	await get_tree().create_timer(1.0).timeout
+	var timer: Timer = Timer.new()
+	timer.wait_time = 1.0
+	timer.one_shot = true
+	add_child(timer)
+	timer.connect("timeout", Callable(self, "_on_finish_respawn"))
+	timer.start()
 
+func _on_finish_respawn() -> void:
 	player.is_respawning = false
+
+func find_nearest_platform() -> Vector2:
+	var nearest_pos: Vector2 = Vector2.ZERO
+	var nearest_distance: float = INF
+
+	for child in get_children():
+		if child.name.begins_with("Cloud") and child is Node2D:
+			var pos: Vector2 = (child as Node2D).global_position
+			var dist: float = player.global_position.distance_to(pos)
+			if dist < nearest_distance:
+				nearest_distance = dist
+				nearest_pos = pos
+
+	return nearest_pos

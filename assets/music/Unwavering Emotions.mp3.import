@@ -1,0 +1,19 @@
+[remap]
+
+importer="mp3"
+type="AudioStreamMP3"
+uid="uid://cjn3eo6brlcg5"
+path="res://.godot/imported/Unwavering Emotions.mp3-92030d2a7fd60459e13896e64d822980.mp3str"
+
+[deps]
+
+source_file="res://assets/music/Unwavering Emotions.mp3"
+dest_files=["res://.godot/imported/Unwavering Emotions.mp3-92030d2a7fd60459e13896e64d822980.mp3str"]
+
+[params]
+
+loop=false
+loop_offset=0
+bpm=0
+beat_count=0
+bar_beats=4

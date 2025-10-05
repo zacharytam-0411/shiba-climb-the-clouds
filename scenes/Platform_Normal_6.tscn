@@ -1,6 +1,6 @@
-[gd_scene load_steps=3 format=3 uid="uid://q3yx3svlcyoc"]
+[gd_scene load_steps=3 format=3 uid="uid://dpcpw0crbipu1"]
 
-[ext_resource type="Texture2D" uid="uid://bs4xjnl2p1w66" path="res://assets/sprites/cloud1.png" id="1_tuxlw"]
+[ext_resource type="Texture2D" uid="uid://b5rx3702vyr68" path="res://assets/sprites/clouds.png" id="1_hm5ck"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_ii5k7"]
 size = Vector2(48, 16)
@@ -8,7 +8,9 @@ size = Vector2(48, 16)
 [node name="StaticBody2D" type="StaticBody2D"]
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
-texture = ExtResource("1_tuxlw")
+texture = ExtResource("1_hm5ck")
+region_enabled = true
+region_rect = Rect2(0, 240, 48, 16)
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 shape = SubResource("RectangleShape2D_ii5k7")

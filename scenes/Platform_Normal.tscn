@@ -1,10 +1,10 @@
 [gd_scene load_steps=4 format=3 uid="uid://7bjwjwqwm784"]
 
 [ext_resource type="Script" uid="uid://bmqiyeei08dkj" path="res://scripts/autoplatform.gd" id="1_x82p1"]
-[ext_resource type="Texture2D" uid="uid://hxtfhiuio877" path="res://assets/sprites/platform1.png" id="2_rtktu"]
+[ext_resource type="Texture2D" uid="uid://b5rx3702vyr68" path="res://assets/sprites/clouds.png" id="2_x82p1"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_7lnbp"]
-size = Vector2(31, 15)
+size = Vector2(47, 15)
 
 [node name="Node2D" type="StaticBody2D" groups=["platform"]]
 script = ExtResource("1_x82p1")
@@ -12,8 +12,9 @@ script = ExtResource("1_x82p1")
 [node name="Sprite2D" type="Sprite2D" parent="."]
 position = Vector2(-0.5000012, 3.2499995)
 scale = Vector2(0.96874994, 0.96874994)
-texture = ExtResource("2_rtktu")
-region_rect = Rect2(16, 0, 32, 9)
+texture = ExtResource("2_x82p1")
+region_enabled = true
+region_rect = Rect2(0, 208, 48, 16)
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 position = Vector2(-0.5, 3.5)

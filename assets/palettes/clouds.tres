@@ -1,0 +1,37 @@
+[gd_resource type="TileSet" load_steps=3 format=3 uid="uid://dsmkiu85fkiyh"]
+
+[ext_resource type="Texture2D" uid="uid://b5rx3702vyr68" path="res://assets/sprites/clouds.png" id="1_dlarh"]
+
+[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_ci57e"]
+texture = ExtResource("1_dlarh")
+0:15/size_in_atlas = Vector2i(3, 1)
+0:15/0 = 0
+0:14/size_in_atlas = Vector2i(3, 1)
+0:14/0 = 0
+0:13/size_in_atlas = Vector2i(3, 1)
+0:13/0 = 0
+0:12/size_in_atlas = Vector2i(3, 1)
+0:12/0 = 0
+0:11/size_in_atlas = Vector2i(3, 1)
+0:11/0 = 0
+0:10/size_in_atlas = Vector2i(3, 1)
+0:10/0 = 0
+0:9/size_in_atlas = Vector2i(3, 1)
+0:9/0 = 0
+0:8/size_in_atlas = Vector2i(3, 1)
+0:8/0 = 0
+0:7/size_in_atlas = Vector2i(3, 1)
+0:7/0 = 0
+0:6/size_in_atlas = Vector2i(3, 1)
+0:6/0 = 0
+0:5/size_in_atlas = Vector2i(3, 1)
+0:5/0 = 0
+0:4/size_in_atlas = Vector2i(3, 1)
+0:4/next_alternative_id = 2
+0:4/0 = 0
+0:3/size_in_atlas = Vector2i(3, 1)
+0:3/next_alternative_id = 3
+0:3/0 = 0
+
+[resource]
+sources/1 = SubResource("TileSetAtlasSource_ci57e")

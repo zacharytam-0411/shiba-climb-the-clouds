@@ -18,7 +18,7 @@ var bgm_list: Array = [
 ]
 
 # Special track for Tutorial (loops forever)
-var tutorial_bgm := {"name": "Theme from the Legend of Zelda - Koji Kondo", "stream": preload("res://assets/music/Zelda.mp3")}
+var tutorial_bgm := {"name": "Bakery - Luce Lofi", "stream": preload("res://assets/music/bakery.mp3")}
 
 var current_bgm_index: int = 0
 var bgm_started: bool = false

@@ -1,0 +1,20 @@
+[gd_resource type="TileSet" load_steps=5 format=3 uid="uid://cnyxeqtuh5l0j"]
+
+[ext_resource type="Texture2D" uid="uid://bs4xjnl2p1w66" path="res://assets/sprites/cloud1.png" id="1_nfcl8"]
+[ext_resource type="Texture2D" uid="uid://4w2kqpd7jtv0" path="res://assets/sprites/cloud2.png" id="2_t53rc"]
+
+[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_t53rc"]
+resource_name = "Cloud1"
+texture = ExtResource("1_nfcl8")
+0:0/size_in_atlas = Vector2i(3, 1)
+0:0/0 = 0
+
+[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_nqafn"]
+resource_name = "Cloud2"
+texture = ExtResource("2_t53rc")
+0:0/size_in_atlas = Vector2i(3, 1)
+0:0/0 = 0
+
+[resource]
+sources/0 = SubResource("TileSetAtlasSource_t53rc")
+sources/1 = SubResource("TileSetAtlasSource_nqafn")
