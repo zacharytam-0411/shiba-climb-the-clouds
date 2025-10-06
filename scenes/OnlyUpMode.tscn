@@ -28,6 +28,7 @@ script = ExtResource("1_omno6")
 
 [node name="Parallax2D" type="Parallax2D" parent="."]
 repeat_size = Vector2(1024, 1024)
+repeat_times = 10
 
 [node name="Sprite2D" type="Sprite2D" parent="Parallax2D"]
 texture = ExtResource("2_iwvpw")

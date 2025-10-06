@@ -5,8 +5,8 @@ extends Node2D
 @export var vertical_spacing: int = 300
 @export var horizontal_range: int = 100
 @export var spawn_buffer: int = 600
-@export var base_spacing: float = 50.0
-@export var spacing_growth: float = 0.02
+@export var base_spacing: float = 60.0
+@export var spacing_growth: float = 0.002
 @export var nature_coin_scene: PackedScene
 @export var nature_coin_chance: float = 0.6
 
@@ -40,17 +40,21 @@ func _process(_delta: float) -> void:
 
 func spawn_platforms() -> void:
 	var climb_height: float = abs(player.global_position.y)
-	var spacing: float = clamp(base_spacing + climb_height * spacing_growth, base_spacing, 300.0)
-	var platform_count: int = clamp(10 - int(climb_height / 500.0), 3, 10)
+	var spacing: float = clamp(base_spacing + climb_height * spacing_growth, base_spacing, 150.0)
+	var platform_count: int = clamp(10 - int(climb_height / 500.0), 5, 10)
+
+	var start_y := player.global_position.y
+	var previous_x: float = -INF
 
 	for i in range(platform_count):
-		var x_offset: float = randf_range(-horizontal_range, horizontal_range)
-		var y_offset: float = -spacing * float(i + 1) + randf_range(-spacing * 0.3, spacing * 0.3)
+		var y := start_y - spacing * (i + 1)
+		var x := player.global_position.x + randf_range(-horizontal_range, horizontal_range)
 
-		var spawn_pos: Vector2 = Vector2(
-			player.global_position.x + x_offset,
-			player.global_position.y + y_offset
-		)
+		if abs(x - previous_x) < horizontal_range * 0.4:
+			x += horizontal_range * 0.5 * (1 if randf() > 0.5 else -1)
+
+		var spawn_pos := Vector2(x, y)
+		previous_x = x
 
 		var platform_scene: PackedScene = platform_scenes.pick_random()
 		var platform: Node2D = platform_scene.instantiate() as Node2D
