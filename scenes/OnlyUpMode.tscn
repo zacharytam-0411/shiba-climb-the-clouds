@@ -1,7 +1,7 @@
 [gd_scene load_steps=23 format=3 uid="uid://cargoi5i1y00w"]
 
 [ext_resource type="Script" uid="uid://yap7i7vqqf5h" path="res://scripts/only_up_mode.gd" id="1_omno6"]
-[ext_resource type="Texture2D" uid="uid://cugf5l5e3hvd5" path="res://assets/sprites/Copilot_20251001_131053.png" id="2_iwvpw"]
+[ext_resource type="Texture2D" uid="uid://bd5qeqat634vf" path="res://assets/sprites/altbg.png" id="2_f81ve"]
 [ext_resource type="PackedScene" uid="uid://cv0wrc1go4k5a" path="res://scenes/player.tscn" id="3_gpt2q"]
 [ext_resource type="Script" uid="uid://d10enlkme33hf" path="res://scripts/platform_spawner.gd" id="4_2xcqe"]
 [ext_resource type="PackedScene" uid="uid://b87uy33eid0th" path="res://scenes/startingplatform_oum.tscn" id="6_wvbho"]
@@ -31,7 +31,7 @@ repeat_size = Vector2(1024, 1024)
 repeat_times = 10
 
 [node name="Sprite2D" type="Sprite2D" parent="Parallax2D"]
-texture = ExtResource("2_iwvpw")
+texture = ExtResource("2_f81ve")
 
 [node name="Player" parent="." instance=ExtResource("3_gpt2q")]
 rotation = -0.000427129
