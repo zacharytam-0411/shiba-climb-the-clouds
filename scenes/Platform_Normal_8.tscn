@@ -1,4 +1,4 @@
-[gd_scene load_steps=3 format=3 uid="uid://d1kwwvfl37r8d"]
+[gd_scene load_steps=3 format=3 uid="uid://c7cymr43xk6l"]
 
 [ext_resource type="Texture2D" uid="uid://b5rx3702vyr68" path="res://assets/sprites/clouds.png" id="1_gsv46"]
 
@@ -10,7 +10,7 @@ size = Vector2(48, 16)
 [node name="Sprite2D" type="Sprite2D" parent="."]
 texture = ExtResource("1_gsv46")
 region_enabled = true
-region_rect = Rect2(0, 32, 48, 16)
+region_rect = Rect2(0, 0, 48, 16)
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 shape = SubResource("RectangleShape2D_ii5k7")

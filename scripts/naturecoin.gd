@@ -1,11 +1,17 @@
 extends Area2D
 signal nature_coin_collected
+@onready var audio_stream_player: AudioStreamPlayer2D = $AudioStreamPlayer2D
 
 func _ready() -> void:
 	body_entered.connect(_on_body_entered)
 
 func _on_body_entered(body: Node) -> void:
 	if body.is_in_group("player"):
+		var temp_audio = audio_stream_player.duplicate()
+		get_tree().root.add_child(temp_audio)
+		temp_audio.global_position = global_position
+		temp_audio.play()
+		
 		Global.only_up_coins += 1
 		_add_nature_coin_message()
 		emit_signal("nature_coin_collected")

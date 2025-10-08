@@ -1,4 +1,4 @@
-[gd_scene load_steps=23 format=3 uid="uid://cargoi5i1y00w"]
+[gd_scene load_steps=27 format=3 uid="uid://cargoi5i1y00w"]
 
 [ext_resource type="Script" uid="uid://yap7i7vqqf5h" path="res://scripts/only_up_mode.gd" id="1_omno6"]
 [ext_resource type="Texture2D" uid="uid://bd5qeqat634vf" path="res://assets/sprites/altbg.png" id="2_f81ve"]
@@ -15,9 +15,13 @@
 [ext_resource type="PackedScene" uid="uid://dh8eeckyd3tg7" path="res://scenes/Platform_Normal_5.tscn" id="9_f81ve"]
 [ext_resource type="PackedScene" uid="uid://dpcpw0crbipu1" path="res://scenes/Platform_Normal_6.tscn" id="10_bg485"]
 [ext_resource type="PackedScene" uid="uid://bxd4kv21awqld" path="res://scenes/naturecoin.tscn" id="10_iwvpw"]
+[ext_resource type="PackedScene" uid="uid://d1kwwvfl37r8d" path="res://scenes/Platform_Normal_7.tscn" id="11_1iv3g"]
 [ext_resource type="Script" uid="uid://c43ct8xsq1w6m" path="res://scripts/onlyupcanvas.gd" id="11_epgd4"]
 [ext_resource type="Script" uid="uid://cpue4d1mygwc7" path="res://scripts/bgm_label.gd" id="11_nlw48"]
+[ext_resource type="PackedScene" uid="uid://c7cymr43xk6l" path="res://scenes/Platform_Normal_8.tscn" id="12_65eiq"]
+[ext_resource type="PackedScene" uid="uid://3mmsluym6y1a" path="res://scenes/Platform_Normal_9.tscn" id="13_s2unj"]
 [ext_resource type="PackedScene" uid="uid://ces8ba8ri03u" path="res://scenes/death_overlay.tscn" id="13_tw05h"]
+[ext_resource type="PackedScene" uid="uid://mwukm1mr7r0f" path="res://scenes/Platform_Normal_10.tscn" id="14_wovm1"]
 [ext_resource type="Script" uid="uid://dnrasyrh8u26" path="res://scripts/coin_message.gd" id="15_wav16"]
 [ext_resource type="Texture2D" uid="uid://dgv55kd3p5fgj" path="res://assets/sprites/naturecoinicon.png" id="17_jvv83"]
 [ext_resource type="PackedScene" uid="uid://bsx24cgn42csk" path="res://scenes/OptionsMenu.tscn" id="20_a1loe"]
@@ -41,7 +45,7 @@ rotation = -0.00042712904
 scale = Vector2(0.99999994, 0.99999994)
 script = ExtResource("4_2xcqe")
 player_path = NodePath("../Player")
-platform_scenes = Array[PackedScene]([ExtResource("9_a1loe"), ExtResource("7_iwvpw"), ExtResource("8_wav16"), ExtResource("8_hsw4y"), ExtResource("9_f81ve"), ExtResource("10_bg485")])
+platform_scenes = Array[PackedScene]([ExtResource("9_a1loe"), ExtResource("7_iwvpw"), ExtResource("8_wav16"), ExtResource("8_hsw4y"), ExtResource("9_f81ve"), ExtResource("10_bg485"), ExtResource("11_1iv3g"), ExtResource("12_65eiq"), ExtResource("13_s2unj"), ExtResource("14_wovm1")])
 nature_coin_scene = ExtResource("10_iwvpw")
 
 [node name="Node2D" parent="." instance=ExtResource("6_wvbho")]
