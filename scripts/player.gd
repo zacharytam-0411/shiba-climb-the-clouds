@@ -4,7 +4,11 @@ const BASE_SPEED = 150.0
 const BASE_JUMP_VELOCITY = -300.0
 const WALL_JUMP_PUSH = 200.0
 const COYOTE_TIME := 0.1
-const GRAVITY = 980.0
+const BASE_GRAVITY := 980.0
+
+const JUMP_TAP_BOOST := -100.0
+const GRAVITY_BOOST_WINDOW := 0.2
+const GRAVITY_BOOST_DURATION := 0.3
 
 var SPEED = BASE_SPEED
 var JUMP_VELOCITY = BASE_JUMP_VELOCITY
@@ -13,6 +17,11 @@ var coyote_timer: float = 0.0
 var jumps_left: int = 1
 var respawn_position: Vector2 = Vector2.ZERO
 var is_respawning: bool = false
+
+var landed_time: float = -1.0
+var gravity_boost_timer: float = 0.0
+var gravity_boost_level: int = 0
+var boost_ready: bool = false
 
 @onready var animated_sprite: AnimatedSprite2D = $AnimatedSprite2D
 @onready var jump_sound: AudioStreamPlayer2D = $AudioStreamPlayer2D
@@ -37,8 +46,19 @@ func _physics_process(delta: float) -> void:
 
 	_apply_powerups()
 
+	var current_gravity := BASE_GRAVITY
+	if gravity_boost_timer > 0.0:
+		match gravity_boost_level:
+			1: current_gravity *= 0.6
+			2: current_gravity *= 0.55
+			_: current_gravity *= 0.5
+		current_gravity = max(400.0, current_gravity)
+		gravity_boost_timer -= delta
+	else:
+		gravity_boost_level = 0
+
 	if not is_on_floor():
-		velocity.y += GRAVITY * delta
+		velocity.y += current_gravity * delta
 	else:
 		if Global.sapphire_collected or (Global.gamemode == "only_up" and Global.upgrades.get("DoubleJump", false)):
 			jumps_left = 2
@@ -47,10 +67,19 @@ func _physics_process(delta: float) -> void:
 
 	if is_on_floor():
 		coyote_timer = COYOTE_TIME
+		if not boost_ready:
+			landed_time = Time.get_ticks_msec() / 1000.0
+			boost_ready = true
 	else:
 		coyote_timer -= delta
 
 	if Input.is_action_just_pressed("move_up"):
+		var now := Time.get_ticks_msec() / 1000.0
+		if boost_ready and landed_time > 0.0 and now - landed_time < GRAVITY_BOOST_WINDOW:
+			gravity_boost_timer = GRAVITY_BOOST_DURATION
+			gravity_boost_level += 1
+		boost_ready = false
+
 		if is_on_floor() or coyote_timer > 0.0:
 			velocity.y = JUMP_VELOCITY
 			jumps_left -= 1
@@ -64,8 +93,7 @@ func _physics_process(delta: float) -> void:
 			var wall_normal := get_wall_normal().x
 			velocity.y = JUMP_VELOCITY
 			velocity.x = WALL_JUMP_PUSH * sign(wall_normal)
-			jumps_left = 1 if Global.sapphire_collected or (Global.gamemode == "only_up" and Global.upgrades.get("DoubleJump", false)) else 0
-
+			jumps_left = 2 if Global.sapphire_collected or (Global.gamemode == "only_up" and Global.upgrades.get("DoubleJump", false)) else 1
 			_play_jump_sound()
 
 	var direction := Input.get_axis("move_left", "move_right")
@@ -79,7 +107,7 @@ func _physics_process(delta: float) -> void:
 	else:
 		animated_sprite.play("jump")
 
-	velocity.x = direction * SPEED if direction else move_toward(velocity.x, 0, SPEED)
+	velocity.x = direction * SPEED if direction != 0 else move_toward(velocity.x, 0, SPEED)
 
 	if Input.is_action_just_pressed("action_p"):
 		_random_p_action()
@@ -114,21 +142,14 @@ func respawn() -> void:
 		if spawner and "get_respawn_position" in spawner:
 			new_position = spawner.get_respawn_position()
 		else:
-			new_position = Vector2(global_position.x, global_position.y - 300)  # fallback
+			new_position = Vector2(global_position.x, global_position.y - 300)
 	else:
-		new_position = respawn_position  # set via set_checkpoint()
+		new_position = respawn_position
 
 	global_position = new_position
 	velocity = Vector2.ZERO
 	animated_sprite.play("idle")
-
-
-	global_position = new_position  # ← use this, not set_deferred
-	velocity = Vector2.ZERO
-	animated_sprite.play("idle") 
 	move_and_slide()
-
-
 
 func set_checkpoint(pos: Vector2) -> void:
 	respawn_position = pos
@@ -175,53 +196,24 @@ func _load_dino_animations(dino: String) -> void:
 
 	animated_sprite.frames = frames
 	animated_sprite.play("idle")
-	
-	if Global.gamemode == "default":
-		if dino == "krussy":
+
+	var msg_node_path = "DefaultMode/CanvasLayer/BottomMessage" if Global.gamemode == "default" else "OnlyUpMode/CanvasLayer/BottomMessage"
+	var msg_node = get_tree().root.get_node_or_null(msg_node_path)
+
+	match dino:
+		"krussy":
 			animated_sprite.offset = Vector2(0, -3)
 			animated_sprite.scale = Vector2(0.75, 0.75)
-			var msg_node = get_tree().root.get_node("DefaultMode/CanvasLayer/BottomMessage")
-			if msg_node:
-				msg_node.show_message("Now Featuring : Krussy from a game made by Raqeeb")
-		elif dino == "shiba":
+			if msg_node: msg_node.show_message("Now Featuring : Krussy from a game made by Raqeeb")
+		"shiba":
 			animated_sprite.offset = Vector2(0, -2)
-			var msg_node = get_tree().root.get_node("DefaultMode/CanvasLayer/BottomMessage")
-			if msg_node:
-				msg_node.show_message("Now Featuring : Shiba from ShibaRunner - xvcf")
-		elif dino == "shibaina":
+			if msg_node: msg_node.show_message("Now Featuring : Shiba from ShibaRunner - xvcf")
+		"shibaina":
 			animated_sprite.offset = Vector2(0, -2)
-			var msg_node = get_tree().root.get_node("DefaultMode/CanvasLayer/BottomMessage")
-			if msg_node:
-				msg_node.show_message("Now Featuring : Shibaina from ShibaRunner - xvcf")
-		elif dino == "knight":
-			var msg_node = get_tree().root.get_node("DefaultMode/CanvasLayer/BottomMessage")
-			if msg_node:
-				msg_node.show_message("Now Featuring : Knight from Brackey's Tutorial")
-		else:
-			animated_sprite.offset = Vector2.ZERO
-			animated_sprite.scale = Vector2(1, 1)
-	else:
-		if dino == "krussy":
-			animated_sprite.offset = Vector2(0, -3)
-			animated_sprite.scale = Vector2(0.75, 0.75)
-			var msg_node = get_tree().root.get_node("OnlyUpMode/CanvasLayer/BottomMessage")
-			if msg_node:
-				msg_node.show_message("Now Featuring : Krussy from a game made by Raqeeb")
-		elif dino == "shiba":
-			animated_sprite.offset = Vector2(0, -2)
-			var msg_node = get_tree().root.get_node("OnlyUpMode/CanvasLayer/BottomMessage")
-			if msg_node:
-				msg_node.show_message("Now Featuring : Shiba from ShibaRunner - xvcf")
-		elif dino == "shibaina":
-			animated_sprite.offset = Vector2(0, -2)
-			var msg_node = get_tree().root.get_node("OnlyUpMode/CanvasLayer/BottomMessage")
-			if msg_node:
-				msg_node.show_message("Now Featuring : Shibaina from ShibaRunner - xvcf")
-		elif dino == "knight":
-			var msg_node = get_tree().root.get_node("OnlyUpMode/CanvasLayer/BottomMessage")
-			if msg_node:
-				msg_node.show_message("Now Featuring : Knight from Brackey's Tutorial")
-		else:
+			if msg_node: msg_node.show_message("Now Featuring : Shibaina from ShibaRunner - xvcf")
+		"knight":
+			if msg_node: msg_node.show_message("Now Featuring : Knight from Brackey's Tutorial")
+		_:
 			animated_sprite.offset = Vector2.ZERO
 			animated_sprite.scale = Vector2(1, 1)
 
@@ -236,8 +228,7 @@ func _apply_powerups() -> void:
 		JUMP_VELOCITY *= 1.5
 		var boost_level: int = Global.upgrades.get("JumpBoost", 0)
 		if boost_level > 0:
-			JUMP_VELOCITY *= 1 + (0.3 * boost_level)  # +10% per level
-
+			JUMP_VELOCITY *= 1 + (0.3 * boost_level)
 
 func lose_life() -> void:
 	if Global.lives > 0:
@@ -248,6 +239,6 @@ func lose_life() -> void:
 			Global._game_over()
 
 func _process(delta: float) -> void:
-	Global.y_level = -((global_position.y)/16)
+	Global.y_level = -((global_position.y) / 16)
 	if Global.y_level > Global.max_height:
 		Global.max_height = Global.y_level
