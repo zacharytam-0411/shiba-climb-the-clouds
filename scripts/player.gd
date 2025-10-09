@@ -242,3 +242,4 @@ func _process(delta: float) -> void:
 	Global.y_level = -((global_position.y) / 16)
 	if Global.y_level > Global.max_height:
 		Global.max_height = Global.y_level
+	
