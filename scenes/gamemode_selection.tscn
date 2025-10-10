@@ -1,0 +1,67 @@
+[gd_scene load_steps=5 format=3 uid="uid://bwmq8cw6uwg4u"]
+
+[ext_resource type="Script" uid="uid://b18xh4sohioaj" path="res://scripts/gamemode_selection.gd" id="1_pdbe1"]
+[ext_resource type="Texture2D" uid="uid://cpnyj314igcpu" path="res://assets/sprites/Thumbnaila.png" id="2_4vwrc"]
+[ext_resource type="FontFile" uid="uid://xdrw8fu77qqa" path="res://assets/fonts/m6x11.ttf" id="3_43qdw"]
+[ext_resource type="Theme" uid="uid://dkj13f87vvpnd" path="res://assets/palettes/button.tres" id="4_6l654"]
+
+[node name="GamemodeSelection" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_pdbe1")
+
+[node name="TextureRect" type="TextureRect" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("2_4vwrc")
+expand_mode = 1
+
+[node name="TitleLabel" type="Label" parent="."]
+layout_mode = 0
+offset_left = 273.0
+offset_top = -4.0
+offset_right = 884.0
+offset_bottom = 152.0
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_colors/font_outline_color = Color(1, 1, 1, 1)
+theme_override_constants/outline_size = 4
+theme_override_fonts/font = ExtResource("3_43qdw")
+theme_override_font_sizes/font_size = 50
+text = "Gamemode selection"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="DefaultModeButton" type="Button" parent="."]
+layout_mode = 0
+offset_left = 90.0
+offset_top = 320.0
+offset_right = 330.0
+offset_bottom = 440.0
+theme = ExtResource("4_6l654")
+text = "default"
+
+[node name="OnlyUpButton" type="Button" parent="."]
+layout_mode = 0
+offset_left = 440.0
+offset_top = 320.0
+offset_right = 680.0
+offset_bottom = 440.0
+theme = ExtResource("4_6l654")
+text = "climb da clouds"
+
+[node name="MultiplayerButton" type="Button" parent="."]
+layout_mode = 0
+offset_left = 790.0
+offset_top = 320.0
+offset_right = 1030.0
+offset_bottom = 440.0
+theme = ExtResource("4_6l654")
+text = "2 player [wip]"

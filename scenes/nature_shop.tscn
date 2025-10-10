@@ -1,9 +1,10 @@
-[gd_scene load_steps=24 format=3 uid="uid://c5fvr8umib64d"]
+[gd_scene load_steps=25 format=3 uid="uid://c5fvr8umib64d"]
 
 [ext_resource type="Script" uid="uid://dhcla3fy81wq8" path="res://scripts/double_jump_button.gd" id="2_fbet8"]
 [ext_resource type="FontFile" uid="uid://xdrw8fu77qqa" path="res://assets/fonts/m6x11.ttf" id="2_gbfen"]
 [ext_resource type="Texture2D" uid="uid://dgv55kd3p5fgj" path="res://assets/sprites/naturecoinicon.png" id="2_towsj"]
 [ext_resource type="Texture2D" uid="uid://bnrh02uryoxku" path="res://assets/sprites/Copilot_20250929_183552.png" id="2_y884i"]
+[ext_resource type="Theme" uid="uid://dkj13f87vvpnd" path="res://assets/palettes/button.tres" id="4_6jtak"]
 [ext_resource type="Script" uid="uid://cm0cgkd6emiuc" path="res://scripts/jumpboost.gd" id="5_y884i"]
 [ext_resource type="Texture2D" uid="uid://bvpnyrbrsnvwj" path="res://assets/sprites/dinos/male/shiba/base/idle.png" id="6_2ruy7"]
 [ext_resource type="Script" uid="uid://bjvb0no27bdie" path="res://scripts/close_button.gd" id="6_iv3qy"]
@@ -219,6 +220,7 @@ offset_left = 491.0
 offset_top = 198.0
 offset_right = 657.0
 offset_bottom = 258.0
+theme = ExtResource("4_6jtak")
 theme_override_colors/font_color = Color(0, 0, 0, 1)
 theme_override_colors/font_focus_color = Color(0.37254903, 0.37254903, 0.37254903, 1)
 theme_override_colors/font_pressed_color = Color(0.37254903, 0.37254903, 0.37254903, 1)

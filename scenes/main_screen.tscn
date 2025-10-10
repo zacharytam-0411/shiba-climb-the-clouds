@@ -1,10 +1,9 @@
-[gd_scene load_steps=11 format=3 uid="uid://dojb5lpo81upv"]
+[gd_scene load_steps=10 format=3 uid="uid://dojb5lpo81upv"]
 
 [ext_resource type="Script" uid="uid://288jde3gqwi6" path="res://scenes/main_menu.gd" id="1_aum10"]
 [ext_resource type="FontFile" uid="uid://xdrw8fu77qqa" path="res://assets/fonts/m6x11.ttf" id="2_lushf"]
 [ext_resource type="FontFile" uid="uid://dcraqlv7xu0j" path="res://assets/fonts/m5x7.ttf" id="3_aum10"]
 [ext_resource type="Texture2D" uid="uid://b2bdqpmoaqpku" path="res://assets/sprites/Thumbnail.png" id="3_w87pm"]
-[ext_resource type="Script" uid="uid://c7uqkndsayqxa" path="res://scripts/only_up_button.gd" id="5_w87pm"]
 [ext_resource type="AudioStream" uid="uid://meymmbvm24b4" path="res://assets/music/orangejuice.mp3" id="6_a46j4"]
 [ext_resource type="Texture2D" uid="uid://b2k3u3jubqabr" path="res://assets/sprites/game_studio.png" id="7_23dc1"]
 
@@ -182,19 +181,6 @@ theme_override_fonts/font = ExtResource("3_aum10")
 theme_override_font_sizes/font_size = 40
 text = "Press T to listen to Teto!"
 
-[node name="OnlyUpButton" type="Button" parent="."]
-layout_mode = 0
-offset_left = 656.0
-offset_top = 544.0
-offset_right = 961.0
-offset_bottom = 603.0
-theme_override_colors/font_color = Color(0.875, 0.875, 0.875, 1)
-theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
-theme_override_fonts/font = ExtResource("2_lushf")
-theme_override_font_sizes/font_size = 20
-text = "Play Climbing Up [in development]"
-script = ExtResource("5_w87pm")
-
 [node name="AudioStreamPlayer2D" type="AudioStreamPlayer2D" parent="."]
 stream = ExtResource("6_a46j4")
 autoplay = true
@@ -209,4 +195,3 @@ texture = ExtResource("7_23dc1")
 [connection signal="pressed" from="VBoxContainer/Button2" to="." method="_on_settings_pressed"]
 [connection signal="pressed" from="VBoxContainer/Shop" to="." method="_on_shop_pressed"]
 [connection signal="pressed" from="VBoxContainer/Button3" to="." method="_on_exit_pressed"]
-[connection signal="pressed" from="OnlyUpButton" to="." method="_on_only_up_button_pressed"]
