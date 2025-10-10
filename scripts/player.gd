@@ -6,10 +6,6 @@ const WALL_JUMP_PUSH = 200.0
 const COYOTE_TIME := 0.1
 const BASE_GRAVITY := 980.0
 
-const JUMP_TAP_BOOST := -100.0
-const GRAVITY_BOOST_WINDOW := 0.2
-const GRAVITY_BOOST_DURATION := 0.3
-
 var SPEED = BASE_SPEED
 var JUMP_VELOCITY = BASE_JUMP_VELOCITY
 
@@ -17,11 +13,6 @@ var coyote_timer: float = 0.0
 var jumps_left: int = 1
 var respawn_position: Vector2 = Vector2.ZERO
 var is_respawning: bool = false
-
-var landed_time: float = -1.0
-var gravity_boost_timer: float = 0.0
-var gravity_boost_level: int = 0
-var boost_ready: bool = false
 
 @onready var animated_sprite: AnimatedSprite2D = $AnimatedSprite2D
 @onready var jump_sound: AudioStreamPlayer2D = $AudioStreamPlayer2D
@@ -47,39 +38,18 @@ func _physics_process(delta: float) -> void:
 	_apply_powerups()
 
 	var current_gravity := BASE_GRAVITY
-	if gravity_boost_timer > 0.0:
-		match gravity_boost_level:
-			1: current_gravity *= 0.6
-			2: current_gravity *= 0.55
-			_: current_gravity *= 0.5
-		current_gravity = max(400.0, current_gravity)
-		gravity_boost_timer -= delta
-	else:
-		gravity_boost_level = 0
+	velocity.y += current_gravity * delta
 
-	if not is_on_floor():
-		velocity.y += current_gravity * delta
-	else:
+	if is_on_floor():
 		if Global.sapphire_collected or (Global.gamemode == "only_up" and Global.upgrades.get("DoubleJump", false)):
 			jumps_left = 2
 		else:
 			jumps_left = 1
-
-	if is_on_floor():
 		coyote_timer = COYOTE_TIME
-		if not boost_ready:
-			landed_time = Time.get_ticks_msec() / 1000.0
-			boost_ready = true
 	else:
 		coyote_timer -= delta
 
 	if Input.is_action_just_pressed("move_up"):
-		var now := Time.get_ticks_msec() / 1000.0
-		if boost_ready and landed_time > 0.0 and now - landed_time < GRAVITY_BOOST_WINDOW:
-			gravity_boost_timer = GRAVITY_BOOST_DURATION
-			gravity_boost_level += 1
-		boost_ready = false
-
 		if is_on_floor() or coyote_timer > 0.0:
 			velocity.y = JUMP_VELOCITY
 			jumps_left -= 1
@@ -242,4 +212,3 @@ func _process(delta: float) -> void:
 	Global.y_level = -((global_position.y) / 16)
 	if Global.y_level > Global.max_height:
 		Global.max_height = Global.y_level
-	
