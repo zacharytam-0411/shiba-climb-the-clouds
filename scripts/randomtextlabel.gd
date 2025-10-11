@@ -1,17 +1,16 @@
 extends Label
 
 var random_messages := [
-	"Zac zoomed past the clouds!",
+	"Zac zoomed past the clouds! [with what? -zac]",
 	"Mort tripped on a trampoline.",
-	"Sena found a secret tunnel.",
-	"Olaf danced with a Kuro.",
+	"Olaf went to visit Shiba.",
 	"Mono broke the sound barrier.",
 	"Krussy got lost in space.",
 	"Shiba barked at the moon.",
-	"Nico invented jet shoes.",
-	"Loki teleported into a volcano.",
-	"Cole ate 42 pancakes mid-air.",
-	"Press P to Listen to Teto!"
+	"Teto invented Miku [?].",
+	"Loki got teleported into a cave.",
+	"Kuro ate 42 pancakes mid-air. [those were mine! -zac]",
+	"Press T to Listen to Teto!"
 ]
 
 func _ready() -> void:

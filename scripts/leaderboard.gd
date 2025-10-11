@@ -16,7 +16,7 @@ func _ready() -> void:
 
 func update_leaderboard() -> void:
 	leaderboard_label.clear()
-	leaderboard_label.append_text("🏁 Leaderboard\n\n")
+	leaderboard_label.append_text(" Leaderboard - Doesnt work rn the data is fake\n\n")
 
 	for i in range(scores.size()):
 		var entry: Dictionary = scores[i]
