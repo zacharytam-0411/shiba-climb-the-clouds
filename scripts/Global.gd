@@ -79,3 +79,19 @@ func _game_over() -> void:
 
 func _do_game_over() -> void:
 	get_tree().change_scene_to_file("res://scenes/game_over.tscn")
+
+func _ready() -> void:
+	Shibadb.save_loaded.connect(_on_save_loaded)
+	await Shibadb.init_shibadb("68df6f079988d5febb5bfebc")
+	Shibadb.load_progress()
+
+
+func _on_save_loaded(saveData) -> void:
+	if saveData.has("time_spent"):
+		timer = float(saveData.time_spent)
+	if saveData.has("max_height"):
+		max_height = int(saveData.max_height)
+
+func save_progress() -> void:
+	Shibadb.save_progress({"playerId": "player_1", "gameData" : {"time_spent": roundi(timer * 10) / 10.0,
+	"max_height": max_height}})
