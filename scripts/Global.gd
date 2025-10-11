@@ -82,7 +82,7 @@ func _do_game_over() -> void:
 
 func _ready() -> void:
 	Shibadb.save_loaded.connect(_on_save_loaded)
-	await Shibadb.init_shibadb("68df6f079988d5febb5bfebc")
+	await Shibadb.init_shibadb("68ea7041e0cbb00fff2934fb")
 	Shibadb.load_progress()
 
 
@@ -93,5 +93,5 @@ func _on_save_loaded(saveData) -> void:
 		max_height = int(saveData.max_height)
 
 func save_progress() -> void:
-	Shibadb.save_progress({"playerId": "player_1", "gameData" : {"time_spent": roundi(timer * 10) / 10.0,
-	"max_height": max_height}})
+	Shibadb.save_progress({"playerId": "player_1", "time_spent": roundi(timer * 10) / 10.0,
+	"max_height": max_height})

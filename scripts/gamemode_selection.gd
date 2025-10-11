@@ -3,6 +3,7 @@ extends Control
 @onready var only_up_button: Button = $OnlyUpButton
 @onready var multiplayer_button: Button = $MultiplayerButton
 @onready var _2_playerlabel: Label = $"2playerlabel"
+@onready var leaderboard: Button = $Leaderboard
 
 
 func _ready():
@@ -10,6 +11,8 @@ func _ready():
 	$DefaultModeButton.pressed.connect(self._on_default_mode_pressed)
 	$OnlyUpButton.pressed.connect(self._on_only_up_pressed)
 	$MultiplayerButton.pressed.connect(self._on_multiplayer_pressed)
+	$Leaderboard.pressed.connect(self._on_leaderboard_button_pressed)
+	
 
 func _on_default_mode_pressed():
 	print("Start button pressed")
@@ -33,3 +36,6 @@ func _on_multiplayer_pressed():
 	print("Multiplayer Mode selected")
 	await get_tree().create_timer(1.0).timeout
 	_2_playerlabel.visible = false
+
+func _on_leaderboard_button_pressed():
+	get_tree().change_scene_to_file("res://scenes/leaderboard.tscn")

@@ -64,6 +64,15 @@ offset_bottom = 440.0
 theme = ExtResource("4_6l654")
 text = "default"
 
+[node name="Leaderboard" type="Button" parent="."]
+layout_mode = 0
+offset_left = 444.0
+offset_top = 515.0
+offset_right = 684.0
+offset_bottom = 635.0
+theme = ExtResource("4_6l654")
+text = "Go to leaderboard"
+
 [node name="OnlyUpButton" type="Button" parent="."]
 layout_mode = 0
 offset_left = 440.0
