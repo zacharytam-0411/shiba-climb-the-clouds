@@ -174,19 +174,21 @@ func _load_dino_animations(dino: String) -> void:
 	var msg_node_path = "DefaultMode/CanvasLayer/BottomMessage" if Global.gamemode == "default" else "OnlyUpMode/CanvasLayer/BottomMessage"
 	var msg_node = get_tree().root.get_node_or_null(msg_node_path)
 
+	
 	match dino:
 		"krussy":
 			animated_sprite.offset = Vector2(0, -3)
 			animated_sprite.scale = Vector2(0.75, 0.75)
-			if msg_node: msg_node.show_message("Now Featuring : Krussy from a game made by Raqeeb")
+			# if msg_node: msg_node.show_message("Now Featuring : Krussy from a game made by Raqeeb")
 		"shiba":
 			animated_sprite.offset = Vector2(0, -2)
-			if msg_node: msg_node.show_message("Now Featuring : Shiba from ShibaRunner - xvcf")
+			# if msg_node: msg_node.show_message("Now Featuring : Shiba from ShibaRunner - xvcf")
 		"shibaina":
 			animated_sprite.offset = Vector2(0, -2)
-			if msg_node: msg_node.show_message("Now Featuring : Shibaina from ShibaRunner - xvcf")
+			# if msg_node: msg_node.show_message("Now Featuring : Shibaina from ShibaRunner - xvcf")
 		"knight":
-			if msg_node: msg_node.show_message("Now Featuring : Knight from Brackey's Tutorial")
+			pass
+			# if msg_node: msg_node.show_message("Now Featuring : Knight from Brackey's Tutorial")
 		_:
 			animated_sprite.offset = Vector2.ZERO
 			animated_sprite.scale = Vector2(1, 1)
