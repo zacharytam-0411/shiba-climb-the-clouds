@@ -1,0 +1,39 @@
+[gd_resource type="SpriteFrames" load_steps=6 format=3 uid="uid://bq1wtpdlapx65"]
+
+[ext_resource type="Texture2D" uid="uid://df2nemmh8fh0c" path="res://assets/sprites/dinos/male/knight/base/idle.png" id="1_qs32a"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_h810p"]
+atlas = ExtResource("1_qs32a")
+region = Rect2(0, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_fhw4w"]
+atlas = ExtResource("1_qs32a")
+region = Rect2(32, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_em7u6"]
+atlas = ExtResource("1_qs32a")
+region = Rect2(64, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_gs3d1"]
+atlas = ExtResource("1_qs32a")
+region = Rect2(96, 0, 32, 32)
+
+[resource]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_h810p")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_fhw4w")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_em7u6")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_gs3d1")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}]

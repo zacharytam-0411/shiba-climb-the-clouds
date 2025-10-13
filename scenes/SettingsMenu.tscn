@@ -74,6 +74,17 @@ theme_override_fonts/font = ExtResource("2_t7ar5")
 theme_override_font_sizes/font_size = 40
 text = "Back"
 
+[node name="CharacterSelectionButton" type="Button" parent="."]
+layout_mode = 0
+offset_left = 556.0
+offset_top = 437.0
+offset_right = 870.0
+offset_bottom = 517.0
+theme_override_fonts/font = ExtResource("2_t7ar5")
+theme_override_font_sizes/font_size = 40
+text = "Go to Skin Selection
+[experimental]"
+
 [node name="Label2" type="Label" parent="."]
 layout_mode = 0
 offset_left = 565.0

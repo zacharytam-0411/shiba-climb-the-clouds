@@ -7,6 +7,7 @@ extends Control
 @onready var back_button: Button = $BackButton
 @onready var music_volume: HSlider = $MusicVolume
 @onready var mute_check: CheckBox = $MuteCheck
+@onready var character_selection_button: Button = $CharacterSelectionButton
 
 var current_index: int = 0
 
@@ -19,6 +20,7 @@ func _ready() -> void:
 	prev_button.pressed.connect(_on_prev_pressed)
 	next_button.pressed.connect(_on_next_pressed)
 	back_button.pressed.connect(_on_back_pressed)
+	character_selection_button.pressed.connect(_on_character_selection_button_pressed)
 
 	_update_preview()
 
@@ -49,6 +51,9 @@ func _on_next_pressed() -> void:
 func _on_back_pressed() -> void:
 	Global.selected_dino_color = Global.available_dinos[current_index]
 	get_tree().change_scene_to_file("res://scenes/main_screen.tscn")
+	
+func _on_character_selection_button_pressed() -> void:
+	get_tree().change_scene_to_file("res://scenes/character_selection.tscn")
 
 func _update_preview() -> void:
 	var dino = Global.available_dinos[current_index]

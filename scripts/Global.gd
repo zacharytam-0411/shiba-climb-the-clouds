@@ -2,11 +2,12 @@ extends Node
 
 var upgrades: Dictionary = {
 	"DoubleJump": false,
-	"SpeedBoost": 0,  # stackable upgrade, starts at level 0
+	"SpeedBoost": 0,
 	"CoinMagnet": false,
 	"Glide": false,
 	"JumpBoost": 0
 }
+
 var sapphire_collected: bool = false
 var diamond_collected: bool = false
 var ruby_collected: bool = false
@@ -20,6 +21,11 @@ var timer: float = 0.0
 var winnable: bool = false
 var max_height: int = -1
 var selected_dino_color: String = "kuro"
+var selected_players: Dictionary = {
+	"P1": "kuro",
+	"P2": "knight"
+}
+
 var music_volume_db: float = 0.0  
 var music_muted: bool = false  
 var tutorial_completed: bool = false
@@ -32,7 +38,6 @@ var gamemode := "default"
 var last_platform: StaticBody2D = null
 var only_up_coins: int = 0
 
-# Only dinos that show up in the settings
 var available_dinos := [
 	"kuro",
 	"loki",
@@ -41,15 +46,14 @@ var available_dinos := [
 	"sena",
 	"mono",
 	"cole",
-	"mort"
+    "mort"
 ]
 
-# Hidden dinos, only available via "P"
 var secret_dinos := [
 	"knight",
 	"krussy",
 	"shiba",
-	"shibaina"
+    "shibaina"
 ]
 
 func _reset() -> void:
@@ -69,10 +73,7 @@ func _reset() -> void:
 	finish_time = 0.0
 
 func _process(_delta: float) -> void:
-	if diamond_collected and ruby_collected and sapphire_collected and emerald_collected and coin >= 32:
-		winnable = true
-	else:
-		winnable = false
+	winnable = diamond_collected and ruby_collected and sapphire_collected and emerald_collected and coin >= 32
 
 func _game_over() -> void:
 	call_deferred("_do_game_over")
@@ -85,7 +86,6 @@ func _ready() -> void:
 	await Shibadb.init_shibadb("68ea7041e0cbb00fff2934fb")
 	Shibadb.load_progress()
 
-
 func _on_save_loaded(saveData) -> void:
 	if saveData.has("time_spent"):
 		timer = float(saveData.time_spent)
@@ -93,5 +93,8 @@ func _on_save_loaded(saveData) -> void:
 		max_height = int(saveData.max_height)
 
 func save_progress() -> void:
-	Shibadb.save_progress({"playerId": "player_1", "time_spent": roundi(timer * 10) / 10.0,
-	"max_height": max_height})
+	Shibadb.save_progress({
+		"playerId": "player_1",
+		"time_spent": roundi(timer * 10) / 10.0,
+		"max_height": max_height
+	})

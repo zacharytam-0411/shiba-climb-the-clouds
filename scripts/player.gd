@@ -13,12 +13,16 @@ var coyote_timer: float = 0.0
 var jumps_left: int = 1
 var respawn_position: Vector2 = Vector2.ZERO
 var is_respawning: bool = false
+var player_id: String = "P1"
+
 
 @onready var animated_sprite: AnimatedSprite2D = $AnimatedSprite2D
 @onready var jump_sound: AudioStreamPlayer2D = $AudioStreamPlayer2D
 
 func _ready() -> void:
-	_load_dino_animations(Global.selected_dino_color)
+	var raw_selection: String = Global.selected_players.get(player_id, Global.selected_dino_color)
+	var selected_dino: String = raw_selection.replace("Button", "").to_lower()
+	_load_dino_animations(selected_dino)
 	randomize()
 	add_to_group("player")
 	respawn_position = global_position
