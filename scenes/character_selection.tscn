@@ -1,4 +1,4 @@
-[gd_scene load_steps=9 format=3 uid="uid://c1ggaxbafgikq"]
+[gd_scene load_steps=10 format=3 uid="uid://c1ggaxbafgikq"]
 
 [ext_resource type="Script" uid="uid://7xjilp7ictmq" path="res://scripts/character_selection.gd" id="1_q54je"]
 [ext_resource type="Texture2D" uid="uid://cquxos26sh2dl" path="res://assets/sprites/kuro_icon.png" id="2_dd54q"]
@@ -7,6 +7,7 @@
 [ext_resource type="Texture2D" uid="uid://b47ivhkj1okuu" path="res://assets/sprites/shiba_icon.png" id="4_l56u2"]
 [ext_resource type="Texture2D" uid="uid://s012jm13t4pi" path="res://assets/sprites/knight_icon.png" id="5_7xed0"]
 [ext_resource type="Texture2D" uid="uid://7dk73fj6ryal" path="res://assets/sprites/mono_icon.png" id="7_cqj7k"]
+[ext_resource type="Texture2D" uid="uid://dae0h0j7tey1m" path="res://assets/sprites/mort_icon.png" id="8_iixut"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_wh1ae"]
 
@@ -39,11 +40,18 @@ text = "Select your character"
 horizontal_alignment = 1
 
 [node name="CharacterGrid" type="GridContainer" parent="."]
-layout_mode = 0
-offset_left = 2.0
-offset_top = 271.0
-offset_right = 58.0
-offset_bottom = 338.25
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -52.0
+offset_top = 46.375
+offset_right = 4.0
+offset_bottom = 113.625
+grow_horizontal = 2
+grow_vertical = 2
 scale = Vector2(4, 4)
 columns = 3
 
@@ -70,15 +78,20 @@ layout_mode = 2
 texture_normal = ExtResource("7_cqj7k")
 stretch_mode = 5
 
+[node name="MortButton" type="TextureButton" parent="CharacterGrid"]
+layout_mode = 2
+texture_normal = ExtResource("8_iixut")
+stretch_mode = 5
+
 [node name="PlayerSlots" type="HBoxContainer" parent="."]
 layout_mode = 1
 anchors_preset = 5
 anchor_left = 0.5
 anchor_right = 0.5
-offset_left = -223.29999
-offset_top = 111.99999
-offset_right = -128.70001
-offset_bottom = 167.19998
+offset_left = -575.2999
+offset_top = 119.999985
+offset_right = -480.69998
+offset_bottom = 175.19998
 grow_horizontal = 2
 scale = Vector2(5, 5)
 theme = ExtResource("3_o5bvq")
@@ -146,9 +159,9 @@ anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
-offset_left = -68.99985
+offset_left = -28.999847
 offset_top = 127.5
-offset_right = 69.00015
+offset_right = 109.00015
 offset_bottom = 192.5
 grow_horizontal = 2
 grow_vertical = 2
@@ -156,6 +169,21 @@ theme = ExtResource("3_o5bvq")
 theme_override_font_sizes/font_size = 30
 horizontal_alignment = 1
 vertical_alignment = 1
+
+[node name="Label" type="Label" parent="PreviewPanel"]
+layout_mode = 1
+anchors_preset = 3
+anchor_left = 1.0
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 103.99994
+offset_top = 117.0
+offset_right = 143.99994
+offset_bottom = 144.0
+grow_horizontal = 0
+grow_vertical = 0
+theme = ExtResource("3_o5bvq")
 
 [node name="StartButton" type="Button" parent="."]
 layout_mode = 1
@@ -179,8 +207,8 @@ text = "Back"
 [node name="SelectorFrame" type="Panel" parent="."]
 z_index = -2
 layout_mode = 0
-offset_left = -1.0
-offset_top = 270.0
-offset_right = 68.0
-offset_bottom = 349.0
+offset_left = 519.0
+offset_top = 366.0
+offset_right = 588.0
+offset_bottom = 445.0
 theme_override_styles/panel = SubResource("StyleBoxFlat_wh1ae")
