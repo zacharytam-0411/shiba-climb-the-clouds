@@ -1,0 +1,32 @@
+[gd_resource type="SpriteFrames" load_steps=5 format=3 uid="uid://d7dohmptffnu"]
+
+[ext_resource type="Texture2D" uid="uid://cg7ndr1tltgdy" path="res://assets/sprites/dinos/male/mono/base/idle.png" id="1_q2wte"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_iq8hy"]
+atlas = ExtResource("1_q2wte")
+region = Rect2(0, 0, 24, 24)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ukuy0"]
+atlas = ExtResource("1_q2wte")
+region = Rect2(24, 0, 24, 24)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_5fnt0"]
+atlas = ExtResource("1_q2wte")
+region = Rect2(48, 0, 24, 24)
+
+[resource]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_iq8hy")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ukuy0")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_5fnt0")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}]

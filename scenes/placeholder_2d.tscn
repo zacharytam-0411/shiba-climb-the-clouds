@@ -1,6 +1,6 @@
 [gd_scene load_steps=2 format=3 uid="uid://bwwupilhhukv"]
 
-[ext_resource type="SpriteFrames" uid="uid://bq1wtpdlapx65" path="res://assets/sprites/skinframes/knight_frames.tres" id="1_raiw0"]
+[ext_resource type="SpriteFrames" uid="uid://d7dohmptffnu" path="res://assets/sprites/skinframes/mono_frames.tres" id="1_raiw0"]
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D"]
 sprite_frames = ExtResource("1_raiw0")
