@@ -165,6 +165,10 @@ func _update_preview(character_name: String):
 			frames = preload("res://assets/sprites/skinframes/sena_frames.tres")
 			name_label.text = "Sena"
 			stats_label.text = "A good \ncompanion of Kuro."
+		"TetoButton":
+			frames = preload("res://assets/sprites/skinframes/teto_frames.tres")
+			name_label.text = "Teto"
+			stats_label.text = "Kasane Teto.\nBetter than Miku."
 		_:
 			name_label.text = "None"
 			stats_label.text = ""
