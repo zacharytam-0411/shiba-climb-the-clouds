@@ -1,4 +1,4 @@
-[gd_scene load_steps=10 format=3 uid="uid://c1ggaxbafgikq"]
+[gd_scene load_steps=12 format=3 uid="uid://c1ggaxbafgikq"]
 
 [ext_resource type="Script" uid="uid://7xjilp7ictmq" path="res://scripts/character_selection.gd" id="1_q54je"]
 [ext_resource type="Texture2D" uid="uid://cquxos26sh2dl" path="res://assets/sprites/kuro_icon.png" id="2_dd54q"]
@@ -8,6 +8,8 @@
 [ext_resource type="Texture2D" uid="uid://s012jm13t4pi" path="res://assets/sprites/knight_icon.png" id="5_7xed0"]
 [ext_resource type="Texture2D" uid="uid://7dk73fj6ryal" path="res://assets/sprites/mono_icon.png" id="7_cqj7k"]
 [ext_resource type="Texture2D" uid="uid://dae0h0j7tey1m" path="res://assets/sprites/mort_icon.png" id="8_iixut"]
+[ext_resource type="Texture2D" uid="uid://b5a5wimhred77" path="res://assets/sprites/questionmark.png" id="9_dv8bk"]
+[ext_resource type="Texture2D" uid="uid://wk1pgrug1ll2" path="res://assets/sprites/tard_icon.png" id="9_v724p"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_wh1ae"]
 
@@ -83,6 +85,11 @@ layout_mode = 2
 texture_normal = ExtResource("8_iixut")
 stretch_mode = 5
 
+[node name="TardButton" type="TextureButton" parent="CharacterGrid"]
+layout_mode = 2
+texture_normal = ExtResource("9_v724p")
+stretch_mode = 5
+
 [node name="PlayerSlots" type="HBoxContainer" parent="."]
 layout_mode = 1
 anchors_preset = 5
@@ -109,6 +116,7 @@ horizontal_alignment = 1
 
 [node name="SelectedIcon" type="TextureRect" parent="PlayerSlots/P1Slot"]
 layout_mode = 2
+texture = ExtResource("9_dv8bk")
 stretch_mode = 5
 
 [node name="P2Slot" type="VBoxContainer" parent="PlayerSlots"]
@@ -122,6 +130,7 @@ horizontal_alignment = 1
 
 [node name="SelectedIcon" type="TextureRect" parent="PlayerSlots/P2Slot"]
 layout_mode = 2
+texture = ExtResource("9_dv8bk")
 
 [node name="PreviewPanel" type="Control" parent="."]
 anchors_preset = 0

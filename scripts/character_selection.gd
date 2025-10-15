@@ -80,19 +80,23 @@ func _confirm_selection():
 			label.text = "Press K again to start!"
 
 func _unconfirm_selection():
-	if current_player == "P2":
+	if confirmed_players["P2"]:
 		confirmed_players["P2"] = false
 		selected_characters["P2"] = ""
 		_update_player_slot("P2", "")
-		current_player = "P1"
-		current_index = 0
-		_update_selector_position()
+		_update_preview("")
 		ready_to_start = false
-	elif current_player == "P1":
+		current_player = "P2"
+		label.text = ""
+	elif confirmed_players["P1"]:
 		confirmed_players["P1"] = false
 		selected_characters["P1"] = ""
 		_update_player_slot("P1", "")
-		_update_preview("")  # Clear preview
+		_update_preview("")
+		ready_to_start = false
+		current_player = "P1"
+		label.text = ""
+
 
 func _start_game():
 	Global.selected_players = {
@@ -111,7 +115,6 @@ func _on_character_selected(character_name: String):
 	selected_characters[current_player] = character_name
 	_update_preview(character_name)
 	_update_player_slot(current_player, character_name)
-	current_player = "P2" if current_player == "P1" else "P1"
 
 func _update_preview(character_name: String):
 	if character_name == "":
@@ -147,24 +150,26 @@ func _update_preview(character_name: String):
 			frames = preload("res://assets/sprites/skinframes/mort_frames.tres")
 			name_label.text = "Mort"
 			stats_label.text = "A good \nfriend of Kuro."
+		"TardButton":
+			frames = preload("res://assets/sprites/skinframes/tard_frames.tres")
+			name_label.text = "Tard"
+			stats_label.text = "Loves Lemon Tarts.\n[just like me! -zac]"
 		_:
 			name_label.text = "None"
 			stats_label.text = ""
 
-
 	preview_sprite.frames = frames
-
 
 	if frames and frames.has_animation("default"):
 		preview_sprite.play("default")
 
-
 func _update_player_slot(player: String, character_name: String):
-	if character_name == "":
+	if character_name == null or character_name == "":
+		var fallback_texture = load("res://assets/sprites/questionmark.png")
 		if player == "P1":
-			p1_icon.texture = null
+			p1_icon.texture = fallback_texture
 		else:
-			p2_icon.texture = null
+			p2_icon.texture = fallback_texture
 		return
 
 	var icon_path = "res://assets/sprites/%s_icon.png" % character_name.replace("Button", "").to_lower()
