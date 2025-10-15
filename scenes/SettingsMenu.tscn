@@ -39,31 +39,6 @@ theme_override_font_sizes/font_size = 60
 text = "Settings
 "
 
-[node name="HBoxContainer" type="HBoxContainer" parent="."]
-layout_mode = 0
-offset_left = 107.0
-offset_top = 449.0
-offset_right = 321.0
-offset_bottom = 499.0
-
-[node name="PrevButton" type="Button" parent="HBoxContainer"]
-layout_mode = 2
-theme_override_fonts/font = ExtResource("2_t7ar5")
-theme_override_font_sizes/font_size = 30
-text = "<"
-
-[node name="DinoNameLabel" type="Label" parent="HBoxContainer"]
-layout_mode = 2
-theme_override_fonts/font = ExtResource("2_ldnee")
-theme_override_font_sizes/font_size = 60
-text = "Mort"
-
-[node name="NextButton" type="Button" parent="HBoxContainer"]
-layout_mode = 2
-theme_override_fonts/font = ExtResource("2_t7ar5")
-theme_override_font_sizes/font_size = 30
-text = ">"
-
 [node name="BackButton" type="Button" parent="."]
 layout_mode = 0
 offset_left = 438.0
@@ -73,17 +48,6 @@ offset_bottom = 617.0
 theme_override_fonts/font = ExtResource("2_t7ar5")
 theme_override_font_sizes/font_size = 40
 text = "Back"
-
-[node name="CharacterSelectionButton" type="Button" parent="."]
-layout_mode = 0
-offset_left = 556.0
-offset_top = 437.0
-offset_right = 870.0
-offset_bottom = 517.0
-theme_override_fonts/font = ExtResource("2_t7ar5")
-theme_override_font_sizes/font_size = 40
-text = "Go to Skin Selection
-[experimental]"
 
 [node name="Label2" type="Label" parent="."]
 layout_mode = 0
