@@ -294,4 +294,4 @@ func _on_leave_pressed() -> void:
 	print("Tutorial marked as complete, leaving tutorial...")
 	
 	# For now, just free the tutorial scene (or change scene if you want)
-	get_tree().change_scene_to_file("res://scenes/main_screen.tscn")
+	get_tree().change_scene_to_file("res://scenes/character_selection.tscn")

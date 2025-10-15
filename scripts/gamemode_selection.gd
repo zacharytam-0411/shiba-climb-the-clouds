@@ -4,10 +4,12 @@ extends Control
 @onready var multiplayer_button: Button = $MultiplayerButton
 @onready var _2_playerlabel: Label = $"2playerlabel"
 @onready var leaderboard: Button = $Leaderboard
+@onready var back_button: Button = $BackButton
 
 
 func _ready():
 	_2_playerlabel.visible = false
+	back_button.pressed.connect(_on_BackButton_pressed)
 	$DefaultModeButton.pressed.connect(self._on_default_mode_pressed)
 	$OnlyUpButton.pressed.connect(self._on_only_up_pressed)
 	$MultiplayerButton.pressed.connect(self._on_multiplayer_pressed)
@@ -39,3 +41,6 @@ func _on_multiplayer_pressed():
 
 func _on_leaderboard_button_pressed():
 	get_tree().change_scene_to_file("res://scenes/leaderboard.tscn")
+
+func _on_BackButton_pressed():
+	get_tree().change_scene_to_file("res://scenes/main_screen.tscn")

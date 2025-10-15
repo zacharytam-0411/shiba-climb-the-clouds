@@ -73,6 +73,13 @@ offset_bottom = 635.0
 theme = ExtResource("4_6l654")
 text = "Go to leaderboard"
 
+[node name="BackButton" type="Button" parent="."]
+layout_mode = 1
+offset_right = 135.0
+offset_bottom = 55.0
+theme = ExtResource("4_6l654")
+text = "Back"
+
 [node name="OnlyUpButton" type="Button" parent="."]
 layout_mode = 0
 offset_left = 440.0

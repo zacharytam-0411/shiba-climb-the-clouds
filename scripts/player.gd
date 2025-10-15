@@ -15,14 +15,17 @@ var respawn_position: Vector2 = Vector2.ZERO
 var is_respawning: bool = false
 var player_id: String = "P1"
 
-
 @onready var animated_sprite: AnimatedSprite2D = $AnimatedSprite2D
 @onready var jump_sound: AudioStreamPlayer2D = $AudioStreamPlayer2D
 
 func _ready() -> void:
-	var raw_selection: String = Global.selected_players.get(player_id, Global.selected_dino_color)
+	var raw_selection: String = Global.selected_players.get(player_id, "KuroButton")
+	if raw_selection == "" or raw_selection == null:
+		raw_selection = "KuroButton"
+
 	var selected_dino: String = raw_selection.replace("Button", "").to_lower()
 	_load_dino_animations(selected_dino)
+
 	randomize()
 	add_to_group("player")
 	respawn_position = global_position
@@ -31,6 +34,7 @@ func _ready() -> void:
 	var void_area := get_tree().current_scene.get_node_or_null("Void")
 	if void_area and void_area.has_signal("player_died"):
 		void_area.player_died.connect(_on_player_died)
+
 
 func _physics_process(delta: float) -> void:
 	if Global.dialogue_active or is_respawning:
@@ -174,21 +178,14 @@ func _load_dino_animations(dino: String) -> void:
 	var msg_node_path = "DefaultMode/CanvasLayer/BottomMessage" if Global.gamemode == "default" else "OnlyUpMode/CanvasLayer/BottomMessage"
 	var msg_node = get_tree().root.get_node_or_null(msg_node_path)
 
-	
 	match dino:
 		"krussy":
 			animated_sprite.offset = Vector2(0, -3)
 			animated_sprite.scale = Vector2(0.75, 0.75)
-			# if msg_node: msg_node.show_message("Now Featuring : Krussy from a game made by Raqeeb")
-		"shiba":
+		"shiba", "shibaina":
 			animated_sprite.offset = Vector2(0, -2)
-			# if msg_node: msg_node.show_message("Now Featuring : Shiba from ShibaRunner - xvcf")
-		"shibaina":
-			animated_sprite.offset = Vector2(0, -2)
-			# if msg_node: msg_node.show_message("Now Featuring : Shibaina from ShibaRunner - xvcf")
 		"knight":
 			pass
-			# if msg_node: msg_node.show_message("Now Featuring : Knight from Brackey's Tutorial")
 		_:
 			animated_sprite.offset = Vector2.ZERO
 			animated_sprite.scale = Vector2(1, 1)
@@ -209,9 +206,7 @@ func _apply_powerups() -> void:
 func lose_life() -> void:
 	if Global.lives > 0:
 		Global.lives -= 1
-		if Global.lives > 0:
-			print("Lives left:", Global.lives)
-		else:
+		if Global.lives <= 0:
 			Global._game_over()
 
 func _process(delta: float) -> void:

@@ -1,6 +1,7 @@
-[gd_scene load_steps=12 format=3 uid="uid://c1ggaxbafgikq"]
+[gd_scene load_steps=14 format=3 uid="uid://c1ggaxbafgikq"]
 
 [ext_resource type="Script" uid="uid://7xjilp7ictmq" path="res://scripts/character_selection.gd" id="1_q54je"]
+[ext_resource type="Texture2D" uid="uid://cpnyj314igcpu" path="res://assets/sprites/Thumbnaila.png" id="2_7rsvw"]
 [ext_resource type="Texture2D" uid="uid://cquxos26sh2dl" path="res://assets/sprites/kuro_icon.png" id="2_dd54q"]
 [ext_resource type="Theme" uid="uid://dkj13f87vvpnd" path="res://assets/palettes/button.tres" id="3_o5bvq"]
 [ext_resource type="Texture2D" uid="uid://bj4bddei3reqb" path="res://assets/sprites/loki_icon.png" id="3_wh1ae"]
@@ -10,6 +11,7 @@
 [ext_resource type="Texture2D" uid="uid://dae0h0j7tey1m" path="res://assets/sprites/mort_icon.png" id="8_iixut"]
 [ext_resource type="Texture2D" uid="uid://b5a5wimhred77" path="res://assets/sprites/questionmark.png" id="9_dv8bk"]
 [ext_resource type="Texture2D" uid="uid://wk1pgrug1ll2" path="res://assets/sprites/tard_icon.png" id="9_v724p"]
+[ext_resource type="Texture2D" uid="uid://sgmc86vcjvoy" path="res://assets/sprites/sena_icon.png" id="11_y8tcv"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_wh1ae"]
 
@@ -23,9 +25,11 @@ grow_vertical = 2
 script = ExtResource("1_q54je")
 
 [node name="Background" type="TextureRect" parent="."]
+z_index = -10
 layout_mode = 0
 offset_right = 40.0
 offset_bottom = 40.0
+texture = ExtResource("2_7rsvw")
 
 [node name="TitleLabel" type="Label" parent="."]
 layout_mode = 1
@@ -33,10 +37,13 @@ anchors_preset = 5
 anchor_left = 0.5
 anchor_right = 0.5
 offset_left = -303.5
+offset_top = 6.0
 offset_right = 303.5
-offset_bottom = 63.0
+offset_bottom = 69.0
 grow_horizontal = 2
 theme = ExtResource("3_o5bvq")
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_constants/outline_size = 30
 theme_override_font_sizes/font_size = 70
 text = "Select your character"
 horizontal_alignment = 1
@@ -90,6 +97,11 @@ layout_mode = 2
 texture_normal = ExtResource("9_v724p")
 stretch_mode = 5
 
+[node name="SenaButton" type="TextureButton" parent="CharacterGrid"]
+layout_mode = 2
+texture_normal = ExtResource("11_y8tcv")
+stretch_mode = 5
+
 [node name="PlayerSlots" type="HBoxContainer" parent="."]
 layout_mode = 1
 anchors_preset = 5
@@ -110,6 +122,9 @@ layout_mode = 2
 
 [node name="Label" type="Label" parent="PlayerSlots/P1Slot"]
 layout_mode = 2
+theme_override_colors/font_color = Color(0.38431373, 0.6, 1, 1)
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_constants/outline_size = 4
 theme_override_font_sizes/font_size = 15
 text = "P1"
 horizontal_alignment = 1
@@ -124,6 +139,9 @@ layout_mode = 2
 
 [node name="Label" type="Label" parent="PlayerSlots/P2Slot"]
 layout_mode = 2
+theme_override_colors/font_color = Color(1, 0.6, 0.6039216, 1)
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_constants/outline_size = 4
 theme_override_font_sizes/font_size = 15
 text = "P2"
 horizontal_alignment = 1

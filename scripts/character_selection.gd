@@ -15,6 +15,8 @@ var grid_columns := 3
 var current_index := 0
 var current_player := "P1"
 var ready_to_start := false
+var p1_color := Color(0.384, 0.6, 1.0, 1.0)
+var p2_color := Color(1, 0.6, 0.6)
 
 var confirmed_players = {
 	"P1": false,
@@ -27,6 +29,9 @@ var selected_characters = {
 }
 
 func _ready():
+	start_button.focus_mode = Control.FOCUS_NONE
+	back_button.focus_mode = Control.FOCUS_NONE
+	_update_selector_color()
 	start_button.pressed.connect(_on_StartButton_pressed)
 	back_button.pressed.connect(_on_BackButton_pressed)
 
@@ -74,6 +79,7 @@ func _confirm_selection():
 		current_player = "P2"
 		current_index = 0
 		_update_selector_position()
+		_update_selector_color()
 	else:
 		if selected_characters["P1"] != "" and selected_characters["P2"] != "":
 			ready_to_start = true
@@ -88,6 +94,7 @@ func _unconfirm_selection():
 		ready_to_start = false
 		current_player = "P2"
 		label.text = ""
+		_update_selector_color()
 	elif confirmed_players["P1"]:
 		confirmed_players["P1"] = false
 		selected_characters["P1"] = ""
@@ -96,7 +103,7 @@ func _unconfirm_selection():
 		ready_to_start = false
 		current_player = "P1"
 		label.text = ""
-
+		_update_selector_color()
 
 func _start_game():
 	Global.selected_players = {
@@ -141,7 +148,7 @@ func _update_preview(character_name: String):
 		"LokiButton":
 			frames = preload("res://assets/sprites/skinframes/loki_frames.tres")
 			name_label.text = "Loki"
-			stats_label.text = "A good \ncompanion of Kuro."
+			stats_label.text = "Big Brother of Kuro."
 		"MonoButton":
 			frames = preload("res://assets/sprites/skinframes/mono_frames.tres")
 			name_label.text = "Mono"
@@ -149,11 +156,15 @@ func _update_preview(character_name: String):
 		"MortButton":
 			frames = preload("res://assets/sprites/skinframes/mort_frames.tres")
 			name_label.text = "Mort"
-			stats_label.text = "A good \nfriend of Kuro."
+			stats_label.text = "Also a good \nfriend of Kuro."
 		"TardButton":
 			frames = preload("res://assets/sprites/skinframes/tard_frames.tres")
 			name_label.text = "Tard"
 			stats_label.text = "Loves Lemon Tarts.\n[just like me! -zac]"
+		"SenaButton":
+			frames = preload("res://assets/sprites/skinframes/sena_frames.tres")
+			name_label.text = "Sena"
+			stats_label.text = "A good \ncompanion of Kuro."
 		_:
 			name_label.text = "None"
 			stats_label.text = ""
@@ -178,3 +189,8 @@ func _update_player_slot(player: String, character_name: String):
 		p1_icon.texture = texture
 	else:
 		p2_icon.texture = texture
+
+func _update_selector_color():
+	var stylebox: StyleBoxFlat = selector_frame.get("theme_override_styles/panel")
+	if stylebox and stylebox is StyleBoxFlat:
+		stylebox.bg_color = p1_color if current_player == "P1" else p2_color
