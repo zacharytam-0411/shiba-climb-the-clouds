@@ -35,7 +35,6 @@ func _ready() -> void:
 	if void_area and void_area.has_signal("player_died"):
 		void_area.player_died.connect(_on_player_died)
 
-
 func _physics_process(delta: float) -> void:
 	if Global.dialogue_active or is_respawning:
 		velocity = Vector2.ZERO
@@ -87,9 +86,6 @@ func _physics_process(delta: float) -> void:
 
 	velocity.x = direction * SPEED if direction != 0 else move_toward(velocity.x, 0, SPEED)
 
-	if Input.is_action_just_pressed("action_p"):
-		_random_p_action()
-
 	move_and_slide()
 
 func _on_player_died(player: Node) -> void:
@@ -137,20 +133,6 @@ func _play_jump_sound() -> void:
 		if jump_sound.playing:
 			jump_sound.stop()
 		jump_sound.play()
-
-func _random_p_action():
-	if is_on_floor() or jumps_left > 0:
-		var boost := randf_range(-500.0, -1000.0)
-		velocity.y = boost
-		jumps_left -= 1
-		_play_jump_sound()
-		print("P pressed! Dino jump boost:", boost)
-
-	var pool = Global.available_dinos + Global.secret_dinos
-	if pool.size() > 0:
-		var new_color = pool.pick_random()
-		Global.selected_dino_color = new_color
-		_load_dino_animations(new_color)
 
 func _load_dino_animations(dino: String) -> void:
 	var base_path = "res://assets/sprites/dinos/male/%s/base/" % dino

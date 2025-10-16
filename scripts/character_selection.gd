@@ -11,7 +11,7 @@ extends Control
 @onready var character_grid = $CharacterGrid
 @onready var label: Label = $PreviewPanel/Label
 
-var grid_columns := 3
+var grid_columns := 4
 var current_index := 0
 var current_player := "P1"
 var ready_to_start := false
@@ -165,10 +165,18 @@ func _update_preview(character_name: String):
 			frames = preload("res://assets/sprites/skinframes/sena_frames.tres")
 			name_label.text = "Sena"
 			stats_label.text = "A good \ncompanion of Kuro."
+		"NicoButton":
+			frames = preload("res://assets/sprites/skinframes/nico_frames.tres")
+			name_label.text = "Nico"
+			stats_label.text = "Friend of Tard.\nAlso enjoys Lemon Tarts."
 		"TetoButton":
 			frames = preload("res://assets/sprites/skinframes/teto_frames.tres")
 			name_label.text = "Teto"
-			stats_label.text = "Kasane Teto.\nBetter than Miku."
+			stats_label.text = "Kasane Teto.\n[Currently Unavailable]"
+			if confirmed_players["P1"] or confirmed_players["P2"]:
+				preview_sprite.position.y = -10  # move up slightly
+			else:
+				preview_sprite.position.y = 0  # default position
 		_:
 			name_label.text = "None"
 			stats_label.text = ""

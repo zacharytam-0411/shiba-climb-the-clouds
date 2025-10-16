@@ -1,4 +1,4 @@
-[gd_scene load_steps=15 format=3 uid="uid://c1ggaxbafgikq"]
+[gd_scene load_steps=16 format=3 uid="uid://c1ggaxbafgikq"]
 
 [ext_resource type="Script" uid="uid://7xjilp7ictmq" path="res://scripts/character_selection.gd" id="1_q54je"]
 [ext_resource type="Texture2D" uid="uid://cpnyj314igcpu" path="res://assets/sprites/Thumbnaila.png" id="2_7rsvw"]
@@ -11,6 +11,7 @@
 [ext_resource type="Texture2D" uid="uid://dae0h0j7tey1m" path="res://assets/sprites/mort_icon.png" id="8_iixut"]
 [ext_resource type="Texture2D" uid="uid://b5a5wimhred77" path="res://assets/sprites/questionmark.png" id="9_dv8bk"]
 [ext_resource type="Texture2D" uid="uid://wk1pgrug1ll2" path="res://assets/sprites/tard_icon.png" id="9_v724p"]
+[ext_resource type="Texture2D" uid="uid://cxbbcisymyoa1" path="res://assets/sprites/nico_icon.png" id="11_li4x4"]
 [ext_resource type="Texture2D" uid="uid://sgmc86vcjvoy" path="res://assets/sprites/sena_icon.png" id="11_y8tcv"]
 [ext_resource type="Texture2D" uid="uid://chkbh76ipwg1a" path="res://assets/sprites/teto_icon.png" id="12_gckxq"]
 
@@ -56,32 +57,24 @@ anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
-offset_left = -56.0
-offset_top = 42.5
-offset_right = 8.0
-offset_bottom = 117.5
+offset_left = -55.0
+offset_top = 21.5
+offset_right = 17.0
+offset_bottom = 96.5
 grow_horizontal = 2
 grow_vertical = 2
 scale = Vector2(4, 4)
-columns = 3
-
-[node name="LokiButton" type="TextureButton" parent="CharacterGrid"]
-layout_mode = 2
-texture_normal = ExtResource("3_wh1ae")
-stretch_mode = 5
+columns = 4
 
 [node name="KuroButton" type="TextureButton" parent="CharacterGrid"]
 layout_mode = 2
 texture_normal = ExtResource("2_dd54q")
 stretch_mode = 5
 
-[node name="ShibaButton" type="TextureButton" parent="CharacterGrid"]
+[node name="LokiButton" type="TextureButton" parent="CharacterGrid"]
 layout_mode = 2
-texture_normal = ExtResource("4_l56u2")
-
-[node name="KnightButton" type="TextureButton" parent="CharacterGrid"]
-layout_mode = 2
-texture_normal = ExtResource("5_7xed0")
+texture_normal = ExtResource("3_wh1ae")
+stretch_mode = 5
 
 [node name="MonoButton" type="TextureButton" parent="CharacterGrid"]
 layout_mode = 2
@@ -103,10 +96,32 @@ layout_mode = 2
 texture_normal = ExtResource("11_y8tcv")
 stretch_mode = 5
 
+[node name="NicoButton" type="TextureButton" parent="CharacterGrid"]
+layout_mode = 2
+texture_normal = ExtResource("11_li4x4")
+stretch_mode = 5
+
+[node name="ShibaButton" type="TextureButton" parent="CharacterGrid"]
+layout_mode = 2
+texture_normal = ExtResource("4_l56u2")
+
+[node name="KnightButton" type="TextureButton" parent="CharacterGrid"]
+layout_mode = 2
+texture_normal = ExtResource("5_7xed0")
+
 [node name="TetoButton" type="TextureButton" parent="CharacterGrid"]
 layout_mode = 2
-texture_normal = ExtResource("12_gckxq")
 stretch_mode = 4
+
+[node name="TextureRect" type="TextureRect" parent="CharacterGrid/TetoButton"]
+layout_mode = 0
+offset_left = -0.5
+offset_top = -1.75
+offset_right = 22.5
+offset_bottom = 25.25
+scale = Vector2(0.7, 0.7)
+texture = ExtResource("12_gckxq")
+stretch_mode = 5
 
 [node name="PlayerSlots" type="HBoxContainer" parent="."]
 layout_mode = 1
@@ -240,8 +255,8 @@ text = "Back"
 [node name="SelectorFrame" type="Panel" parent="."]
 z_index = -2
 layout_mode = 0
-offset_left = 519.0
-offset_top = 366.0
-offset_right = 588.0
-offset_bottom = 445.0
+offset_left = 520.0
+offset_top = 350.0
+offset_right = 591.0
+offset_bottom = 425.0
 theme_override_styles/panel = SubResource("StyleBoxFlat_wh1ae")
