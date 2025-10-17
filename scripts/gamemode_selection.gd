@@ -34,10 +34,12 @@ func _on_only_up_pressed():
 		get_tree().change_scene_to_file("res://scenes/tutorial.tscn")
 
 func _on_multiplayer_pressed():
-	_2_playerlabel.visible = true
-	print("Multiplayer Mode selected")
-	await get_tree().create_timer(1.0).timeout
-	_2_playerlabel.visible = false
+	if Global.tutorial_completed == true:
+		Global.gamemode = "2p"
+		get_tree().change_scene_to_file("res://scenes/only_up_2p.tscn")
+	else:
+		get_tree().change_scene_to_file("res://scenes/tutorial.tscn")
+
 
 func _on_leaderboard_button_pressed():
 	get_tree().change_scene_to_file("res://scenes/leaderboard.tscn")

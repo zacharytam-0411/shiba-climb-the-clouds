@@ -18,7 +18,7 @@ var player_id: String = "P1"
 @onready var animated_sprite: AnimatedSprite2D = $AnimatedSprite2D
 @onready var jump_sound: AudioStreamPlayer2D = $AudioStreamPlayer2D
 
-func _ready() -> void:
+func initialize_player():
 	var raw_selection: String = Global.selected_players.get(player_id, "KuroButton")
 	if raw_selection == "" or raw_selection == null:
 		raw_selection = "KuroButton"
@@ -26,6 +26,7 @@ func _ready() -> void:
 	var selected_dino: String = raw_selection.replace("Button", "").to_lower()
 	_load_dino_animations(selected_dino)
 
+func _ready() -> void:
 	randomize()
 	add_to_group("player")
 	respawn_position = global_position
@@ -195,3 +196,9 @@ func _process(delta: float) -> void:
 	Global.y_level = -((global_position.y) / 16)
 	if Global.y_level > Global.max_height:
 		Global.max_height = Global.y_level
+
+func set_platforms(data: Array):
+	for item in data:
+		var platform = item["scene"].instantiate()
+		platform.position = item["position"]
+		add_child(platform)

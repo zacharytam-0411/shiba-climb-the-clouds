@@ -96,4 +96,7 @@ offset_top = 320.0
 offset_right = 1030.0
 offset_bottom = 440.0
 theme = ExtResource("4_6l654")
-text = "2 player [wip]"
+text = "2 player [wip]
+
+disclaimer : 
+doesnt work rn"

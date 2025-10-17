@@ -1,0 +1,61 @@
+[gd_scene load_steps=21 format=3 uid="uid://hqy0tg7y46o3"]
+
+[ext_resource type="Script" uid="uid://d10enlkme33hf" path="res://scripts/platform_spawner.gd" id="1_05emw"]
+[ext_resource type="Script" uid="uid://bamuggi0ibgli" path="res://scripts/only_up_2p.gd" id="1_uo4h7"]
+[ext_resource type="PackedScene" uid="uid://bq43dd52lohdt" path="res://scenes/player_1.tscn" id="2_j7d16"]
+[ext_resource type="PackedScene" uid="uid://q3yx3svlcyoc" path="res://scenes/Platform_Normal_3.tscn" id="2_uo4h7"]
+[ext_resource type="PackedScene" uid="uid://b7t42vi2psix" path="res://scenes/player_2.tscn" id="3_7lcjx"]
+[ext_resource type="PackedScene" uid="uid://7bjwjwqwm784" path="res://scenes/Platform_Normal.tscn" id="3_fjfq1"]
+[ext_resource type="PackedScene" uid="uid://b3h2y2gxqrwe0" path="res://scenes/Platform_Normal_2.tscn" id="4_j7d16"]
+[ext_resource type="PackedScene" uid="uid://dri7scymqbohw" path="res://scenes/Platform_Normal_4.tscn" id="5_7lcjx"]
+[ext_resource type="PackedScene" uid="uid://dh8eeckyd3tg7" path="res://scenes/Platform_Normal_5.tscn" id="6_r23wj"]
+[ext_resource type="PackedScene" uid="uid://dpcpw0crbipu1" path="res://scenes/Platform_Normal_6.tscn" id="7_pp4us"]
+[ext_resource type="PackedScene" uid="uid://d1kwwvfl37r8d" path="res://scenes/Platform_Normal_7.tscn" id="8_nt4gv"]
+[ext_resource type="PackedScene" uid="uid://c7cymr43xk6l" path="res://scenes/Platform_Normal_8.tscn" id="9_fj3xr"]
+[ext_resource type="PackedScene" uid="uid://3mmsluym6y1a" path="res://scenes/Platform_Normal_9.tscn" id="10_ovete"]
+[ext_resource type="PackedScene" uid="uid://mwukm1mr7r0f" path="res://scenes/Platform_Normal_10.tscn" id="11_2y7pn"]
+[ext_resource type="PackedScene" uid="uid://mtwmcfssfk1m" path="res://scenes/Platform_Normal_11.tscn" id="12_b6jy8"]
+[ext_resource type="PackedScene" uid="uid://bk73jsk5hfhtj" path="res://scenes/Platform_Normal_12.tscn" id="13_asl6g"]
+[ext_resource type="PackedScene" uid="uid://dhpfv6obpl52b" path="res://scenes/Platform_Normal_13.tscn" id="14_iyury"]
+[ext_resource type="PackedScene" uid="uid://di0ped3ei4y1r" path="res://scenes/Platform_Normal_14.tscn" id="15_k0ke1"]
+[ext_resource type="PackedScene" uid="uid://b1tl2qbne7uuk" path="res://scenes/Platform_Normal_15.tscn" id="16_6rq2c"]
+[ext_resource type="PackedScene" uid="uid://bxd4kv21awqld" path="res://scenes/naturecoin.tscn" id="17_dpj5l"]
+
+[node name="OnlyUp2P" type="Node2D"]
+script = ExtResource("1_uo4h7")
+
+[node name="SubViewportContainer" type="SubViewportContainer" parent="."]
+offset_right = 512.0
+offset_bottom = 512.0
+
+[node name="SubViewport" type="SubViewport" parent="SubViewportContainer"]
+handle_input_locally = false
+size = Vector2i(640, 720)
+render_target_update_mode = 4
+
+[node name="Player1" parent="SubViewportContainer/SubViewport" instance=ExtResource("2_j7d16")]
+position = Vector2(3, 10)
+
+[node name="SubViewport2" type="SubViewport" parent="SubViewportContainer"]
+handle_input_locally = false
+size = Vector2i(640, 720)
+render_target_update_mode = 4
+
+[node name="Player2" parent="SubViewportContainer/SubViewport2" instance=ExtResource("3_7lcjx")]
+position = Vector2(146, 51)
+
+[node name="PlatformSpawner" type="Node2D" parent="."]
+rotation = -0.00042712904
+scale = Vector2(0.99999994, 0.99999994)
+script = ExtResource("1_05emw")
+platform_scenes = Array[PackedScene]([ExtResource("2_uo4h7"), ExtResource("3_fjfq1"), ExtResource("4_j7d16"), ExtResource("5_7lcjx"), ExtResource("6_r23wj"), ExtResource("7_pp4us"), ExtResource("8_nt4gv"), ExtResource("9_fj3xr"), ExtResource("10_ovete"), ExtResource("11_2y7pn"), ExtResource("12_b6jy8"), ExtResource("13_asl6g"), ExtResource("14_iyury"), ExtResource("15_k0ke1"), ExtResource("16_6rq2c")])
+nature_coin_scene = ExtResource("17_dpj5l")
+
+[node name="ViewportDisplay1" type="TextureRect" parent="."]
+offset_right = 640.0
+offset_bottom = 720.0
+
+[node name="ViewportDisplay2" type="TextureRect" parent="."]
+offset_left = 640.0
+offset_right = 1280.0
+offset_bottom = 720.0
