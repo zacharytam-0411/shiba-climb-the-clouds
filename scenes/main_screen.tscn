@@ -4,22 +4,13 @@
 [ext_resource type="FontFile" uid="uid://xdrw8fu77qqa" path="res://assets/fonts/m6x11.ttf" id="2_lushf"]
 [ext_resource type="FontFile" uid="uid://dcraqlv7xu0j" path="res://assets/fonts/m5x7.ttf" id="3_aum10"]
 [ext_resource type="Texture2D" uid="uid://b2bdqpmoaqpku" path="res://assets/sprites/Thumbnail.png" id="3_w87pm"]
+[ext_resource type="Theme" uid="uid://dkj13f87vvpnd" path="res://assets/palettes/button.tres" id="4_il54y"]
 [ext_resource type="Script" uid="uid://dqvh3igg2xvkg" path="res://scripts/randomtextlabel.gd" id="5_23dc1"]
 [ext_resource type="AudioStream" uid="uid://meymmbvm24b4" path="res://assets/music/orangejuice.mp3" id="6_a46j4"]
 [ext_resource type="Texture2D" uid="uid://b2k3u3jubqabr" path="res://assets/sprites/game_studio.png" id="7_23dc1"]
 
 [sub_resource type="StyleBoxTexture" id="StyleBoxTexture_7fvvs"]
 texture = ExtResource("3_w87pm")
-
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_7fvvs"]
-bg_color = Color(0.6398877, 0.63988805, 0.6398879, 1)
-border_color = Color(1, 0.32156864, 0.32156864, 1)
-corner_radius_top_left = 16
-corner_radius_top_right = 16
-corner_radius_bottom_right = 16
-corner_radius_bottom_left = 16
-shadow_color = Color(0, 0, 0, 0.203922)
-shadow_size = 5
 
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_w87pm"]
 
@@ -66,10 +57,10 @@ anchor_left = 1.0
 anchor_top = 1.0
 anchor_right = 1.0
 anchor_bottom = 1.0
-offset_left = -493.0
+offset_left = -467.0
 offset_top = -401.0
-offset_right = -81.0
-offset_bottom = -112.0
+offset_right = -197.0
+offset_bottom = -72.492676
 grow_horizontal = 0
 grow_vertical = 0
 theme_override_constants/separation = 5
@@ -77,66 +68,30 @@ theme_override_constants/separation = 5
 [node name="Button" type="Button" parent="VBoxContainer"]
 layout_mode = 2
 size_flags_vertical = 3
-theme_override_colors/font_color = Color(1, 1, 1, 1)
-theme_override_colors/font_hover_color = Color(0.29735327, 0.72092104, 0.6622504, 1)
-theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
-theme_override_constants/outline_size = 5
-theme_override_fonts/font = ExtResource("2_lushf")
+theme = ExtResource("4_il54y")
 theme_override_font_sizes/font_size = 60
-theme_override_styles/normal = SubResource("StyleBoxFlat_7fvvs")
-theme_override_styles/pressed = SubResource("StyleBoxFlat_7fvvs")
-theme_override_styles/hover = SubResource("StyleBoxFlat_7fvvs")
 theme_override_styles/focus = SubResource("StyleBoxEmpty_w87pm")
 text = "Start Game"
 
 [node name="Button2" type="Button" parent="VBoxContainer"]
 layout_mode = 2
 size_flags_vertical = 3
-theme_override_colors/font_color = Color(1, 1, 1, 1)
-theme_override_colors/font_focus_color = Color(0, 0, 0, 1)
-theme_override_colors/font_hover_color = Color(0.29803923, 0.72156864, 0.6627451, 1)
-theme_override_colors/font_hover_pressed_color = Color(0.49549448, 0.4803785, 0.45255488, 1)
-theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
-theme_override_colors/icon_pressed_color = Color(0, 0, 0, 1)
-theme_override_constants/outline_size = 5
-theme_override_fonts/font = ExtResource("2_lushf")
+theme = ExtResource("4_il54y")
 theme_override_font_sizes/font_size = 60
-theme_override_styles/normal = SubResource("StyleBoxFlat_7fvvs")
-theme_override_styles/pressed = SubResource("StyleBoxFlat_7fvvs")
-theme_override_styles/hover = SubResource("StyleBoxFlat_7fvvs")
-theme_override_styles/focus = SubResource("StyleBoxEmpty_w87pm")
 text = "Options"
 
 [node name="Shop" type="Button" parent="VBoxContainer"]
 layout_mode = 2
 size_flags_vertical = 3
-theme_override_colors/font_color = Color(1, 1, 1, 1)
-theme_override_colors/font_focus_color = Color(0, 0, 0, 1)
-theme_override_colors/font_hover_color = Color(0.29803923, 0.72156864, 0.6627451, 1)
-theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
-theme_override_constants/outline_size = 5
-theme_override_fonts/font = ExtResource("2_lushf")
+theme = ExtResource("4_il54y")
 theme_override_font_sizes/font_size = 60
-theme_override_styles/normal = SubResource("StyleBoxFlat_7fvvs")
-theme_override_styles/pressed = SubResource("StyleBoxFlat_7fvvs")
-theme_override_styles/hover = SubResource("StyleBoxFlat_7fvvs")
-theme_override_styles/focus = SubResource("StyleBoxEmpty_w87pm")
 text = "Shop"
 
 [node name="Button3" type="Button" parent="VBoxContainer"]
 layout_mode = 2
 size_flags_vertical = 3
-theme_override_colors/font_color = Color(1, 1, 1, 1)
-theme_override_colors/font_focus_color = Color(0, 0, 0, 1)
-theme_override_colors/font_hover_color = Color(0.29803923, 0.72156864, 0.6627451, 1)
-theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
-theme_override_constants/outline_size = 5
-theme_override_fonts/font = ExtResource("2_lushf")
+theme = ExtResource("4_il54y")
 theme_override_font_sizes/font_size = 60
-theme_override_styles/normal = SubResource("StyleBoxFlat_7fvvs")
-theme_override_styles/pressed = SubResource("StyleBoxFlat_7fvvs")
-theme_override_styles/hover = SubResource("StyleBoxFlat_7fvvs")
-theme_override_styles/focus = SubResource("StyleBoxEmpty_w87pm")
 text = "Exit"
 
 [node name="Label2" type="Label" parent="."]
@@ -148,7 +103,7 @@ offset_bottom = 235.0
 theme_override_colors/font_color = Color(0, 0, 0, 1)
 theme_override_fonts/font = ExtResource("2_lushf")
 theme_override_font_sizes/font_size = 50
-text = "v0.8"
+text = "v0.8a"
 
 [node name="Label5" type="Label" parent="."]
 layout_mode = 0
