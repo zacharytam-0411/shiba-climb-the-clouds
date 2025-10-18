@@ -4,6 +4,9 @@ extends Node
 
 func _ready() -> void:
 	options_menu.visible = false
+	$Player.player_id = "P1"  # or whatever ID is appropriate
+	$Player.initialize_player()
+
 
 func _unhandled_input(event: InputEvent) -> void:
 	if event.is_action_pressed("ui_cancel"):  # ESC key

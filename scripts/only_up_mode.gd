@@ -7,6 +7,9 @@ extends Node2D
 func _ready() -> void:
 	options_menu.visible = false
 	shop_menu.visible = false
+	$Player.player_id = "P1"  # or whatever ID is appropriate
+	$Player.initialize_player()
+
 
 func _process(_delta: float) -> void:
 	y_label.text = "Y Level: %dm" % Global.y_level

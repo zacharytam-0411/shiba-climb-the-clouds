@@ -41,26 +41,44 @@ func _ready():
 	viewport1.size = Vector2(640, 720)
 	viewport2.size = Vector2(640, 720)
 
-	# Generate platforms and spawn starter platforms
-	var seed = 12345
+	# Generate platforms
+	var seed = 29382
 	_generate_platforms(seed)
-	_spawn_starter_platforms()
+
+	# Spawn starter platforms first
+	var starter_scene = preload("res://scenes/Platform_Normal.tscn")
+
+	var platform1 = starter_scene.instantiate()
+	var platform1_pos = Vector2(320, 500)
+	platform1.global_position = platform1_pos
+	viewport1.add_child(platform1)
+	print("Platform1 added to viewport1 at", platform1.global_position)
+
+	var platform2 = starter_scene.instantiate()
+	var platform2_pos = Vector2(320, 500)
+	platform2.global_position = platform2_pos
+	viewport2.add_child(platform2)
+	print("Platform2 added to viewport2 at", platform2.global_position)
+
+	# Wait one frame to ensure platforms are processed
+	await get_tree().process_frame
 
 	# Instance players and assign platform data
 	var player1_instance = PLAYER1_SCENE.instantiate()
 	viewport1.add_child(player1_instance)
+	player1_instance.global_position = platform1_pos + Vector2(0, -48)
 	var player1 = player1_instance.get_node("Player")
 	player1.player_id = "P1"
 	player1.set_platforms(platform_data)
-	player1.global_position = Vector2(200, -480)
-	
+	print("Player1 added at", player1_instance.global_position)
 
 	var player2_instance = PLAYER2_SCENE.instantiate()
 	viewport2.add_child(player2_instance)
+	player2_instance.global_position = platform2_pos + Vector2(0, -48)
 	var player2 = player2_instance.get_node("Player")
 	player2.player_id = "P2"
 	player2.set_platforms(platform_data)
-	player2.global_position = Vector2(400, -480)
+	print("Player2 added at", player2_instance.global_position)
 
 func _generate_platforms(seed: int) -> void:
 	var rng = RandomNumberGenerator.new()
@@ -75,17 +93,3 @@ func _generate_platforms(seed: int) -> void:
 			"position": Vector2(x, y),
 			"scene": variant
 		})
-
-func _spawn_starter_platforms():
-	var starter_scene = preload("res://scenes/Platform_Normal.tscn")
-
-	var platform1 = starter_scene.instantiate()
-	platform1.global_position = Vector2(200, 500)
-	viewport1.add_child(platform1)
-
-	var platform2 = starter_scene.instantiate()
-	platform2.global_position = Vector2(400, 500)
-	viewport2.add_child(platform2)
-
-	print("Starter platform added to viewport1:", platform1)
-	print("Starter platform added to viewport2:", platform2)
