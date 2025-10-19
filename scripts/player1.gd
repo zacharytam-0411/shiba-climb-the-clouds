@@ -1,0 +1,144 @@
+extends CharacterBody2D
+
+# Movement constants
+const BASE_SPEED: float = 150.0
+const BASE_JUMP_VELOCITY: float = -300.0
+const WALL_JUMP_PUSH: float = 200.0
+const COYOTE_TIME: float = 0.1
+const BASE_GRAVITY: float = 980.0
+
+# Runtime variables
+var SPEED: float = BASE_SPEED
+var JUMP_VELOCITY: float = BASE_JUMP_VELOCITY
+var coyote_timer: float = 0.0
+var jumps_left: int = 1
+var respawn_position: Vector2 = Vector2.ZERO
+var is_respawning: bool = false
+var player_id: String = "P1"
+
+# Node references
+@onready var animated_sprite: AnimatedSprite2D = $AnimatedSprite2D
+@onready var jump_sound: AudioStreamPlayer2D = $AudioStreamPlayer2D
+
+# Called externally before initialize_player()
+func set_player_id(id: String) -> void:
+	player_id = id
+
+# Loads selected dino animations
+func initialize_player() -> void:
+	var raw_selection: String = Global.selected_players.get(player_id, "KuroButton")
+	if raw_selection == "" or raw_selection == null:
+		raw_selection = "KuroButton"
+	var selected_dino: String = raw_selection.replace("Button", "").to_lower()
+	_load_dino_animations(selected_dino)
+
+func _ready() -> void:
+	randomize()
+	add_to_group("player")
+	respawn_position = global_position
+	_apply_powerups()
+	# initialize_player() must be called externally after set_player_id()
+
+func _physics_process(delta: float) -> void:
+	if Global.dialogue_active or is_respawning:
+		velocity = Vector2.ZERO
+		animated_sprite.play("idle")
+		move_and_slide()
+		return
+
+	_apply_powerups()
+	velocity.y += BASE_GRAVITY * delta
+
+	# Handle jump logic
+	if is_on_floor():
+		jumps_left = 2 if Global.sapphire_collected or (Global.gamemode == "only_up" and Global.upgrades.get("DoubleJump", false)) else 1
+		coyote_timer = COYOTE_TIME
+	else:
+		coyote_timer -= delta
+
+	var up_action: String = "move_up_%s" % player_id.to_lower()
+	if Input.is_action_just_pressed(up_action):
+		if is_on_floor() or coyote_timer > 0.0:
+			velocity.y = JUMP_VELOCITY
+			jumps_left -= 1
+			coyote_timer = 0.0
+			_play_jump_sound()
+		elif jumps_left > 0 and (Global.sapphire_collected or (Global.gamemode == "only_up" and Global.upgrades.get("DoubleJump", false))):
+			velocity.y = JUMP_VELOCITY
+			jumps_left -= 1
+			_play_jump_sound()
+		elif Global.ruby_collected and is_on_wall():
+			var wall_normal: float = get_wall_normal().x
+			velocity.y = JUMP_VELOCITY
+			velocity.x = WALL_JUMP_PUSH * sign(wall_normal)
+			jumps_left = 2 if Global.sapphire_collected or (Global.gamemode == "only_up" and Global.upgrades.get("DoubleJump", false)) else 1
+			_play_jump_sound()
+
+	# Handle horizontal movement
+	var left_action: String = "move_left_%s" % player_id.to_lower()
+	var right_action: String = "move_right_%s" % player_id.to_lower()
+	var direction: float = Input.get_axis(left_action, right_action)
+
+	animated_sprite.flip_h = direction < 0
+
+	if is_on_floor():
+		animated_sprite.play("idle" if direction == 0.0 else "move")
+	else:
+		animated_sprite.play("jump")
+
+	velocity.x = direction * SPEED if direction != 0.0 else move_toward(velocity.x, 0.0, SPEED)
+	move_and_slide()
+
+func _play_jump_sound() -> void:
+	if jump_sound and jump_sound.stream:
+		if jump_sound.playing:
+			jump_sound.stop()
+		jump_sound.play()
+
+func _load_dino_animations(dino: String) -> void:
+	var base_path: String = "res://assets/sprites/dinos/male/%s/base/" % dino
+	var animations: Array[String] = ["idle", "move", "jump"]
+	var frames: SpriteFrames = SpriteFrames.new()
+
+	for anim in animations:
+		var file_path: String = base_path + "%s.png" % anim
+		if not ResourceLoader.exists(file_path):
+			continue
+		var tex: Texture2D = load(file_path)
+		var frame_size: int = tex.get_height()
+		var frame_count: int = tex.get_width() / frame_size
+
+		if frame_count < 1:
+			continue
+
+		frames.add_animation(anim)
+		for i in range(frame_count):
+			var region: Rect2 = Rect2(i * frame_size, 0, frame_size, frame_size)
+			var atlas: AtlasTexture = AtlasTexture.new()
+			atlas.atlas = tex
+			atlas.region = region
+			frames.add_frame(anim, atlas)
+
+	animated_sprite.frames = frames
+	animated_sprite.play("idle")
+
+func _apply_powerups() -> void:
+	SPEED = BASE_SPEED
+	JUMP_VELOCITY = BASE_JUMP_VELOCITY
+	if Global.emerald_collected:
+		SPEED *= 1.15
+		JUMP_VELOCITY *= 1.1
+	if Global.gamemode == "only_up":
+		SPEED *= 1.5
+		JUMP_VELOCITY *= 1.5
+		var boost_level: int = Global.upgrades.get("JumpBoost", 0)
+		if boost_level > 0:
+			JUMP_VELOCITY *= 1.0 + (0.3 * boost_level)
+
+func set_platforms(data: Array) -> void:
+	for item in data:
+		var scene: PackedScene = item["scene"]
+		var position: Vector2 = item["position"]
+		var platform: Node2D = scene.instantiate()
+		platform.position = position
+		add_child(platform)
