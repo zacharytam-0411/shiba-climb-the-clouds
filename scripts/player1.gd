@@ -1,8 +1,8 @@
 extends CharacterBody2D
 
 # Movement constants
-const BASE_SPEED: float = 150.0
-const BASE_JUMP_VELOCITY: float = -300.0
+const BASE_SPEED: float = 200.0
+const BASE_JUMP_VELOCITY: float = -400.0
 const WALL_JUMP_PUSH: float = 200.0
 const COYOTE_TIME: float = 0.1
 const BASE_GRAVITY: float = 980.0
@@ -14,13 +14,14 @@ var coyote_timer: float = 0.0
 var jumps_left: int = 1
 var respawn_position: Vector2 = Vector2.ZERO
 var is_respawning: bool = false
-var player_id: String = "P1"
+
+@export var player_id: String = "P1"  # Can be set in editor or via set_player_id()
 
 # Node references
 @onready var animated_sprite: AnimatedSprite2D = $AnimatedSprite2D
 @onready var jump_sound: AudioStreamPlayer2D = $AudioStreamPlayer2D
 
-# Called externally before initialize_player()
+# External setter
 func set_player_id(id: String) -> void:
 	player_id = id
 
@@ -37,7 +38,7 @@ func _ready() -> void:
 	add_to_group("player")
 	respawn_position = global_position
 	_apply_powerups()
-	# initialize_player() must be called externally after set_player_id()
+	# initialize_player() must be called externally after player_id is set
 
 func _physics_process(delta: float) -> void:
 	if Global.dialogue_active or is_respawning:
@@ -49,7 +50,7 @@ func _physics_process(delta: float) -> void:
 	_apply_powerups()
 	velocity.y += BASE_GRAVITY * delta
 
-	# Handle jump logic
+	# Jump logic
 	if is_on_floor():
 		jumps_left = 2 if Global.sapphire_collected or (Global.gamemode == "only_up" and Global.upgrades.get("DoubleJump", false)) else 1
 		coyote_timer = COYOTE_TIME
@@ -74,7 +75,7 @@ func _physics_process(delta: float) -> void:
 			jumps_left = 2 if Global.sapphire_collected or (Global.gamemode == "only_up" and Global.upgrades.get("DoubleJump", false)) else 1
 			_play_jump_sound()
 
-	# Handle horizontal movement
+	# Horizontal movement
 	var left_action: String = "move_left_%s" % player_id.to_lower()
 	var right_action: String = "move_right_%s" % player_id.to_lower()
 	var direction: float = Input.get_axis(left_action, right_action)

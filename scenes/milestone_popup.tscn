@@ -1,0 +1,43 @@
+[gd_scene load_steps=3 format=3 uid="uid://2q6m3bviwdtc"]
+
+[ext_resource type="Script" uid="uid://crd88mexgdd6l" path="res://scripts/milestone_popup.gd" id="1_sghro"]
+[ext_resource type="Theme" uid="uid://dkj13f87vvpnd" path="res://assets/palettes/button.tres" id="2_d4v0r"]
+
+[node name="MilestonePopup" type="Control"]
+layout_mode = 3
+anchors_preset = 0
+script = ExtResource("1_sghro")
+
+[node name="SubtitleLabel" type="Label" parent="."]
+layout_mode = 1
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -23.73684
+offset_top = 28.0
+offset_right = 24.26316
+offset_bottom = 55.0
+grow_horizontal = 2
+grow_vertical = 0
+theme = ExtResource("2_d4v0r")
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_font_sizes/font_size = 22
+text = "doesnt work"
+horizontal_alignment = 1
+
+[node name="TitleLabel" type="Label" parent="."]
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -25.73684
+offset_top = -1.0
+offset_right = 26.26316
+offset_bottom = 26.0
+grow_horizontal = 2
+theme = ExtResource("2_d4v0r")
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+text = "test"
+horizontal_alignment = 1

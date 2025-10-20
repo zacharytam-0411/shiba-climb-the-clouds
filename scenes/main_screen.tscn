@@ -69,30 +69,46 @@ theme_override_constants/separation = 5
 layout_mode = 2
 size_flags_vertical = 3
 theme = ExtResource("4_il54y")
+theme_type_variation = &"FlatButton"
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_constants/outline_size = 10
 theme_override_font_sizes/font_size = 60
 theme_override_styles/focus = SubResource("StyleBoxEmpty_w87pm")
 text = "Start Game"
+alignment = 0
 
 [node name="Button2" type="Button" parent="VBoxContainer"]
 layout_mode = 2
 size_flags_vertical = 3
 theme = ExtResource("4_il54y")
+theme_type_variation = &"FlatButton"
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_constants/outline_size = 10
 theme_override_font_sizes/font_size = 60
 text = "Options"
+alignment = 0
 
 [node name="Shop" type="Button" parent="VBoxContainer"]
 layout_mode = 2
 size_flags_vertical = 3
 theme = ExtResource("4_il54y")
+theme_type_variation = &"FlatButton"
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_constants/outline_size = 10
 theme_override_font_sizes/font_size = 60
 text = "Shop"
+alignment = 0
 
 [node name="Button3" type="Button" parent="VBoxContainer"]
 layout_mode = 2
 size_flags_vertical = 3
 theme = ExtResource("4_il54y")
+theme_type_variation = &"FlatButton"
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_constants/outline_size = 10
 theme_override_font_sizes/font_size = 60
 text = "Exit"
+alignment = 0
 
 [node name="Label2" type="Label" parent="."]
 layout_mode = 0

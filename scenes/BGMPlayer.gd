@@ -4,6 +4,7 @@ extends AudioStreamPlayer
 @onready var label_timer: Timer = $"../BGMTimer"
 
 var teto_playlist: Array = [
+	{"name": "Igaku - Sasuke Haraguchi [Feat. Kasane Teto]", "stream": preload("res://assets/music/Igaku.mp3")},
 	{"name": "PPPP - TAK [feat. Kasane Teto, Hatsune Miku]", "stream": preload("res://assets/music/PPPP.mp3")},
 	{"name": "Lemon Melon Cookie - TAK [feat. Hatsune Miku]", "stream": preload("res://assets/music/Lemon Melon Cookie.mp3")},
 	{"name": "Ochame Kinou - LamazeP [feat. Kasane Teto]", "stream": preload("res://assets/music/Ochame Kinou.mp3")},

@@ -1,17 +1,35 @@
 extends Node2D
 
-@export var platform_scenes: Array[PackedScene] = []
-@export var vertical_spacing: int = 300
+@export var vertical_spacing: int = 250
 @export var horizontal_range: int = 100
-@export var spawn_buffer: int = 600
+@export var spawn_buffer: int = 500
 @export var base_spacing: float = 60.0
-@export var spacing_growth: float = 0.002
+@export var spacing_growth: float = 0.0002
 @export var nature_coin_scene: PackedScene
 @export var nature_coin_chance: float = 0.6
+@onready var player: CharacterBody2D = $"../Player"
+
+@export var platform_tiers: Array[Dictionary] = [
+	{ "min_y": 0, "max_y": -2000, "scene": preload("res://scenes/Platform_Normal.tscn") },
+	{ "min_y": -2000, "max_y": -4000, "scene": preload("res://scenes/Platform_Normal_2.tscn") },
+	{ "min_y": -4000, "max_y": -6000, "scene": preload("res://scenes/Platform_Normal_3.tscn") },
+	{ "min_y": -6000, "max_y": -8000, "scene": preload("res://scenes/Platform_Normal_5.tscn") },
+	{ "min_y": -8000, "max_y": -10000, "scene": preload("res://scenes/Platform_Normal_6.tscn") },
+]
 
 var death_threshold: float = 1000.0
-var last_spawn_y: Dictionary = {}  # key: player_id → float
-var death_cooldown: Dictionary = {}  # key: player_id → float
+var last_spawn_y: Dictionary = {}  # player_id → float
+var death_cooldown: Dictionary = {}  # player_id → float
+var next_milestone: Dictionary = {}  # player_id → int
+
+var milestone_messages: Array[String] = [
+	"Adventure awaits...",
+	"The climb intensifies...",
+	"Strange winds whisper...",
+	"You are not alone...",
+	"Candy...yum..",
+	"Space exploration? Seems fun..."
+]
 
 func _ready():
 	var players = get_tree().get_nodes_in_group("player")
@@ -20,28 +38,33 @@ func _ready():
 		return
 
 	for player in players:
-		var id = player.player_id
+		var id = player.get("player_id")
 		last_spawn_y[id] = player.global_position.y
 		death_cooldown[id] = 0.0
+		next_milestone[id] = 1
 		spawn_platforms_for(player)
 
 func _process(delta: float) -> void:
 	var players = get_tree().get_nodes_in_group("player")
 	for player in players:
-		var id = player.player_id
+		var id = player.get("player_id")
 
 		if death_cooldown.get(id, 0.0) > 0.0:
 			death_cooldown[id] -= delta
 
-		while last_spawn_y.get(id, 0.0) - player.global_position.y > spawn_buffer:
+		var distance_to_player: float = last_spawn_y.get(id, 0.0) - player.global_position.y
+		while distance_to_player > spawn_buffer:
 			spawn_platforms_for(player)
 			last_spawn_y[id] -= spawn_buffer
+			distance_to_player -= spawn_buffer
 
-		if player.is_respawning or death_cooldown.get(id, 0.0) > 0.0:
+		if player.get("is_respawning") or death_cooldown.get(id, 0.0) > 0.0:
 			continue
 
 		if player.global_position.y > last_spawn_y.get(id, 0.0) + death_threshold:
 			_handle_player_fall(player)
+
+		_check_milestone(player)
 
 func spawn_platforms_for(player: Node2D) -> void:
 	var climb_height: float = abs(player.global_position.y)
@@ -61,7 +84,7 @@ func spawn_platforms_for(player: Node2D) -> void:
 		var spawn_pos := Vector2(x, y)
 		previous_x = x
 
-		var platform_scene: PackedScene = platform_scenes.pick_random()
+		var platform_scene: PackedScene = get_platform_scene_for_y(y)
 		var platform: Node2D = platform_scene.instantiate()
 		platform.global_position = spawn_pos
 		add_child(platform)
@@ -71,12 +94,18 @@ func spawn_platforms_for(player: Node2D) -> void:
 			nature_coin.global_position = spawn_pos + Vector2(0, -20)
 			add_child(nature_coin)
 
+func get_platform_scene_for_y(y: float) -> PackedScene:
+	for tier in platform_tiers:
+		if y <= tier["min_y"] and y > tier["max_y"]:
+			return tier["scene"]
+	return platform_tiers[0]["scene"]
+
 func _handle_player_fall(player: Node2D) -> void:
-	var id = player.player_id
-	player.is_respawning = true
+	var id = player.get("player_id")
+	player.set("is_respawning", true)
 	death_cooldown[id] = 2.0
-	player.velocity = Vector2.ZERO
-	player.lose_life()
+	player.set("velocity", Vector2.ZERO)
+	player.call("lose_life")
 
 	var target_pos: Vector2 = find_nearest_platform()
 	if target_pos != Vector2.ZERO:
@@ -87,7 +116,7 @@ func _handle_player_fall(player: Node2D) -> void:
 
 	var overlay: Node = get_tree().current_scene.get_node_or_null("DeathOverlay")
 	if overlay:
-		overlay.start_reveal(player.global_position)
+		overlay.call("start_reveal", player.global_position)
 
 	var timer: Timer = Timer.new()
 	timer.wait_time = 0.1
@@ -97,10 +126,10 @@ func _handle_player_fall(player: Node2D) -> void:
 	timer.start()
 
 func _on_respawn_timer_timeout(player: Node2D, overlay: Node) -> void:
-	player.respawn()
+	player.call("respawn")
 
 	if overlay:
-		overlay.reveal_circle(player.global_position)
+		overlay.call("reveal_circle", player.global_position)
 
 	var timer: Timer = Timer.new()
 	timer.wait_time = 1.0
@@ -110,7 +139,7 @@ func _on_respawn_timer_timeout(player: Node2D, overlay: Node) -> void:
 	timer.start()
 
 func _on_finish_respawn(player: Node2D) -> void:
-	player.is_respawning = false
+	player.set("is_respawning", false)
 
 func find_nearest_platform() -> Vector2:
 	var nearest_pos: Vector2 = Vector2.ZERO
@@ -125,3 +154,17 @@ func find_nearest_platform() -> Vector2:
 				nearest_pos = pos
 
 	return nearest_pos
+
+func _check_milestone(player: Node2D) -> void:
+	var id = player.get("player_id")
+	var level: int = next_milestone.get(id, 1)
+	var milestone_height: int = level * 2000
+	var current_y: int = int(player.global_position.y)
+
+	if abs(current_y) >= milestone_height:
+		var popup := get_tree().current_scene.get_node_or_null("CanvasLayer/MilestonePopup")
+		if popup:
+			var message := milestone_messages[min(level - 1, milestone_messages.size() - 1)]
+			popup.call("show_milestone", level, abs(current_y), message)
+
+		next_milestone[id] += 1

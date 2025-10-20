@@ -6,10 +6,11 @@
 [ext_resource type="AudioStream" uid="uid://bhmkglotgh4ds" path="res://assets/sounds/cartoon-jump-6462.mp3" id="4_0mr0g"]
 [ext_resource type="Script" uid="uid://b8uj02n62u4t1" path="res://scenes/audio_stream_player_2d.gd" id="5_v7tvf"]
 
-[sub_resource type="CircleShape2D" id="CircleShape2D_0mr0g"]
+[sub_resource type="CircleShape2D" id="CircleShape2D_vod78"]
 radius = 5.0
 
 [node name="Player2" type="Node2D" groups=["Player", "player"]]
+scale = Vector2(2, 2)
 script = ExtResource("1_s551d")
 
 [node name="Player" type="CharacterBody2D" parent="."]
@@ -20,7 +21,7 @@ sprite_frames = ExtResource("3_oc1kf")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Player"]
 position = Vector2(-1, 4)
-shape = SubResource("CircleShape2D_0mr0g")
+shape = SubResource("CircleShape2D_vod78")
 
 [node name="Camera2D" type="Camera2D" parent="Player"]
 

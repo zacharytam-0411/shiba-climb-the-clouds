@@ -2,5 +2,5 @@ extends Node2D
 
 func _ready():
 	var player = $Player
-	player.player_id = "P1"
-	$Player.initialize_player()
+	player.set_player_id("P1")
+	player.initialize_player()
