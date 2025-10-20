@@ -122,6 +122,7 @@ animations = [{
 }]
 
 [node name="Player" type="CharacterBody2D" groups=["Player"]]
+z_index = 4096
 script = ExtResource("1_g2els")
 
 [node name="Camera2D" type="Camera2D" parent="." groups=["camera"]]
