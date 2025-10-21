@@ -2,7 +2,7 @@ extends Node2D
 
 @onready var skip_button: Button = $Button/Button
 @onready var dino: AnimatedSprite2D = $CanvasLayer/AnimatedSprite2D
-@onready var overlay: TextureRect = $CanvasLayer/TextureRect   # changed from ColorRect → TextureRect
+@onready var overlay: TextureRect = $CanvasLayer/TextureRect
 @onready var panel: Panel = $CanvasLayer/Panel
 @onready var text_label: Label = $CanvasLayer/Panel/Label
 @onready var continue_label: Label = $CanvasLayer/Panel/ContinueLabel
@@ -39,30 +39,20 @@ extends Node2D
 var dialogue_lines = [
 	"Hello there! I'm your guide, Kuro!",
 	"Welcome in playing 'Climb the Clouds'!",
-	"I'm here to tell you about the things that you 
-	need to know before you start the game!",
-	"Firstly, both arrow keys and WASD 
-	are the general controls.",
-	"You can also press space bar to jump and maybe, 
-	just maybe, press P for a surprise! [Randomness Week]
-	It just might be a skip... might be...",
+	"I'm here to tell you about the things that you need to know before you start the game!",
+	"Firstly, both arrow keys and WASD are the general controls.",
+	"You can also press space bar to jump and maybe, just maybe, press P for a surprise! [Randomness Week] It just might be a skip... might be...",
 	"Now, let me tell you about the 4 gems you can find:",
 	"Ruby lets you wall jump.",
 	"Sapphire gives you a double jump.",
-	"Emerald gives a speed and jump boost,
-	and Diamond gives you 2 extra lives!",
-	"Also, remember to check out the Options page 
-	to customize the dino color and the music volume!",
-	"After this dialogue ends, there will be a free space
-	for you to explore the mechanics of the game.",
-	"Click the 'Back to Menu' button on the 
-	top right corner when you are done!",
-	"Note that you will have to click Start Game 
-	again to start the main game!",
-	"You can press the I key to skip a song backwards,
-	and O key to do the opposite [skip forwards].",
+	"Emerald gives a speed and jump boost, and Diamond gives you 2 extra lives!",
+	"Also, remember to check out the Options page to customize the dino color and the music volume!",
+	"After this dialogue ends, there will be a free space for you to explore the mechanics of the game.",
+	"Click the 'Back to Menu' button on the top right corner when you are done!",
+	"Note that you will have to click Start Game again to start the main game!",
+	"You can press the I key to skip a song backwards, and O key to do the opposite [skip forwards].",
 	"Also, press Esc to access the Options page mid-game!",
-	"That's all, enjoy your game, and happy climbing!"
+    "That's all, enjoy your game, and happy climbing!"
 ]
 
 var current_line = 0
@@ -103,7 +93,7 @@ func start_dialogue():
 	Global.dialogue_active = true
 	overlay.visible = true
 	dino.visible = true
-	dino.scale = Vector2(10, 10)  
+	dino.scale = Vector2(10, 10)
 	dino.play("default")
 	panel.visible = true
 	text_label.visible = true
@@ -130,7 +120,7 @@ func _show_line():
 				down_arrow.visible = true
 				up_arrow.visible = true
 				right_arrow.visible = true
-				left_arrow.visible = true	
+				left_arrow.visible = true
 				w_button.visible = true
 				a_button.visible = true
 				s_button.visible = true
@@ -214,6 +204,9 @@ func _unhandled_input(event: InputEvent) -> void:
 			_hide_continue_prompt()
 			current_line += 1
 			_show_line()
+	elif event.is_action_pressed("confirm_selection"):
+		if leave_button.visible:
+			_on_leave_pressed()
 
 func _show_continue_prompt():
 	continue_label.visible = true
@@ -278,13 +271,13 @@ func _on_ruby_pickup(body: Node) -> void:
 		Global.ruby_collected = true
 		ruby_pickup.queue_free()
 		print("Ruby collected!")
-		
+
 func _on_sapphire_pickup(body: Node) -> void:
 	if body == player:
 		Global.sapphire_collected = true
 		sapphire_pickup.queue_free()
 		print("Sapphire collected!")
-		
+
 func _on_leave_pressed() -> void:
 	Global.tutorial_completed = true
 	Global.dialogue_active = false
@@ -292,6 +285,4 @@ func _on_leave_pressed() -> void:
 	Global.in_tutorial = false
 	Global._reset()
 	print("Tutorial marked as complete, leaving tutorial...")
-	
-	# For now, just free the tutorial scene (or change scene if you want)
 	get_tree().change_scene_to_file("res://scenes/character_selection.tscn")

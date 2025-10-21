@@ -1,4 +1,4 @@
-[gd_scene load_steps=16 format=3 uid="uid://c1ggaxbafgikq"]
+[gd_scene load_steps=17 format=3 uid="uid://c1ggaxbafgikq"]
 
 [ext_resource type="Script" uid="uid://7xjilp7ictmq" path="res://scripts/character_selection.gd" id="1_q54je"]
 [ext_resource type="Texture2D" uid="uid://cpnyj314igcpu" path="res://assets/sprites/Thumbnaila.png" id="2_7rsvw"]
@@ -13,6 +13,7 @@
 [ext_resource type="Texture2D" uid="uid://wk1pgrug1ll2" path="res://assets/sprites/tard_icon.png" id="9_v724p"]
 [ext_resource type="Texture2D" uid="uid://cxbbcisymyoa1" path="res://assets/sprites/nico_icon.png" id="11_li4x4"]
 [ext_resource type="Texture2D" uid="uid://sgmc86vcjvoy" path="res://assets/sprites/sena_icon.png" id="11_y8tcv"]
+[ext_resource type="Texture2D" uid="uid://cslkp2ks7cbr1" path="res://assets/sprites/olaf_icon.png" id="12_c830i"]
 [ext_resource type="Texture2D" uid="uid://chkbh76ipwg1a" path="res://assets/sprites/teto_icon.png" id="12_gckxq"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_wh1ae"]
@@ -57,9 +58,9 @@ anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
-offset_left = -55.0
+offset_left = -79.5
 offset_top = 21.5
-offset_right = 17.0
+offset_right = -6.5
 offset_bottom = 96.5
 grow_horizontal = 2
 grow_vertical = 2
@@ -105,6 +106,10 @@ stretch_mode = 5
 layout_mode = 2
 texture_normal = ExtResource("4_l56u2")
 
+[node name="OlafButton" type="TextureButton" parent="CharacterGrid"]
+layout_mode = 2
+texture_normal = ExtResource("12_c830i")
+
 [node name="KnightButton" type="TextureButton" parent="CharacterGrid"]
 layout_mode = 2
 texture_normal = ExtResource("5_7xed0")
@@ -122,6 +127,10 @@ offset_bottom = 25.25
 scale = Vector2(0.7, 0.7)
 texture = ExtResource("12_gckxq")
 stretch_mode = 5
+
+[node name="RandomButton" type="TextureButton" parent="CharacterGrid"]
+layout_mode = 2
+texture_normal = ExtResource("9_dv8bk")
 
 [node name="PlayerSlots" type="HBoxContainer" parent="."]
 layout_mode = 1
@@ -255,8 +264,8 @@ text = "Back"
 [node name="SelectorFrame" type="Panel" parent="."]
 z_index = -2
 layout_mode = 0
-offset_left = 520.0
-offset_top = 350.0
-offset_right = 591.0
-offset_bottom = 425.0
+offset_left = 491.0
+offset_top = 342.0
+offset_right = 562.0
+offset_bottom = 417.0
 theme_override_styles/panel = SubResource("StyleBoxFlat_wh1ae")

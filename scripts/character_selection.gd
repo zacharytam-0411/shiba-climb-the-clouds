@@ -29,6 +29,7 @@ var selected_characters = {
 }
 
 func _ready():
+	randomize()
 	start_button.focus_mode = Control.FOCUS_NONE
 	back_button.focus_mode = Control.FOCUS_NONE
 	_update_selector_color()
@@ -70,6 +71,16 @@ func _update_selector_position():
 func _confirm_selection():
 	var selected_button := character_grid.get_child(current_index)
 	var character_name := selected_button.name
+
+	if character_name == "RandomButton":
+		var valid_buttons := character_grid.get_children().filter(func(b): return b.name != "RandomButton")
+		if valid_buttons.size() == 0:
+			return
+		var random_button: Control = valid_buttons[randi() % valid_buttons.size()]
+		current_index = character_grid.get_children().find(random_button)
+		_update_selector_position()
+		character_name = random_button.name
+		_update_preview(character_name)
 
 	selected_characters[current_player] = character_name
 	_update_player_slot(current_player, character_name)
@@ -119,6 +130,15 @@ func _on_BackButton_pressed():
 	get_tree().change_scene_to_file("res://scenes/main_screen.tscn")
 
 func _on_character_selected(character_name: String):
+	if character_name == "RandomButton":
+		var valid_buttons := character_grid.get_children().filter(func(b): return b.name != "RandomButton")
+		if valid_buttons.size() == 0:
+			return
+		var random_button: Control = valid_buttons[randi() % valid_buttons.size()]
+		current_index = character_grid.get_children().find(random_button)
+		_update_selector_position()
+		character_name = random_button.name
+
 	selected_characters[current_player] = character_name
 	_update_preview(character_name)
 	_update_player_slot(current_player, character_name)
@@ -128,6 +148,12 @@ func _update_preview(character_name: String):
 		preview_sprite.frames = null
 		name_label.text = "None"
 		stats_label.text = ""
+		return
+
+	if character_name == "RandomButton":
+		preview_sprite.frames = null
+		name_label.text = "Random"
+		stats_label.text = "Gives you a random player."
 		return
 
 	var frames: SpriteFrames = null
@@ -169,14 +195,18 @@ func _update_preview(character_name: String):
 			frames = preload("res://assets/sprites/skinframes/nico_frames.tres")
 			name_label.text = "Nico"
 			stats_label.text = "Friend of Tard.\nAlso enjoys Lemon Tarts."
+		"OlafButton":
+			frames = preload("res://assets/sprites/skinframes/olaf_frames.tres")
+			name_label.text = "Olaf"
+			stats_label.text = "Younger Brother of Tard."
 		"TetoButton":
 			frames = preload("res://assets/sprites/skinframes/teto_frames.tres")
 			name_label.text = "Teto"
-			stats_label.text = "Kasane Teto.\n[Currently Unavailable]"
+			stats_label.text = "Kasane Teto."
 			if confirmed_players["P1"] or confirmed_players["P2"]:
-				preview_sprite.position.y = -10  # move up slightly
+				preview_sprite.position.y = -10
 			else:
-				preview_sprite.position.y = 0  # default position
+				preview_sprite.position.y = 0
 		_:
 			name_label.text = "None"
 			stats_label.text = ""
@@ -202,7 +232,7 @@ func _update_player_slot(player: String, character_name: String):
 	else:
 		p2_icon.texture = texture
 
-func _update_selector_color():
-	var stylebox: StyleBoxFlat = selector_frame.get("theme_override_styles/panel")
-	if stylebox and stylebox is StyleBoxFlat:
+func _update_selector_color(): 
+	var stylebox: StyleBoxFlat = selector_frame.get("theme_override_styles/panel") 
+	if stylebox and stylebox is StyleBoxFlat: 
 		stylebox.bg_color = p1_color if current_player == "P1" else p2_color

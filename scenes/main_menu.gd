@@ -1,5 +1,39 @@
 extends Control
 
+var buttons := []
+var selected_index := 0
+
+func _ready() -> void:
+	# Ensure these paths match your actual scene structure
+	buttons = [
+		$VBoxContainer/StartButton,
+		$VBoxContainer/SettingsButton,
+		$VBoxContainer/ShopButton,
+		$VBoxContainer/ExitButton
+	]
+	highlight_selected()  # Focus StartButton by default
+
+func _process(delta: float) -> void:
+	if Input.is_action_just_pressed("move_down"):
+		selected_index = (selected_index + 1) % buttons.size()
+		highlight_selected()
+	elif Input.is_action_just_pressed("move_up"):
+		selected_index = (selected_index - 1 + buttons.size()) % buttons.size()
+		highlight_selected()
+	elif Input.is_action_just_pressed("confirm_selection"):
+		activate_selected()
+
+func highlight_selected() -> void:
+	if buttons[selected_index]:
+		buttons[selected_index].grab_focus()
+
+func activate_selected() -> void:
+	match selected_index:
+		0: _on_start_pressed()
+		1: _on_settings_pressed()
+		2: _on_shop_pressed()
+		3: _on_exit_pressed()
+
 func _on_start_pressed() -> void:
 	print("Go to gamemode selection")
 	if Global.tutorial_completed == true:
