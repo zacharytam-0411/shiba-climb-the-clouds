@@ -7,14 +7,14 @@ extends Control
 var current_index: int = 0
 
 func _ready() -> void:
-	# --- Dino setup ---
+
 	current_index = Global.available_dinos.find(Global.selected_dino_color)
 	if current_index == -1:
 		current_index = 0
 
 	back_button.pressed.connect(_on_back_pressed)
 
-	# --- Music setup ---
+
 	var music_bus = AudioServer.get_bus_index("Music")
 
 	AudioServer.set_bus_volume_db(music_bus, Global.music_volume_db)
