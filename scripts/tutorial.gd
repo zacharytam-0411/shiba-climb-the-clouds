@@ -39,19 +39,20 @@ extends Node2D
 var dialogue_lines = [
 	"Hello there! I'm your guide, Kuro!",
 	"Welcome in playing 'Climb the Clouds'!",
-	"I'm here to tell you about the things that you need to know before you start the game!",
+	"I'm here to tell you about the things \nthat you need to know before you start the game!",
 	"Firstly, both arrow keys and WASD are the general controls.",
-	"You can also press space bar to jump and maybe, just maybe, press P for a surprise! [Randomness Week] It just might be a skip... might be...",
+	"You can also press space bar to jump. \n[Note from Zac: Randomness week feature was reverted]",
 	"Now, let me tell you about the 4 gems you can find:",
 	"Ruby lets you wall jump.",
 	"Sapphire gives you a double jump.",
-	"Emerald gives a speed and jump boost, and Diamond gives you 2 extra lives!",
-	"Also, remember to check out the Options page to customize the dino color and the music volume!",
-	"After this dialogue ends, there will be a free space for you to explore the mechanics of the game.",
-	"Click the 'Back to Menu' button on the top right corner when you are done!",
-	"Note that you will have to click Start Game again to start the main game!",
-	"You can press the I key to skip a song backwards, and O key to do the opposite [skip forwards].",
+	"Emerald gives a speed and jump boost, \nand Diamond gives you 2 extra lives!",
+	"Also, remember to check out the Options page\nto adjust the music volume!",
+	"After this dialogue ends, there will be a free space\nfor you to explore the mechanics of the game.",
+	"Click the 'Back to Menu' button on the \ntop right corner when you are done!",
+	"Note that you will have to click Start Game\nagain to start the main game!",
+	"You can press the I key to skip a song backwards,\nand O key to do the opposite [skip forwards].",
 	"Also, press Esc to access the Options page mid-game!",
+	"Most Recent Updates [v0.8c]: \nRevamped the Only Up gamemode \nand the character selection screen! :)",
     "That's all, enjoy your game, and happy climbing!"
 ]
 

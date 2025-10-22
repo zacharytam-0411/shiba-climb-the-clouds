@@ -1,9 +1,11 @@
-[gd_scene load_steps=18 format=3 uid="uid://cargoi5i1y00w"]
+[gd_scene load_steps=20 format=3 uid="uid://cargoi5i1y00w"]
 
 [ext_resource type="Script" uid="uid://yap7i7vqqf5h" path="res://scripts/only_up_mode.gd" id="1_omno6"]
-[ext_resource type="Texture2D" uid="uid://bd5qeqat634vf" path="res://assets/sprites/altbg.png" id="2_f81ve"]
+[ext_resource type="Texture2D" uid="uid://lv6y087h3gyf" path="res://assets/sprites/Copilot_20251022_183140.png" id="2_jvv83"]
 [ext_resource type="PackedScene" uid="uid://cv0wrc1go4k5a" path="res://scenes/player.tscn" id="3_gpt2q"]
+[ext_resource type="Texture2D" uid="uid://b2sv4vwgn1sra" path="res://assets/sprites/Copilot_20251022_184145.png" id="3_wav16"]
 [ext_resource type="Script" uid="uid://d10enlkme33hf" path="res://scripts/platform_spawner.gd" id="4_2xcqe"]
+[ext_resource type="Texture2D" uid="uid://dy7qjjethfdkb" path="res://assets/sprites/Copilot_20251022_185608.png" id="4_a1loe"]
 [ext_resource type="PackedScene" uid="uid://b87uy33eid0th" path="res://scenes/startingplatform_oum.tscn" id="6_wvbho"]
 [ext_resource type="FontFile" uid="uid://xdrw8fu77qqa" path="res://assets/fonts/m6x11.ttf" id="7_65evo"]
 [ext_resource type="Script" uid="uid://cieobqdpk3dtj" path="res://scenes/bottom_message.gd" id="8_2dq3p"]
@@ -22,20 +24,34 @@
 script = ExtResource("1_omno6")
 
 [node name="Parallax2D" type="Parallax2D" parent="."]
-repeat_size = Vector2(1024, 1024)
+repeat_size = Vector2(2048, 0)
 repeat_times = 10
 
 [node name="Sprite2D" type="Sprite2D" parent="Parallax2D"]
-texture = ExtResource("2_f81ve")
+position = Vector2(0, -880)
+scale = Vector2(2, 2)
+texture = ExtResource("2_jvv83")
 
-[node name="Player" parent="." instance=ExtResource("3_gpt2q")]
-rotation = -0.000427129
+[node name="Sprite2D3" type="Sprite2D" parent="Parallax2D"]
+position = Vector2(0, -2631)
+scale = Vector2(2, 2)
+texture = ExtResource("3_wav16")
+offset = Vector2(0, -660)
+
+[node name="Sprite2D4" type="Sprite2D" parent="Parallax2D"]
+position = Vector2(0, -5280)
+scale = Vector2(2, 2)
+texture = ExtResource("4_a1loe")
+offset = Vector2(0, -660)
 
 [node name="PlatformSpawner" type="Node2D" parent="."]
-rotation = -0.00042712904
-scale = Vector2(0.99999994, 0.99999994)
+rotation = -0.00042712907
+scale = Vector2(0.9999999, 0.9999999)
 script = ExtResource("4_2xcqe")
 nature_coin_scene = ExtResource("10_iwvpw")
+
+[node name="Player" parent="." groups=["player"] instance=ExtResource("3_gpt2q")]
+rotation = -0.000427129
 
 [node name="Node2D" parent="." instance=ExtResource("6_wvbho")]
 position = Vector2(-144, 33)
@@ -94,12 +110,14 @@ z_index = 5
 anchors_preset = 5
 anchor_left = 0.5
 anchor_right = 0.5
-offset_left = -20.0
-offset_right = 20.0
+offset_left = -37.0
+offset_right = 3.0
 offset_bottom = 23.0
 grow_horizontal = 2
 scale = Vector2(2, 2)
 theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_colors/font_outline_color = Color(1, 1, 1, 1)
+theme_override_constants/outline_size = 4
 theme_override_fonts/font = ExtResource("7_65evo")
 horizontal_alignment = 1
 script = ExtResource("9_2dq3p")
@@ -138,11 +156,11 @@ offset_right = -9.0
 offset_bottom = 64.0
 grow_horizontal = 0
 
-[node name="Coin" type="TextureRect" parent="CanvasLayer/CoinBar"]
-custom_minimum_size = Vector2(64, 64)
+[node name="TextureRect" type="TextureRect" parent="CanvasLayer/CoinBar"]
 layout_mode = 2
 texture = ExtResource("17_jvv83")
-stretch_mode = 4
+expand_mode = 3
+stretch_mode = 5
 
 [node name="CoinsText" type="Label" parent="CanvasLayer/CoinBar"]
 z_index = 100
@@ -153,6 +171,7 @@ theme_override_constants/outline_size = 4
 theme_override_fonts/font = ExtResource("7_65evo")
 theme_override_font_sizes/font_size = 40
 text = " x 0"
+vertical_alignment = 1
 
 [node name="MilestonePopup" parent="CanvasLayer" instance=ExtResource("17_iwvpw")]
 anchors_preset = 5

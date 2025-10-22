@@ -1,7 +1,7 @@
 [gd_scene load_steps=6 format=3 uid="uid://d4cptm5ppyo0h"]
 
 [ext_resource type="Script" uid="uid://dtb3qmyndlgcs" path="res://scenes/settings_menu.gd" id="1_1yw23"]
-[ext_resource type="FontFile" uid="uid://dcraqlv7xu0j" path="res://assets/fonts/m5x7.ttf" id="2_ldnee"]
+[ext_resource type="Theme" uid="uid://dkj13f87vvpnd" path="res://assets/palettes/button.tres" id="2_ldnee"]
 [ext_resource type="FontFile" uid="uid://xdrw8fu77qqa" path="res://assets/fonts/m6x11.ttf" id="2_t7ar5"]
 [ext_resource type="Texture2D" uid="uid://cgmwpha2uegse" path="res://assets/sprites/game_studio_snow.png" id="4_ldnee"]
 [ext_resource type="AudioStream" uid="uid://cjn3eo6brlcg5" path="res://assets/music/Unwavering Emotions.mp3" id="4_t7ar5"]
@@ -32,9 +32,10 @@ offset_top = 93.0
 offset_right = 644.0
 offset_bottom = 204.0
 grow_horizontal = 2
+theme = ExtResource("2_ldnee")
 theme_override_colors/font_color = Color(1, 1, 1, 1)
 theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
-theme_override_fonts/font = ExtResource("2_ldnee")
+theme_override_constants/outline_size = 10
 theme_override_font_sizes/font_size = 60
 text = "Settings
 "
@@ -51,30 +52,31 @@ text = "Back"
 
 [node name="Label2" type="Label" parent="."]
 layout_mode = 0
-offset_left = 565.0
+offset_left = 548.0
 offset_top = 285.0
-offset_right = 833.0
-offset_bottom = 311.0
-theme_override_fonts/font = ExtResource("2_ldnee")
+offset_right = 816.0
+offset_bottom = 321.0
+theme = ExtResource("2_ldnee")
 theme_override_font_sizes/font_size = 40
 text = "Music Volume:"
 
 [node name="Label3" type="Label" parent="."]
 layout_mode = 0
-offset_left = 564.0
+offset_left = 547.0
 offset_top = 364.0
-offset_right = 824.0
+offset_right = 807.0
 offset_bottom = 451.0
-theme_override_fonts/font = ExtResource("2_ldnee")
+theme = ExtResource("2_ldnee")
 theme_override_font_sizes/font_size = 40
 text = "Mute Music:"
 
 [node name="MuteCheck" type="CheckBox" parent="."]
 layout_mode = 0
-offset_left = 724.0
-offset_top = 355.0
-offset_right = 766.0
-offset_bottom = 415.0
+offset_left = 729.0
+offset_top = 362.0
+offset_right = 753.0
+offset_bottom = 404.0
+theme = ExtResource("2_ldnee")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
 position = Vector2(1022, 520)
@@ -84,3 +86,55 @@ texture = ExtResource("4_ldnee")
 stream = ExtResource("4_t7ar5")
 autoplay = true
 bus = &"Music"
+
+[node name="Label5" type="Label" parent="."]
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = 12.5
+offset_top = 232.0
+offset_right = 383.5
+offset_bottom = 619.0
+grow_horizontal = 2
+theme = ExtResource("2_ldnee")
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_constants/outline_size = 10
+theme_override_font_sizes/font_size = 20
+text = "Starting Tutorial : Brackeys
+Art : Me
+Teto Sprite : @Leon
+Shiba Sprite : @xvcf
+BGM : [from YouTube]
+Emotional Support:
+@Mahim Tiwari @julia do @Ang @yessa @Pikachu 
+@alice @xvcf @Leon @Jerry Yan @KuzuiYaridomi
+@onlyth3best @Jácio Mauê @Raqeeb
+@scattercat_123 @Armand @Marcell Asztalos
+@Danny @kat-kat @Sophie @Kaplin @swoth
+@Tizzi @Stein @Noga L. @Issac @Manav 
+@frappie @Brody @Deep @Lopa @Flush
+
+And thank you to all the organizers of Shiba :
+@Thomas @tongyu @kl
+
+Love you guys #1250-yaps forever"
+
+[node name="Label4" type="Label" parent="."]
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = 94.0
+offset_top = 154.0
+offset_right = 263.0
+offset_bottom = 265.0
+grow_horizontal = 2
+theme = ExtResource("2_ldnee")
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_constants/outline_size = 10
+theme_override_font_sizes/font_size = 60
+text = "Credits
+"

@@ -135,7 +135,7 @@ text = "KURO'S SHOP"
 horizontal_alignment = 1
 vertical_alignment = 1
 
-[node name="Label4" type="Label" parent="CanvasLayer"]
+[node name="Credits" type="Label" parent="CanvasLayer"]
 z_index = 200
 offset_left = 16.0
 offset_top = 621.0
@@ -148,7 +148,7 @@ theme_override_fonts/font = ExtResource("2_gbfen")
 theme_override_font_sizes/font_size = 25
 text = "Credits to @xvcf for this adorable Shiba :)"
 
-[node name="Label3" type="Label" parent="CanvasLayer"]
+[node name="KuroText" type="Label" parent="CanvasLayer"]
 z_index = 200
 offset_left = 212.0
 offset_top = 437.0
@@ -162,7 +162,7 @@ theme_override_font_sizes/font_size = 15
 text = "Sir, of course you are 
 buying everything!"
 
-[node name="Label2" type="Label" parent="CanvasLayer"]
+[node name="ShibaText" type="Label" parent="CanvasLayer"]
 z_index = 200
 offset_left = 36.0
 offset_top = 350.0

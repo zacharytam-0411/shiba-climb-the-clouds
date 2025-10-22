@@ -9,8 +9,11 @@ var random_messages := [
 	"Also try Skullward!",
 	"Also try Shogai Run!",
 	"Well, whats my birthday?",
-	"Kuro ate 42 pancakes mid-air. [those were mine! -zac]",
-	"Press T to Listen to the TETO-rial!"
+	"Kuro ate 42 pancakes mid-air. [Those were mine! - Zac]",
+	"Press T to Listen to the TETO-rial!",
+	"We are NOT sleeping in shiba - Zac",
+	"Nominate yourself for the Shiba Awards!",
+	"Don't quit the game.. don't you dare."
 ]
 
 func _ready() -> void:
