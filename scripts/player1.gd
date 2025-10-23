@@ -15,17 +15,14 @@ var jumps_left: int = 1
 var respawn_position: Vector2 = Vector2.ZERO
 var is_respawning: bool = false
 
-@export var player_id: String = "P1"  # Can be set in editor or via set_player_id()
+@export var player_id: String = "P1"
 
-# Node references
 @onready var animated_sprite: AnimatedSprite2D = $AnimatedSprite2D
 @onready var jump_sound: AudioStreamPlayer2D = $AudioStreamPlayer2D
 
-# External setter
 func set_player_id(id: String) -> void:
 	player_id = id
 
-# Loads selected dino animations
 func initialize_player() -> void:
 	var raw_selection: String = Global.selected_players.get(player_id, "KuroButton")
 	if raw_selection == "" or raw_selection == null:
@@ -48,7 +45,13 @@ func _physics_process(delta: float) -> void:
 		return
 
 	_apply_powerups()
-	velocity.y += BASE_GRAVITY * delta
+
+	# Apply gravity with multiplier for 2P mode
+	var gravity_multiplier := 1.0
+	if Global.gamemode == "2p":
+		gravity_multiplier = 1.5  # ⬅️ Faster falling in 2P mode
+
+	velocity.y += BASE_GRAVITY * gravity_multiplier * delta
 
 	# Jump logic
 	if is_on_floor():
@@ -135,6 +138,9 @@ func _apply_powerups() -> void:
 		var boost_level: int = Global.upgrades.get("JumpBoost", 0)
 		if boost_level > 0:
 			JUMP_VELOCITY *= 1.0 + (0.3 * boost_level)
+	if Global.gamemode == "2p":
+		SPEED *= 1.75
+		JUMP_VELOCITY *= 1.75
 
 func set_platforms(data: Array) -> void:
 	for item in data:

@@ -1,10 +1,14 @@
-[gd_scene load_steps=7 format=3 uid="uid://hqy0tg7y46o3"]
+[gd_scene load_steps=11 format=3 uid="uid://hqy0tg7y46o3"]
 
 [ext_resource type="Script" uid="uid://bamuggi0ibgli" path="res://scripts/only_up_2p.gd" id="1_uo4h7"]
 [ext_resource type="PackedScene" uid="uid://7bjwjwqwm784" path="res://scenes/Platform_Normal.tscn" id="3_fjfq1"]
 [ext_resource type="Script" uid="uid://caap4iwim5kyn" path="res://scripts/platform_spawner_2p.gd" id="4_akofm"]
 [ext_resource type="PackedScene" uid="uid://b3h2y2gxqrwe0" path="res://scenes/Platform_Normal_2.tscn" id="4_j7d16"]
-[ext_resource type="PackedScene" uid="uid://bxd4kv21awqld" path="res://scenes/naturecoin.tscn" id="17_dpj5l"]
+[ext_resource type="PackedScene" uid="uid://bq43dd52lohdt" path="res://scenes/player_1.tscn" id="7_te0md"]
+[ext_resource type="Texture2D" uid="uid://lv6y087h3gyf" path="res://assets/sprites/Copilot_20251022_183140.png" id="8_605bx"]
+[ext_resource type="PackedScene" uid="uid://b7t42vi2psix" path="res://scenes/player_2.tscn" id="8_xncd7"]
+[ext_resource type="Texture2D" uid="uid://b2sv4vwgn1sra" path="res://assets/sprites/Copilot_20251022_184145.png" id="9_cm2gn"]
+[ext_resource type="Texture2D" uid="uid://dy7qjjethfdkb" path="res://assets/sprites/Copilot_20251022_185608.png" id="10_qcux6"]
 [ext_resource type="PackedScene" uid="uid://b87uy33eid0th" path="res://scenes/startingplatform_oum.tscn" id="21_7lcjx"]
 
 [node name="OnlyUp2P" type="Node2D"]
@@ -12,9 +16,8 @@ script = ExtResource("1_uo4h7")
 
 [node name="PlatformSpawner2P" type="Node2D" parent="."]
 script = ExtResource("4_akofm")
-platform_scenes = Array[PackedScene]([ExtResource("3_fjfq1"), ExtResource("4_j7d16")])
+platform_scenes = Array[PackedScene]([ExtResource("4_j7d16"), ExtResource("3_fjfq1")])
 starter_platform_scene = ExtResource("21_7lcjx")
-nature_coin_scene = ExtResource("17_dpj5l")
 
 [node name="SubViewportContainer" type="SubViewportContainer" parent="."]
 offset_right = 1159.0
@@ -26,20 +29,68 @@ handle_input_locally = false
 size = Vector2i(640, 720)
 render_target_update_mode = 4
 
+[node name="Player1" parent="SubViewportContainer/SubViewport" instance=ExtResource("7_te0md")]
+
+[node name="Parallax2D" type="Parallax2D" parent="SubViewportContainer/SubViewport"]
+z_index = -10
+repeat_size = Vector2(2048, 0)
+repeat_times = 10
+
+[node name="Sprite2D" type="Sprite2D" parent="SubViewportContainer/SubViewport/Parallax2D"]
+position = Vector2(0, -880)
+scale = Vector2(2, 2)
+texture = ExtResource("8_605bx")
+
+[node name="Sprite2D3" type="Sprite2D" parent="SubViewportContainer/SubViewport/Parallax2D"]
+position = Vector2(0, -2631)
+scale = Vector2(2, 2)
+texture = ExtResource("9_cm2gn")
+offset = Vector2(0, -660)
+
+[node name="Sprite2D4" type="Sprite2D" parent="SubViewportContainer/SubViewport/Parallax2D"]
+position = Vector2(0, -5280)
+scale = Vector2(2, 2)
+texture = ExtResource("10_qcux6")
+offset = Vector2(0, -660)
+
 [node name="SubViewport2" type="SubViewport" parent="SubViewportContainer"]
 disable_3d = true
 handle_input_locally = false
 size = Vector2i(640, 720)
 render_target_update_mode = 4
 
+[node name="Player2" parent="SubViewportContainer/SubViewport2" instance=ExtResource("8_xncd7")]
+
+[node name="Parallax2D" type="Parallax2D" parent="SubViewportContainer/SubViewport2"]
+z_index = -10
+repeat_size = Vector2(2048, 0)
+repeat_times = 10
+
+[node name="Sprite2D" type="Sprite2D" parent="SubViewportContainer/SubViewport2/Parallax2D"]
+position = Vector2(0, -880)
+scale = Vector2(2, 2)
+texture = ExtResource("8_605bx")
+
+[node name="Sprite2D3" type="Sprite2D" parent="SubViewportContainer/SubViewport2/Parallax2D"]
+position = Vector2(0, -2631)
+scale = Vector2(2, 2)
+texture = ExtResource("9_cm2gn")
+offset = Vector2(0, -660)
+
+[node name="Sprite2D4" type="Sprite2D" parent="SubViewportContainer/SubViewport2/Parallax2D"]
+position = Vector2(0, -5280)
+scale = Vector2(2, 2)
+texture = ExtResource("10_qcux6")
+offset = Vector2(0, -660)
+
 [node name="ViewportDisplay1" type="TextureRect" parent="."]
-offset_right = 630.0
+offset_right = 600.0
 offset_bottom = 650.0
 size_flags_horizontal = 0
 size_flags_vertical = 8
 stretch_mode = 5
 
 [node name="ViewportDisplay2" type="TextureRect" parent="."]
-offset_right = 630.0
+offset_right = 600.0
 offset_bottom = 650.0
 stretch_mode = 5

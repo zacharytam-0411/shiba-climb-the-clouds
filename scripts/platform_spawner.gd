@@ -26,6 +26,7 @@ var players: Array[Node2D] = []
 var last_spawn_y: Dictionary = {}
 var death_cooldown: Dictionary = {}
 var next_milestone: Dictionary = {}
+var last_platform_pos: Dictionary = {}  # player_id → Vector2
 
 var milestone_messages: Array[String] = [
 	"Adventure awaits...",
@@ -51,6 +52,7 @@ func _ready() -> void:
 		last_spawn_y[id] = player.global_position.y
 		death_cooldown[id] = 0.0
 		next_milestone[id] = 1
+		last_platform_pos[id] = Vector2.ZERO
 		_generate_platforms_for(player)
 
 func _process(delta: float) -> void:
@@ -106,6 +108,9 @@ func _get_platform_for_y(y: float) -> PackedScene:
 	var tier: int = clamp(int(abs(y) / TIER_HEIGHT), 0, platform_scenes.size() - 1)
 	return platform_scenes[tier]
 
+func set_last_platform(id: int, position: Vector2) -> void:
+	last_platform_pos[id] = position	
+
 func _handle_player_fall(player: Node2D) -> void:
 	var id: int = int(player.get("player_id"))
 	player.set("is_respawning", true)
@@ -113,11 +118,11 @@ func _handle_player_fall(player: Node2D) -> void:
 	player.set("velocity", Vector2.ZERO)
 	player.call("lose_life")
 
-	var target: Vector2 = _find_nearest_platform()
+	var target: Vector2 = last_platform_pos.get(id, Vector2.ZERO)
 	if target != Vector2.ZERO:
-		player.global_position = target + Vector2(-10, 10)
+		player.global_position = target + Vector2(0, -10)
 	else:
-		player.global_position = Vector2(player.global_position.x - 10.0, last_spawn_y[id] - 300.0)
+		player.global_position = Vector2(player.global_position.x, last_spawn_y[id] - 10)
 
 	var overlay: Node = get_tree().current_scene.get_node_or_null("DeathOverlay")
 	if overlay:

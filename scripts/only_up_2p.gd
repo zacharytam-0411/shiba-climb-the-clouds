@@ -35,59 +35,61 @@ func _ready():
 
 	# Position TextureRects side by side
 	display1.position = Vector2(0, 0)
-	display2.position = Vector2(640, 0)  # Assuming each viewport is 640px wide
+	display2.position = Vector2(640, 0)
 
 	# Set viewport sizes
 	viewport1.size = Vector2(640, 720)
 	viewport2.size = Vector2(640, 720)
 
-	# Generate platforms
-	var seed = 29382
-	_generate_platforms(seed)
+	# Generate platforms with a randomized seed
+	_generate_platforms()
 
-	# Spawn starter platforms first
+	# Spawn starter platforms
 	var starter_scene = preload("res://scenes/Platform_Normal.tscn")
+	var platform1_pos = Vector2(320, 500)
 
 	var platform1 = starter_scene.instantiate()
-	var platform1_pos = Vector2(320, 500)
 	platform1.global_position = platform1_pos
 	viewport1.add_child(platform1)
-	print("Platform1 added to viewport1 at", platform1.global_position)
 
 	var platform2 = starter_scene.instantiate()
-	var platform2_pos = Vector2(320, 500)
-	platform2.global_position = platform2_pos
+	platform2.global_position = platform1_pos
 	viewport2.add_child(platform2)
-	print("Platform2 added to viewport2 at", platform2.global_position)
 
-	# Wait one frame to ensure platforms are processed
 	await get_tree().process_frame
 
-	# Instance players and assign platform data
+	# Instance players
 	var player1_instance = PLAYER1_SCENE.instantiate()
 	viewport1.add_child(player1_instance)
 	player1_instance.global_position = platform1_pos + Vector2(0, -48)
 	var player1 = player1_instance.get_node("Player")
 	player1.player_id = "P1"
 	player1.set_platforms(platform_data)
-	print("Player1 added at", player1_instance.global_position)
 
 	var player2_instance = PLAYER2_SCENE.instantiate()
 	viewport2.add_child(player2_instance)
-	player2_instance.global_position = platform2_pos + Vector2(0, -48)
+	player2_instance.global_position = platform1_pos + Vector2(0, -48)
 	var player2 = player2_instance.get_node("Player")
 	player2.player_id = "P2"
 	player2.set_platforms(platform_data)
-	print("Player2 added at", player2_instance.global_position)
 
-func _generate_platforms(seed: int) -> void:
+func _generate_platforms() -> void:
 	var rng = RandomNumberGenerator.new()
-	rng.seed = seed
+	rng.randomize()  # Ensures a fresh seed every run
 	platform_data.clear()
 
+	var previous_x := 320.0
+	var vertical_spacing := 120.0
+	var horizontal_limit := 200.0
+
 	for i in range(100):
-		var x = rng.randf_range(100, 500)
-		var y = -i * 200
+		var y = -i * vertical_spacing
+
+		# Smooth horizontal variation
+		var x_offset = rng.randf_range(-horizontal_limit, horizontal_limit)
+		var x = clamp(previous_x + x_offset, 100, 540)
+		previous_x = x
+
 		var variant = PLATFORM_VARIANTS[rng.randi() % PLATFORM_VARIANTS.size()]
 		platform_data.append({
 			"position": Vector2(x, y),

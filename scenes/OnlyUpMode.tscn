@@ -58,7 +58,6 @@ position = Vector2(-144, 33)
 
 [node name="DeathOverlay" parent="." instance=ExtResource("13_tw05h")]
 layer = 1000
-visible = false
 
 [node name="OptionsMenu" parent="." instance=ExtResource("20_a1loe")]
 layer = 100
