@@ -1,6 +1,6 @@
 extends Node2D
 
 func _ready():
-	var player = $Player
+	var player = $Player1
 	player.set_player_id("P1")
 	player.initialize_player()

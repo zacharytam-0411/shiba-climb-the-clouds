@@ -3,7 +3,7 @@ extends Node2D
 @export var platform_scenes: Array[PackedScene] = []
 @export var vertical_spacing: float = 120.0
 @export var horizontal_range: float = 100.0
-@export var platforms_total: int = 100  # Total platforms for the race
+@export var platforms_total: int = 10  # Total platforms for the race
 @export var starter_platform_scene: PackedScene
 @export var platform_scale: Vector2 = Vector2(1.5, 1.5)
 
@@ -77,3 +77,22 @@ func spawn_platforms_for_race(base_y: float) -> void:
 
 		viewport1.add_child(platform1)
 		viewport2.add_child(platform2)
+
+	# Add winning platform after all others
+	var win_scene: PackedScene = preload("res://scenes/Platform_Normal_4.tscn")
+	var win_y: float = base_y - vertical_spacing * (platforms_total + 1)
+	var win_x: float = 320.0  # Centered
+
+	var win_pos: Vector2 = Vector2(win_x, win_y)
+
+	var win_platform1: Node2D = win_scene.instantiate()
+	var win_platform2: Node2D = win_scene.instantiate()
+
+	win_platform1.global_position = win_pos
+	win_platform2.global_position = win_pos
+
+	win_platform1.scale = platform_scale
+	win_platform2.scale = platform_scale
+
+	viewport1.add_child(win_platform1)
+	viewport2.add_child(win_platform2)

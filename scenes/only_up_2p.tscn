@@ -1,4 +1,4 @@
-[gd_scene load_steps=11 format=3 uid="uid://hqy0tg7y46o3"]
+[gd_scene load_steps=12 format=3 uid="uid://hqy0tg7y46o3"]
 
 [ext_resource type="Script" uid="uid://bamuggi0ibgli" path="res://scripts/only_up_2p.gd" id="1_uo4h7"]
 [ext_resource type="PackedScene" uid="uid://7bjwjwqwm784" path="res://scenes/Platform_Normal.tscn" id="3_fjfq1"]
@@ -9,6 +9,7 @@
 [ext_resource type="PackedScene" uid="uid://b7t42vi2psix" path="res://scenes/player_2.tscn" id="8_xncd7"]
 [ext_resource type="Texture2D" uid="uid://b2sv4vwgn1sra" path="res://assets/sprites/Copilot_20251022_184145.png" id="9_cm2gn"]
 [ext_resource type="Texture2D" uid="uid://dy7qjjethfdkb" path="res://assets/sprites/Copilot_20251022_185608.png" id="10_qcux6"]
+[ext_resource type="Theme" uid="uid://dkj13f87vvpnd" path="res://assets/palettes/button.tres" id="11_605bx"]
 [ext_resource type="PackedScene" uid="uid://b87uy33eid0th" path="res://scenes/startingplatform_oum.tscn" id="21_7lcjx"]
 
 [node name="OnlyUp2P" type="Node2D"]
@@ -16,7 +17,7 @@ script = ExtResource("1_uo4h7")
 
 [node name="PlatformSpawner2P" type="Node2D" parent="."]
 script = ExtResource("4_akofm")
-platform_scenes = Array[PackedScene]([ExtResource("4_j7d16"), ExtResource("3_fjfq1")])
+platform_scenes = Array[PackedScene]([ExtResource("3_fjfq1"), ExtResource("4_j7d16")])
 starter_platform_scene = ExtResource("21_7lcjx")
 
 [node name="SubViewportContainer" type="SubViewportContainer" parent="."]
@@ -53,6 +54,19 @@ scale = Vector2(2, 2)
 texture = ExtResource("10_qcux6")
 offset = Vector2(0, -660)
 
+[node name="CanvasLayer" type="CanvasLayer" parent="SubViewportContainer/SubViewport"]
+
+[node name="Label" type="Label" parent="SubViewportContainer/SubViewport/CanvasLayer"]
+offset_right = 18.0
+offset_bottom = 20.9375
+theme = ExtResource("11_605bx")
+theme_override_colors/font_color = Color(0.38431373, 0.6, 1, 1)
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_constants/outline_size = 4
+theme_override_font_sizes/font_size = 60
+text = "P1"
+horizontal_alignment = 1
+
 [node name="SubViewport2" type="SubViewport" parent="SubViewportContainer"]
 disable_3d = true
 handle_input_locally = false
@@ -83,6 +97,17 @@ scale = Vector2(2, 2)
 texture = ExtResource("10_qcux6")
 offset = Vector2(0, -660)
 
+[node name="CanvasLayer" type="CanvasLayer" parent="SubViewportContainer/SubViewport2"]
+
+[node name="Label" type="Label" parent="SubViewportContainer/SubViewport2/CanvasLayer"]
+theme = ExtResource("11_605bx")
+theme_override_colors/font_color = Color(1, 0.6, 0.6039216, 1)
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_constants/outline_size = 4
+theme_override_font_sizes/font_size = 60
+text = "P2"
+horizontal_alignment = 1
+
 [node name="ViewportDisplay1" type="TextureRect" parent="."]
 offset_right = 600.0
 offset_bottom = 650.0
@@ -91,6 +116,8 @@ size_flags_vertical = 8
 stretch_mode = 5
 
 [node name="ViewportDisplay2" type="TextureRect" parent="."]
-offset_right = 600.0
-offset_bottom = 650.0
+offset_left = 551.0
+offset_top = 4.0
+offset_right = 1157.0
+offset_bottom = 654.0
 stretch_mode = 5

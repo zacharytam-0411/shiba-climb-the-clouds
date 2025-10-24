@@ -35,11 +35,11 @@ func _ready():
 
 	# Position TextureRects side by side
 	display1.position = Vector2(0, 0)
-	display2.position = Vector2(640, 0)
+	display2.position = Vector2(600, 0)
 
 	# Set viewport sizes
-	viewport1.size = Vector2(640, 720)
-	viewport2.size = Vector2(640, 720)
+	viewport1.size = Vector2(600, 720)
+	viewport2.size = Vector2(600, 720)
 
 	# Generate platforms with a randomized seed
 	_generate_platforms()
@@ -62,20 +62,20 @@ func _ready():
 	var player1_instance = PLAYER1_SCENE.instantiate()
 	viewport1.add_child(player1_instance)
 	player1_instance.global_position = platform1_pos + Vector2(0, -48)
-	var player1 = player1_instance.get_node("Player")
+	var player1 = player1_instance.get_node("Player1")
 	player1.player_id = "P1"
 	player1.set_platforms(platform_data)
 
 	var player2_instance = PLAYER2_SCENE.instantiate()
 	viewport2.add_child(player2_instance)
 	player2_instance.global_position = platform1_pos + Vector2(0, -48)
-	var player2 = player2_instance.get_node("Player")
+	var player2 = player2_instance.get_node("Player2")
 	player2.player_id = "P2"
 	player2.set_platforms(platform_data)
 
 func _generate_platforms() -> void:
 	var rng = RandomNumberGenerator.new()
-	rng.randomize()  # Ensures a fresh seed every run
+	rng.randomize()
 	platform_data.clear()
 
 	var previous_x := 320.0
@@ -84,8 +84,6 @@ func _generate_platforms() -> void:
 
 	for i in range(100):
 		var y = -i * vertical_spacing
-
-		# Smooth horizontal variation
 		var x_offset = rng.randf_range(-horizontal_limit, horizontal_limit)
 		var x = clamp(previous_x + x_offset, 100, 540)
 		previous_x = x

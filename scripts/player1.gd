@@ -1,6 +1,6 @@
 extends CharacterBody2D
 
-# Movement constants
+
 const BASE_SPEED: float = 200.0
 const BASE_JUMP_VELOCITY: float = -400.0
 const WALL_JUMP_PUSH: float = 200.0
@@ -15,7 +15,7 @@ var jumps_left: int = 1
 var respawn_position: Vector2 = Vector2.ZERO
 var is_respawning: bool = false
 
-@export var player_id: String = "P1"
+@export var player_id:  = "P1"
 
 @onready var animated_sprite: AnimatedSprite2D = $AnimatedSprite2D
 @onready var jump_sound: AudioStreamPlayer2D = $AudioStreamPlayer2D
@@ -149,3 +149,6 @@ func set_platforms(data: Array) -> void:
 		var platform: Node2D = scene.instantiate()
 		platform.position = position
 		add_child(platform)
+
+func win_game():
+	pass
