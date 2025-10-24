@@ -150,5 +150,5 @@ func set_platforms(data: Array) -> void:
 		platform.position = position
 		add_child(platform)
 
-func win_game():
+func win_game(): 
 	pass
