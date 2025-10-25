@@ -1,11 +1,11 @@
 extends CharacterBody2D
 
-
 const BASE_SPEED: float = 200.0
 const BASE_JUMP_VELOCITY: float = -400.0
 const WALL_JUMP_PUSH: float = 200.0
 const COYOTE_TIME: float = 0.1
 const BASE_GRAVITY: float = 980.0
+const RESPAWN_THRESHOLD: float = 100.0
 
 # Runtime variables
 var SPEED: float = BASE_SPEED
@@ -13,9 +13,11 @@ var JUMP_VELOCITY: float = BASE_JUMP_VELOCITY
 var coyote_timer: float = 0.0
 var jumps_left: int = 1
 var respawn_position: Vector2 = Vector2.ZERO
+var last_platform_position: Vector2 = Vector2.ZERO
 var is_respawning: bool = false
+var respawn_cooldown: float = 0.0
 
-@export var player_id:  = "P1"
+@export var player_id: = "P1"
 
 @onready var animated_sprite: AnimatedSprite2D = $AnimatedSprite2D
 @onready var jump_sound: AudioStreamPlayer2D = $AudioStreamPlayer2D
@@ -34,8 +36,8 @@ func _ready() -> void:
 	randomize()
 	add_to_group("player")
 	respawn_position = global_position
+	last_platform_position = global_position
 	_apply_powerups()
-	# initialize_player() must be called externally after player_id is set
 
 func _physics_process(delta: float) -> void:
 	if Global.dialogue_active or is_respawning:
@@ -44,12 +46,14 @@ func _physics_process(delta: float) -> void:
 		move_and_slide()
 		return
 
+	if respawn_cooldown > 0.0:
+		respawn_cooldown -= delta
+
 	_apply_powerups()
 
-	# Apply gravity with multiplier for 2P mode
 	var gravity_multiplier := 1.0
 	if Global.gamemode == "2p":
-		gravity_multiplier = 1.5  # ⬅️ Faster falling in 2P mode
+		gravity_multiplier = 1.5
 
 	velocity.y += BASE_GRAVITY * gravity_multiplier * delta
 
@@ -57,6 +61,7 @@ func _physics_process(delta: float) -> void:
 	if is_on_floor():
 		jumps_left = 2 if Global.sapphire_collected or (Global.gamemode == "only_up" and Global.upgrades.get("DoubleJump", false)) else 1
 		coyote_timer = COYOTE_TIME
+		_update_last_platform()
 	else:
 		coyote_timer -= delta
 
@@ -92,6 +97,27 @@ func _physics_process(delta: float) -> void:
 
 	velocity.x = direction * SPEED if direction != 0.0 else move_toward(velocity.x, 0.0, SPEED)
 	move_and_slide()
+
+	_check_respawn()
+
+func _update_last_platform() -> void:
+	for i in range(get_slide_collision_count()):
+		var collision := get_slide_collision(i)
+		if collision.get_normal().y < -0.7 and collision.get_collider() is Node2D:
+			last_platform_position = collision.get_position()
+			respawn_position = last_platform_position
+			break
+
+func _check_respawn() -> void:
+	if respawn_cooldown > 0.0:
+		return
+
+	if global_position.y - last_platform_position.y > RESPAWN_THRESHOLD:
+		is_respawning = true
+		global_position = respawn_position
+		velocity = Vector2.ZERO
+		respawn_cooldown = 0.5  # half-second buffer
+		is_respawning = false
 
 func _play_jump_sound() -> void:
 	if jump_sound and jump_sound.stream:

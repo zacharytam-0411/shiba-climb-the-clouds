@@ -48,29 +48,34 @@ func _ready():
 	var starter_scene = preload("res://scenes/Platform_Normal.tscn")
 	var platform1_pos = Vector2(320, 500)
 
-	var platform1 = starter_scene.instantiate()
-	platform1.global_position = platform1_pos
-	viewport1.add_child(platform1)
+	var starter1 = starter_scene.instantiate()
+	starter1.global_position = platform1_pos
+	viewport1.add_child(starter1)
 
-	var platform2 = starter_scene.instantiate()
-	platform2.global_position = platform1_pos
-	viewport2.add_child(platform2)
+	var starter2 = starter_scene.instantiate()
+	starter2.global_position = platform1_pos
+	viewport2.add_child(starter2)
 
 	await get_tree().process_frame
 
-	# Instance players
+	# Instance Player 1 from its own scene
 	var player1_instance = PLAYER1_SCENE.instantiate()
 	viewport1.add_child(player1_instance)
-	player1_instance.global_position = platform1_pos + Vector2(0, -48)
+	player1_instance.global_position = platform1_pos + Vector2(0, -12)
+
 	var player1 = player1_instance.get_node("Player1")
-	player1.player_id = "P1"
+	player1.set_player_id("P1")
+	player1.initialize_player()
 	player1.set_platforms(platform_data)
 
+	# Instance Player 2 from its own scene
 	var player2_instance = PLAYER2_SCENE.instantiate()
 	viewport2.add_child(player2_instance)
-	player2_instance.global_position = platform1_pos + Vector2(0, -48)
+	player2_instance.global_position = platform1_pos + Vector2(0, -12)
+
 	var player2 = player2_instance.get_node("Player2")
-	player2.player_id = "P2"
+	player2.set_player_id("P2")
+	player2.initialize_player()
 	player2.set_platforms(platform_data)
 
 func _generate_platforms() -> void:
