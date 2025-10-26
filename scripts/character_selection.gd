@@ -11,7 +11,7 @@ extends Control
 @onready var character_grid = $CharacterGrid
 @onready var label: Label = $PreviewPanel/Label
 
-var grid_columns := 4
+var grid_columns := 5
 var current_index := 0
 var current_player := "P1"
 var ready_to_start := false
@@ -148,12 +148,14 @@ func _update_preview(character_name: String):
 		preview_sprite.frames = null
 		name_label.text = "None"
 		stats_label.text = ""
+		preview_sprite.position.y = 0
 		return
 
 	if character_name == "RandomButton":
 		preview_sprite.frames = null
 		name_label.text = "Random"
 		stats_label.text = "Gives you a random player."
+		preview_sprite.position.y = 0
 		return
 
 	var frames: SpriteFrames = null
@@ -199,6 +201,14 @@ func _update_preview(character_name: String):
 			frames = preload("res://assets/sprites/skinframes/olaf_frames.tres")
 			name_label.text = "Olaf"
 			stats_label.text = "Younger Brother of Tard."
+		"AngButton":
+			frames = preload("res://assets/sprites/skinframes/ang_frames.tres")
+			name_label.text = "Ang"
+			stats_label.text = "\nGood friend of ours.\nIs also the first person \nto get the ticket!"
+			if confirmed_players["P1"] or confirmed_players["P2"]:
+				preview_sprite.position.y = -10
+			else:
+				preview_sprite.position.y = 0
 		"TetoButton":
 			frames = preload("res://assets/sprites/skinframes/teto_frames.tres")
 			name_label.text = "Teto"
@@ -210,6 +220,7 @@ func _update_preview(character_name: String):
 		_:
 			name_label.text = "None"
 			stats_label.text = ""
+			preview_sprite.position.y = 0
 
 	preview_sprite.frames = frames
 
@@ -232,7 +243,7 @@ func _update_player_slot(player: String, character_name: String):
 	else:
 		p2_icon.texture = texture
 
-func _update_selector_color(): 
-	var stylebox: StyleBoxFlat = selector_frame.get("theme_override_styles/panel") 
-	if stylebox and stylebox is StyleBoxFlat: 
+func _update_selector_color():
+	var stylebox: StyleBoxFlat = selector_frame.get("theme_override_styles/panel")
+	if stylebox and stylebox is StyleBoxFlat:
 		stylebox.bg_color = p1_color if current_player == "P1" else p2_color

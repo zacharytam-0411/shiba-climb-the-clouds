@@ -3,8 +3,8 @@ extends Node2D
 const PLAYER1_SCENE = preload("res://scenes/player_1.tscn")
 const PLAYER2_SCENE = preload("res://scenes/player_2.tscn")
 
-@onready var viewport1 = $SubViewportContainer/SubViewport
-@onready var viewport2 = $SubViewportContainer/SubViewport2
+@onready var viewport1: SubViewport = $SubViewportContainer/SubViewport
+@onready var viewport2: SubViewport = $SubViewportContainer/SubViewport2
 @onready var display1: TextureRect = $ViewportDisplay1
 @onready var display2: TextureRect = $ViewportDisplay2
 
@@ -46,37 +46,41 @@ func _ready():
 
 	# Spawn starter platforms
 	var starter_scene = preload("res://scenes/Platform_Normal.tscn")
-	var platform1_pos = Vector2(320, 500)
+	var platform_start_pos = Vector2(320, 500)
 
 	var starter1 = starter_scene.instantiate()
-	starter1.global_position = platform1_pos
+	starter1.global_position = platform_start_pos
 	viewport1.add_child(starter1)
 
 	var starter2 = starter_scene.instantiate()
-	starter2.global_position = platform1_pos
+	starter2.global_position = platform_start_pos
 	viewport2.add_child(starter2)
 
 	await get_tree().process_frame
 
-	# Instance Player 1 from its own scene
-	var player1_instance = PLAYER1_SCENE.instantiate()
-	viewport1.add_child(player1_instance)
-	player1_instance.global_position = platform1_pos + Vector2(0, -12)
+	# Instance Player 1 directly
+	var player1 = PLAYER1_SCENE.instantiate()
+	player1.global_position = platform_start_pos + Vector2(0, -12)
+	viewport1.add_child(player1)
 
-	var player1 = player1_instance.get_node("Player1")
-	player1.set_player_id("P1")
-	player1.initialize_player()
-	player1.set_platforms(platform_data)
+	if player1.has_method("set_player_id"):
+		player1.set_player_id("P1")
+	if player1.has_method("initialize_player"):
+		player1.initialize_player()
+	if player1.has_method("set_platforms"):
+		player1.set_platforms(platform_data)
 
-	# Instance Player 2 from its own scene
-	var player2_instance = PLAYER2_SCENE.instantiate()
-	viewport2.add_child(player2_instance)
-	player2_instance.global_position = platform1_pos + Vector2(0, -12)
+	# Instance Player 2 directly
+	var player2 = PLAYER2_SCENE.instantiate()
+	player2.global_position = platform_start_pos + Vector2(0, -12)
+	viewport2.add_child(player2)
 
-	var player2 = player2_instance.get_node("Player2")
-	player2.set_player_id("P2")
-	player2.initialize_player()
-	player2.set_platforms(platform_data)
+	if player2.has_method("set_player_id"):
+		player2.set_player_id("P2")
+	if player2.has_method("initialize_player"):
+		player2.initialize_player()
+	if player2.has_method("set_platforms"):
+		player2.set_platforms(platform_data)
 
 func _generate_platforms() -> void:
 	var rng = RandomNumberGenerator.new()

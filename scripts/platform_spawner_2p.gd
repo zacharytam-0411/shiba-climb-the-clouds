@@ -3,7 +3,7 @@ extends Node2D
 @export var platform_scenes: Array[PackedScene] = []
 @export var vertical_spacing: float = 120.0
 @export var horizontal_range: float = 100.0
-@export var platforms_total: int = 10  # Total platforms for the race
+@export var platforms_total: int = 10
 @export var starter_platform_scene: PackedScene
 @export var platform_scale: Vector2 = Vector2(1.5, 1.5)
 
@@ -12,15 +12,15 @@ var players: Array[Node2D] = []
 func _ready() -> void:
 	players = await _wait_for_players()
 
-	var player1: Node2D = $"../SubViewportContainer/SubViewport/Player1"
-	var player2: Node2D = $"../SubViewportContainer/SubViewport2/Player2"
+	var viewport1: Viewport = $"../SubViewportContainer/SubViewport"
+	var viewport2: Viewport = $"../SubViewportContainer/SubViewport2"
 
-	var viewport1: Viewport = player1.get_viewport()
-	var viewport2: Viewport = player2.get_viewport()
+	var player1: Node2D = viewport1.get_node("Player1")
+	var player2: Node2D = viewport2.get_node("Player2")
 
 	var base_y: float = min(player1.global_position.y, player2.global_position.y)
 
-	# Spawn starter platforms directly under each player
+	# Starter platforms
 	var starter1: Node2D = starter_platform_scene.instantiate()
 	starter1.global_position = Vector2(player1.global_position.x, player1.global_position.y + 48)
 	starter1.scale = platform_scale
@@ -31,8 +31,7 @@ func _ready() -> void:
 	starter2.scale = platform_scale
 	viewport2.add_child(starter2)
 
-	# Spawn all race platforms
-	spawn_platforms_for_race(base_y)
+	spawn_platforms_for_race(base_y, viewport1, viewport2)
 
 func _wait_for_players() -> Array[Node2D]:
 	while get_tree().get_nodes_in_group("player").size() < 2:
@@ -44,10 +43,7 @@ func _wait_for_players() -> Array[Node2D]:
 			found_players.append(node)
 	return found_players
 
-func spawn_platforms_for_race(base_y: float) -> void:
-	var viewport1: Viewport = players[0].get_viewport()
-	var viewport2: Viewport = players[1].get_viewport()
-
+func spawn_platforms_for_race(base_y: float, viewport1: Viewport, viewport2: Viewport) -> void:
 	var previous_x: float = -INF
 	var rng: RandomNumberGenerator = RandomNumberGenerator.new()
 	rng.randomize()
@@ -78,10 +74,10 @@ func spawn_platforms_for_race(base_y: float) -> void:
 		viewport1.add_child(platform1)
 		viewport2.add_child(platform2)
 
-	# Add winning platform after all others
+	# Winning platform
 	var win_scene: PackedScene = preload("res://scenes/Platform_Normal_4.tscn")
 	var win_y: float = base_y - vertical_spacing * (platforms_total + 1)
-	var win_x: float = 320.0  # Centered
+	var win_x: float = 320.0
 
 	var win_pos: Vector2 = Vector2(win_x, win_y)
 
