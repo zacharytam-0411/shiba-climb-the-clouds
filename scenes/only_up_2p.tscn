@@ -20,6 +20,23 @@ script = ExtResource("4_akofm")
 platform_scenes = Array[PackedScene]([ExtResource("3_fjfq1"), ExtResource("4_j7d16")])
 starter_platform_scene = ExtResource("21_7lcjx")
 
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+
+[node name="RaceTimerLabel" type="Label" parent="CanvasLayer"]
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -20.0
+offset_right = 20.0
+offset_bottom = 23.0
+grow_horizontal = 2
+theme = ExtResource("11_605bx")
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_constants/outline_size = 10
+theme_override_font_sizes/font_size = 40
+text = "Time: 0.00s"
+horizontal_alignment = 1
+
 [node name="SubViewportContainer" type="SubViewportContainer" parent="."]
 offset_right = 1159.0
 offset_bottom = 720.0
@@ -57,6 +74,7 @@ offset = Vector2(0, -660)
 [node name="CanvasLayer" type="CanvasLayer" parent="SubViewportContainer/SubViewport"]
 
 [node name="Label" type="Label" parent="SubViewportContainer/SubViewport/CanvasLayer"]
+z_index = 4096
 offset_right = 18.0
 offset_bottom = 20.9375
 theme = ExtResource("11_605bx")
@@ -65,6 +83,20 @@ theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
 theme_override_constants/outline_size = 4
 theme_override_font_sizes/font_size = 60
 text = "P1"
+horizontal_alignment = 1
+
+[node name="ClimbLabel_P1" type="Label" parent="SubViewportContainer/SubViewport/CanvasLayer"]
+z_index = 100
+offset_top = 55.0
+offset_right = 52.0
+offset_bottom = 109.0
+theme = ExtResource("11_605bx")
+theme_override_colors/font_color = Color(0.38431373, 0.6, 1, 1)
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_constants/outline_size = 4
+theme_override_font_sizes/font_size = 60
+text = "doesnt work
+"
 horizontal_alignment = 1
 
 [node name="SubViewport2" type="SubViewport" parent="SubViewportContainer"]
@@ -100,12 +132,37 @@ offset = Vector2(0, -660)
 [node name="CanvasLayer" type="CanvasLayer" parent="SubViewportContainer/SubViewport2"]
 
 [node name="Label" type="Label" parent="SubViewportContainer/SubViewport2/CanvasLayer"]
+anchors_preset = 1
+anchor_left = 1.0
+anchor_right = 1.0
+offset_left = -104.0
+offset_right = -52.0
+offset_bottom = 54.0
+grow_horizontal = 0
 theme = ExtResource("11_605bx")
 theme_override_colors/font_color = Color(1, 0.6, 0.6039216, 1)
 theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
 theme_override_constants/outline_size = 4
 theme_override_font_sizes/font_size = 60
 text = "P2"
+horizontal_alignment = 1
+
+[node name="ClimbLabel_P2" type="Label" parent="SubViewportContainer/SubViewport2/CanvasLayer"]
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -42.5
+offset_top = 55.0
+offset_right = 246.5
+offset_bottom = 166.0
+grow_horizontal = 2
+theme = ExtResource("11_605bx")
+theme_override_colors/font_color = Color(1, 0.6, 0.6039216, 1)
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_constants/outline_size = 4
+theme_override_font_sizes/font_size = 60
+text = "doesnt work
+"
 horizontal_alignment = 1
 
 [node name="ViewportDisplay1" type="TextureRect" parent="."]

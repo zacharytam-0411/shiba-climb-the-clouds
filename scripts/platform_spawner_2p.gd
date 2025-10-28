@@ -7,27 +7,41 @@ extends Node2D
 @export var starter_platform_scene: PackedScene
 @export var platform_scale: Vector2 = Vector2(1.5, 1.5)
 
+@onready var viewport1: Viewport = $"../SubViewportContainer/SubViewport"
+@onready var viewport2: Viewport = $"../SubViewportContainer/SubViewport2"
+
+@onready var climb_label_p_1: Label = $"../SubViewportContainer/SubViewport/CanvasLayer/ClimbLabel_P1"
+@onready var climb_label_p_2: Label = $"../SubViewportContainer/SubViewport2/CanvasLayer/ClimbLabel_P2"
+
 var players: Array[Node2D] = []
 
 func _ready() -> void:
 	players = await _wait_for_players()
 
-	var viewport1: Viewport = $"../SubViewportContainer/SubViewport"
-	var viewport2: Viewport = $"../SubViewportContainer/SubViewport2"
+	var player1_node: Node2D = viewport1.get_node("Player1")
+	var player2_node: Node2D = viewport2.get_node("Player2")
 
-	var player1: Node2D = viewport1.get_node("Player1")
-	var player2: Node2D = viewport2.get_node("Player2")
+	var player1_body := player1_node.get_node_or_null("CharacterBody2D")
+	var player2_body := player2_node.get_node_or_null("CharacterBody2D")
 
-	var base_y: float = min(player1.global_position.y, player2.global_position.y)
+	if player1_body:
+		player1_body.set_total_platforms(platforms_total)
+		player1_body.set_climb_label(climb_label_p_1)
+
+	if player2_body:
+		player2_body.set_total_platforms(platforms_total)
+		player2_body.set_climb_label(climb_label_p_2)
+
+	var base_y: float = min(player1_node.global_position.y, player2_node.global_position.y)
 
 	# Starter platforms
 	var starter1: Node2D = starter_platform_scene.instantiate()
-	starter1.global_position = Vector2(player1.global_position.x, player1.global_position.y + 48)
+	starter1.global_position = Vector2(player1_node.global_position.x, player1_node.global_position.y + 48)
 	starter1.scale = platform_scale
 	viewport1.add_child(starter1)
 
 	var starter2: Node2D = starter_platform_scene.instantiate()
-	starter2.global_position = Vector2(player2.global_position.x, player2.global_position.y + 48)
+	starter2.global_position = Vector2(player2_node.global_position.x, player2_node.global_position.y + 48)
 	starter2.scale = platform_scale
 	viewport2.add_child(starter2)
 

@@ -17,20 +17,15 @@ var last_platform_position: Vector2 = Vector2.ZERO
 var is_respawning: bool = false
 var respawn_cooldown: float = 0.0
 
-@export var player_id: = "P1"
+# Platform climb tracking
+var platforms_climbed: int = 0
+@export var total_platforms: int = 0
+var climb_label: Label = null
+
+@export var player_id: String = "P1"
 
 @onready var animated_sprite: AnimatedSprite2D = $AnimatedSprite2D
 @onready var jump_sound: AudioStreamPlayer2D = $AudioStreamPlayer2D
-
-func set_player_id(id: String) -> void:
-	player_id = id
-
-func initialize_player() -> void:
-	var raw_selection: String = Global.selected_players.get(player_id, "KuroButton")
-	if raw_selection == "" or raw_selection == null:
-		raw_selection = "KuroButton"
-	var selected_dino: String = raw_selection.replace("Button", "").to_lower()
-	_load_dino_animations(selected_dino)
 
 func _ready() -> void:
 	randomize()
@@ -38,6 +33,15 @@ func _ready() -> void:
 	respawn_position = global_position
 	last_platform_position = global_position
 	_apply_powerups()
+	_update_climb_display()
+
+func set_climb_label(label: Label) -> void:
+	climb_label = label
+	_update_climb_display()
+
+func set_total_platforms(count: int) -> void:
+	total_platforms = count
+	_update_climb_display()
 
 func _physics_process(delta: float) -> void:
 	if Global.dialogue_active or is_respawning:
@@ -51,13 +55,9 @@ func _physics_process(delta: float) -> void:
 
 	_apply_powerups()
 
-	var gravity_multiplier := 1.0
-	if Global.gamemode == "2p":
-		gravity_multiplier = 1.5
-
+	var gravity_multiplier: float = 1.5 if Global.gamemode == "2p" else 1.0
 	velocity.y += BASE_GRAVITY * gravity_multiplier * delta
 
-	# Jump logic
 	if is_on_floor():
 		jumps_left = 2 if Global.sapphire_collected or (Global.gamemode == "only_up" and Global.upgrades.get("DoubleJump", false)) else 1
 		coyote_timer = COYOTE_TIME
@@ -83,7 +83,6 @@ func _physics_process(delta: float) -> void:
 			jumps_left = 2 if Global.sapphire_collected or (Global.gamemode == "only_up" and Global.upgrades.get("DoubleJump", false)) else 1
 			_play_jump_sound()
 
-	# Horizontal movement
 	var left_action: String = "move_left_%s" % player_id.to_lower()
 	var right_action: String = "move_right_%s" % player_id.to_lower()
 	var direction: float = Input.get_axis(left_action, right_action)
@@ -104,9 +103,19 @@ func _update_last_platform() -> void:
 	for i in range(get_slide_collision_count()):
 		var collision := get_slide_collision(i)
 		if collision.get_normal().y < -0.7 and collision.get_collider() is Node2D:
-			last_platform_position = collision.get_position()
+			var new_platform_pos = collision.get_position()
+			if new_platform_pos.y < last_platform_position.y - 10.0:
+				platforms_climbed += 1
+				_update_climb_display()
+			last_platform_position = new_platform_pos
 			respawn_position = last_platform_position
 			break
+
+func _update_climb_display() -> void:
+	if climb_label:
+		climb_label.text = "[%d/%d]" % [platforms_climbed, total_platforms]
+	else:
+		print("⚠️ Climb label not assigned for %s" % player_id)
 
 func _check_respawn() -> void:
 	if respawn_cooldown > 0.0:
@@ -116,7 +125,7 @@ func _check_respawn() -> void:
 		is_respawning = true
 		global_position = respawn_position
 		velocity = Vector2.ZERO
-		respawn_cooldown = 0.5  # half-second buffer
+		respawn_cooldown = 0.5
 		is_respawning = false
 
 func _play_jump_sound() -> void:
@@ -169,6 +178,7 @@ func _apply_powerups() -> void:
 		JUMP_VELOCITY *= 1.75
 
 func set_platforms(data: Array) -> void:
+	total_platforms = data.size()
 	for item in data:
 		var scene: PackedScene = item["scene"]
 		var position: Vector2 = item["position"]
@@ -176,5 +186,15 @@ func set_platforms(data: Array) -> void:
 		platform.position = position
 		add_child(platform)
 
-func win_game(): 
+func win_game():
 	pass
+
+func set_player_id(id: String) -> void:
+	player_id = id
+
+func initialize_player() -> void:
+	var raw_selection: String = Global.selected_players.get(player_id, "KuroButton")
+	if raw_selection == "" or raw_selection == null:
+		raw_selection = "KuroButton"
+	var selected_dino: String = raw_selection.replace("Button", "").to_lower()
+	_load_dino_animations(selected_dino)
