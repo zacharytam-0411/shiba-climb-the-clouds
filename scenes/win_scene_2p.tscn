@@ -1,30 +1,96 @@
-[gd_scene format=3 uid="uid://dhmny326rriyg"]
+[gd_scene load_steps=6 format=3 uid="uid://dhmny326rriyg"]
+
+[ext_resource type="Script" uid="uid://ckwmo25sc574p" path="res://scripts/win_scene_2p.gd" id="1_6yliy"]
+[ext_resource type="Texture2D" uid="uid://cpnyj314igcpu" path="res://assets/sprites/Thumbnaila.png" id="2_0ilwv"]
+[ext_resource type="Theme" uid="uid://dkj13f87vvpnd" path="res://assets/palettes/button.tres" id="3_0ilwv"]
+[ext_resource type="FontFile" uid="uid://xdrw8fu77qqa" path="res://assets/fonts/m6x11.ttf" id="3_j0oxa"]
+[ext_resource type="Script" uid="uid://c0ahewng44kyw" path="res://scripts/congrats_to_both!.gd" id="5_j0oxa"]
 
 [node name="WinScene" type="Node2D"]
+script = ExtResource("1_6yliy")
 
-[node name="TextureRect" type="TextureRect" parent="."]
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+
+[node name="TextureRect" type="TextureRect" parent="CanvasLayer"]
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
+texture = ExtResource("2_0ilwv")
+expand_mode = 3
 
-[node name="Label" type="Label" parent="."]
-offset_right = 40.0
-offset_bottom = 23.0
+[node name="WinnerLabel" type="Label" parent="CanvasLayer"]
+offset_left = 160.0
+offset_top = 200.0
+offset_right = 535.0
+offset_bottom = 331.0
+theme = ExtResource("3_0ilwv")
+theme_override_colors/font_color = Color(0.83137256, 0.6862745, 0.21568628, 1)
+theme_override_constants/outline_size = 10
+theme_override_font_sizes/font_size = 40
+text = "Winner Label Placeholder"
+horizontal_alignment = 1
 
-[node name="Label2" type="Label" parent="."]
-offset_right = 40.0
-offset_bottom = 23.0
+[node name="LoserLabel" type="Label" parent="CanvasLayer"]
+offset_left = 610.0
+offset_top = 200.0
+offset_right = 973.0
+offset_bottom = 331.0
+theme = ExtResource("3_0ilwv")
+theme_override_colors/font_color = Color(0.8039216, 0.49803922, 0.19607843, 1)
+theme_override_constants/outline_size = 10
+theme_override_font_sizes/font_size = 40
+text = "Loser Label Placeholder"
+horizontal_alignment = 1
 
-[node name="Label3" type="Label" parent="."]
-offset_right = 40.0
-offset_bottom = 23.0
+[node name="WinnerTimeLabel" type="Label" parent="CanvasLayer"]
+offset_left = 240.0
+offset_top = 350.0
+offset_right = 449.0
+offset_bottom = 433.0
+theme = ExtResource("3_0ilwv")
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_constants/outline_size = 10
+theme_override_font_sizes/font_size = 30
+text = "placeholder"
+horizontal_alignment = 1
 
-[node name="Label4" type="Label" parent="."]
-offset_right = 40.0
-offset_bottom = 23.0
+[node name="LoserTimeLabel" type="Label" parent="CanvasLayer"]
+offset_left = 690.0
+offset_top = 350.0
+offset_right = 899.0
+offset_bottom = 433.0
+theme = ExtResource("3_0ilwv")
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_constants/outline_size = 10
+theme_override_font_sizes/font_size = 30
+text = "placeholder"
+horizontal_alignment = 1
 
-[node name="Button" type="Button" parent="."]
-offset_right = 8.0
-offset_bottom = 8.0
+[node name="BackButton" type="Button" parent="CanvasLayer"]
+offset_left = 438.0
+offset_top = 569.0
+offset_right = 652.0
+offset_bottom = 617.0
+theme_override_fonts/font = ExtResource("3_j0oxa")
+theme_override_font_sizes/font_size = 40
+text = "Back"
+
+[node name="Congrats to both" type="RichTextLabel" parent="CanvasLayer"]
+z_index = 20
+clip_contents = false
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -576.0
+offset_top = 56.0
+offset_right = 570.0
+offset_bottom = 187.0
+grow_horizontal = 2
+theme = ExtResource("3_0ilwv")
+theme_override_constants/outline_size = 10
+theme_override_font_sizes/normal_font_size = 40
+bbcode_enabled = true
+horizontal_alignment = 1
+script = ExtResource("5_j0oxa")

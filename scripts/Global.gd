@@ -37,7 +37,61 @@ var pending_time: float = -1.0
 var gamemode := "default"
 var last_platform: StaticBody2D = null
 var only_up_coins: int = 0
+var winner_id: String = ""
+var winner_time: float = 0.0
+var loser_id: String = ""
+var loser_time: float = 0.0
 
+var current_language := "en"
+
+var translations := {
+	"en": {
+		"Climb the Clouds": "Climb the Clouds",
+		"Press T to listen to Teto!": "Press T to listen to Teto!",
+		"Start Game": "Start Game",
+		"Options": "Options",
+		"Shop": "Shop",
+		"Exit": "Exit",
+		"A production by": "A production by",
+		"Something zoomed past the clouds.": "Something zoomed past the clouds.",
+		"Mort bought everything in the shop.": "Mort bought everything in the shop.",
+		"Also try axtro!": "Also try axtro!",
+		"Also try ShibaRunner!": "Also try ShibaRunner!",
+		"Also try Cook or Cooked!": "Also try Cook or Cooked!",
+		"Also try Skullward!": "Also try Skullward!",
+		"Also try Shogai Run!": "Also try Shogai Run!",
+		"Well, whats my birthday?": "Well, whats my birthday?",
+		"Kuro ate 42 pancakes mid-air. [Those were mine! - Zac]": "Kuro ate 42 pancakes mid-air. [Those were mine! - Zac]",
+		"Press T to Listen to the TETO-rial!": "Press T to Listen to the TETO-rial!",
+		"We are NOT sleeping in shiba - Zac": "We are NOT sleeping in shiba - Zac",
+		"Nominate yourself for the Shiba Awards!": "Nominate yourself for the Shiba Awards!",
+		"Don't quit the game.. don't you dare.": "Don't quit the game.. don't you dare."
+	},
+	"jp": {
+		"Climb the Clouds": "雲を登ろう",
+		"Press T to listen to Teto!": "Tキーでテトの声を聞こう！",
+		"Start Game": "ゲーム開始",
+		"Options": "オプション",
+		"Shop": "ショップ",
+		"Exit": "終了",
+		"A production by": "制作：",
+		"Something zoomed past the clouds.": "何かが雲を突き抜けて飛んでいった。",
+		"Mort bought everything in the shop.": "モートが店の商品を全部買った。",
+		"Also try axtro!": "アクストロも試してみて！",
+		"Also try ShibaRunner!": "シバランナーも試してみて！",
+		"Also try Cook or Cooked!": "クック・オア・クックドも試してみて！",
+		"Also try Skullward!": "スカルワードも試してみて！",
+		"Also try Shogai Run!": "障害ランも試してみて！",
+		"Well, whats my birthday?": "えっと、僕の誕生日っていつ？",
+		"Kuro ate 42 pancakes mid-air. [Those were mine! - Zac]": "クロが空中で42枚のパンケーキを食べた。",
+		"Press T to Listen to the TETO-rial!": "Tキーでテトリアルを聞こう！",
+		"We are NOT sleeping in shiba - Zac": "シバで寝るなんて絶対にないよ - Zac",
+		"Nominate yourself for the Shiba Awards!": "シバアワードに自分をノミネートしよう！",
+		"Don't quit the game.. don't you dare.": "ゲームをやめるな…絶対にやめるなよ。"
+	}
+}
+
+var finished_players: Dictionary = {}
 var available_dinos := [
 	"kuro",
 	"loki",
@@ -57,6 +111,11 @@ var secret_dinos := [
 ]
 
 func _reset() -> void:
+	winner_id = ""
+	winner_time = 0.0
+	loser_id = ""
+	loser_time = 0.0
+
 	sapphire_collected = false
 	diamond_collected = false
 	ruby_collected = false

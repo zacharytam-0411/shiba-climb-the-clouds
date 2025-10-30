@@ -7,7 +7,6 @@ const COYOTE_TIME: float = 0.1
 const BASE_GRAVITY: float = 980.0
 const RESPAWN_THRESHOLD: float = 100.0
 
-# Runtime variables
 var SPEED: float = BASE_SPEED
 var JUMP_VELOCITY: float = BASE_JUMP_VELOCITY
 var coyote_timer: float = 0.0
@@ -17,12 +16,10 @@ var last_platform_position: Vector2 = Vector2.ZERO
 var is_respawning: bool = false
 var respawn_cooldown: float = 0.0
 
-# Platform climb tracking
-var platforms_climbed: int = 0
-@export var total_platforms: int = 0
-var climb_label: Label = null
-
 @export var player_id: String = "P1"
+
+var finished: bool = false
+var finish_time: float = 0.0
 
 @onready var animated_sprite: AnimatedSprite2D = $AnimatedSprite2D
 @onready var jump_sound: AudioStreamPlayer2D = $AudioStreamPlayer2D
@@ -33,17 +30,22 @@ func _ready() -> void:
 	respawn_position = global_position
 	last_platform_position = global_position
 	_apply_powerups()
-	_update_climb_display()
 
-func set_climb_label(label: Label) -> void:
-	climb_label = label
-	_update_climb_display()
+func set_player_id(id: String) -> void:
+	player_id = id
+	initialize_player()
 
-func set_total_platforms(count: int) -> void:
-	total_platforms = count
-	_update_climb_display()
+func initialize_player() -> void:
+	var raw_selection: String = Global.selected_players.get(player_id, "KuroButton")
+	if raw_selection == "" or raw_selection == null:
+		raw_selection = "KuroButton"
+	var selected_dino: String = raw_selection.replace("Button", "").to_lower()
+	_load_dino_animations(selected_dino)
 
 func _physics_process(delta: float) -> void:
+	if not is_inside_tree():
+		return
+
 	if Global.dialogue_active or is_respawning:
 		velocity = Vector2.ZERO
 		animated_sprite.play("idle")
@@ -61,7 +63,8 @@ func _physics_process(delta: float) -> void:
 	if is_on_floor():
 		jumps_left = 2 if Global.sapphire_collected or (Global.gamemode == "only_up" and Global.upgrades.get("DoubleJump", false)) else 1
 		coyote_timer = COYOTE_TIME
-		_update_last_platform()
+		last_platform_position = global_position
+		respawn_position = global_position
 	else:
 		coyote_timer -= delta
 
@@ -98,24 +101,6 @@ func _physics_process(delta: float) -> void:
 	move_and_slide()
 
 	_check_respawn()
-
-func _update_last_platform() -> void:
-	for i in range(get_slide_collision_count()):
-		var collision := get_slide_collision(i)
-		if collision.get_normal().y < -0.7 and collision.get_collider() is Node2D:
-			var new_platform_pos = collision.get_position()
-			if new_platform_pos.y < last_platform_position.y - 10.0:
-				platforms_climbed += 1
-				_update_climb_display()
-			last_platform_position = new_platform_pos
-			respawn_position = last_platform_position
-			break
-
-func _update_climb_display() -> void:
-	if climb_label:
-		climb_label.text = "[%d/%d]" % [platforms_climbed, total_platforms]
-	else:
-		print("⚠️ Climb label not assigned for %s" % player_id)
 
 func _check_respawn() -> void:
 	if respawn_cooldown > 0.0:
@@ -178,7 +163,6 @@ func _apply_powerups() -> void:
 		JUMP_VELOCITY *= 1.75
 
 func set_platforms(data: Array) -> void:
-	total_platforms = data.size()
 	for item in data:
 		var scene: PackedScene = item["scene"]
 		var position: Vector2 = item["position"]
@@ -186,15 +170,28 @@ func set_platforms(data: Array) -> void:
 		platform.position = position
 		add_child(platform)
 
-func win_game():
-	pass
+func win_game(elapsed_time: float) -> void:
+	if finished:
+		return
 
-func set_player_id(id: String) -> void:
-	player_id = id
+	finished = true
+	finish_time = elapsed_time
+	Global.finished_players[player_id] = finish_time
+	print("%s finished in %.2fs" % [player_id, finish_time])
 
-func initialize_player() -> void:
-	var raw_selection: String = Global.selected_players.get(player_id, "KuroButton")
-	if raw_selection == "" or raw_selection == null:
-		raw_selection = "KuroButton"
-	var selected_dino: String = raw_selection.replace("Button", "").to_lower()
-	_load_dino_animations(selected_dino)
+	if Global.finished_players.size() == 2:
+		var p1_time = Global.finished_players.get("P1", INF)
+		var p2_time = Global.finished_players.get("P2", INF)
+
+		if p1_time < p2_time:
+			Global.winner_id = "P1"
+			Global.winner_time = p1_time
+			Global.loser_id = "P2"
+			Global.loser_time = p2_time
+		else:
+			Global.winner_id = "P2"
+			Global.winner_time = p2_time
+			Global.loser_id = "P1"
+			Global.loser_time = p1_time
+
+		get_tree().change_scene_to_file("res://scenes/win_scene_2p.tscn")

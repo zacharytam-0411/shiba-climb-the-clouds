@@ -14,7 +14,11 @@ func _ready() -> void:
 	highlight_selected()  # Focus StartButton by default
 
 func _process(delta: float) -> void:
-	if Input.is_action_just_pressed("move_down"):
+	if Input.is_action_just_pressed("action_p"):
+		Global.current_language = "jp" if Global.current_language == "en" else "en"
+		for label in get_tree().get_nodes_in_group("translatable"):
+			label.update_text()
+	elif Input.is_action_just_pressed("move_down"):
 		selected_index = (selected_index + 1) % buttons.size()
 		highlight_selected()
 	elif Input.is_action_just_pressed("move_up"):
