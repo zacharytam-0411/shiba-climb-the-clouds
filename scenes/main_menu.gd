@@ -2,9 +2,12 @@ extends Control
 
 var buttons := []
 var selected_index := 0
+@export var english_font_file: FontFile
+@export var japanese_font_file: FontFile
 
 func _ready() -> void:
-	# Ensure these paths match your actual scene structure
+	TranslationServer.set_locale(Global.game_lang)
+	Global.update_fonts(self)
 	buttons = [
 		$VBoxContainer/StartButton,
 		$VBoxContainer/SettingsButton,
@@ -15,9 +18,10 @@ func _ready() -> void:
 
 func _process(delta: float) -> void:
 	if Input.is_action_just_pressed("action_p"):
-		Global.current_language = "jp" if Global.current_language == "en" else "en"
-		for label in get_tree().get_nodes_in_group("translatable"):
-			label.update_text()
+		var new_locale := "jp" if TranslationServer.get_locale() == "en" else "en"
+		Global.game_lang = new_locale
+		TranslationServer.set_locale(new_locale)
+		Global.update_fonts(self)
 	elif Input.is_action_just_pressed("move_down"):
 		selected_index = (selected_index + 1) % buttons.size()
 		highlight_selected()

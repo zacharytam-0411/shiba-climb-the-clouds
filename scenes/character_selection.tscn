@@ -169,7 +169,7 @@ layout_mode = 2
 theme_override_colors/font_color = Color(0.38431373, 0.6, 1, 1)
 theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
 theme_override_constants/outline_size = 4
-theme_override_font_sizes/font_size = 15
+theme_override_font_sizes/font_size = 16
 text = "P1"
 horizontal_alignment = 1
 
@@ -186,13 +186,14 @@ layout_mode = 2
 theme_override_colors/font_color = Color(1, 0.6, 0.6039216, 1)
 theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
 theme_override_constants/outline_size = 4
-theme_override_font_sizes/font_size = 15
+theme_override_font_sizes/font_size = 16
 text = "P2"
 horizontal_alignment = 1
 
 [node name="SelectedIcon" type="TextureRect" parent="PlayerSlots/P2Slot"]
 layout_mode = 2
 texture = ExtResource("9_dv8bk")
+stretch_mode = 5
 
 [node name="PreviewPanel" type="Control" parent="."]
 anchors_preset = 0

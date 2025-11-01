@@ -1,0 +1,46 @@
+key,en,jp
+Start Game, "Start Game", "ゲーム開始"
+Options, "Options", "オプション"
+Shop, "Shop", "ショップ"
+Exit, "Exit", "終了"
+Climb the Clouds, "Climb the Clouds", "雲を登る"
+A production by:, "A production by:", "制作："
+Press T to listen to Teto!, "Press T to listen to Teto!", "Tを押してテトを聞く！"
+"Teto -->", "Teto -->", "テト -->"
+"Not yet available!", "Not yet available!", "まだ利用できません！"
+"Gamemode selection", "Gamemode selection", "ゲームモード選択"
+Adventure Mode, "Adventure Mode", "アドベンチャーモード"
+Go to leaderboard, "Go to leaderboard", "リーダーボードへ"
+Back, "Back", "戻る"
+Climb The Clouds, "Climb The Clouds", "雲を登る"
+2 Player Mode, "2 Player Mode", "2人モード"
+Select your character, "Select your character", "キャラクターを選択"
+name_none,None,なし
+name_random,Random,ランダム
+desc_random,Gives you a random player.,ランダムなプレイヤーを選びます。
+name_kuro,Kuro,クロ
+desc_kuro,Balanced.\nGood all-around.,バランス型。\n万能タイプ。
+name_shiba,Shiba,シバ
+desc_shiba,Fast and agile.,素早くて俊敏。
+name_knight,Knight,ナイト
+desc_knight,Strong and Trustworthy.,強くて信頼できる。
+name_loki,Loki,ロキ
+desc_loki,Big Brother of Kuro.,クロの兄。
+name_mono,Mono,モノ
+desc_mono,A good \nfriend of Kuro.,クロの良き友人。
+name_mort,Mort,モート
+desc_mort,Also a good \nfriend of Kuro.,クロのもう一人の友人。
+name_tard,Tard,タード
+desc_tard,Loves Lemon Tarts.\n[just like me! -zac],レモンタルトが大好き。\n[僕もだよ！ -zac]
+name_sena,Sena,セナ
+desc_sena,A good \ncompanion of Kuro.,クロの良き仲間。
+name_nico,Nico,ニコ
+desc_nico,Friend of Tard.\nAlso enjoys Lemon Tarts.,タードの友人。\nレモンタルトも好き。
+name_olaf,Olaf,オラフ
+desc_olaf,Younger Brother of Tard.,タードの弟。
+name_ang,Ang,アング
+desc_ang,\nGood friend of ours.\nIs also the first person \nto get the ticket!,僕たちの良き友人。\n最初にチケットを手にした人！
+name_teto,Teto,テト
+desc_teto,Kasane Teto.,重音テト。
+Continue, "Continue", "続ける"
+Press K again to start!, "Press K again to start!", "もう一度Kを押して開始！"

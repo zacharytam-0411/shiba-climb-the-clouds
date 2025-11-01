@@ -62,7 +62,7 @@ offset_top = 320.0
 offset_right = 330.0
 offset_bottom = 440.0
 theme = ExtResource("4_6l654")
-text = "default"
+text = "Adventure Mode"
 
 [node name="Leaderboard" type="Button" parent="."]
 layout_mode = 0
@@ -87,7 +87,7 @@ offset_top = 320.0
 offset_right = 680.0
 offset_bottom = 440.0
 theme = ExtResource("4_6l654")
-text = "climb da clouds"
+text = "Climb The Clouds"
 
 [node name="MultiplayerButton" type="Button" parent="."]
 layout_mode = 0
@@ -96,7 +96,4 @@ offset_top = 320.0
 offset_right = 1030.0
 offset_bottom = 440.0
 theme = ExtResource("4_6l654")
-text = "2 player [wip]
-
-disclaimer : 
-doesnt work rn"
+text = "2 Player Mode"

@@ -35,6 +35,8 @@ func _ready():
 	_update_selector_color()
 	start_button.pressed.connect(_on_StartButton_pressed)
 	back_button.pressed.connect(_on_BackButton_pressed)
+	TranslationServer.set_locale(Global.game_lang)
+	Global.update_fonts(self)
 
 	for button in character_grid.get_children():
 		button.connect("pressed", Callable(self, "_on_character_selected").bind(button.name))
@@ -42,6 +44,11 @@ func _ready():
 	_update_selector_position()
 
 func _process(_delta: float) -> void:
+	if Input.is_action_just_pressed("action_p"):
+		var new_locale := "jp" if TranslationServer.get_locale() == "en" else "en"
+		Global.game_lang = new_locale
+		TranslationServer.set_locale(new_locale)
+		Global.update_fonts(self)
 	if Input.is_action_just_pressed("move_right"):
 		_move_selector(1)
 	elif Input.is_action_just_pressed("move_left"):
@@ -94,7 +101,7 @@ func _confirm_selection():
 	else:
 		if selected_characters["P1"] != "" and selected_characters["P2"] != "":
 			ready_to_start = true
-			label.text = "Press K again to start!"
+			label.text = tr("Press K again to start!")
 
 func _unconfirm_selection():
 	if confirmed_players["P2"]:
@@ -153,8 +160,8 @@ func _update_preview(character_name: String):
 
 	if character_name == "RandomButton":
 		preview_sprite.frames = null
-		name_label.text = "Random"
-		stats_label.text = "Gives you a random player."
+		name_label.text = tr("name_random")
+		stats_label.text = tr("desc_random")
 		preview_sprite.position.y = 0
 		return
 
@@ -163,63 +170,63 @@ func _update_preview(character_name: String):
 	match character_name:
 		"KuroButton":
 			frames = preload("res://assets/sprites/skinframes/kuro_frames.tres")
-			name_label.text = "Kuro"
-			stats_label.text = "Balanced.\nGood all-around."
+			name_label.text = tr("name_kuro")
+			stats_label.text = tr("desc_kuro")
 		"ShibaButton":
 			frames = preload("res://assets/sprites/skinframes/shiba_frames.tres")
-			name_label.text = "Shiba"
-			stats_label.text = "Fast and agile."
+			name_label.text = tr("name_shiba")
+			stats_label.text = tr("desc_shiba")
 		"KnightButton":
 			frames = preload("res://assets/sprites/skinframes/knight_frames.tres")
-			name_label.text = "Knight"
-			stats_label.text = "Strong and Trustworthy."
+			name_label.text = tr("name_knight")
+			stats_label.text = tr("desc_knight")
 		"LokiButton":
 			frames = preload("res://assets/sprites/skinframes/loki_frames.tres")
-			name_label.text = "Loki"
-			stats_label.text = "Big Brother of Kuro."
+			name_label.text = tr("name_loki")
+			stats_label.text = tr("desc_loki")
 		"MonoButton":
 			frames = preload("res://assets/sprites/skinframes/mono_frames.tres")
-			name_label.text = "Mono"
-			stats_label.text = "A good \nfriend of Kuro."
+			name_label.text = tr("name_mono")
+			stats_label.text = tr("desc_mono")
 		"MortButton":
 			frames = preload("res://assets/sprites/skinframes/mort_frames.tres")
-			name_label.text = "Mort"
-			stats_label.text = "Also a good \nfriend of Kuro."
+			name_label.text = tr("name_mort")
+			stats_label.text = tr("desc_mort")
 		"TardButton":
 			frames = preload("res://assets/sprites/skinframes/tard_frames.tres")
-			name_label.text = "Tard"
-			stats_label.text = "Loves Lemon Tarts.\n[just like me! -zac]"
+			name_label.text = tr("name_tard")
+			stats_label.text = tr("desc_tard")
 		"SenaButton":
 			frames = preload("res://assets/sprites/skinframes/sena_frames.tres")
-			name_label.text = "Sena"
-			stats_label.text = "A good \ncompanion of Kuro."
+			name_label.text = tr("name_sena")
+			stats_label.text = tr("desc_sena")
 		"NicoButton":
 			frames = preload("res://assets/sprites/skinframes/nico_frames.tres")
-			name_label.text = "Nico"
-			stats_label.text = "Friend of Tard.\nAlso enjoys Lemon Tarts."
+			name_label.text = tr("name_nico")
+			stats_label.text = tr("desc_nico")
 		"OlafButton":
 			frames = preload("res://assets/sprites/skinframes/olaf_frames.tres")
-			name_label.text = "Olaf"
-			stats_label.text = "Younger Brother of Tard."
+			name_label.text = tr("name_olaf")
+			stats_label.text = tr("desc_olaf")
 		"AngButton":
 			frames = preload("res://assets/sprites/skinframes/ang_frames.tres")
-			name_label.text = "Ang"
-			stats_label.text = "\nGood friend of ours.\nIs also the first person \nto get the ticket!"
+			name_label.text = tr("name_ang")
+			stats_label.text = tr("desc_ang")
 			if confirmed_players["P1"] or confirmed_players["P2"]:
 				preview_sprite.position.y = -10
 			else:
 				preview_sprite.position.y = 0
 		"TetoButton":
 			frames = preload("res://assets/sprites/skinframes/teto_frames.tres")
-			name_label.text = "Teto"
-			stats_label.text = "Kasane Teto."
+			name_label.text = tr("name_teto")
+			stats_label.text = tr("desc_teto")
 			if confirmed_players["P1"] or confirmed_players["P2"]:
 				preview_sprite.position.y = -10
 			else:
 				preview_sprite.position.y = 0
 		_:
-			name_label.text = "None"
-			stats_label.text = ""
+			name_label.text = tr("name_none")
+			stats_label.text = tr("desc_none")
 			preview_sprite.position.y = 0
 
 	preview_sprite.frames = frames

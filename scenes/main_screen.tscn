@@ -1,17 +1,13 @@
-[gd_scene load_steps=15 format=3 uid="uid://dojb5lpo81upv"]
+[gd_scene load_steps=11 format=3 uid="uid://dojb5lpo81upv"]
 
 [ext_resource type="Script" uid="uid://288jde3gqwi6" path="res://scenes/main_menu.gd" id="1_aum10"]
 [ext_resource type="FontFile" uid="uid://xdrw8fu77qqa" path="res://assets/fonts/m6x11.ttf" id="2_lushf"]
-[ext_resource type="Script" uid="uid://b306y2ln8usgt" path="res://scripts/startinglabel.gd" id="3_4takm"]
 [ext_resource type="FontFile" uid="uid://dcraqlv7xu0j" path="res://assets/fonts/m5x7.ttf" id="3_aum10"]
 [ext_resource type="Texture2D" uid="uid://b2bdqpmoaqpku" path="res://assets/sprites/Thumbnail.png" id="3_w87pm"]
 [ext_resource type="Theme" uid="uid://dkj13f87vvpnd" path="res://assets/palettes/button.tres" id="4_il54y"]
 [ext_resource type="FontFile" uid="uid://dj7336j23aq5y" path="res://assets/fonts/BestTen-CRT.otf" id="4_pn685"]
-[ext_resource type="Script" uid="uid://dqvh3igg2xvkg" path="res://scripts/randomtextlabel.gd" id="5_23dc1"]
-[ext_resource type="Script" uid="uid://dw4p1f6ehnj1k" path="res://scripts/v_box_containerstart.gd" id="6_352yk"]
 [ext_resource type="AudioStream" uid="uid://meymmbvm24b4" path="res://assets/music/orangejuice.mp3" id="6_a46j4"]
 [ext_resource type="Texture2D" uid="uid://b2k3u3jubqabr" path="res://assets/sprites/game_studio.png" id="7_23dc1"]
-[ext_resource type="Script" uid="uid://byc3yls6tmq3y" path="res://scripts/tetostartlabel.gd" id="8_u38ol"]
 
 [sub_resource type="StyleBoxTexture" id="StyleBoxTexture_7fvvs"]
 texture = ExtResource("3_w87pm")
@@ -26,6 +22,8 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("1_aum10")
+english_font_file = ExtResource("2_lushf")
+japanese_font_file = ExtResource("4_pn685")
 
 [node name="Label" type="Label" parent="."]
 z_index = 10
@@ -33,9 +31,9 @@ layout_mode = 1
 anchors_preset = 5
 anchor_left = 0.5
 anchor_right = 0.5
-offset_left = -459.5
+offset_left = -499.5
 offset_top = 21.0
-offset_right = 459.5
+offset_right = 419.5
 offset_bottom = 160.58333
 grow_horizontal = 2
 theme_override_colors/font_color = Color(0.76487833, 1, 1, 1)
@@ -43,10 +41,6 @@ theme_override_colors/font_outline_color = Color(0, 0, 1, 1)
 theme_override_constants/outline_size = 10
 theme_override_font_sizes/font_size = 100
 text = "Climb the Clouds"
-script = ExtResource("3_4takm")
-english_text = "Climb the Clouds"
-english_font_file = ExtResource("2_lushf")
-japanese_font_file = ExtResource("4_pn685")
 
 [node name="Panel" type="Panel" parent="."]
 layout_mode = 1
@@ -71,10 +65,6 @@ offset_bottom = -72.492676
 grow_horizontal = 0
 grow_vertical = 0
 theme_override_constants/separation = 5
-script = ExtResource("6_352yk")
-english_font_file = ExtResource("2_lushf")
-japanese_font_file = ExtResource("4_pn685")
-button_keys = null
 
 [node name="StartButton" type="Button" parent="VBoxContainer"]
 layout_mode = 2
@@ -130,13 +120,13 @@ offset_bottom = 235.0
 theme_override_colors/font_color = Color(0, 0, 0, 1)
 theme_override_fonts/font = ExtResource("2_lushf")
 theme_override_font_sizes/font_size = 50
-text = "v0.9b"
+text = "v0.9c"
 
 [node name="Label5" type="Label" parent="."]
 layout_mode = 0
-offset_left = 332.0
+offset_left = 220.0
 offset_top = 596.0
-offset_right = 537.0
+offset_right = 425.0
 offset_bottom = 628.0
 theme_override_colors/font_color = Color(0, 0, 0, 1)
 theme_override_fonts/font = ExtResource("3_aum10")
@@ -152,10 +142,6 @@ offset_bottom = 636.0
 theme_override_fonts/font = ExtResource("2_lushf")
 theme_override_font_sizes/font_size = 40
 text = "Teto -->"
-script = ExtResource("8_u38ol")
-english_text = "Teto -->"
-english_font_file = ExtResource("2_lushf")
-japanese_font_file = ExtResource("4_pn685")
 
 [node name="randomtextlabel" type="Label" parent="."]
 layout_mode = 0
@@ -167,9 +153,6 @@ theme_override_colors/font_color = Color(0.25060695, 0.07171876, 0.106628634, 1)
 theme_override_fonts/font = ExtResource("3_aum10")
 theme_override_font_sizes/font_size = 40
 text = "Press T to listen to Teto!"
-script = ExtResource("5_23dc1")
-english_font_file = ExtResource("2_lushf")
-japanese_font_file = ExtResource("4_pn685")
 
 [node name="AudioStreamPlayer2D" type="AudioStreamPlayer2D" parent="."]
 stream = ExtResource("6_a46j4")

@@ -7,6 +7,10 @@ var upgrades: Dictionary = {
 	"Glide": false,
 	"JumpBoost": 0
 }
+var english_font_file: FontFile = load("res://assets/fonts/m6x11.ttf")
+var japanese_font_file: FontFile = load("res://assets/fonts/BestTen-CRT.otf")
+
+var game_lang : String = "en"
 
 var sapphire_collected: bool = false
 var diamond_collected: bool = false
@@ -41,55 +45,6 @@ var winner_id: String = ""
 var winner_time: float = 0.0
 var loser_id: String = ""
 var loser_time: float = 0.0
-
-var current_language := "en"
-
-var translations := {
-	"en": {
-		"Climb the Clouds": "Climb the Clouds",
-		"Press T to listen to Teto!": "Press T to listen to Teto!",
-		"Start Game": "Start Game",
-		"Options": "Options",
-		"Shop": "Shop",
-		"Exit": "Exit",
-		"A production by": "A production by",
-		"Something zoomed past the clouds.": "Something zoomed past the clouds.",
-		"Mort bought everything in the shop.": "Mort bought everything in the shop.",
-		"Also try axtro!": "Also try axtro!",
-		"Also try ShibaRunner!": "Also try ShibaRunner!",
-		"Also try Cook or Cooked!": "Also try Cook or Cooked!",
-		"Also try Skullward!": "Also try Skullward!",
-		"Also try Shogai Run!": "Also try Shogai Run!",
-		"Well, whats my birthday?": "Well, whats my birthday?",
-		"Kuro ate 42 pancakes mid-air. [Those were mine! - Zac]": "Kuro ate 42 pancakes mid-air. [Those were mine! - Zac]",
-		"Press T to Listen to the TETO-rial!": "Press T to Listen to the TETO-rial!",
-		"We are NOT sleeping in shiba - Zac": "We are NOT sleeping in shiba - Zac",
-		"Nominate yourself for the Shiba Awards!": "Nominate yourself for the Shiba Awards!",
-		"Don't quit the game.. don't you dare.": "Don't quit the game.. don't you dare."
-	},
-	"jp": {
-		"Climb the Clouds": "雲を登ろう",
-		"Press T to listen to Teto!": "Tキーでテトの声を聞こう！",
-		"Start Game": "ゲーム開始",
-		"Options": "オプション",
-		"Shop": "ショップ",
-		"Exit": "終了",
-		"A production by": "制作：",
-		"Something zoomed past the clouds.": "何かが雲を突き抜けて飛んでいった。",
-		"Mort bought everything in the shop.": "モートが店の商品を全部買った。",
-		"Also try axtro!": "アクストロも試してみて！",
-		"Also try ShibaRunner!": "シバランナーも試してみて！",
-		"Also try Cook or Cooked!": "クック・オア・クックドも試してみて！",
-		"Also try Skullward!": "スカルワードも試してみて！",
-		"Also try Shogai Run!": "障害ランも試してみて！",
-		"Well, whats my birthday?": "えっと、僕の誕生日っていつ？",
-		"Kuro ate 42 pancakes mid-air. [Those were mine! - Zac]": "クロが空中で42枚のパンケーキを食べた。",
-		"Press T to Listen to the TETO-rial!": "Tキーでテトリアルを聞こう！",
-		"We are NOT sleeping in shiba - Zac": "シバで寝るなんて絶対にないよ - Zac",
-		"Nominate yourself for the Shiba Awards!": "シバアワードに自分をノミネートしよう！",
-		"Don't quit the game.. don't you dare.": "ゲームをやめるな…絶対にやめるなよ。"
-	}
-}
 
 var finished_players: Dictionary = {}
 var available_dinos := [
@@ -157,3 +112,15 @@ func save_progress() -> void:
 		"time_spent": roundi(timer * 10) / 10.0,
 		"max_height": max_height
 	})
+
+func update_fonts(root: Node) -> void:
+	var lang := TranslationServer.get_locale()
+	var font := japanese_font_file if lang == "jp" else english_font_file
+	_apply_font_recursive(root, font)
+	
+func _apply_font_recursive(node: Node, font: Font) -> void:
+	if node is Label or node is Button or node is RichTextLabel or node is CheckBox or node is OptionButton:
+		node.add_theme_font_override("font", font)
+
+	for child in node.get_children():
+		_apply_font_recursive(child, font)

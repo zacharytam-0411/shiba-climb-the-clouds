@@ -11,6 +11,8 @@ var buttons := []
 var selected_index := 0
 
 func _ready():
+	TranslationServer.set_locale(Global.game_lang)
+	Global.update_fonts(self)
 	_2_playerlabel.visible = false
 
 	# Connect button signals
@@ -33,7 +35,12 @@ func _ready():
 	highlight_selected()
 
 func _process(delta: float) -> void:
-	if Input.is_action_just_pressed("move_down"):
+	if Input.is_action_just_pressed("action_p"):
+		var new_locale := "jp" if TranslationServer.get_locale() == "en" else "en"
+		Global.game_lang = new_locale
+		TranslationServer.set_locale(new_locale)
+		Global.update_fonts(self)
+	elif Input.is_action_just_pressed("move_down"):
 		selected_index = (selected_index + 1) % buttons.size()
 		highlight_selected()
 	elif Input.is_action_just_pressed("move_up"):
