@@ -4,26 +4,26 @@ extends AudioStreamPlayer
 @onready var label_timer: Timer = $"../BGMTimer"
 
 var teto_playlist: Array = [
-	{"name": "Igaku - Sasuke Haraguchi [Feat. Kasane Teto]", "stream": preload("res://assets/music/Igaku.mp3")},
-	{"name": "PPPP - TAK [feat. Kasane Teto, Hatsune Miku]", "stream": preload("res://assets/music/PPPP.mp3")},
-	{"name": "Lemon Melon Cookie - TAK [feat. Hatsune Miku]", "stream": preload("res://assets/music/Lemon Melon Cookie.mp3")},
-	{"name": "Ochame Kinou - LamazeP [feat. Kasane Teto]", "stream": preload("res://assets/music/Ochame Kinou.mp3")},
-	{"name": "Override - Yoshida Yasei [feat. Kasane Teto]", "stream": preload("res://assets/music/Overflow.mp3")},
-	{"name": "Tetoris - Hiiragi Magnetite [feat. Kasane Teto]", "stream": preload("res://assets/music/Tetoris.mp3")},
-	{"name": "From The Start - Laufey [feat. Kasane Teto]", "stream": preload("res://assets/music/From The Start.mp3")},
-	{"name": "Lover Girl - Laufey [feat. Kasane Teto]", "stream": preload("res://assets/music/Lover Girl.mp3")}
+	{"name": tr("music.igaku"), "stream": preload("res://assets/music/Igaku.mp3")},
+	{"name": tr("music.pppp"), "stream": preload("res://assets/music/PPPP.mp3")},
+	{"name": tr("music.lemon_melon_cookie"), "stream": preload("res://assets/music/Lemon Melon Cookie.mp3")},
+	{"name": tr("music.ochame_kinou"), "stream": preload("res://assets/music/Ochame Kinou.mp3")},
+	{"name": tr("music.override"), "stream": preload("res://assets/music/Overflow.mp3")},
+	{"name": tr("music.tetoris"), "stream": preload("res://assets/music/Tetoris.mp3")},
+	{"name": tr("music.from_the_start"), "stream": preload("res://assets/music/From The Start.mp3")},
+	{"name": tr("music.lover_girl"), "stream": preload("res://assets/music/Lover Girl.mp3")}
 ]
 
 var normal_playlist: Array = [
-	{"name": "Big Cat Waltz - Hayato Sumino", "stream": preload("res://assets/music/Big Cat Waltz.mp3")},
-	{"name": "Orange Juice - Luce Lofi", "stream": preload("res://assets/music/orangejuice.mp3")}
+	{"name": tr("music.big_cat_waltz"), "stream": preload("res://assets/music/Big Cat Waltz.mp3")},
+	{"name": tr("music.orange_juice"), "stream": preload("res://assets/music/orangejuice.mp3")}
 ]
+
+var tutorial_bgm := {"name": tr("music.bakery"), "stream": preload("res://assets/music/bakery.mp3")}
 
 var use_teto_playlist: bool = false
 var current_bgm_index: int = 0
 var bgm_started: bool = false
-
-var tutorial_bgm := {"name": "Bakery - Luce Lofi", "stream": preload("res://assets/music/bakery.mp3")}
 
 var fade_timer: SceneTreeTimer = null
 const FADE_DURATION := 0.5
@@ -32,6 +32,8 @@ func _ready() -> void:
 	# Shuffle both playlists at launch
 	teto_playlist.shuffle()
 	normal_playlist.shuffle()
+	TranslationServer.set_locale(Global.game_lang)
+	Global.update_fonts(self)
 
 	if not label_timer.timeout.is_connected(Callable(self, "_on_BGMLabelTimer_timeout")):
 		label_timer.timeout.connect(Callable(self, "_on_BGMLabelTimer_timeout"))
@@ -159,3 +161,9 @@ func _cancel_fade_timer() -> void:
 		if fade_timer.timeout.is_connected(Callable(self, "_fade_out_and_skip")):
 			fade_timer.timeout.disconnect(Callable(self, "_fade_out_and_skip"))
 		fade_timer = null
+
+func _process(delta: float) -> void:
+	if Input.is_action_just_pressed("action_p"):
+		var new_locale := "jp" if TranslationServer.get_locale() == "en" else "en"
+		Global.game_lang = new_locale
+		TranslationServer.set_locale(new_locale)

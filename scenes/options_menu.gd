@@ -17,6 +17,8 @@ var sfx_volume: float = 1.0
 func _ready() -> void:
 	# Start hidden
 	visible = false
+	TranslationServer.set_locale(Global.game_lang)
+	Global.update_fonts(self)
 
 	# Make the overlay block input to everything behind it
 	overlay.mouse_filter = Control.MOUSE_FILTER_STOP
@@ -97,3 +99,9 @@ func _on_resume_pressed() -> void:
 func _on_quit_pressed() -> void:
 	get_tree().paused = false
 	get_tree().change_scene_to_file("res://scenes/main_screen.tscn")
+
+func _process(delta: float) -> void:
+	if Input.is_action_just_pressed("action_p"):
+		var new_locale := "jp" if TranslationServer.get_locale() == "en" else "en"
+		Global.game_lang = new_locale
+		TranslationServer.set_locale(new_locale)

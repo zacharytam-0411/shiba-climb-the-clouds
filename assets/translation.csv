@@ -44,3 +44,41 @@ name_teto,Teto,テト
 desc_teto,Kasane Teto.,重音テト。
 Continue, "Continue", "続ける"
 Press K again to start!, "Press K again to start!", "もう一度Kを押して開始！"
+dialogue.kuro_intro, "Hello there! I'm your guide, Kuro!", "こんにちは！案内役のクロです！"
+dialogue.welcome,Welcome in playing 'Climb the Clouds'!,"『雲を登れ』へようこそ！"
+dialogue.pre_start_info,I'm here to tell you about the things \nthat you need to know before you start the game!,ゲームを始める前に知っておくべきことを説明しますね！
+dialogue.controls_info,"Firstly, both arrow keys and WASD are the general controls.",まず、矢印キーとWASDキーが基本操作です。
+dialogue.jump_info,You can also press space bar to jump. \n[Note from Zac: Randomness week feature was reverted],スペースキーでジャンプもできます。\n【ザックより：ランダム機能は元に戻しました】
+dialogue.gem_intro,"Now, let me tell you about the 4 gems you can find:",次に、見つけられる4つの宝石について説明しますね。
+dialogue.ruby_info,Ruby lets you wall jump.,ルビーを取ると壁ジャンプができます。
+dialogue.sapphire_info,Sapphire gives you a double jump.,サファイアは二段ジャンプが可能になります。
+dialogue.emerald_diamond_info,"Emerald gives a speed and jump boost, \nand Diamond gives you 2 extra lives!",エメラルドはスピードとジャンプ力を強化し、\nダイヤモンドはライフを2つ追加してくれます！
+dialogue.options_reminder,"Also, remember to check out the Options page\nto adjust the music volume!",オプションページで音楽の音量を調整するのも忘れずに！
+dialogue.free_space_info,"After this dialogue ends, there will be a free space\nfor you to explore the mechanics of the game.",この会話が終わると、ゲームの仕組みを自由に試せるスペースがあります。
+dialogue.back_to_menu,Click the 'Back to Menu' button on the \ntop right corner when you are done!,終わったら右上の「メニューに戻る」ボタンをクリックしてください！
+dialogue.restart_game,Note that you will have to click Start Game\nagain to start the main game!,メインゲームを始めるには、もう一度「ゲーム開始」をクリックする必要があります！
+dialogue.music_skip,"You can press the I key to skip a song backwards,\nand O key to do the opposite [skip forwards].",Iキーで曲を戻し、Oキーで次の曲にスキップできます。
+dialogue.options_midgame,"Also, press Esc to access the Options page mid-game!",ゲーム中にEscキーを押すとオプションページにアクセスできます！
+dialogue.recent_updates,Most Recent Updates [v0.8c]: \nRevamped the Only Up gamemode \nand the character selection screen! :),最新アップデート [v0.8c]：\n「Only Up」モードとキャラクター選択画面を刷新しました！ :)
+dialogue.closing,"That's all, enjoy your game, and happy climbing!",以上です！ゲームを楽しんで、楽しく登ってくださいね！
+Free Exploring Space - Press Button on the right to leave -->, "Free Exploring Space - Press Button on the right to leave -->", "自由探索スペース - 右のボタンを押して退出 -->"
+Back to Menu, "Back to Menu", "メニューに戻る"
+Press Space to Continue, "Press Space to Continue", "スペースキーを押して続ける"
+Skip Tutorial, "Skip Tutorial", "チュートリアルをスキップ"
+Task List:, "Task List:", "タスクリスト："
+y_level, "Y Level: ", "Yレベル："
+BGM Volume:, "BGM Volume:", "BGM音量："
+SFX Volume:, "SFX Volume:", "効果音音量："
+Resume, "Resume", "再開"
+Quit, "Quit", "終了"
+music.igaku,Igaku - Sasuke Haraguchi [Feat. Kasane Teto], イガク - 原口沙輔【重音テト】
+music.pppp, "PPPP - TAK [feat. Kasane Teto, Hatsune Miku]",PPPP - TAK【重音テト・初音ミク】
+music.lemon_melon_cookie,Lemon Melon Cookie - TAK [feat. Hatsune Miku],レモンメロンクッキー - TAK【初音ミク】
+music.ochame_kinou,Ochame Kinou - LamazeP [feat. Kasane Teto],おちゃめ機能 - ラマーズP【重音テト】
+music.override,Override - Yoshida Yasei [feat. Kasane Teto],オーバーライド - 吉田夜世【重音テト】
+music.tetoris,Tetoris - Hiiragi Magnetite [feat. Kasane Teto],テトリス - 柊マグネタイト【重音テト】
+music.from_the_start,From The Start - Laufey [feat. Kasane Teto],フロム・ザ・スタート - Laufey【重音テト】
+music.lover_girl,Lover Girl - Laufey [feat. Kasane Teto],ラバー・ガール - Laufey【重音テト】
+music.big_cat_waltz,Big Cat Waltz - Hayato Sumino,ビッグキャットワルツ - 角野隼斗
+music.orange_juice,Orange Juice - Luce Lofi,オレンジジュース - Luce Lofi
+music.bakery,Bakery - Luce Lofi,ベーカリー - Luce Lofi

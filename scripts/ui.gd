@@ -20,10 +20,16 @@ var player_ref: Node2D
 var diamond_was_collected := false
 
 func _ready() -> void:
+	TranslationServer.set_locale(Global.game_lang)
+	Global.update_fonts(self)
 	player_ref = get_node(player_path)
 	task_bar.set_custom_minimum_size(Vector2(200, 16))
 
 func _process(_delta: float) -> void:
+	if Input.is_action_just_pressed("action_p"):
+		var new_locale := "jp" if TranslationServer.get_locale() == "en" else "en"
+		Global.game_lang = new_locale
+		TranslationServer.set_locale(new_locale)
 	update_gems()
 	update_coins()
 	update_lives()
@@ -88,4 +94,4 @@ func animate_heart_upgrade():
 
 
 func update_y_level():
-	y_label.text = "Y Level: %dm" % Global.y_level
+	y_label.text = tr("y_level") + " %dm" % Global.y_level

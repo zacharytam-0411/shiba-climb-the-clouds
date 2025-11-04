@@ -997,7 +997,7 @@ offset_top = -23.0
 grow_horizontal = 0
 grow_vertical = 0
 theme_override_fonts/font = ExtResource("6_bl2xa")
-text = "Press Space to continue"
+text = "Press Space to Continue"
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="CanvasLayer"]
 z_index = 1000
@@ -1175,17 +1175,11 @@ frame_progress = 0.2658825
 
 [node name="LeaveButton" type="Button" parent="CanvasLayer"]
 z_index = 100
-anchors_preset = 1
-anchor_left = 1.0
-anchor_right = 1.0
-offset_left = -1150.0
-offset_right = -955.4545
+offset_right = 307.0
 offset_bottom = 40.0
-grow_horizontal = 0
 theme_override_fonts/font = ExtResource("6_bl2xa")
 theme_override_font_sizes/font_size = 35
-text = "Skip Tutorial
-"
+text = "Skip Tutorial"
 
 [node name="DialoguePlayer" type="AudioStreamPlayer2D" parent="."]
 volume_db = -5.0

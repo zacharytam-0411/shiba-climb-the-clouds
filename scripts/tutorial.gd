@@ -37,24 +37,25 @@ extends Node2D
 @onready var dialogue_player: AudioStreamPlayer2D = $DialoguePlayer
 
 var dialogue_lines = [
-	"Hello there! I'm your guide, Kuro!",
-	"Welcome in playing 'Climb the Clouds'!",
-	"I'm here to tell you about the things \nthat you need to know before you start the game!",
-	"Firstly, both arrow keys and WASD are the general controls.",
-	"You can also press space bar to jump. \n[Note from Zac: Randomness week feature was reverted]",
-	"Now, let me tell you about the 4 gems you can find:",
-	"Ruby lets you wall jump.",
-	"Sapphire gives you a double jump.",
-	"Emerald gives a speed and jump boost, \nand Diamond gives you 2 extra lives!",
-	"Also, remember to check out the Options page\nto adjust the music volume!",
-	"After this dialogue ends, there will be a free space\nfor you to explore the mechanics of the game.",
-	"Click the 'Back to Menu' button on the \ntop right corner when you are done!",
-	"Note that you will have to click Start Game\nagain to start the main game!",
-	"You can press the I key to skip a song backwards,\nand O key to do the opposite [skip forwards].",
-	"Also, press Esc to access the Options page mid-game!",
-	"Most Recent Updates [v0.8c]: \nRevamped the Only Up gamemode \nand the character selection screen! :)",
-    "That's all, enjoy your game, and happy climbing!"
+	tr("dialogue.kuro_intro"),
+	tr("dialogue.welcome"),
+	tr("dialogue.pre_start_info"),
+	tr("dialogue.controls_info"),
+	tr("dialogue.jump_info"),
+	tr("dialogue.gem_intro"),
+	tr("dialogue.ruby_info"),
+	tr("dialogue.sapphire_info"),
+	tr("dialogue.emerald_diamond_info"),
+	tr("dialogue.options_reminder"),
+	tr("dialogue.free_space_info"),
+	tr("dialogue.back_to_menu"),
+	tr("dialogue.restart_game"),
+	tr("dialogue.music_skip"),
+	tr("dialogue.options_midgame"),
+	tr("dialogue.recent_updates"),
+	tr("dialogue.closing")
 ]
+
 
 var current_line = 0
 var typing = false
@@ -64,6 +65,8 @@ var typing_tween: Tween
 
 func _ready() -> void:
 	Global.in_tutorial = true
+	TranslationServer.set_locale(Global.game_lang)
+	Global.update_fonts(self)
 	skip_button.pressed.connect(_on_skip_pressed)
 	leave_button.pressed.connect(_on_leave_pressed)
 	player.visible = false
@@ -287,3 +290,9 @@ func _on_leave_pressed() -> void:
 	Global._reset()
 	print("Tutorial marked as complete, leaving tutorial...")
 	get_tree().change_scene_to_file("res://scenes/character_selection.tscn")
+
+func _process(delta: float) -> void:
+	if Input.is_action_just_pressed("action_p"):
+		var new_locale := "jp" if TranslationServer.get_locale() == "en" else "en"
+		Global.game_lang = new_locale
+		TranslationServer.set_locale(new_locale)
