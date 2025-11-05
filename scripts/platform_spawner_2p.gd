@@ -8,10 +8,7 @@ extends Node2D
 @export var platform_scale: Vector2 = Vector2(1.5, 1.5)
 
 @onready var viewport1: Viewport = $"../SubViewportContainer/SubViewport"
-@onready var viewport2: Viewport = $"../SubViewportContainer/SubViewport2"
-
-@onready var climb_label_p_1: Label = $"../SubViewportContainer/SubViewport/CanvasLayer/ClimbLabel_P1"
-@onready var climb_label_p_2: Label = $"../SubViewportContainer/SubViewport2/CanvasLayer/ClimbLabel_P2"
+@onready var viewport2: Viewport = $"../SubViewportContainer/SubViewport2" 
 
 var players: Array[Node2D] = []
 
@@ -26,11 +23,9 @@ func _ready() -> void:
 
 	if player1_body:
 		player1_body.set_total_platforms(platforms_total)
-		player1_body.set_climb_label(climb_label_p_1)
 
 	if player2_body:
 		player2_body.set_total_platforms(platforms_total)
-		player2_body.set_climb_label(climb_label_p_2)
 
 	var base_y: float = min(player1_node.global_position.y, player2_node.global_position.y)
 

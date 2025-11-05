@@ -199,8 +199,9 @@ func _load_dino_animations(dino: String) -> void:
 		"teto":
 			animated_sprite.offset = Vector2(0, -7)
 			animated_sprite.speed_scale = 2.0
-		"knight":
-			pass
+		"ang":
+			animated_sprite.offset = Vector2(0, -4)
+			animated_sprite.speed_scale = 1.5
 		_:
 			animated_sprite.offset = Vector2.ZERO
 			animated_sprite.scale = Vector2(1, 1)

@@ -279,8 +279,8 @@ text = "Back"
 [node name="SelectorFrame" type="Panel" parent="."]
 z_index = -2
 layout_mode = 0
-offset_left = 391.0
-offset_top = 342.0
-offset_right = 462.0
-offset_bottom = 417.0
+offset_left = 390.0
+offset_top = 340.0
+offset_right = 461.0
+offset_bottom = 422.0
 theme_override_styles/panel = SubResource("StyleBoxFlat_wh1ae")

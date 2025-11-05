@@ -5,6 +5,8 @@ extends Node2D
 @onready var shop_menu: CanvasLayer = $ShopMenu
 
 func _ready() -> void:
+	TranslationServer.set_locale(Global.game_lang)
+	Global.update_fonts(self)
 	options_menu.visible = false
 	shop_menu.visible = false
 	$Player.player_id = "P1"  # or whatever ID is appropriate
@@ -12,8 +14,12 @@ func _ready() -> void:
 
 
 func _process(_delta: float) -> void:
-	y_label.text = "Y Level: %dm" % Global.y_level
+	if Input.is_action_just_pressed("action_p"):
+		var new_locale := "jp" if TranslationServer.get_locale() == "en" else "en"
+		Global.game_lang = new_locale
+		TranslationServer.set_locale(new_locale)
 
+	y_label.text = tr("y_level") + ": %dm" % Global.y_level
 func _unhandled_input(event: InputEvent) -> void:
 	if event.is_action_pressed("ui_cancel"):
 		_toggle_options_menu()
@@ -31,10 +37,3 @@ func _toggle_shop_menu() -> void:
 		options_menu.visible = false
 	shop_menu.visible = !shop_menu.visible
 	get_tree().paused = shop_menu.visible
-
-
-
-
-# the options menu works just fine
-# now ill show you the shop menu [which only consists of a resume button rn[
-# im already clicking intensively and it doesn twork.

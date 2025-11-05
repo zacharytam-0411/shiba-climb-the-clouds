@@ -33,6 +33,8 @@ var race_active: bool = true
 var player_finish_times := {}
 
 func _ready():
+	TranslationServer.set_locale(Global.game_lang)
+	Global.update_fonts(self)
 	display1.texture = viewport1.get_texture()
 	display2.texture = viewport2.get_texture()
 
@@ -83,9 +85,13 @@ func _ready():
 	race_active = true
 
 func _process(delta: float) -> void:
+	if Input.is_action_just_pressed("action_p"):
+		var new_locale := "jp" if TranslationServer.get_locale() == "en" else "en"
+		Global.game_lang = new_locale
+		TranslationServer.set_locale(new_locale)
 	if race_active:
 		var elapsed = Time.get_ticks_msec() / 1000.0 - race_start_time
-		race_timer_label.text = "Time: %.2f s" % elapsed
+		race_timer_label.text = tr("time") + ": %.2f s" % elapsed
 
 func register_win(player_name: String) -> void:
 	if player_name in player_finish_times:
@@ -93,7 +99,6 @@ func register_win(player_name: String) -> void:
 
 	var elapsed = Time.get_ticks_msec() / 1000.0 - race_start_time
 	player_finish_times[player_name] = elapsed
-	print("%s finished in %.2f seconds" % [player_name, elapsed])
 
 	if player_finish_times.size() == 2:
 		race_active = false

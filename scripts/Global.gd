@@ -10,7 +10,7 @@ var upgrades: Dictionary = {
 var english_font_file: FontFile = load("res://assets/fonts/m6x11.ttf")
 var japanese_font_file: FontFile = load("res://assets/fonts/BestTen-CRT.otf")
 
-var game_lang : String = "en"
+var game_lang : String = "jp"
 
 var sapphire_collected: bool = false
 var diamond_collected: bool = false

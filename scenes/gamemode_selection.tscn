@@ -24,22 +24,6 @@ grow_vertical = 2
 texture = ExtResource("2_4vwrc")
 expand_mode = 1
 
-[node name="2playerlabel" type="Label" parent="."]
-z_index = 100
-layout_mode = 0
-offset_left = 733.0
-offset_top = 454.0
-offset_right = 1108.0
-offset_bottom = 499.0
-theme_override_colors/font_color = Color(0, 0, 0, 1)
-theme_override_colors/font_outline_color = Color(1, 1, 1, 1)
-theme_override_constants/outline_size = 4
-theme_override_fonts/font = ExtResource("3_43qdw")
-theme_override_font_sizes/font_size = 50
-text = "Not yet available!"
-horizontal_alignment = 1
-vertical_alignment = 1
-
 [node name="TitleLabel" type="Label" parent="."]
 layout_mode = 0
 offset_left = 273.0
@@ -57,19 +41,19 @@ vertical_alignment = 1
 
 [node name="DefaultModeButton" type="Button" parent="."]
 layout_mode = 0
-offset_left = 90.0
-offset_top = 320.0
-offset_right = 330.0
-offset_bottom = 440.0
+offset_left = 258.0
+offset_top = 150.0
+offset_right = 498.0
+offset_bottom = 270.0
 theme = ExtResource("4_6l654")
 text = "Adventure Mode"
 
 [node name="Leaderboard" type="Button" parent="."]
 layout_mode = 0
-offset_left = 444.0
-offset_top = 515.0
-offset_right = 684.0
-offset_bottom = 635.0
+offset_left = 464.0
+offset_top = 527.0
+offset_right = 704.0
+offset_bottom = 647.0
 theme = ExtResource("4_6l654")
 text = "Go to leaderboard"
 
@@ -82,18 +66,18 @@ text = "Back"
 
 [node name="OnlyUpButton" type="Button" parent="."]
 layout_mode = 0
-offset_left = 440.0
-offset_top = 320.0
-offset_right = 680.0
-offset_bottom = 440.0
+offset_left = 465.0
+offset_top = 307.0
+offset_right = 705.0
+offset_bottom = 427.0
 theme = ExtResource("4_6l654")
 text = "Climb The Clouds"
 
 [node name="MultiplayerButton" type="Button" parent="."]
 layout_mode = 0
-offset_left = 790.0
-offset_top = 320.0
-offset_right = 1030.0
-offset_bottom = 440.0
+offset_left = 677.0
+offset_top = 151.0
+offset_right = 917.0
+offset_bottom = 271.0
 theme = ExtResource("4_6l654")
 text = "2 Player Mode"

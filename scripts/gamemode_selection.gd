@@ -3,7 +3,6 @@ extends Control
 @onready var default_mode_button: Button = $DefaultModeButton
 @onready var only_up_button: Button = $OnlyUpButton
 @onready var multiplayer_button: Button = $MultiplayerButton
-@onready var _2_playerlabel: Label = $"2playerlabel"
 @onready var leaderboard: Button = $Leaderboard
 @onready var back_button: Button = $BackButton
 
@@ -13,7 +12,6 @@ var selected_index := 0
 func _ready():
 	TranslationServer.set_locale(Global.game_lang)
 	Global.update_fonts(self)
-	_2_playerlabel.visible = false
 
 	# Connect button signals
 	back_button.pressed.connect(_on_BackButton_pressed)
@@ -22,7 +20,6 @@ func _ready():
 	multiplayer_button.pressed.connect(_on_multiplayer_pressed)
 	leaderboard.pressed.connect(_on_leaderboard_button_pressed)
 
-	# Store buttons in visual (vertical) order
 	buttons = [
 		default_mode_button,
 		only_up_button,
@@ -31,7 +28,7 @@ func _ready():
 		back_button
 	]
 
-	selected_index = 0  # ✅ Default to Default Mode
+	selected_index = 0  
 	highlight_selected()
 
 func _process(delta: float) -> void:

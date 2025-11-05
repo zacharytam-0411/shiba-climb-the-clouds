@@ -5,7 +5,6 @@ Shop, "Shop", "ショップ"
 Exit, "Exit", "終了"
 Climb the Clouds, "Climb the Clouds", "雲を登る"
 A production by:, "A production by:", "制作："
-Press T to listen to Teto!, "Press T to listen to Teto!", "Tを押してテトを聞く！"
 "Teto -->", "Teto -->", "テト -->"
 "Not yet available!", "Not yet available!", "まだ利用できません！"
 "Gamemode selection", "Gamemode selection", "ゲームモード選択"
@@ -53,13 +52,13 @@ dialogue.gem_intro,"Now, let me tell you about the 4 gems you can find:",次に�
 dialogue.ruby_info,Ruby lets you wall jump.,ルビーを取ると壁ジャンプができます。
 dialogue.sapphire_info,Sapphire gives you a double jump.,サファイアは二段ジャンプが可能になります。
 dialogue.emerald_diamond_info,"Emerald gives a speed and jump boost, \nand Diamond gives you 2 extra lives!",エメラルドはスピードとジャンプ力を強化し、\nダイヤモンドはライフを2つ追加してくれます！
-dialogue.options_reminder,"Also, remember to check out the Options page\nto adjust the music volume!",オプションページで音楽の音量を調整するのも忘れずに！
-dialogue.free_space_info,"After this dialogue ends, there will be a free space\nfor you to explore the mechanics of the game.",この会話が終わると、ゲームの仕組みを自由に試せるスペースがあります。
-dialogue.back_to_menu,Click the 'Back to Menu' button on the \ntop right corner when you are done!,終わったら右上の「メニューに戻る」ボタンをクリックしてください！
-dialogue.restart_game,Note that you will have to click Start Game\nagain to start the main game!,メインゲームを始めるには、もう一度「ゲーム開始」をクリックする必要があります！
+dialogue.options_reminder,"Also, remember to check out the Options page\nto adjust the music volume!",オプションページで\n音楽の音量を調整するのも忘れずに！
+dialogue.free_space_info,"After this dialogue ends, there will be a free space\nfor you to explore the mechanics of the game.",この会話が終わると、ゲーム\nの仕組みを自由に試せるスペースがあります。
+dialogue.back_to_menu,Click the 'Back to Menu' button on the \ntop right corner when you are done!,終わったら右上の「メニューに戻る」\nボタンをクリックしてください！
+dialogue.restart_game,Note that you will have to click Start Game\nagain to start the main game!,メインゲームを始めるには、もう一度「ゲーム開始」\nをクリックする必要があります！
 dialogue.music_skip,"You can press the I key to skip a song backwards,\nand O key to do the opposite [skip forwards].",Iキーで曲を戻し、Oキーで次の曲にスキップできます。
-dialogue.options_midgame,"Also, press Esc to access the Options page mid-game!",ゲーム中にEscキーを押すとオプションページにアクセスできます！
-dialogue.recent_updates,Most Recent Updates [v0.8c]: \nRevamped the Only Up gamemode \nand the character selection screen! :),最新アップデート [v0.8c]：\n「Only Up」モードとキャラクター選択画面を刷新しました！ :)
+dialogue.options_midgame,"Also, press Esc to access the Options page mid-game!",ゲーム中にEscキーを押すと\nオプションページにアクセスできます！
+dialogue.recent_updates,Most Recent Updates [v1.0a]: Added Japanese language support! \nSorry if the translations are incorrect \nas they are [90%] being done by AI.,"最新の更新情報【v1.0a】：日本語サポートを追加！翻訳\nはAIによるものなので、間違っていたらごめんなさい。"
 dialogue.closing,"That's all, enjoy your game, and happy climbing!",以上です！ゲームを楽しんで、楽しく登ってくださいね！
 Free Exploring Space - Press Button on the right to leave -->, "Free Exploring Space - Press Button on the right to leave -->", "自由探索スペース - 右のボタンを押して退出 -->"
 Back to Menu, "Back to Menu", "メニューに戻る"
@@ -82,3 +81,4 @@ music.lover_girl,Lover Girl - Laufey [feat. Kasane Teto],ラバー・ガール -
 music.big_cat_waltz,Big Cat Waltz - Hayato Sumino,ビッグキャットワルツ - 角野隼斗
 music.orange_juice,Orange Juice - Luce Lofi,オレンジジュース - Luce Lofi
 music.bakery,Bakery - Luce Lofi,ベーカリー - Luce Lofi
+time, "Time Elapsed", "経過時間"
