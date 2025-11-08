@@ -67,8 +67,38 @@ func _process(_delta: float) -> void:
 
 func _move_selector(offset: int):
 	var total := character_grid.get_child_count()
-	current_index = clamp(current_index + offset, 0, total - 1)
+	var new_index := current_index + offset
+	
+	if offset == grid_columns:  # Moving down
+		var current_row := current_index / grid_columns
+		var target_row := current_row + 1
+		var column := current_index % grid_columns
+		var target_index := target_row * grid_columns + column
+
+		if target_index >= total:
+			var last_row_start := grid_columns * 3  # 3 full rows
+			var last_row_count := total - last_row_start
+			if column >= last_row_count:
+				target_index = total - 1
+			else:
+				target_index = last_row_start + column
+		new_index = target_index
+
+	elif offset == -grid_columns:  # Moving up
+		var current_row := current_index / grid_columns
+		if current_row == 0:
+			new_index = current_index  # Stay in place
+		else:
+			var target_row := current_row - 1
+			var column := current_index % grid_columns
+			new_index = target_row * grid_columns + column
+
+	else:
+		new_index = clamp(new_index, 0, total - 1)
+
+	current_index = clamp(new_index, 0, total - 1)
 	_update_selector_position()
+
 
 func _update_selector_position():
 	var target := character_grid.get_child(current_index)
@@ -212,25 +242,18 @@ func _update_preview(character_name: String):
 			frames = preload("res://assets/sprites/skinframes/ang_frames.tres")
 			name_label.text = tr("name_ang")
 			stats_label.text = tr("desc_ang")
-			if confirmed_players["P1"] or confirmed_players["P2"]:
-				preview_sprite.position.y = -10
-			else:
-				preview_sprite.position.y = 0
+			preview_sprite.position.y = -10 if confirmed_players["P1"] or confirmed_players["P2"] else 0
 		"TetoButton":
 			frames = preload("res://assets/sprites/skinframes/teto_frames.tres")
 			name_label.text = tr("name_teto")
 			stats_label.text = tr("desc_teto")
-			if confirmed_players["P1"] or confirmed_players["P2"]:
-				preview_sprite.position.y = -10
-			else:
-				preview_sprite.position.y = 0
+			preview_sprite.position.y = -10 if confirmed_players["P1"] or confirmed_players["P2"] else 0
 		_:
 			name_label.text = tr("name_none")
 			stats_label.text = tr("desc_none")
 			preview_sprite.position.y = 0
 
 	preview_sprite.frames = frames
-
 	if frames and frames.has_animation("default"):
 		preview_sprite.play("default")
 

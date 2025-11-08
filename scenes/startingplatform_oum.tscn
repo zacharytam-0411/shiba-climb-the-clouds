@@ -6,6 +6,7 @@
 size = Vector2(435, 108)
 
 [node name="Node2D" type="StaticBody2D"]
+texture_filter = 1
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
 position = Vector2(156, 39)

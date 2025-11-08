@@ -16,6 +16,7 @@
 script = ExtResource("1_uo4h7")
 
 [node name="PlatformSpawner2P" type="Node2D" parent="."]
+texture_filter = 1
 script = ExtResource("4_akofm")
 platform_scenes = Array[PackedScene]([ExtResource("3_fjfq1"), ExtResource("4_j7d16")])
 starter_platform_scene = ExtResource("21_7lcjx")

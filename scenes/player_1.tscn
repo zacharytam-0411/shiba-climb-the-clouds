@@ -10,6 +10,7 @@
 radius = 5.0
 
 [node name="Player1" type="Node2D" groups=["Player", "player"]]
+texture_filter = 2
 scale = Vector2(2, 2)
 script = ExtResource("1_gneq0")
 

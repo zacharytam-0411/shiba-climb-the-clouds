@@ -49,3 +49,7 @@ func slider_to_db(value: float) -> float:
 
 func db_to_slider(db_value: float) -> float:
 	return clampf(inverse_lerp(-30.0, 0.0, db_value) * 100.0, 0.0, 100.0)
+
+func _process(_delta: float) -> void:
+	if Input.is_action_just_pressed("unconfirm_selection"):
+		_on_back_pressed()

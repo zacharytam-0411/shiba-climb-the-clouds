@@ -6,6 +6,7 @@ const WALL_JUMP_PUSH: float = 200.0
 const COYOTE_TIME: float = 0.1
 const BASE_GRAVITY: float = 980.0
 const RESPAWN_THRESHOLD: float = 100.0
+const JUMP_THRESHOLD: float = 0.5
 
 var SPEED: float = BASE_SPEED
 var JUMP_VELOCITY: float = BASE_JUMP_VELOCITY
@@ -15,6 +16,7 @@ var respawn_position: Vector2 = Vector2.ZERO
 var last_platform_position: Vector2 = Vector2.ZERO
 var is_respawning: bool = false
 var respawn_cooldown: float = 0.0
+var jump_pressed_last_frame: bool = false
 
 @export var player_id: String = "P1"
 
@@ -68,8 +70,12 @@ func _physics_process(delta: float) -> void:
 	else:
 		coyote_timer -= delta
 
-	var up_action: String = "move_up_%s" % player_id.to_lower()
-	if Input.is_action_just_pressed(up_action):
+	# Jump input
+	var up_action: String = "move_up" if player_id == "P1" else "move_up_p2"
+	var jump_strength := Input.get_action_strength(up_action)
+	var jump_pressed := jump_strength > JUMP_THRESHOLD and not jump_pressed_last_frame
+
+	if jump_pressed:
 		if is_on_floor() or coyote_timer > 0.0:
 			velocity.y = JUMP_VELOCITY
 			jumps_left -= 1
@@ -86,20 +92,25 @@ func _physics_process(delta: float) -> void:
 			jumps_left = 2 if Global.sapphire_collected or (Global.gamemode == "only_up" and Global.upgrades.get("DoubleJump", false)) else 1
 			_play_jump_sound()
 
-	var left_action: String = "move_left_%s" % player_id.to_lower()
-	var right_action: String = "move_right_%s" % player_id.to_lower()
-	var direction: float = Input.get_axis(left_action, right_action)
+	jump_pressed_last_frame = jump_strength > JUMP_THRESHOLD
 
-	animated_sprite.flip_h = direction < 0
+	# Horizontal movement
+	var left_action := "move_left" if player_id == "P1" else "move_left_p2"
+	var right_action := "move_right" if player_id == "P1" else "move_right_p2"
+	var direction := Input.get_action_strength(right_action) - Input.get_action_strength(left_action)
 
-	if is_on_floor():
-		animated_sprite.play("idle" if direction == 0.0 else "move")
+	velocity.x = move_toward(velocity.x, direction * SPEED, SPEED * delta * 10)
+
+	if abs(direction) > 0.1:
+		animated_sprite.flip_h = direction < 0
+		if is_on_floor():
+			animated_sprite.play("move")
+		else:
+			animated_sprite.play("jump")
 	else:
-		animated_sprite.play("jump")
+		animated_sprite.play("idle")
 
-	velocity.x = direction * SPEED if direction != 0.0 else move_toward(velocity.x, 0.0, SPEED)
 	move_and_slide()
-
 	_check_respawn()
 
 func _check_respawn() -> void:

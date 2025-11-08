@@ -1,20 +1,22 @@
 extends CharacterBody2D
 
 # Movement constants
-const BASE_SPEED = 150.0
-const BASE_JUMP_VELOCITY = -300.0
-const WALL_JUMP_PUSH = 200.0
+const BASE_SPEED := 150.0
+const BASE_JUMP_VELOCITY := -300.0
+const WALL_JUMP_PUSH := 200.0
 const COYOTE_TIME := 0.1
 const BASE_GRAVITY := 980.0
+const JUMP_THRESHOLD := 0.3  # Lower threshold for better diagonal jump detection
 
 # Runtime variables
-var SPEED = BASE_SPEED
-var JUMP_VELOCITY = BASE_JUMP_VELOCITY
-var coyote_timer: float = 0.0
-var jumps_left: int = 1
-var respawn_position: Vector2 = Vector2.ZERO
-var is_respawning: bool = false
-var player_id: String = "P1"
+var SPEED := BASE_SPEED
+var JUMP_VELOCITY := BASE_JUMP_VELOCITY
+var coyote_timer := 0.0
+var jumps_left := 1
+var respawn_position := Vector2.ZERO
+var is_respawning := false
+var player_id := "P1"
+var jump_pressed_last_frame := false
 
 # Node references
 @onready var animated_sprite: AnimatedSprite2D = $AnimatedSprite2D
@@ -24,11 +26,11 @@ func set_player_id(id: String) -> void:
 	player_id = id
 
 func initialize_player() -> void:
-	var raw_selection: String = Global.selected_players.get(player_id, "KuroButton")
+	var raw_selection : String = Global.selected_players.get(player_id, "KuroButton")
 	if raw_selection == "" or raw_selection == null:
 		raw_selection = "KuroButton"
 
-	var selected_dino: String = raw_selection.replace("Button", "").to_lower()
+	var selected_dino : String = raw_selection.replace("Button", "").to_lower()
 	_load_dino_animations(selected_dino)
 
 func _ready() -> void:
@@ -52,14 +54,20 @@ func _physics_process(delta: float) -> void:
 	_apply_powerups()
 	velocity.y += BASE_GRAVITY * delta
 
-	# Handle jumping
+	# Use Input.get_vector for full analog control
+	var input_vector := Input.get_vector("move_left", "move_right", "move_up", "move_down")
+	var direction := input_vector.x
+	var jump_strength := -input_vector.y  # Up is negative
+
+	var jump_pressed := jump_strength > JUMP_THRESHOLD and not jump_pressed_last_frame
+
 	if is_on_floor():
 		jumps_left = 2 if Global.sapphire_collected or (Global.gamemode == "only_up" and Global.upgrades.get("DoubleJump", false)) else 1
 		coyote_timer = COYOTE_TIME
 	else:
 		coyote_timer -= delta
 
-	if Input.is_action_just_pressed("move_up"):
+	if jump_pressed:
 		if is_on_floor() or coyote_timer > 0.0:
 			velocity.y = JUMP_VELOCITY
 			jumps_left -= 1
@@ -76,16 +84,21 @@ func _physics_process(delta: float) -> void:
 			jumps_left = 2 if Global.sapphire_collected or (Global.gamemode == "only_up" and Global.upgrades.get("DoubleJump", false)) else 1
 			_play_jump_sound()
 
-	# Handle horizontal movement
-	var direction := Input.get_axis("move_left", "move_right")
-	animated_sprite.flip_h = direction < 0
+	jump_pressed_last_frame = jump_strength > JUMP_THRESHOLD
 
-	if is_on_floor():
-		animated_sprite.play("idle" if direction == 0 else "move")
+	# Smooth horizontal movement
+	velocity.x = move_toward(velocity.x, direction * SPEED, SPEED * delta * 10)
+
+	# Animation handling
+	if abs(direction) > 0.1:
+		animated_sprite.flip_h = direction < 0
+		if is_on_floor():
+			animated_sprite.play("move")
+		else:
+			animated_sprite.play("jump")
 	else:
-		animated_sprite.play("jump")
+		animated_sprite.play("idle")
 
-	velocity.x = direction * SPEED if direction != 0 else move_toward(velocity.x, 0, SPEED)
 	move_and_slide()
 
 func _on_player_died(player: Node) -> void:
@@ -141,7 +154,7 @@ func _apply_powerups() -> void:
 	if Global.gamemode == "only_up":
 		SPEED *= 1.7
 		JUMP_VELOCITY *= 1.7
-		var boost_level: int = Global.upgrades.get("JumpBoost", 0)
+		var boost_level = Global.upgrades.get("JumpBoost", 0)
 		if boost_level > 0:
 			JUMP_VELOCITY *= 1 + (0.4 * boost_level)
 
@@ -163,15 +176,15 @@ func set_platforms(data: Array) -> void:
 		add_child(platform)
 
 func _load_dino_animations(dino: String) -> void:
-	var base_path = "res://assets/sprites/dinos/male/%s/base/" % dino
-	var animations = ["idle", "move", "jump", "hurt", "dead", "dash", "kick", "bite", "avoid", "scan"]
-	var frames = SpriteFrames.new()
+	var base_path := "res://assets/sprites/dinos/male/%s/base/" % dino
+	var animations := ["idle", "move", "jump", "hurt", "dead", "dash", "kick", "bite", "avoid", "scan"]
+	var frames := SpriteFrames.new()
 
 	for anim in animations:
-		var file_path = base_path + "%s.png" % anim
+		var file_path := base_path + "%s.png" % anim
 		if not ResourceLoader.exists(file_path):
 			continue
-		var tex = load(file_path)
+		var tex := load(file_path)
 		var frame_size = tex.get_height()
 		var frame_count = tex.get_width() / frame_size
 
@@ -181,8 +194,8 @@ func _load_dino_animations(dino: String) -> void:
 
 		frames.add_animation(anim)
 		for i in range(int(frame_count)):
-			var region = Rect2(i * frame_size, 0, frame_size, frame_size)
-			var atlas = AtlasTexture.new()
+			var region := Rect2(i * frame_size, 0, frame_size, frame_size)
+			var atlas := AtlasTexture.new()
 			atlas.atlas = tex
 			atlas.region = region
 			frames.add_frame(anim, atlas)

@@ -165,6 +165,7 @@ alignment = 1
 layout_mode = 2
 
 [node name="Label" type="Label" parent="PlayerSlots/P1Slot"]
+texture_filter = 1
 layout_mode = 2
 theme_override_colors/font_color = Color(0.38431373, 0.6, 1, 1)
 theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
@@ -182,6 +183,7 @@ stretch_mode = 5
 layout_mode = 2
 
 [node name="Label" type="Label" parent="PlayerSlots/P2Slot"]
+texture_filter = 1
 layout_mode = 2
 theme_override_colors/font_color = Color(1, 0.6, 0.6039216, 1)
 theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
