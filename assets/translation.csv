@@ -82,3 +82,14 @@ music.big_cat_waltz,Big Cat Waltz - Hayato Sumino,ビッグキャットワルツ
 music.orange_juice,Orange Juice - Luce Lofi,オレンジジュース - Luce Lofi
 music.bakery,Bakery - Luce Lofi,ベーカリー - Luce Lofi
 time, "Time Elapsed", "経過時間"
+Unfortunately you have ran out of lives :(, "Unfortunately you have ran out of lives :(", "残念ながらライフが尽きました :("
+lose_data, "Your Data: ", "あなたのデータ："
+lose_s, "s", "秒"
+lose_time_spent, "Time Spent: ", "経過時間："
+lose_har, "Highest Altitude Reached:", "到達した最高高度："
+Here are your stats:, "Here are your stats:", "あなたの統計情報はこちら："
+Nice work still! Don't give up and try again!, "Nice work still! Don't give up and try again!", "それでもよくやった！あきらめずにもう一度挑戦しよう！"
+Back to Main Screen, "Back to Main Screen", "メイン画面に戻る"
+Dont quit brother, How dare you quit my wonderful game? Now get rickrolled!,"おいおい、ぼくの最高なゲームをやめるなんて、\nよくもそんなことを… 罰として、リックロールの刑だ！"
+Back to Menu, "Back to Menu", "メニューに戻る"
+Quit Game, "Quit Game", "ゲームを終了"

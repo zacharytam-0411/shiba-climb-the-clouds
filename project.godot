@@ -11,6 +11,7 @@ config_version=5
 [application]
 
 config/name="shiba climb the clouds"
+config/version="1.0a"
 run/main_scene="uid://dojb5lpo81upv"
 config/features=PackedStringArray("4.5", "Forward Plus")
 config/icon="res://icon.svg"
@@ -22,6 +23,7 @@ Shibadb="*res://scripts/shibadb.gd"
 
 [display]
 
+window/size/mode=3
 window/stretch/mode="viewport"
 
 [editor_plugins]

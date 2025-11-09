@@ -1,8 +1,8 @@
 extends CharacterBody2D
 
 # Movement constants
-const BASE_SPEED := 150.0
-const BASE_JUMP_VELOCITY := -300.0
+const BASE_SPEED := 160.0
+const BASE_JUMP_VELOCITY := -320.0
 const WALL_JUMP_PUSH := 200.0
 const COYOTE_TIME := 0.1
 const BASE_GRAVITY := 980.0
@@ -54,12 +54,11 @@ func _physics_process(delta: float) -> void:
 	_apply_powerups()
 	velocity.y += BASE_GRAVITY * delta
 
-	# Use Input.get_vector for full analog control
 	var input_vector := Input.get_vector("move_left", "move_right", "move_up", "move_down")
 	var direction := input_vector.x
 	var jump_strength := -input_vector.y  # Up is negative
-
-	var jump_pressed := jump_strength > JUMP_THRESHOLD and not jump_pressed_last_frame
+	var confirm_jump := Input.is_action_just_pressed("confirm_selection")
+	var jump_pressed := (jump_strength > JUMP_THRESHOLD and not jump_pressed_last_frame) or confirm_jump
 
 	if is_on_floor():
 		jumps_left = 2 if Global.sapphire_collected or (Global.gamemode == "only_up" and Global.upgrades.get("DoubleJump", false)) else 1
@@ -84,12 +83,10 @@ func _physics_process(delta: float) -> void:
 			jumps_left = 2 if Global.sapphire_collected or (Global.gamemode == "only_up" and Global.upgrades.get("DoubleJump", false)) else 1
 			_play_jump_sound()
 
-	jump_pressed_last_frame = jump_strength > JUMP_THRESHOLD
+	jump_pressed_last_frame = jump_strength > JUMP_THRESHOLD or confirm_jump
 
-	# Smooth horizontal movement
 	velocity.x = move_toward(velocity.x, direction * SPEED, SPEED * delta * 10)
 
-	# Animation handling
 	if abs(direction) > 0.1:
 		animated_sprite.flip_h = direction < 0
 		if is_on_floor():

@@ -196,7 +196,7 @@ func _finish_typing():
 	_show_continue_prompt()
 
 func _unhandled_input(event: InputEvent) -> void:
-	if event.is_action_pressed("ui_accept"):
+	if event.is_action_pressed("unconfirm_selection"):
 		if typing:
 			if typing_tween:
 				typing_tween.kill()

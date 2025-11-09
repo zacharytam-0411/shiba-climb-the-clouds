@@ -5,7 +5,7 @@ const BASE_JUMP_VELOCITY: float = -400.0
 const WALL_JUMP_PUSH: float = 200.0
 const COYOTE_TIME: float = 0.1
 const BASE_GRAVITY: float = 980.0
-const RESPAWN_THRESHOLD: float = 100.0
+const RESPAWN_THRESHOLD: float = 240.0  # 2 platforms worth of fall
 const JUMP_THRESHOLD: float = 0.5
 
 var SPEED: float = BASE_SPEED
@@ -71,9 +71,11 @@ func _physics_process(delta: float) -> void:
 		coyote_timer -= delta
 
 	# Jump input
-	var up_action: String = "move_up" if player_id == "P1" else "move_up_p2"
+	var up_action := "move_up" if player_id == "P1" else "move_up_p2"
 	var jump_strength := Input.get_action_strength(up_action)
-	var jump_pressed := jump_strength > JUMP_THRESHOLD and not jump_pressed_last_frame
+
+	var confirm_jump := Input.is_action_just_pressed("confirm_selection") if player_id == "P1" else Input.is_action_just_pressed("unconfirm_selection")
+	var jump_pressed := (jump_strength > JUMP_THRESHOLD and not jump_pressed_last_frame) or confirm_jump
 
 	if jump_pressed:
 		if is_on_floor() or coyote_timer > 0.0:
@@ -92,7 +94,7 @@ func _physics_process(delta: float) -> void:
 			jumps_left = 2 if Global.sapphire_collected or (Global.gamemode == "only_up" and Global.upgrades.get("DoubleJump", false)) else 1
 			_play_jump_sound()
 
-	jump_pressed_last_frame = jump_strength > JUMP_THRESHOLD
+	jump_pressed_last_frame = jump_strength > JUMP_THRESHOLD or confirm_jump
 
 	# Horizontal movement
 	var left_action := "move_left" if player_id == "P1" else "move_left_p2"
@@ -119,8 +121,8 @@ func _check_respawn() -> void:
 
 	if global_position.y - last_platform_position.y > RESPAWN_THRESHOLD:
 		is_respawning = true
-		global_position = respawn_position
 		velocity = Vector2.ZERO
+		global_position = last_platform_position + Vector2(0, -10)
 		respawn_cooldown = 0.5
 		is_respawning = false
 

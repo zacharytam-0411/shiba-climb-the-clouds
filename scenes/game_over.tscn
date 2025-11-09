@@ -137,15 +137,17 @@ z_index = 10
 anchors_preset = 5
 anchor_left = 0.5
 anchor_right = 0.5
-offset_left = -459.5
-offset_right = 459.5
-offset_bottom = 248.0
+offset_left = -492.5
+offset_top = -62.0
+offset_right = 426.5
+offset_bottom = 186.0
 grow_horizontal = 2
 theme_override_colors/font_color = Color(0.47843137, 0.95686275, 1, 1)
 theme_override_colors/font_outline_color = Color(0, 0.47843137, 1, 1)
 theme_override_constants/outline_size = 10
 theme_override_fonts/font = ExtResource("2_tbwuq")
-theme_override_font_sizes/font_size = 150
+theme_override_font_sizes/font_size = 120
 text = "Climb the Clouds"
+vertical_alignment = 1
 
 [connection signal="pressed" from="CanvasLayer/QuitButton" to="." method="_on_quit_button_pressed"]

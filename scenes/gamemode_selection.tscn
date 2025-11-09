@@ -41,21 +41,12 @@ vertical_alignment = 1
 
 [node name="DefaultModeButton" type="Button" parent="."]
 layout_mode = 0
-offset_left = 258.0
-offset_top = 150.0
-offset_right = 498.0
-offset_bottom = 270.0
+offset_left = 71.0
+offset_top = 307.0
+offset_right = 311.0
+offset_bottom = 427.0
 theme = ExtResource("4_6l654")
 text = "Adventure Mode"
-
-[node name="Leaderboard" type="Button" parent="."]
-layout_mode = 0
-offset_left = 464.0
-offset_top = 527.0
-offset_right = 704.0
-offset_bottom = 647.0
-theme = ExtResource("4_6l654")
-text = "Go to leaderboard"
 
 [node name="BackButton" type="Button" parent="."]
 layout_mode = 1
@@ -75,9 +66,9 @@ text = "Climb The Clouds"
 
 [node name="MultiplayerButton" type="Button" parent="."]
 layout_mode = 0
-offset_left = 677.0
-offset_top = 151.0
-offset_right = 917.0
-offset_bottom = 271.0
+offset_left = 797.0
+offset_top = 307.0
+offset_right = 1037.0
+offset_bottom = 427.0
 theme = ExtResource("4_6l654")
 text = "2 Player Mode"

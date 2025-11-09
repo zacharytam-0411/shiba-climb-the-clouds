@@ -7,7 +7,9 @@ const PLAYER2_SCENE = preload("res://scenes/player_2.tscn")
 @onready var viewport2: SubViewport = $SubViewportContainer/SubViewport2
 @onready var display1: TextureRect = $ViewportDisplay1
 @onready var display2: TextureRect = $ViewportDisplay2
-@onready var race_timer_label: Label = $CanvasLayer/RaceTimerLabel  # Make sure this Label exists in your scene
+@onready var race_timer_label: Label = $CanvasLayer/RaceTimerLabel
+@onready var timelabel_1: Label = $SubViewportContainer/SubViewport/CanvasLayer/Timelabel1
+@onready var timelabel_2: Label = $SubViewportContainer/SubViewport2/CanvasLayer/Timelabel2
 
 const PLATFORM_VARIANTS := [
 	preload("res://scenes/Platform_Normal.tscn"),
@@ -89,6 +91,7 @@ func _process(delta: float) -> void:
 		var new_locale := "jp" if TranslationServer.get_locale() == "en" else "en"
 		Global.game_lang = new_locale
 		TranslationServer.set_locale(new_locale)
+
 	if race_active:
 		var elapsed = Time.get_ticks_msec() / 1000.0 - race_start_time
 		race_timer_label.text = tr("time") + ": %.2f s" % elapsed
@@ -100,6 +103,13 @@ func register_win(player_name: String) -> void:
 	var elapsed = Time.get_ticks_msec() / 1000.0 - race_start_time
 	player_finish_times[player_name] = elapsed
 
+	# Show time on the correct label
+	if player_name == "Player1":
+		timelabel_1.text = "%.2fs" % elapsed
+	elif player_name == "Player2":
+		timelabel_2.text = "%.2fs" % elapsed
+
+	# If both players finished, stop the race and show summary
 	if player_finish_times.size() == 2:
 		race_active = false
 		race_timer_label.text = "🏁 P1: %.2fs | P2: %.2fs" % [

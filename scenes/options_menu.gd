@@ -14,6 +14,9 @@ extends CanvasLayer
 var music_volume: float = 1.0 
 var sfx_volume: float = 1.0 
 
+var button_order: Array[Button] = []
+var current_focus_index: int = 0
+
 func _ready() -> void:
 	visible = false
 	TranslationServer.set_locale(Global.game_lang)
@@ -46,19 +49,23 @@ func _ready() -> void:
 	]:
 		button.focus_mode = Control.FOCUS_ALL
 
-	# Set rightward navigation
-	minus_button.focus_neighbor_right = plus_button.get_path()
-	plus_button.focus_neighbor_right = minus_sfx_button.get_path()
-	minus_sfx_button.focus_neighbor_right = plus_sfx_button.get_path()
-	plus_sfx_button.focus_neighbor_right = resume_button.get_path()
-	resume_button.focus_neighbor_right = quit_button.get_path()
+	# Define horizontal navigation order
+	button_order = [
+		minus_button,
+		plus_button,
+		minus_sfx_button,
+		plus_sfx_button,
+		resume_button,
+		quit_button
+	]
 
-	# Initial focus
-	minus_button.grab_focus()
+	current_focus_index = 0
+	button_order[current_focus_index].grab_focus()
 
 func show_menu() -> void:
 	visible = true
-	minus_button.grab_focus()
+	current_focus_index = 0
+	button_order[current_focus_index].grab_focus()
 
 func hide_menu() -> void:
 	visible = false
@@ -108,7 +115,7 @@ func _on_quit_pressed() -> void:
 	get_tree().paused = false
 	get_tree().change_scene_to_file("res://scenes/main_screen.tscn")
 
-# -- Language toggle (optional) --
+# -- Input Navigation --
 func _process(delta: float) -> void:
 	if Input.is_action_just_pressed("action_p"):
 		var new_locale := "jp" if TranslationServer.get_locale() == "en" else "en"
@@ -116,11 +123,18 @@ func _process(delta: float) -> void:
 		TranslationServer.set_locale(new_locale)
 		Global.update_fonts(self)
 
+	if Input.is_action_just_pressed("move_right"):
+		current_focus_index = (current_focus_index + 1) % button_order.size()
+		button_order[current_focus_index].grab_focus()
+
+	if Input.is_action_just_pressed("move_left"):
+		current_focus_index = (current_focus_index - 1 + button_order.size()) % button_order.size()
+		button_order[current_focus_index].grab_focus()
+
 	if Input.is_action_just_pressed("confirm_selection"):
 		var focused := get_viewport().gui_get_focus_owner()
 		if focused and focused is Button:
 			focused.emit_signal("pressed")
-
 
 # -- Helpers --
 func linear_to_db(value: float) -> float:

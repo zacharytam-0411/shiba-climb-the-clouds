@@ -26,11 +26,21 @@ grow_vertical = 2
 stream = ExtResource("2_p2apf")
 autoplay = true
 
-[node name="Button" type="Button" parent="CanvasLayer"]
+[node name="QuitGameButton" type="Button" parent="CanvasLayer"]
+offset_left = 1046.0
+offset_top = 1196.0
+offset_right = 1366.0
+offset_bottom = 1280.0
+theme_override_colors/font_color = Color(0.875, 0.875, 0.875, 1)
+theme_override_fonts/font = ExtResource("3_p2apf")
+theme_override_font_sizes/font_size = 45
+text = "Quit Game"
+
+[node name="BackButton" type="Button" parent="CanvasLayer"]
 offset_left = 1044.0
-offset_top = 1142.0
+offset_top = 1078.0
 offset_right = 1364.0
-offset_bottom = 1226.0
+offset_bottom = 1162.0
 theme_override_colors/font_color = Color(0.875, 0.875, 0.875, 1)
 theme_override_fonts/font = ExtResource("3_p2apf")
 theme_override_font_sizes/font_size = 45
@@ -48,7 +58,7 @@ grow_horizontal = 2
 theme_override_colors/font_color = Color(1, 1, 1, 1)
 theme_override_fonts/font = ExtResource("3_p2apf")
 theme_override_font_sizes/font_size = 50
-text = "How dare you quit my wonderful game? Now get rickrolled!
-"
+text = "Dont quit brother"
 
-[connection signal="pressed" from="CanvasLayer/Button" to="." method="_on_button_pressed"]
+[connection signal="pressed" from="CanvasLayer/QuitGameButton" to="." method="_on_quit_game_button_pressed"]
+[connection signal="pressed" from="CanvasLayer/BackButton" to="." method="_on_button_pressed"]
